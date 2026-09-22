@@ -2,7 +2,7 @@ disabled = false
 locale = "en"
 label = "English"
 weight = 1
-title = "Blowfish"
+title = "Claire David"
 
 [params]
   displayName = "EN"
@@ -12,7 +12,7 @@ title = "Blowfish"
   # logo = "img/logo.png"
   # secondaryLogo = "img/secondary-logo.png"
   # description = "My awesome website"
-  # copyright = "Copy, _right?_ :thinking_face:"
+  copyright = "&copy; { year } Claire David"
 
 # [params.author]
 #   name = "Your name here"

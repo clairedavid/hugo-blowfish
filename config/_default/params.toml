@@ -58,14 +58,14 @@ forgejoDefaultServer = "https://v11.next.forgejo.org"
   # mobileMenuStyle = "fullscreen" # valid options: fullscreen, dropdown
 
 [footer]
-  showMenu = true
+  showMenu = false
   showCopyright = true
-  showThemeAttribution = true
+  showThemeAttribution = false
   showAppearanceSwitcher = true
   showScrollToTop = true
 
 [homepage]
-  layout = "profile" # valid options: page, profile, hero, card, background, landing, custom
+  layout = "page" # valid options: page, profile, hero, card, background, landing, custom
   # layoutSwitcher = false # opt-in interactive preview of the built-in layouts
   #homepageImage = "IMAGE.jpg" # used in: hero, and card
   showRecent = false
