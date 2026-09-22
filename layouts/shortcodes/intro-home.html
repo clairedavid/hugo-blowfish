@@ -1,0 +1,213 @@
+{{/* Minimal home intro: circular photo, name, three lines, a quote.
+     Sized to fit one screen: the block stretches to fill whatever height is
+     left between the theme's header and footer, so the page never scrolls. */}}
+
+{{ $img := resources.Get "images/claire_david_placeholder.png" }}
+{{ $lines := slice
+  "Experimental particle physicist, Large Hadron Collider at CERN"
+  "Trained graduate students in Artificial Intelligence across Africa"
+  "Colliding talent with scholars and opportunities"
+}}
+
+<style>
+  /* The theme's body is `flex flex-col h-screen`, so the footer already wants
+     to sit at the bottom. Make the chain down to this component stretch too,
+     and the content area fills the gap exactly - footer pinned, no scroll.
+     These rules only ever load on the page carrying this shortcode. */
+  #main-content,
+  #main-content > article,
+  #main-content > article > section {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+
+  .ih {
+    /* ---- Adjust these and nothing else ---- */
+    --ih-photo: clamp(140px, 22vh, 220px);        /* shrinks on short screens */
+    --ih-name-size: clamp(1.5rem, 3.6vh, 2.3rem);
+    --ih-text-size: 1rem;
+    --ih-column: 46rem;                           /* the content column */
+    --ih-measure: 34rem;                          /* width of lines + quote */
+    --ih-gap-photo-name: clamp(1.25rem, 3.5vh, 2.75rem);
+    --ih-gap-name-lines: clamp(2.5rem, 7vh, 5rem); /* line 1 sits lower */
+    --ih-gap-lines: clamp(0.9rem, 2.2vh, 1.6rem);
+    --ih-gap-quote: clamp(2rem, 7vh, 5.5rem);
+    --ih-by-shift: 5rem;                          /* "Max Welling" nudge */
+    /* ---------------------------------------- */
+
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;   /* balances space above and below */
+    align-items: center;
+    padding: clamp(0.75rem, 2.5vh, 2rem) 1rem;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  }
+
+  /* Content column. The lines align to its left edge; name and quote centre. */
+  .ih__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: var(--ih-column);
+    margin-inline: auto;
+  }
+
+  .ih__photo {
+    margin: 0; /* cancel the theme's prose img margins */
+    width: var(--ih-photo);
+    height: var(--ih-photo);
+    aspect-ratio: 1 / 1;
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px rgb(var(--color-neutral-200));
+  }
+
+  .dark .ih__photo {
+    box-shadow: 0 0 0 1px rgb(var(--color-neutral-700));
+  }
+
+  .ih__name {
+    margin: var(--ih-gap-photo-name) 0 0;
+    font-weight: 400;
+    font-size: var(--ih-name-size);
+    line-height: 1.15;
+    text-align: center;
+    color: rgb(var(--color-neutral-800));
+  }
+
+  .dark .ih__name {
+    color: rgb(var(--color-neutral-100));
+  }
+
+  /* Three lines: flush to the left edge of the content column. */
+  .ih__lines {
+    align-self: flex-start;
+    width: 100%;
+    max-width: var(--ih-measure);
+    margin: var(--ih-gap-name-lines) 0 0;
+    text-align: left;
+  }
+
+  .ih__line {
+    margin: 0 0 var(--ih-gap-lines);
+    font-size: var(--ih-text-size);
+    font-weight: 400;
+    line-height: 1.6;
+    color: rgb(var(--color-neutral-700));
+  }
+
+  .ih__line:last-child {
+    margin-bottom: 0;
+  }
+
+  .dark .ih__line {
+    color: rgb(var(--color-neutral-300));
+  }
+
+  .ih__quote {
+    width: 100%;
+    max-width: var(--ih-measure);
+    margin: var(--ih-gap-quote) auto 0;
+  }
+
+  .ih__quote-text {
+    margin: 0;
+    text-align: center;
+    font-size: var(--ih-text-size);
+    line-height: 1.6;
+    color: rgb(var(--color-neutral-700));
+  }
+
+  .dark .ih__quote-text {
+    color: rgb(var(--color-neutral-300));
+  }
+
+  /* Attribution on its own line, smaller, nudged right. No em-dash. */
+  .ih__quote-by {
+    margin: 0.6rem 0 0;
+    text-align: center;
+    transform: translateX(var(--ih-by-shift));
+    font-size: 0.875rem;
+    color: rgb(var(--color-neutral-500));
+  }
+
+  .dark .ih__quote-by {
+    color: rgb(var(--color-neutral-400));
+  }
+
+  /* ---------- Phone ---------- */
+  @media (max-width: 639.98px) {
+    .ih {
+      --ih-photo: clamp(120px, 18vh, 180px);
+      --ih-by-shift: 2.5rem;
+      --ih-gap-quote: clamp(1.5rem, 5vh, 3.5rem);
+    }
+  }
+
+  /* ---------- Reveal: a plain opacity fade ----------
+     Photo and name are never animated - visible from the first paint. */
+  @keyframes ih-fade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  .ih__line {
+    animation: ih-fade 700ms ease-out both;
+  }
+
+  .ih__line--1 { animation-delay: 1000ms; }
+  .ih__line--2 { animation-delay: 1550ms; }
+  .ih__line--3 { animation-delay: 2100ms; }
+
+  .ih__quote {
+    animation: ih-fade 800ms ease-out both;
+    animation-delay: 2750ms;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ih__line,
+    .ih__quote {
+      animation: none !important;
+      opacity: 1 !important;
+    }
+  }
+</style>
+
+<div class="ih">
+  <div class="ih__inner">
+    {{ with $img }}
+      {{ $square := .Fill "440x440 Center" }}
+      <img
+        class="ih__photo"
+        src="{{ $square.RelPermalink }}"
+        width="220"
+        height="220"
+        alt="Claire David"
+        loading="eager"
+        fetchpriority="high">
+    {{ end }}
+
+    <div class="ih__name">Claire David</div>
+
+    <div class="ih__lines">
+      {{ range $i, $line := $lines }}
+        <p class="ih__line ih__line--{{ add $i 1 }}">{{ $line }}</p>
+      {{ end }}
+    </div>
+
+    <div class="ih__quote">
+      <p class="ih__quote-text">&ldquo;Claire&rsquo;s superstrength is to connect people.&rdquo;</p>
+      <p class="ih__quote-by">Max Welling</p>
+    </div>
+  </div>
+</div>
