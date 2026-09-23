@@ -67,3 +67,35 @@
 #   name = "Categories"
 #   pageRef = "categories"
 #   weight = 20
+
+
+# -- Top-level tabs (left to right by weight) --
+[[main]]
+  name = "About"
+  pageRef = "/about"
+  weight = 10
+
+[[main]]
+  name = "CV"
+  pageRef = "/cv"
+  weight = 20
+
+[[main]]
+  name = "Projects"
+  pageRef = "/projects"
+  weight = 30
+
+[[main]]
+  name = "Teaching"
+  pageRef = "/teaching"
+  weight = 40
+
+[[main]]
+  name = "Talks"
+  pageRef = "/talks"
+  weight = 50
+
+[[main]]
+  name = "Contact"
+  pageRef = "/contact"
+  weight = 60

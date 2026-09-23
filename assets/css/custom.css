@@ -33,3 +33,15 @@ body {
 #site-footer > div {
   justify-content: center;
 }
+
+/* Pages using the theme's "simple" layout - the six top-level tabs.
+   `article.max-w-full` is what simple.html emits (single.html uses a bare
+   <article>), so this reaches those pages only, never the site header.
+   Drops the title clear of the navbar and opens up the gap below it. */
+#main-content > article.max-w-full > header {
+  padding-top: clamp(2rem, 6vh, 4.5rem);
+}
+
+#main-content > article.max-w-full > header + section {
+  margin-top: clamp(1.75rem, 4.5vh, 3rem); /* theme default is mt-6 = 1.5rem */
+}

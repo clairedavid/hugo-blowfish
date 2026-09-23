@@ -33,7 +33,8 @@
     --ih-gap-photo-name: clamp(1.25rem, 3.5vh, 2.75rem);
     --ih-gap-name-lines: clamp(2.5rem, 7vh, 5rem); /* line 1 sits lower */
     --ih-gap-lines: clamp(0.9rem, 2.2vh, 1.6rem);
-    --ih-gap-quote: clamp(2rem, 7vh, 5.5rem);
+    --ih-lines-indent: clamp(1.25rem, 5vw, 3.5rem); /* nudge lines right */
+    --ih-gap-quote: clamp(2.75rem, 11vh, 8.5rem);
     --ih-by-shift: 5rem;                          /* "Max Welling" nudge */
     /* ---------------------------------------- */
 
@@ -94,7 +95,7 @@
     align-self: flex-start;
     width: 100%;
     max-width: var(--ih-measure);
-    margin: var(--ih-gap-name-lines) 0 0;
+    margin: var(--ih-gap-name-lines) 0 0 var(--ih-lines-indent);
     text-align: left;
   }
 
@@ -150,7 +151,8 @@
     .ih {
       --ih-photo: clamp(120px, 18vh, 180px);
       --ih-by-shift: 2.5rem;
-      --ih-gap-quote: clamp(1.5rem, 5vh, 3.5rem);
+      --ih-lines-indent: clamp(0.5rem, 3vw, 1.25rem);
+      --ih-gap-quote: clamp(2rem, 8vh, 5rem);
     }
   }
 
