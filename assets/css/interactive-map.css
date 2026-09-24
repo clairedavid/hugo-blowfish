@@ -3,8 +3,8 @@
    so nothing leaks into Blowfish and Blowfish cannot leak in.
    Keyframes are prefixed imap- to avoid collisions (note: interactive-map.js
    sets imap-pinpulse inline, so the two names must stay in step).
-   Fonts (Inter, Patrick Hand, Newsreader) are self-hosted; the @font-face
-   rules live in assets/css/custom.css and apply site-wide. */
+   Fonts (Inter, Patrick Hand) are self-hosted; the @font-face rules live in
+   assets/css/custom.css and apply site-wide. */
 
 .imap {
   /* Palette, formerly on :root */
@@ -16,6 +16,11 @@
   --land: #cfe6c2;
   --coast: #8bb184;
   --card: #ffffff;
+
+  /* Caption reserves its tallest height so the map does not jump when the
+     chapter changes. Measured at this width the longest caption is 2 lines
+     (4 on a phone); these include slack. Tune by eye. */
+  --imap-caption-min: 3.6rem;
 
   /* Folded in from the old .wrap and body rules */
   max-width: 1040px;
@@ -44,9 +49,9 @@
 
 .imap * { box-sizing: border-box }
 
-.imap .timeline { display:flex; gap:.55rem; justify-content:center; flex-wrap:wrap; padding:0 }
+.imap .timeline { display:flex; gap:.55rem; justify-content:space-between; flex-wrap:wrap; padding:0; width:100% }
 .imap .yr { position:relative; flex:none; cursor:pointer; background:transparent; border:none; display:inline-flex; align-items:center; justify-content:center;
-      font-family:"Patrick Hand",cursive; font-size:1.12rem; color:var(--ink);
+      font-family:"Patrick Hand",cursive; font-size:1.3rem; color:var(--ink);
       padding:.42rem .8rem; line-height:1; white-space:nowrap; transition:color .15s; z-index:0 }
 .imap .yr .box { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; overflow:visible; z-index:-1 }
 .imap .yr span { position:relative; z-index:1 }
@@ -54,11 +59,11 @@
 .imap .yr:focus-visible { outline:3px solid var(--ink); outline-offset:3px }
 @keyframes imap-wiggle { 0%,100%{transform:rotate(0)} 25%{transform:rotate(-2.5deg)} 75%{transform:rotate(2.5deg)} }
 .imap .yr.nudge { animation:imap-wiggle .5s ease-in-out 2 }
-@media (max-width:640px){ .imap .timeline{gap:.6rem .55rem} }
+@media (max-width:640px){ .imap .timeline{gap:.6rem .55rem; justify-content:center} }
 
-.imap .caption { font-family:"Inter",sans-serif; font-weight:400; font-size:1rem; color:var(--ink); text-align:center; max-width:44rem;
-           margin:1.5rem auto 1.1rem; display:flex; align-items:center; justify-content:center; min-height:2.6rem }
-@media (max-width:640px){ .imap .caption{min-height:3.2rem;font-size:.98rem} }
+.imap .caption { font-family:"Inter",sans-serif; font-weight:400; font-size:1rem; color:var(--ink); text-align:center; width:100%;
+           margin:1.5rem auto 1.1rem; display:flex; align-items:center; justify-content:center; min-height:var(--imap-caption-min) }
+@media (max-width:640px){ .imap .caption{min-height:6.4rem;font-size:.98rem} }
 
 .imap .mapwrap { position:relative; border-radius:10px; overflow:hidden; background:var(--ocean); touch-action:none }
 .imap svg.map { display:block; width:100%; height:auto; cursor:grab }
@@ -95,7 +100,7 @@
           color:var(--soft); font-size:1.2rem; line-height:1; cursor:pointer; border-radius:50%; padding:0 }
 .imap .pop .x:hover { color:var(--ink); background:rgba(0,0,0,.06) }
 
-.imap .nofly { font-family:"Newsreader",Georgia,serif; color:var(--soft); font-size:.62rem;
+.imap .nofly { font-family:"Inter",system-ui,sans-serif; color:var(--soft); font-size:.8rem;
          text-align:right; margin:.5rem 2px .2rem auto; white-space:nowrap }
 @media (max-width:640px){ .imap .pop .ttl{font-size:1rem} .imap .pop .ln{font-size:.86rem} .imap .pop .grey{font-size:.78rem} .imap .pop{padding:.85rem .95rem .9rem} }
 @media (prefers-reduced-motion:reduce){ .imap *{transition:none!important} .imap .yr.nudge{animation:none} .imap .pin-halo{animation:none!important} .imap .pop{animation:none} }

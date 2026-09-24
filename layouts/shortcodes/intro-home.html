@@ -4,9 +4,11 @@
 
 {{ $img := resources.Get "images/claire_david_placeholder.png" }}
 {{ $lines := slice
-  "Experimental particle physicist, Large Hadron Collider at CERN"
-  "Trained graduate students in Artificial Intelligence across Africa"
-  "Colliding talent with scholars and opportunities"
+  "Experimental particle physicist, Large Hadron Collider, CERN"
+  "Faculty in Canada, resigned to teach in Africa"
+  "Trained 300+ African students in Artificial Intelligence"
+  "Biked solo 5,270 km from Victoria to Montréal"
+  "Attended the circus school Le Lido, in Toulouse"
 }}
 
 <style>
@@ -14,13 +16,15 @@
      to sit at the bottom. Make the chain down to this component stretch too,
      and the content area fills the gap exactly - footer pinned, no scroll.
      These rules only ever load on the page carrying this shortcode. */
+  /* Fill the space between header and footer, and grow past it when the
+     content needs more room: `1 0 auto` never shrinks below the content, so
+     the footer is pushed down and the page scrolls instead of overlapping. */
   #main-content,
   #main-content > article,
   #main-content > article > section {
     display: flex;
     flex-direction: column;
-    flex: 1 1 auto;
-    min-height: 0;
+    flex: 1 0 auto;
   }
 
   .ih {
@@ -35,11 +39,9 @@
     --ih-gap-lines: clamp(0.9rem, 2.2vh, 1.6rem);
     --ih-lines-indent: clamp(1.25rem, 5vw, 3.5rem); /* nudge lines right */
     --ih-gap-quote: clamp(2.75rem, 11vh, 8.5rem);
-    --ih-by-shift: 5rem;                          /* "Max Welling" nudge */
     /* ---------------------------------------- */
 
-    flex: 1 1 auto;
-    min-height: 0;
+    flex: 1 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: center;   /* balances space above and below */
@@ -121,9 +123,11 @@
     margin: var(--ih-gap-quote) auto 0;
   }
 
+  /* ---- Right-aligned quote: aesthetic trial. To revert, set both
+     text-align values back to center and drop the .ih__quote-by margin. ---- */
   .ih__quote-text {
     margin: 0;
-    text-align: center;
+    text-align: right;
     font-size: var(--ih-text-size);
     line-height: 1.6;
     color: rgb(var(--color-neutral-700));
@@ -136,8 +140,8 @@
   /* Attribution on its own line, smaller, nudged right. No em-dash. */
   .ih__quote-by {
     margin: 0.6rem 0 0;
-    text-align: center;
-    transform: translateX(var(--ih-by-shift));
+    text-align: right;
+    transform: none;
     font-size: 0.875rem;
     color: rgb(var(--color-neutral-500));
   }
@@ -150,39 +154,11 @@
   @media (max-width: 639.98px) {
     .ih {
       --ih-photo: clamp(120px, 18vh, 180px);
-      --ih-by-shift: 2.5rem;
       --ih-lines-indent: clamp(0.5rem, 3vw, 1.25rem);
       --ih-gap-quote: clamp(2rem, 8vh, 5rem);
     }
   }
 
-  /* ---------- Reveal: a plain opacity fade ----------
-     Photo and name are never animated - visible from the first paint. */
-  @keyframes ih-fade {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-  }
-
-  .ih__line {
-    animation: ih-fade 700ms ease-out both;
-  }
-
-  .ih__line--1 { animation-delay: 1000ms; }
-  .ih__line--2 { animation-delay: 1550ms; }
-  .ih__line--3 { animation-delay: 2100ms; }
-
-  .ih__quote {
-    animation: ih-fade 800ms ease-out both;
-    animation-delay: 2750ms;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .ih__line,
-    .ih__quote {
-      animation: none !important;
-      opacity: 1 !important;
-    }
-  }
 </style>
 
 <div class="ih">

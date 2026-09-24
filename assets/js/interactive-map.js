@@ -34,7 +34,7 @@ function drawBoxes(){
     const fill=document.createElementNS(SVGNS,'rect');fill.setAttribute('width',w);fill.setAttribute('height',h);
     fill.setAttribute('clip-path',`url(#${cid})`);fill.setAttribute('fill',ch._on?ch.col:'transparent');svg.appendChild(fill);ch._fill=fill;
     const rc=rough.svg(svg);
-    svg.appendChild(rc.path(d,{roughness:.7,bowing:.6,stroke:getComputedStyle(document.documentElement).getPropertyValue('--boxstroke').trim(),strokeWidth:1.3,fill:'none',disableMultiStroke:true,preserveVertices:true}));
+    svg.appendChild(rc.path(d,{roughness:.7,bowing:.6,stroke:getComputedStyle(document.getElementById('imap')).getPropertyValue('--boxstroke').trim(),strokeWidth:1.3,fill:'none',disableMultiStroke:true,preserveVertices:true}));
     ch.el.prepend(svg);});
 }
 const PIN_R=5.5;
@@ -112,7 +112,7 @@ function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g
 function openPop(p,col,mx,my){
   let html=`<div class="ttl" style="color:${col}">${esc(p.name)}</div>`;
   (p.lines||[]).forEach(l=>html+=`<div class="ln">${esc(l)}</div>`);
-  if(p.link)html+=`<div class="ln"><a href="${p.link.url}" target="_blank" rel="noopener">${esc(p.link.text)}</a></div>`;
+  if(p.link)html+=`<div class="ln">${p.link.pre?esc(p.link.pre)+' ':''}<a href="${p.link.url}" target="_blank" rel="noopener">${esc(p.link.text)}</a></div>`;
   if(p.grey)html+=`<div class="grey">${esc(p.grey)}</div>`;
   popbody.innerHTML=html;
   pop.classList.add('on');
@@ -175,4 +175,8 @@ window.addEventListener('load',()=>{drawBoxes();select(chapters.length-1);apply(
   chapters[0].el.classList.add('nudge');setTimeout(()=>chapters[0].el.classList.remove('nudge'),1200);});
 window.addEventListener('resize',()=>{drawBoxes();applyScale();closePop();});
 if(window.matchMedia){window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',()=>drawBoxes());}
+// The box stroke colour is baked into the rough.js SVG at draw time, so the
+// boxes must be redrawn when Blowfish flips .dark on <html>.
+new MutationObserver(()=>drawBoxes())
+  .observe(document.documentElement,{attributes:true,attributeFilter:['class']});
 })();
