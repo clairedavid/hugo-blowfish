@@ -1,0 +1,25 @@
+{{- /* Interactive map widget.
+     Data: data/interactive_map.json, serialised into #imap-data below.
+     Code: assets/js/rough.js + assets/js/interactive-map.js, concatenated.
+     Styles: assets/css/interactive-map.css, all scoped under .imap.
+     Nothing is fetched from a CDN at runtime. */ -}}
+{{- $css   := resources.Get "css/interactive-map.css" | minify | fingerprint -}}
+{{- $rough := resources.Get "js/rough.js" -}}
+{{- $map   := resources.Get "js/interactive-map.js" -}}
+{{- $js    := slice $rough $map | resources.Concat "js/interactive-map.bundle.js" | minify | fingerprint -}}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}">
+<div class="imap" id="imap">
+  <div class="timeline" id="timeline" role="tablist"></div>
+  <div class="caption" id="caption"></div>
+  <div class="mapwrap" id="mapwrap">
+    <svg class="map" id="map" viewBox="0 0 1000 606" role="img" aria-label="Map of places">
+      <g id="viewport"><g id="land"></g><g id="lakes"></g><g id="route"></g><g id="halos"></g><g id="pins"></g><g id="labels"></g></g>
+    </svg>
+    <div class="pop" id="pop"><button class="x" id="popx" aria-label="close">&times;</button><div id="popbody"></div></div>
+    <div class="zoomout" id="zoomout">Zoom out</div>
+    <div class="ziphint" id="ziphint">pinch to zoom</div>
+  </div>
+  <div class="nofly">I try to limit my flights to long teaching missions.</div>
+</div>
+<script id="imap-data" type="application/json">{{ hugo.Data.interactive_map | jsonify | safeJS }}</script>
+<script src="{{ $js.RelPermalink }}" defer></script>

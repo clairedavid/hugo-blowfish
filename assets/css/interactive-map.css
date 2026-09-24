@@ -1,0 +1,101 @@
+/* Interactive map widget.
+   Ported from claire-map-timeline-v26.html. Every rule is scoped under .imap
+   so nothing leaks into Blowfish and Blowfish cannot leak in.
+   Keyframes are prefixed imap- to avoid collisions (note: interactive-map.js
+   sets imap-pinpulse inline, so the two names must stay in step).
+   Fonts (Inter, Patrick Hand, Newsreader) are self-hosted; the @font-face
+   rules live in assets/css/custom.css and apply site-wide. */
+
+.imap {
+  /* Palette, formerly on :root */
+  --ink: #3a352f;
+  --paper: #ffffff;
+  --soft: #9a938a;
+  --boxstroke: #3a352f;
+  --ocean: #dcf0f7;
+  --land: #cfe6c2;
+  --coast: #8bb184;
+  --card: #ffffff;
+
+  /* Folded in from the old .wrap and body rules */
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 1.2rem 1.1rem 2.4rem;
+  color: var(--ink);
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Blowfish toggles dark mode by putting .dark on <html> (see its
+   appearance.js), and that script already folds prefers-color-scheme into the
+   class. So the class is the single source of truth here. A bare
+   @media (prefers-color-scheme:dark) block is deliberately NOT used: it would
+   darken the widget on a light page whenever the reader had picked light while
+   their OS was dark. */
+.dark .imap {
+  --ink: #ece7df;
+  --paper: #1c1a17;
+  --soft: #8d867c;
+  --boxstroke: #ece7df;
+  --card: #26231f;
+}
+
+.imap * { box-sizing: border-box }
+
+.imap .timeline { display:flex; gap:.55rem; justify-content:center; flex-wrap:wrap; padding:0 }
+.imap .yr { position:relative; flex:none; cursor:pointer; background:transparent; border:none; display:inline-flex; align-items:center; justify-content:center;
+      font-family:"Patrick Hand",cursive; font-size:1.12rem; color:var(--ink);
+      padding:.42rem .8rem; line-height:1; white-space:nowrap; transition:color .15s; z-index:0 }
+.imap .yr .box { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; overflow:visible; z-index:-1 }
+.imap .yr span { position:relative; z-index:1 }
+.imap .yr.active { color:#fff }
+.imap .yr:focus-visible { outline:3px solid var(--ink); outline-offset:3px }
+@keyframes imap-wiggle { 0%,100%{transform:rotate(0)} 25%{transform:rotate(-2.5deg)} 75%{transform:rotate(2.5deg)} }
+.imap .yr.nudge { animation:imap-wiggle .5s ease-in-out 2 }
+@media (max-width:640px){ .imap .timeline{gap:.6rem .55rem} }
+
+.imap .caption { font-family:"Inter",sans-serif; font-weight:400; font-size:1rem; color:var(--ink); text-align:center; max-width:44rem;
+           margin:1.5rem auto 1.1rem; display:flex; align-items:center; justify-content:center; min-height:2.6rem }
+@media (max-width:640px){ .imap .caption{min-height:3.2rem;font-size:.98rem} }
+
+.imap .mapwrap { position:relative; border-radius:10px; overflow:hidden; background:var(--ocean); touch-action:none }
+.imap svg.map { display:block; width:100%; height:auto; cursor:grab }
+.imap svg.map.grabbing { cursor:grabbing }
+.imap #viewport { transform-origin:0 0 }
+.imap .plabel { font-family:"Inter",sans-serif; font-weight:500; fill:#3a352f; paint-order:stroke;
+          stroke:var(--ocean); stroke-width:3px; cursor:pointer }
+.imap .pin { cursor:pointer }
+@keyframes imap-pinpulse { 0%{opacity:.4} 70%{opacity:0} 100%{opacity:0} }
+.imap .pin-halo { fill:none; pointer-events:none; transform-box:fill-box; transform-origin:center }
+.imap .route { fill:none; pointer-events:none; stroke-linecap:round; stroke-linejoin:round }
+
+.imap .zoomout { position:absolute; left:12px; bottom:12px; z-index:7; font-family:"Inter",sans-serif; font-size:.82rem;
+           background:rgba(255,255,255,.72); border:1px solid rgba(0,0,0,.12); border-radius:7px;
+           padding:.32rem .6rem; color:#b8b2a8; cursor:default; user-select:none; transition:color .2s }
+.imap .zoomout.active { color:#2a2620; cursor:pointer; background:rgba(255,255,255,.9) }
+.imap .ziphint { position:absolute; right:12px; bottom:12px; font-family:"Inter",sans-serif; font-size:.95rem;
+           color:var(--soft); background:rgba(255,255,255,.6); padding:.2rem .5rem; border-radius:6px;
+           transition:opacity .5s; pointer-events:none }
+@media (min-width:641px){ .imap .ziphint{display:none} }
+
+/* ---- POPUP ---- */
+.imap .pop { position:absolute; z-index:8; display:none;
+       background:var(--card); color:var(--ink); border-radius:12px;
+       box-shadow:0 8px 30px rgba(20,15,10,.24); border:1px solid rgba(0,0,0,.06);
+       padding:1rem 1.15rem 1.05rem; font-family:"Inter",sans-serif; text-align:left; overflow-y:auto; animation:imap-popin .16s ease-out }
+@keyframes imap-popin { from{opacity:0;transform:translateY(4px)} to{opacity:1;transform:none} }
+.imap .pop.on { display:block }
+.imap .pop .ttl { font-weight:600; font-size:1.08rem; line-height:1.2; margin:0 1.5rem .5rem 0 }
+.imap .pop .ln { font-size:.95rem; line-height:1.3; margin:.12rem 0; color:var(--ink) }
+.imap .pop .grey { font-size:.85rem; color:var(--soft); margin-top:.55rem; line-height:1.3 }
+.imap .pop a { color:inherit; text-decoration:underline; text-underline-offset:2px }
+.imap .pop .x { position:absolute; top:.5rem; right:.6rem; width:1.6rem; height:1.6rem; border:none; background:transparent;
+          color:var(--soft); font-size:1.2rem; line-height:1; cursor:pointer; border-radius:50%; padding:0 }
+.imap .pop .x:hover { color:var(--ink); background:rgba(0,0,0,.06) }
+
+.imap .nofly { font-family:"Newsreader",Georgia,serif; color:var(--soft); font-size:.62rem;
+         text-align:right; margin:.5rem 2px .2rem auto; white-space:nowrap }
+@media (max-width:640px){ .imap .pop .ttl{font-size:1rem} .imap .pop .ln{font-size:.86rem} .imap .pop .grey{font-size:.78rem} .imap .pop{padding:.85rem .95rem .9rem} }
+@media (prefers-reduced-motion:reduce){ .imap *{transition:none!important} .imap .yr.nudge{animation:none} .imap .pin-halo{animation:none!important} .imap .pop{animation:none} }
