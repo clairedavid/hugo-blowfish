@@ -22,10 +22,13 @@
      (4 on a phone); these include slack. Tune by eye. */
   --imap-caption-min: 3.6rem;
 
-  /* Folded in from the old .wrap and body rules */
+  /* Folded in from the old .wrap and body rules.
+     No horizontal padding: the widget fills the article's content width, so
+     the map's left/right edges line up with the surrounding prose without
+     either side needing a compensating rule. */
   max-width: 1040px;
   margin: 0 auto;
-  padding: 1.2rem 1.1rem 2.4rem;
+  padding: 1.2rem 0 2.4rem;
   color: var(--ink);
   font-family: "Inter", system-ui, sans-serif;
   font-size: 16px;

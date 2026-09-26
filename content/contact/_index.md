@@ -3,4 +3,4 @@ layout: "simple"
 title: "Contact"
 ---
 
-*Contact — coming soon.*
+*Contact: coming soon.*

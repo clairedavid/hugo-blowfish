@@ -3,4 +3,4 @@ layout: "simple"
 title: "Projects"
 ---
 
-*Projects — coming soon.*
+*Projects: coming soon.*

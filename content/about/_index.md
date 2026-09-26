@@ -18,3 +18,10 @@ Curious about my research, teaching, talks, or my recent cycling journey across 
 This interactive map traces my missions and the places I've lived. Click a year-button, then the pins for more details.
 
 {{< interactive-map >}}
+
+## Teaching Philosophy
+
+How do I teach? I start with a question. From basic definitions to the very concept I'm about to explain, I ask first. I let students think, alone and in groups, and collect their first intuitions. Only then do I start the lecture: knowledge arrives as an answer, never as "What is this for?" A tree is better planted if a hole has been dug beforehand. And by asking guiding questions, students learn how to learn, to think on their own, as future autonomous researchers, or whatever they choose to become.
+
+"Don't forget to have fun."\
+Science can be frustrating as well as exhilarating. Pushing oneself can be thrilling, but competition brings stressful deadlines and insane workload. I remind my students to cherish the joy of learning before everything else. It's not innocent: the more they enjoy it, the more they do it; they get good, they get noticed, and they discover what they want to do. With the added bonus that it aligns with their character and their values.

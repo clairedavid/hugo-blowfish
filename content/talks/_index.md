@@ -3,4 +3,4 @@ layout: "simple"
 title: "Talks"
 ---
 
-*Talks — coming soon.*
+*Talks: coming soon.*
