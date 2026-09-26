@@ -157,3 +157,36 @@ body {
 #main-content > article.max-w-full > header + section {
   margin-top: clamp(1.75rem, 4.5vh, 3rem); /* theme default is mt-6 = 1.5rem */
 }
+
+/* Pages on the "simple" layout: one uniform gap above every section heading,
+   and the About page's motto line.
+   Prose ships h2 { margin-top: 2em } which is 48px at the h2's own size; the
+   map used to add its own bottom padding on top of that, so the two gaps did
+   not match. The map's bottom padding is now zero and this single value owns
+   the spacing. Tune --section-gap by eye. */
+#main-content > article.max-w-full {
+  --section-gap: 2.5rem;
+}
+
+#main-content > article.max-w-full > section h2 {
+  margin-top: var(--section-gap);
+}
+
+/* Opening line: centred, plain, a touch larger, same spacing as the original
+   motto line. NB: do not name this class "lead" - Tailwind Typography claims
+   [class~="lead"] and paints it in the faded --tw-prose-lead grey. */
+#main-content > article.max-w-full > section .opening {
+  margin: 1.75rem 0 0.875rem;
+  text-align: center;
+  font-size: 1.08em;
+  font-weight: 400;
+  font-style: normal;
+  color: inherit;
+  line-height: inherit;
+}
+
+/* The body paragraph's own top margin (1.25em) would otherwise collapse with
+   the line above and win, so the halved gap has to be set on both sides. */
+#main-content > article.max-w-full > section .opening + p {
+  margin-top: 0;
+}

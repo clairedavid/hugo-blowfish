@@ -28,7 +28,7 @@
      either side needing a compensating rule. */
   max-width: 1040px;
   margin: 0 auto;
-  padding: 1.2rem 0 2.4rem;
+  padding: 1.2rem 0 0;   /* no bottom padding: the heading below owns that gap */
   color: var(--ink);
   font-family: "Inter", system-ui, sans-serif;
   font-size: 16px;
@@ -104,6 +104,6 @@
 .imap .pop .x:hover { color:var(--ink); background:rgba(0,0,0,.06) }
 
 .imap .nofly { font-family:"Inter",system-ui,sans-serif; color:var(--soft); font-size:.8rem;
-         text-align:right; margin:.5rem 2px .2rem auto; white-space:nowrap }
+         text-align:right; margin:.5rem 2px 0 auto; white-space:nowrap }
 @media (max-width:640px){ .imap .pop .ttl{font-size:1rem} .imap .pop .ln{font-size:.86rem} .imap .pop .grey{font-size:.78rem} .imap .pop{padding:.85rem .95rem .9rem} }
 @media (prefers-reduced-motion:reduce){ .imap *{transition:none!important} .imap .yr.nudge{animation:none} .imap .pin-halo{animation:none!important} .imap .pop{animation:none} }
