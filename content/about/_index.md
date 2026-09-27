@@ -32,3 +32,13 @@ Science can be frustrating as well as exhilarating. Pushing oneself can be thril
 ## In Pictures
 
 {{< photo-gallery >}}
+
+## In Motion
+
+- Trained as a kid in circus arts at Le Lido, Toulouse, 1993–1999
+- Theatre in high school (1999–2003), stand-up in engineering school (2006–2009)
+- Partner dance since 2004: boogie, Lindy Hop, salsa, bachata, kizomba
+- Triathlon in Hamburg with team VAF Mädels, 2016–2019; Landesliga winners, 2017
+- Qualified for the gravel (2025, 2026) and road (2026) cycling world championships, age-group category. Did not go: I don't fly for leisure.
+- Climbed Mount Cameroon, 4095 m, October 2025
+{.in-motion}
