@@ -210,3 +210,30 @@ body {
   color: currentColor;
   font-size: 0.82em;              /* a smaller disc than the prose default */
 }
+
+/* In Motion manual footnote: muted asterisk lowered from superscript height,
+   and a small muted note line. Its own variable name, not the map's --soft,
+   so the two cannot be confused; the grey values are the same. */
+#main-content > article.max-w-full > section {
+  --fn-soft: #9a938a;
+}
+
+.dark #main-content > article.max-w-full > section {
+  --fn-soft: #8d867c;
+}
+
+#main-content > article.max-w-full > section .fn-mark {
+  vertical-align: baseline;   /* drop the browser's `super` ... */
+  position: relative;
+  top: -0.28em;               /* ... and lift by a smaller, tunable amount */
+  font-size: 0.78em;
+  color: var(--fn-soft);
+  margin-inline-start: 0.1em;
+}
+
+#main-content > article.max-w-full > section p.in-motion-note {
+  margin-top: 0.7em;
+  font-size: 0.82em;
+  line-height: 1.5;
+  color: var(--fn-soft);
+}
