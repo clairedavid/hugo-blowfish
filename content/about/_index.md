@@ -27,4 +27,8 @@ From basic definitions to the very concept I'm about to explain, I ask first. I 
 
 <p class="opening">&ldquo;Don&rsquo;t forget to have fun.&rdquo;</p>
 
-Science can be frustrating as well as exhilarating. Pushing oneself can be thrilling, but competition brings stressful deadlines and insane workload. I remind my students to cherish the joy of learning before everything else. It's not innocent: the more they enjoy it, the more they do it. Practice makes them good, they get noticed, and they get clearer on what they really want to do (and what they don't). With the added bonus that it aligns with their character and their values.
+Science can be frustrating as well as exhilarating. Pushing oneself can be thrilling, but competition brings stressful deadlines and insane workload. I remind my students to cherish the joy of learning before everything else. It's not innocent. The more they enjoy it, the more they do it. They gain skills, they get noticed. And most importantly, they gain clarity on what they really want to do, what they don't, and which opportunities fit their technical curiosity as well as their human values.
+
+## In Pictures
+
+{{< photo-gallery >}}

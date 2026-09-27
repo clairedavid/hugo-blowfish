@@ -1,0 +1,214 @@
+/* About page photo gallery ("In Pictures").
+   Every rule is scoped under .pgal so nothing leaks into Blowfish and
+   Blowfish cannot leak in, the same discipline as the map's .imap.
+   Keyframes are prefixed gal- for the same reason.
+   Inter is self-hosted site-wide: the @font-face rules live in
+   assets/css/custom.css. Nothing here is fetched at runtime. */
+
+.pgal {
+  /* Caption ink, theme aware. Matched to the map's --ink so the two widgets
+     read as one page. */
+  --gal-ink: #3a352f;
+  --gal-soft: #9a938a;
+
+  /* Every caption reserves two lines, so all rows are the same height whether
+     their caption wraps or not. Caption 3 is the long one. Tune by eye. */
+  --gal-cap-min: 2.9em;
+
+  /* Same canonical content width as the map, so the section's left and right
+     edges line up with the map and the prose. */
+  max-width: 1040px;
+  margin: 0 auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Blowfish toggles dark mode by putting .dark on <html> (its appearance.js
+   already folds prefers-color-scheme into that class), so the class is the
+   single source of truth here. A bare @media (prefers-color-scheme:dark)
+   block is deliberately NOT used: it would darken captions on a light page
+   whenever the reader had picked light while their OS was dark. */
+.dark .pgal {
+  --gal-ink: #ece7df;
+  --gal-soft: #8d867c;
+}
+
+.pgal * { box-sizing: border-box }
+
+/* Inbound leak guard. The widget sits inside Tailwind Typography's `prose`,
+   which styles bare img (2em vertical margins), ul, li, figure and figcaption.
+   The markup carries `not-prose`, which already excludes this subtree; these
+   rules null the same properties directly so the layout does not depend on
+   that class, or on prose, staying as it is today. */
+.pgal img { margin: 0 }
+.pgal figure { margin: 0 }
+.pgal picture { display: block }
+.pgal ul { list-style: none; margin: 0; padding: 0 }
+.pgal li { margin: 0 }
+
+/* ---- thumbnail grid ---------------------------------------------------- */
+
+.pgal .gal-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.15rem 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (max-width: 640px) {
+  .pgal .gal-grid { grid-template-columns: repeat(2, 1fr); gap: .9rem .7rem }
+}
+
+.pgal .gal-cell { margin: 0; display: flex; flex-direction: column }
+
+/* The thumbnail is a real button so keyboard users get Enter and Space for
+   free. Everything the theme might put on a button is stripped back. */
+.pgal .gal-shot {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+  border-radius: 3px;
+  overflow: hidden;
+  line-height: 0;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.pgal .gal-shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;   /* every thumbnail is exactly 900x600 */
+  object-fit: cover;
+  border-radius: 3px;
+}
+
+.pgal .gal-shot:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0,0,0,.18) }
+
+.pgal .gal-shot:focus-visible {
+  outline: 2px solid rgb(var(--color-primary-500, 59 130 246));
+  outline-offset: 3px;
+}
+
+.pgal .gal-cap {
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 400;
+  font-size: .82rem;
+  line-height: 1.35;
+  color: var(--gal-ink);
+  margin: .5rem 0 0;
+  min-height: var(--gal-cap-min);
+}
+
+@media (max-width: 640px) {
+  .pgal .gal-cap { font-size: .78rem; min-height: 3.2em }
+}
+
+/* ---- lightbox ---------------------------------------------------------- */
+
+/* Belt and braces: Blowfish's preflight sets [hidden]{display:none}, but this
+   widget should not depend on that staying true. */
+.pgal .gal-lb[hidden] { display: none !important }
+
+.pgal .gal-lb {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 4vw, 3rem);
+  background: rgba(14, 13, 12, .93);
+  animation: gal-fade .16s ease-out;
+}
+
+@keyframes gal-fade { from { opacity: 0 } to { opacity: 1 } }
+
+@media (prefers-reduced-motion: reduce) {
+  .pgal .gal-lb { animation: none }
+  .pgal .gal-shot { transition: none }
+  .pgal .gal-shot:hover { transform: none }
+}
+
+/* The figure is the "inside": a click anywhere else in .gal-lb closes. */
+.pgal .gal-lb-fig {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .85rem;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* The master keeps its own aspect ratio: it is bounded on both axes and
+   never stretched, so 16:9, 3:2 and 4:3 all show as themselves. */
+.pgal .gal-lb-fig img {
+  display: block;
+  max-width: 100%;
+  max-height: calc(100vh - 9rem);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 3px;
+  background: #000;
+}
+
+/* Always light: this caption sits on the dark overlay in both themes. */
+.pgal .gal-lb-cap {
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 400;
+  font-size: .92rem;
+  line-height: 1.45;
+  color: #f1ede7;
+  text-align: center;
+  max-width: 60ch;
+  margin: 0;
+  text-shadow: 0 1px 2px rgba(0,0,0,.5);
+}
+
+.pgal .gal-lb-x,
+.pgal .gal-lb-nav {
+  position: absolute;
+  border: 0;
+  background: rgba(0,0,0,.35);
+  color: #f1ede7;
+  cursor: pointer;
+  line-height: 1;
+  border-radius: 999px;
+  transition: background .15s ease, color .15s ease;
+}
+
+.pgal .gal-lb-x:hover,
+.pgal .gal-lb-nav:hover { background: rgba(255,255,255,.18); color: #fff }
+
+.pgal .gal-lb-x:focus-visible,
+.pgal .gal-lb-nav:focus-visible { outline: 2px solid #f1ede7; outline-offset: 2px }
+
+.pgal .gal-lb-x {
+  top: clamp(.6rem, 2vw, 1.3rem);
+  right: clamp(.6rem, 2vw, 1.3rem);
+  width: 2.4rem;
+  height: 2.4rem;
+  font-size: 1.5rem;
+}
+
+.pgal .gal-lb-nav {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2.6rem;
+  height: 3.4rem;
+  font-size: 2rem;
+}
+
+.pgal .gal-lb-prev { left: clamp(.35rem, 1.5vw, 1rem) }
+.pgal .gal-lb-next { right: clamp(.35rem, 1.5vw, 1rem) }
+
+@media (max-width: 640px) {
+  .pgal .gal-lb-nav { width: 2.2rem; height: 3rem; font-size: 1.6rem }
+  .pgal .gal-lb-cap { font-size: .84rem }
+  .pgal .gal-lb-fig img { max-height: calc(100vh - 11rem) }
+}
