@@ -191,17 +191,7 @@ body {
   margin-top: 0;
 }
 
-/* About page "In Motion" list: a discreet round dot in the body text colour.
-   Blowfish's prose paints ul markers with --tw-prose-bullets, which is a
-   separate grey (neutral-500 in light, neutral-600 in dark). That reads as a
-   second colour next to the text, and in dark mode it sits well below the
-   body's neutral-300, so the dots go dim. currentColor ties the marker to the
-   text it belongs to, so it follows the theme in both modes with no colour of
-   its own and nothing to keep in step by hand.
-   Prose also indents lists by 1.625em; this pulls that in and opens the line
-   spacing so six lines read as a calm list. Scoped to ul.in-motion, the class
-   the markdown attaches, so no other list on the site is touched.
-   Tune the three numbers below by eye. */
+/* In Motion list: marker uses currentColor; tighter indent + spacing */
 #main-content > article.max-w-full > section ul.in-motion {
   list-style-type: disc;
   padding-inline-start: 1.15em;   /* prose default is 1.625em */
