@@ -211,29 +211,52 @@ body {
   font-size: 0.82em;              /* a smaller disc than the prose default */
 }
 
-/* In Motion manual footnote: muted asterisk lowered from superscript height,
-   and a small muted note line. Its own variable name, not the map's --soft,
-   so the two cannot be confused; the grey values are the same. */
-#main-content > article.max-w-full > section {
-  --fn-soft: #9a938a;
+/* In Motion footnote. Goldmark's numbered footnote, stripped of its furniture:
+   the divider and the back-reference arrow are hidden, the note list is pulled
+   flush to the content's left edge, and the block is pushed well down the page.
+   Marker and note both stay in the body text colour, so they follow the theme
+   in light and dark with no colour set here. */
+#main-content > article.max-w-full > section .footnotes {
+  margin-top: 3.5rem;   /* clear space above, so it sits low */
+  font-size: 0.82em;    /* the size the note already had */
 }
 
-.dark #main-content > article.max-w-full > section {
-  --fn-soft: #8d867c;
+#main-content > article.max-w-full > section .footnotes hr,
+#main-content > article.max-w-full > section .footnote-backref {
+  display: none;        /* no divider bar, no back arrow */
 }
 
-#main-content > article.max-w-full > section .fn-mark {
-  vertical-align: baseline;   /* drop the browser's `super` ... */
+/* Flush left, lined up with the heading and the prose. `inside` keeps the
+   number in the content box so its left edge lands at 0 rather than hanging
+   in the padding, and the paragraph goes inline so the number shares its line.
+   This assumes a note is a single paragraph, which is the case here. */
+#main-content > article.max-w-full > section .footnotes ol {
+  list-style-position: inside;
+  padding-inline-start: 0;
+  margin: 0;
+}
+
+#main-content > article.max-w-full > section .footnotes li { margin: 0 }
+#main-content > article.max-w-full > section .footnotes li p { display: inline; margin: 0 }
+
+/* The number in the note, and the marker's digit, both in the body colour.
+   Prose paints links with --tw-prose-links at weight 500 and recolours them on
+   hover, so colour, weight and hover all have to be handed back. */
+#main-content > article.max-w-full > section .footnotes li::marker {
+  color: currentColor;
+}
+
+#main-content > article.max-w-full > section a.footnote-ref,
+#main-content > article.max-w-full > section a.footnote-ref:hover {
+  color: inherit;
+  font-weight: inherit;
+  text-decoration: none;
+}
+
+/* Nudge the superscript down from the browser's `super` so it rides lower. */
+#main-content > article.max-w-full > section sup[id^="fnref"] {
+  vertical-align: baseline;
   position: relative;
-  top: -0.28em;               /* ... and lift by a smaller, tunable amount */
+  top: -0.3em;
   font-size: 0.78em;
-  color: var(--fn-soft);
-  margin-inline-start: 0.1em;
-}
-
-#main-content > article.max-w-full > section p.in-motion-note {
-  margin-top: 0.7em;
-  font-size: 0.82em;
-  line-height: 1.5;
-  color: var(--fn-soft);
 }

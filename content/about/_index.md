@@ -41,9 +41,8 @@ I've been lucky to train, perform, and compete in various activities alongside m
 - Theatre in high school (1999–2003), stand-up in engineering school (2006–2009)
 - Partner dance: boogie, Lindy Hop, salsa, bachata, kizomba (since 2004)
 - Triathlon in Hamburg with team VAF Mädels (2016–2019). Landesliga winners (2017)
-- Qualified for the gravel (2024, 2026) and road (2026) cycling world championships, age-group category.{{< fn-mark >}}
+- Qualified for the gravel (2024, 2026) and road (2026) cycling world championships, age-group category.[^1]
 - Climbed Mount Cameroon, 4,095 m (2025)
 {.in-motion}
 
-\* I don't fly for leisure, so I did not compete.
-{.in-motion-note}
+[^1]: I don't fly for leisure, so I did not compete.
