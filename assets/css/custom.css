@@ -177,7 +177,11 @@ body {
    motto line. NB: do not name this class "lead" - Tailwind Typography claims
    [class~="lead"] and paints it in the faded --tw-prose-lead grey. */
 #main-content > article.max-w-full > section .opening {
-  margin: 1.75rem 0 0.875rem;
+  /* `auto` rather than 0 on the sides: this shorthand outranks the centring
+     rule below (two classes to its one), so a 0 here would strand the quote
+     at the left of the centred column while every other block centred.
+     On phone there is no max-width, so auto resolves to 0 and nothing moves. */
+  margin: 1.75rem auto 0.875rem;
   text-align: center;
   font-size: 1.08em;
   font-weight: 400;
@@ -262,16 +266,22 @@ body {
   font-size: 0.78em;
 }
 
-/* Reading measure, desktop only. Text blocks are capped and stay flush left,
-   so their left edge holds the same vertical line as the site name in the
-   header, while the map and the gallery keep the full content width. Both are
-   anchored to the container's left padding, so that edge is one continuous
-   spine down the page.
-   Direct children only. .imap and .pgal sit at this same level and are
-   deliberately absent from the list, which is what keeps the media wide, and
-   nothing inside either of them is reached.
+/* Reading measure, desktop only: one centred stack.
+   The text blocks, paragraphs, headings, the In Motion list and its footnote,
+   are capped at --reading-measure and centred with margin-inline: auto, so all
+   four section headings share one vertical left edge, the left edge of that
+   centred column, and the body text beneath them starts on the same line.
+   Text still reads left-aligned inside the column.
+   The map and the gallery need nothing here. body is m-auto, so the content
+   box is already centred on the page, and since each widget caps at 1040px
+   while the box never exceeds 1024px, both fill the box and therefore sit on
+   the same centre axis as the text, overhanging it symmetrically, 162px each
+   side at 1280px and wider.
+   Direct children only, listed by tag. .imap and .pgal sit at this same level
+   and are deliberately absent, which is what keeps the media at full width and
+   reaches nothing inside either widget.
    min-width so the phone layout, already full width, is untouched. The cap
-   cannot bite until the content box passes 700px, around a 892px viewport.
+   cannot bite until the content box passes 700px, near a 892px viewport.
    Tune --reading-measure above and nothing else. */
 @media (min-width: 768px) {
   #main-content > article.max-w-full > section > p,
@@ -283,6 +293,6 @@ body {
   #main-content > article.max-w-full > section > blockquote,
   #main-content > article.max-w-full > section > .footnotes {
     max-width: var(--reading-measure);
-    margin-inline-end: 0;   /* the left edge is the spine: never centre */
+    margin-inline: auto;   /* centred on the page axis, with the media */
   }
 }
