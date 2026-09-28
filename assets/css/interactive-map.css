@@ -7,11 +7,23 @@
    assets/css/custom.css and apply site-wide. */
 
 .imap {
-  /* Palette, formerly on :root */
-  --ink: #3a352f;
+  /* Palette, formerly on :root.
+     The text and chrome colours are the site's own neutrals, so the widget
+     reads as part of the page rather than as a separate warm-ink object:
+     --ink is the body text colour (neutral-700) and --soft the muted one
+     (neutral-500). --boxstroke has to track --ink, because it strokes the
+     hand-drawn boxes around the year buttons and would otherwise leave slate
+     numbers sitting inside warm brown boxes; interactive-map.js reads it with
+     getPropertyValue, so it is kept as a literal colour rather than a var()
+     reference, which that call would not resolve reliably.
+     The map's own illustration colours, --ocean, --land and --coast, are
+     deliberately untouched: they are the drawing, not the interface.
+     --paper is unused: nothing references var(--paper). Left in place rather
+     than removed as part of a colour change. */
+  --ink: #334155;        /* neutral-700, the body text colour */
   --paper: #ffffff;
-  --soft: #9a938a;
-  --boxstroke: #3a352f;
+  --soft: #64748b;       /* neutral-500, the site's muted text */
+  --boxstroke: #334155;  /* follows --ink */
   --ocean: #dcf0f7;
   --land: #cfe6c2;
   --coast: #8bb184;
@@ -31,7 +43,9 @@
   padding: 1.2rem 0 0;   /* no bottom padding: the heading below owns that gap */
   color: var(--ink);
   font-family: "Inter", system-ui, sans-serif;
-  font-size: 16px;
+  font-size: 1rem;   /* rem, not px: .prose is 1rem too, so the widget
+                        matches the page text and both follow the reader's
+                        own root size instead of being pinned at 16px */
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
@@ -43,11 +57,16 @@
    darken the widget on a light page whenever the reader had picked light while
    their OS was dark. */
 .dark .imap {
-  --ink: #ece7df;
+  /* Same neutrals as the page in dark mode: --ink is the inverted body colour
+     (neutral-300), --soft the muted one (neutral-400). --card moves from a warm
+     brown to neutral-800; neutral-700 was the other candidate but it drops the
+     popup's small muted line to 4.04:1, under AA, where neutral-800 holds
+     5.71:1. */
+  --ink: #cbd5e1;        /* neutral-300 */
   --paper: #1c1a17;
-  --soft: #8d867c;
-  --boxstroke: #ece7df;
-  --card: #26231f;
+  --soft: #94a3b8;       /* neutral-400 */
+  --boxstroke: #cbd5e1;  /* follows --ink */
+  --card: #1e293b;       /* neutral-800 */
 }
 
 .imap * { box-sizing: border-box }
@@ -81,13 +100,24 @@
    longest caption still wraps to two lines, and would have to drop below about
    625px before it needed a third, so the reserved height still keeps the map
    from jumping when the chapter changes. */
-@media (min-width:768px){ .imap .caption{ max-width:var(--reading-measure, 700px) } }
+@media (min-width:768px){
+  .imap .caption{
+    max-width:var(--reading-measure, 700px);
+    line-height:1.75;   /* .prose leading, so the caption reads as page text */
+    /* 2 lines at 1.75 is 3.5rem, against 3rem at the widget default, so the
+       reserved height goes up a little to keep the map from jumping. */
+    min-height:3.75rem;
+  }
+}
 
 .imap .mapwrap { position:relative; border-radius:10px; overflow:hidden; background:var(--ocean); touch-action:none }
 .imap svg.map { display:block; width:100%; height:auto; cursor:grab }
 .imap svg.map.grabbing { cursor:grabbing }
 .imap #viewport { transform-origin:0 0 }
-.imap .plabel { font-family:"Inter",sans-serif; font-weight:500; fill:#3a352f; paint-order:stroke;
+/* The map artwork keeps its light ocean and land in dark mode, so anything
+   drawn on it stays dark in BOTH themes. These are fixed slate values, not
+   var(--ink), which inverts and would turn the labels light on a light map. */
+.imap .plabel { font-family:"Inter",sans-serif; font-weight:500; fill:#334155; paint-order:stroke;
           stroke:var(--ocean); stroke-width:3px; cursor:pointer }
 .imap .pin { cursor:pointer }
 @keyframes imap-pinpulse { 0%{opacity:.4} 70%{opacity:0} 100%{opacity:0} }
@@ -96,17 +126,17 @@
 
 .imap .zoomout { position:absolute; left:12px; bottom:12px; z-index:7; font-family:"Inter",sans-serif; font-size:.82rem;
            background:rgba(255,255,255,.72); border:1px solid rgba(0,0,0,.12); border-radius:7px;
-           padding:.32rem .6rem; color:#b8b2a8; cursor:default; user-select:none; transition:color .2s }
-.imap .zoomout.active { color:#2a2620; cursor:pointer; background:rgba(255,255,255,.9) }
+           padding:.32rem .6rem; color:#94a3b8; cursor:default; user-select:none; transition:color .2s }
+.imap .zoomout.active { color:#334155; cursor:pointer; background:rgba(255,255,255,.9) }
 .imap .ziphint { position:absolute; right:12px; bottom:12px; font-family:"Inter",sans-serif; font-size:.95rem;
-           color:var(--soft); background:rgba(255,255,255,.6); padding:.2rem .5rem; border-radius:6px;
+           color:#64748b; background:rgba(255,255,255,.6); padding:.2rem .5rem; border-radius:6px;
            transition:opacity .5s; pointer-events:none }
 @media (min-width:641px){ .imap .ziphint{display:none} }
 
 /* ---- POPUP ---- */
 .imap .pop { position:absolute; z-index:8; display:none;
        background:var(--card); color:var(--ink); border-radius:12px;
-       box-shadow:0 8px 30px rgba(20,15,10,.24); border:1px solid rgba(0,0,0,.06);
+       box-shadow:0 8px 30px rgba(15,23,42,.24); border:1px solid rgba(0,0,0,.06);
        padding:1rem 1.15rem 1.05rem; font-family:"Inter",sans-serif; text-align:left; overflow-y:auto; animation:imap-popin .16s ease-out }
 @keyframes imap-popin { from{opacity:0;transform:translateY(4px)} to{opacity:1;transform:none} }
 .imap .pop.on { display:block }
