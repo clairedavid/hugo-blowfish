@@ -64,9 +64,24 @@
 .imap .yr.nudge { animation:imap-wiggle .5s ease-in-out 2 }
 @media (max-width:640px){ .imap .timeline{gap:.6rem .55rem; justify-content:center} }
 
-.imap .caption { font-family:"Inter",sans-serif; font-weight:400; font-size:1rem; color:var(--ink); text-align:center; width:100%;
+.imap .caption { font-family:"Inter",sans-serif; font-weight:400; font-size:inherit; color:var(--ink); text-align:center; width:100%;
            margin:1.5rem auto 1.1rem; display:flex; align-items:center; justify-content:center; min-height:var(--imap-caption-min) }
 @media (max-width:640px){ .imap .caption{min-height:6.4rem;font-size:.98rem} }
+
+/* Desktop: the caption is ordinary prose, so it sits in the same centred
+   column as the page's body text rather than spanning the full map width.
+   font-size above is `inherit` rather than a fixed value, so it always equals
+   the surrounding prose by construction and cannot drift apart from it.
+   --reading-measure is set by the page (assets/css/custom.css); the fallback
+   keeps this widget self-contained if it is ever dropped somewhere that does
+   not define it.
+   Only the box changes here. interactive-map.js still writes textContent into
+   this same element, so per-chapter updating is untouched.
+   --imap-caption-min is deliberately left alone: at this narrower width the
+   longest caption still wraps to two lines, and would have to drop below about
+   625px before it needed a third, so the reserved height still keeps the map
+   from jumping when the chapter changes. */
+@media (min-width:768px){ .imap .caption{ max-width:var(--reading-measure, 700px) } }
 
 .imap .mapwrap { position:relative; border-radius:10px; overflow:hidden; background:var(--ocean); touch-action:none }
 .imap svg.map { display:block; width:100%; height:auto; cursor:grab }
