@@ -151,8 +151,27 @@
   @media (max-width: 639.98px) {
     .ih {
       --ih-photo: clamp(120px, 18vh, 180px);
-      --ih-lines-indent: clamp(0.5rem, 3vw, 1.25rem);
+      /* The statements line up with the "Claire David" wordmark in the header.
+         .ih carries 1rem of inline padding, so a matching negative indent puts
+         the lines back on the body's content edge, which is where the wordmark
+         starts (its .main-menu wrapper is pl-0). Only the lines move: the
+         photo, the name and the quote keep the padding and do not shift. */
+      --ih-lines-indent: -1rem;
       --ih-gap-quote: clamp(2rem, 8vh, 5rem);
+    }
+  }
+
+  /* ---------- Desktop ---------- */
+  /* Widen the lines just enough to pull "hundreds" onto the first statement's
+     first line. Measured against the shipped Inter 400 at 16px: that line needs
+     564px to fit "... to train hundreds", where the old 34rem gave 544px.
+     36rem is 576px, which clears it with a little slack for the browser's own
+     shaping, and is still short of 37rem, where the break would move again and
+     take "of" up too. Nothing else in the composition changes.
+     min-width, so the phone wrapping above is untouched. */
+  @media (min-width: 640px) {
+    .ih {
+      --ih-measure: 36rem;
     }
   }
 

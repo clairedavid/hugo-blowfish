@@ -166,6 +166,7 @@ body {
    the spacing. Tune --section-gap by eye. */
 #main-content > article.max-w-full {
   --section-gap: 2.5rem;
+  --reading-measure: 700px;   /* see the reading-measure block at the end */
 }
 
 #main-content > article.max-w-full > section h2 {
@@ -259,4 +260,29 @@ body {
   position: relative;
   top: -0.3em;
   font-size: 0.78em;
+}
+
+/* Reading measure, desktop only. Text blocks are capped and stay flush left,
+   so their left edge holds the same vertical line as the site name in the
+   header, while the map and the gallery keep the full content width. Both are
+   anchored to the container's left padding, so that edge is one continuous
+   spine down the page.
+   Direct children only. .imap and .pgal sit at this same level and are
+   deliberately absent from the list, which is what keeps the media wide, and
+   nothing inside either of them is reached.
+   min-width so the phone layout, already full width, is untouched. The cap
+   cannot bite until the content box passes 700px, around a 892px viewport.
+   Tune --reading-measure above and nothing else. */
+@media (min-width: 768px) {
+  #main-content > article.max-w-full > section > p,
+  #main-content > article.max-w-full > section > h2,
+  #main-content > article.max-w-full > section > h3,
+  #main-content > article.max-w-full > section > h4,
+  #main-content > article.max-w-full > section > ul,
+  #main-content > article.max-w-full > section > ol,
+  #main-content > article.max-w-full > section > blockquote,
+  #main-content > article.max-w-full > section > .footnotes {
+    max-width: var(--reading-measure);
+    margin-inline-end: 0;   /* the left edge is the spine: never centre */
+  }
 }
