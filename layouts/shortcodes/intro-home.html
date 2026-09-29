@@ -2,7 +2,7 @@
      Sized to fit one screen: the block stretches to fill whatever height is
      left between the theme's header and footer, so the page never scrolls. */}}
 
-{{ $img := resources.Get "images/claire_david_placeholder.png" }}
+{{ $img := resources.Get "images/claire_david.jpg" }}
 {{ $lines := slice
   "Experimental particle physicist who left a faculty position to train hundreds of African students in Artificial Intelligence."
   "Rarely sits still."
@@ -26,7 +26,7 @@
 
   .ih {
     /* ---- Adjust these and nothing else ---- */
-    --ih-photo: clamp(140px, 22vh, 220px);        /* shrinks on short screens */
+    --ih-photo: clamp(170px, 28vh, 300px);        /* shrinks on short screens */
     --ih-name-size: clamp(1.5rem, 3.6vh, 2.3rem);
     --ih-text-size: 1rem;
     --ih-column: 46rem;                           /* the content column */
@@ -150,7 +150,7 @@
   /* ---------- Phone ---------- */
   @media (max-width: 639.98px) {
     .ih {
-      --ih-photo: clamp(120px, 18vh, 180px);
+      --ih-photo: clamp(150px, 26vh, 230px);
       /* The statements line up with the "Claire David" wordmark in the header.
          .ih carries 1rem of inline padding, so a matching negative indent puts
          the lines back on the body's content edge, which is where the wordmark
@@ -179,13 +179,17 @@
 
 <div class="ih">
   <div class="ih__inner">
+    {{/* The asset is authored as an exact 600x600 square, which is 2x the
+         300px the hero displays, so it is served as-is. Deliberately no
+         .Fill: it would re-encode an already-correct image, and Hugo's
+         default imaging quality is 75, well below the 90 this was saved at.
+         If the asset is ever replaced, keep it square and 600px. */}}
     {{ with $img }}
-      {{ $square := .Fill "440x440 Center" }}
       <img
         class="ih__photo"
-        src="{{ $square.RelPermalink }}"
-        width="220"
-        height="220"
+        src="{{ .RelPermalink }}"
+        width="300"
+        height="300"
         alt="Claire David"
         loading="eager"
         fetchpriority="high">
