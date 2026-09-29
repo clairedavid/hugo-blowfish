@@ -1,0 +1,32 @@
+{{- /* Icon set. Blowfish's head.html renders this partial instead of its own
+     default links whenever layouts/partials/favicons.html exists, so none of
+     this requires touching the theme.
+
+     Every href goes through relURL, so the whole set resolves under the
+     /hugo-blowfish/ subpath as well as at a site root.
+
+     The 16 and 32 icons are "chip" style, the monogram in white on a filled
+     navy tile, so they carry their own background and stay legible on a tab
+     of any colour. The 48 is the transparent line mark instead, offered in
+     two colours through prefers-color-scheme.
+
+     Ordering note: Firefox does not honour `media` on rel=icon. The light
+     variant is declared last so that a browser ignoring `media` lands on the
+     navy line, which is the correct one for the common light tab, rather than
+     on the white one, which would be invisible there.
+
+     favicon.ico is linked explicitly. Browsers request /favicon.ico at the
+     domain root on their own, which under a project subpath is not this site,
+     so without this link the .ico would never be found. */ -}}
+
+{{- /* The theme emits a bare <meta name="theme-color"> with no content, which
+     is invalid and therefore ignored; this is the one that takes effect. */ -}}
+<meta name="theme-color" content="#1e293b">
+
+<link rel="apple-touch-icon" sizes="180x180" href="{{ "apple-touch-icon.png" | relURL }}">
+<link rel="icon" type="image/x-icon" sizes="16x16 32x32 48x48" href="{{ "favicon.ico" | relURL }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ "favicon-16x16.png" | relURL }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ "favicon-32x32.png" | relURL }}">
+<link rel="icon" type="image/png" sizes="48x48" media="(prefers-color-scheme: dark)" href="{{ "favicon-48x48-dark.png" | relURL }}">
+<link rel="icon" type="image/png" sizes="48x48" media="(prefers-color-scheme: light)" href="{{ "favicon-48x48.png" | relURL }}">
+<link rel="manifest" href="{{ "site.webmanifest" | relURL }}">
