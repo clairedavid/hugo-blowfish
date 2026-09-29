@@ -13,13 +13,13 @@ There I found a new passion: mentoring. After colliding particles, I can't resis
 
 Curious about my research, teaching, talks, or my recent cycling journey across Canada? Reach out [here]({{< relref "/contact" >}}). I'm open to teaching missions, a physics-ML project, a field trip to help climate scientists, or any adventure I haven't thought of, with or without a bike.
 
-## In Time and Space
+## In Time and Space {.about-section}
 
 This interactive map traces my missions and the places I've lived. Click a year-button, then the pins for more details.
 
 {{< interactive-map >}}
 
-## Teaching Philosophy
+## Teaching Philosophy {.about-section}
 
 <p class="opening">How do I teach? I start with a question.</p>
 
@@ -29,11 +29,11 @@ From basic definitions to the very concept I'm about to explain, I ask first. I 
 
 Science can be frustrating as well as exhilarating. Pushing oneself can be thrilling, but competition brings stressful deadlines and insane workload. I remind my students to cherish the joy of learning before everything else. It's not innocent. The more they enjoy it, the more they do it. They gain skills, they get noticed. And most importantly, they gain clarity on what they really want to do, what they don't, and which opportunities fit their technical curiosity as well as their human values.
 
-## In Pictures
+## In Pictures {.about-section}
 
 {{< photo-gallery >}}
 
-## In Motion and Arts
+## In Motion and Arts {.about-section}
 
 I've been lucky to train, perform, and compete in various activities alongside my studies and work missions:
 

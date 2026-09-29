@@ -1,0 +1,26 @@
+{{- /* Copied from themes/blowfish/layouts/_default/_markup/render-heading.html.
+
+     One change: a class written in the markdown, as in
+       ## In Time and Space {.about-section}
+     is merged into the heading's class list.
+
+     The theme's hook hardcodes class="relative group" and drops .Attributes
+     entirely, so a markdown class never reaches the element. Without this,
+     per-page heading styling has no hook at all: Blowfish builds its body
+     classes from hardcoded strings in baseof.html, and the "simple" layout
+     emits identical markup on every tab, so About cannot be told apart from
+     the other five pages in CSS.
+
+     Everything else is the theme's markup verbatim, so headings without an
+     attribute render exactly as before. */ -}}
+{{ $anchor := anchorize .Anchor }}
+{{ $extra := "" }}{{ with .Attributes.class }}{{ $extra = printf " %s" . }}{{ end }}
+<h{{ .Level }} class="relative group{{ $extra }}">{{ .Text | safeHTML }}
+    <div id="{{ $anchor }}" class="anchor"></div>
+    {{ if .Page.Params.showHeadingAnchors | default (.Page.Site.Params.article.showHeadingAnchors | default true) }}
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#{{ $anchor }}" aria-label="{{ i18n "article.anchor_label" }}">#</a>
+    </span>
+    {{ end }}
+</h{{ .Level }}>

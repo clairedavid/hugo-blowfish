@@ -296,3 +296,14 @@ body {
     margin-inline: auto;   /* centred on the page axis, with the media */
   }
 }
+
+/* About page: more air above each section heading.
+   Scoped with a class the four headings carry from the markdown, because
+   Blowfish hardcodes its body classes in baseof.html, so there is no per-page
+   hook to target and the "simple" layout markup is identical on every tab.
+   That keeps the other five pages on the shared --section-gap.
+   The clamp does the mobile tapering in one declaration: 3.25rem on a phone,
+   easing to 4rem once there is room for it, against the 2.5rem baseline. */
+#main-content > article.max-w-full > section h2.about-section {
+  margin-top: clamp(3.25rem, 2rem + 3vw, 4rem);
+}
