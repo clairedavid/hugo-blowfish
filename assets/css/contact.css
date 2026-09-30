@@ -14,6 +14,11 @@
 .cf {
   --cf-ink: rgb(var(--color-neutral-900));
   --cf-muted: rgb(var(--color-neutral-500));
+  --cf-label: rgb(var(--color-neutral-600));
+  /* The dropdown's own placeholder-state text colour. Deliberately the
+     reverse pairing of --cf-muted above: this is what the brief specifies
+     (slate-400 in light, slate-500 in dark) for that one piece of text. */
+  --cf-placeholder: rgb(var(--color-neutral-400));
   --cf-border: rgb(var(--color-neutral-300));
   --cf-bg: #ffffff;
   --cf-focus: rgb(var(--color-primary-500));
@@ -24,7 +29,7 @@
 
   font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
   color: var(--cf-ink);
-  max-width: 640px;
+  max-width: 704px;
   margin: 0 auto;
   padding-inline: 16px;
   box-sizing: border-box;
@@ -33,6 +38,8 @@
 .dark .cf {
   --cf-ink: rgb(var(--color-neutral-100));
   --cf-muted: rgb(var(--color-neutral-400));
+  --cf-label: rgb(var(--color-neutral-300));
+  --cf-placeholder: rgb(var(--color-neutral-500));
   --cf-border: rgb(var(--color-neutral-600));
   --cf-bg: rgb(var(--color-neutral-800));
 
@@ -50,31 +57,61 @@
 .cf input, .cf select, .cf textarea, .cf button { font: inherit }
 
 /* This page's own <h1>, "Contact", comes from the theme's simple.html and is
-   left-aligned by default like every other tab. Centred here instead, scoped
-   to only the page that carries this form, the same :has() technique used to
-   scope the CV page's header-gap override, so no other "simple" page is
-   touched and the theme file itself is never edited. Top spacing above the
-   heading is untouched: it is the shared header { padding-top } rule in
-   custom.css, which already applies identically to every simple-layout page,
-   Contact included. */
+   left-aligned by default like every other tab, but at the far left of the
+   1024px content box rather than at the form column's own left edge. Given
+   the same box (max-width, centring margin, side padding) as .cf below, its
+   text now starts exactly where the form's fields do, scoped to only the
+   page that carries this form via :has(), the same technique already used
+   to scope the CV page's header-gap override, so no other "simple" page is
+   touched and the theme file itself is never edited. */
 #main-content > article.max-w-full > header:has(+ section .cf) h1 {
-  text-align: center;
+  max-width: 704px;
+  margin: 0 auto;
+  padding-inline: 16px;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+/* Gap between that heading and the tagline beneath it. This is the shared
+   header { margin-top } rule in custom.css, narrowed for this page only,
+   again via :has() rather than touching the shared value every other
+   simple-layout page relies on. */
+#main-content > article.max-w-full > header + section:has(.cf) {
+  margin-top: .5rem;
 }
 
 .cf-tagline {
   text-align: center;
   color: var(--cf-muted);
   font-size: 1rem;
-  margin-bottom: clamp(2rem, 5vh, 3rem);
+  margin-bottom: 2.25rem;
+}
+
+@media (min-width: 600px) {
+  .cf-tagline { margin-bottom: 3rem }
 }
 
 /* ---- layout ---- */
+
+.cf-swap {
+  display: flex;
+  flex-direction: column;
+}
 
 .cf-form {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
 }
+
+/* Both toggled by contact.js via the `hidden` DOM property. A plain author
+   rule setting `display` on either would otherwise always win over the
+   user-agent's own [hidden]{display:none}, since normal author styles beat
+   normal UA styles regardless of specificity, silently defeating the hide.
+   The gallery lightbox in photo-gallery.css carries the identical guard for
+   the identical reason. */
+.cf-form[hidden] { display: none !important }
+.cf-success[hidden] { display: none !important }
 
 .cf-row { display: grid; grid-template-columns: 1fr; gap: 1.25rem }
 
@@ -85,9 +122,10 @@
 .cf-field { display: flex; flex-direction: column; gap: .4rem }
 
 .cf-field label {
-  font-size: .875rem;
+  font-size: 1rem;
   font-weight: 500;
-  color: var(--cf-ink);
+  line-height: 1.4;
+  color: var(--cf-label);
   text-align: left;
 }
 
@@ -99,7 +137,9 @@
   width: 100%;
   min-height: 44px;              /* comfortable tap target */
   font-size: 1rem;               /* >=16px stops iOS zooming in on focus */
-  line-height: 1.4;
+  font-weight: 400;
+  line-height: 1.4;              /* matches the label above, so rows read as
+                                     one consistent height */
   padding: .55rem .75rem;
   color: var(--cf-ink);
   background: var(--cf-bg);
@@ -113,7 +153,36 @@
   resize: vertical;
 }
 
-.cf-field select { cursor: pointer }
+/* A small filled triangle in place of the native arrow, drawn as an inline
+   SVG data URI so nothing extra is fetched. appearance:none removes the
+   browser's own arrow and any native chrome around it; the background
+   shorthand above already set the field's background-colour, and these are
+   longhand properties layered on top of it, so the colour still shows
+   through everywhere the triangle is not. */
+.cf-field select {
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-right: 2.5rem;         /* clearance so text never runs under it */
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 10px 6px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M0 0L10 0L5 6Z' fill='%2364748b'/%3E%3C/svg%3E");
+}
+
+.dark .cf-field select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M0 0L10 0L5 6Z' fill='%2394a3b8'/%3E%3C/svg%3E");
+}
+
+/* Grey while the select is sitting on its own first option, i.e. Topic's
+   "Choose a topic…" placeholder or Addressing's "No preference" default;
+   the normal ink colour returns the moment a real choice is made. :checked
+   on an <option> always reflects the select's live, current selection, so
+   this needs no JS and cannot drift out of sync with it. */
+.cf-field select:has(option:first-child:checked) {
+  color: var(--cf-placeholder);
+}
 
 .cf-field input:focus,
 .cf-field select:focus,
@@ -142,12 +211,26 @@
 
 .dark .cf-error { color: rgb(248 113 113) }  /* red-400 */
 
+/* One row: tick, then text, centred both ways in whatever space .cf-swap
+   currently occupies. flex:1 lets it claim the min-height contact.js pins on
+   .cf-swap once the (usually shorter) form is hidden, rather than only the
+   height its own content needs. */
 .cf-success {
-  text-align: center;
-  font-size: 1.15rem;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: .9rem;
+  font-size: 1.25rem;
   color: var(--cf-ink);
-  padding: 3rem 0;
 }
+
+.cf-tick {
+  flex-shrink: 0;
+  color: #16a34a;   /* green-600 */
+}
+
+.dark .cf-tick { color: #4ade80 }  /* green-400 */
 
 /* ---- button ---- */
 

@@ -14,11 +14,12 @@
   var form = document.getElementById("cf-form");
   if (!form) return;
 
+  var swap = document.getElementById("cf-swap");
   var submit = document.getElementById("cf-submit");
   var error = document.getElementById("cf-error");
   var success = document.getElementById("cf-success");
   var subjectField = document.getElementById("cf-subject");
-  if (!submit || !error || !success || !subjectField) return;
+  if (!swap || !submit || !error || !success || !subjectField) return;
 
   var SENDING_LABEL = "Sending…";
   var ORIGINAL_LABEL = submit.textContent;
@@ -46,13 +47,10 @@
     error.hidden = true;
     setSubject();
 
+    // The addressing field's own default option value is now the literal
+    // string "No preference", so nothing needs substituting here the way an
+    // empty value once did.
     var data = new FormData(form);
-    // The "How would you like to be addressed?" field is explicitly optional
-    // and left blank by default; record that plainly rather than sending an
-    // empty value.
-    if (!data.get("addressing")) {
-      data.set("addressing", "Not specified");
-    }
 
     submit.disabled = true;
     submit.textContent = SENDING_LABEL;
@@ -64,6 +62,10 @@
     })
       .then(function (res) {
         if (!res.ok) throw new Error("Form submission failed");
+        // Pin the wrapper to the form's current height before swapping, so
+        // the (usually shorter) success row does not shrink the page under
+        // the reader.
+        swap.style.minHeight = form.offsetHeight + "px";
         form.hidden = true;
         success.hidden = false;
         success.focus();
