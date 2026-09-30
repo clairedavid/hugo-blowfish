@@ -75,20 +75,34 @@
 /* Gap between that heading and the tagline beneath it. This is the shared
    header { margin-top } rule in custom.css, narrowed for this page only,
    again via :has() rather than touching the shared value every other
-   simple-layout page relies on. */
+   simple-layout page relies on. 3rem below 600px, 4.5rem from there up. */
 #main-content > article.max-w-full > header + section:has(.cf) {
-  margin-top: .5rem;
-}
-
-.cf-tagline {
-  text-align: center;
-  color: var(--cf-muted);
-  font-size: 1rem;
-  margin-bottom: 2.25rem;
+  margin-top: 3rem;
 }
 
 @media (min-width: 600px) {
-  .cf-tagline { margin-bottom: 3rem }
+  #main-content > article.max-w-full > header + section:has(.cf) {
+    margin-top: 4.5rem;
+  }
+}
+
+/* .cf p.cf-tagline, not .cf-tagline: the prose-guard reset above,
+   .cf p, .cf form, .cf label { margin: 0 }, is a class plus an element, which
+   outranks a bare class, so a plain .cf-tagline margin-bottom is silently
+   discarded (the same trap .cv p.cv-updated in cv.css exists to avoid). That
+   is why last round's 3rem never actually showed: the value was in the
+   stylesheet but never won the cascade. The fix is specificity, not
+   !important: two classes plus the element beats the guard's one class plus
+   the element outright, with nothing to stack on top of later. */
+.cf p.cf-tagline {
+  text-align: center;
+  color: var(--cf-muted);
+  font-size: 1rem;
+  margin-bottom: 3rem;
+}
+
+@media (min-width: 600px) {
+  .cf p.cf-tagline { margin-bottom: 4.5rem }
 }
 
 /* ---- layout ---- */
@@ -211,13 +225,14 @@
 
 .dark .cf-error { color: rgb(248 113 113) }  /* red-400 */
 
-/* One row: tick, then text, centred both ways in whatever space .cf-swap
-   currently occupies. flex:1 lets it claim the min-height contact.js pins on
-   .cf-swap once the (usually shorter) form is hidden, rather than only the
-   height its own content needs. */
+/* One row: tick, then text, centred horizontally in the form column. The
+   page is no longer kept from jumping by pinning a height here (contact.js
+   scrolls to the top instead, since a pinned height that outlives the form
+   can leave the reader looking at empty space below a short success row), so
+   this is a plain centred row sized to its own content rather than a flex
+   item claiming a reserved height. */
 .cf-success {
   display: flex;
-  flex: 1;
   align-items: center;
   justify-content: center;
   gap: .9rem;

@@ -14,12 +14,11 @@
   var form = document.getElementById("cf-form");
   if (!form) return;
 
-  var swap = document.getElementById("cf-swap");
   var submit = document.getElementById("cf-submit");
   var error = document.getElementById("cf-error");
   var success = document.getElementById("cf-success");
   var subjectField = document.getElementById("cf-subject");
-  if (!swap || !submit || !error || !success || !subjectField) return;
+  if (!submit || !error || !success || !subjectField) return;
 
   var SENDING_LABEL = "Sending…";
   var ORIGINAL_LABEL = submit.textContent;
@@ -62,13 +61,16 @@
     })
       .then(function (res) {
         if (!res.ok) throw new Error("Form submission failed");
-        // Pin the wrapper to the form's current height before swapping, so
-        // the (usually shorter) success row does not shrink the page under
-        // the reader.
-        swap.style.minHeight = form.offsetHeight + "px";
         form.hidden = true;
         success.hidden = false;
-        success.focus();
+        // Scroll to the top rather than pinning the form's height: on a
+        // long form the reader may be scrolled well down the page, and the
+        // short success row taking the form's place would otherwise leave
+        // them looking at empty space below it. focus() runs with
+        // preventScroll so it cannot re-introduce a scroll of its own once
+        // this one has already put the success row in view.
+        window.scrollTo(0, 0);
+        success.focus({ preventScroll: true });
       })
       .catch(function () {
         error.hidden = false;

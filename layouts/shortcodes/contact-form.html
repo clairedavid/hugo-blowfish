@@ -18,10 +18,11 @@
 <div class="cf" id="cf">
   <p class="cf-tagline">Connections are everything.</p>
 
-  {{- /* Wraps the form and the success message, which swap places on submit.
-       contact.js pins this wrapper's height to the form's own rendered height
-       right before hiding it, so the page does not jump when the (usually
-       shorter) success row takes its place. */ -}}
+  {{- /* Wraps the form and the success message, which swap places on
+       submit. contact.js scrolls to the top of the page rather than pinning
+       this wrapper to the form's height: a pinned height would have kept the
+       page tall after the swap, leaving the reader looking at empty space
+       below the shorter success row. */ -}}
   <div class="cf-swap" id="cf-swap">
     <form class="cf-form" id="cf-form"
           action="https://formspree.io/f/mrpbdlop" method="POST">
