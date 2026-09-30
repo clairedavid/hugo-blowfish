@@ -74,15 +74,15 @@
   border-radius: 3px;
 }
 
-/* A blank line's worth of air above it, and a touch larger than before. */
-.cv-updated { margin-top: 1.5rem; font-size: .9rem; color: var(--cv-muted) }
+/* Button, then a clear empty line, then the date. */
+.cv-updated { margin-top: 2.75rem; font-size: .78rem; color: var(--cv-muted) }
 
 /* ---- two columns ---- */
 
 .cv-body { display: grid; grid-template-columns: 1fr; gap: 0 }
 
 @media (min-width: 900px) {
-  .cv-body { grid-template-columns: 13.5rem minmax(0, 1fr); gap: 0 2.75rem }
+  .cv-body { grid-template-columns: 12.5rem minmax(0, 1fr); gap: 0 2.5rem }
 }
 
 /* Sticky rail. Only ever shown on desktop; the phone gets .cv-jump instead. */
@@ -187,10 +187,16 @@
   padding: 0 0 .95rem;
 }
 
+/* align-self defaults to stretch, so the cell fills the row and its right
+   border runs the full height of the entry. Centring happens inside the cell
+   with justify-content, so the full-height rule and the centred year are not
+   in competition: the earlier align-self:center shrank the cell to its text
+   and took the rule down with it. */
 .cv-date {
   display: flex;
   flex-direction: column;
-  align-self: center;         /* the year sits against the middle of its entry */
+  justify-content: center;    /* year pair centred against the whole entry */
+  align-items: center;        /* and centred across the column, no ragged edge */
   font-size: .8rem;
   line-height: 1.45;
   color: var(--cv-muted);
@@ -198,7 +204,7 @@
   border-right: 1px solid var(--cv-rule);
 }
 
-.cv-year { text-align: right; white-space: nowrap }
+.cv-year { text-align: center; white-space: nowrap }
 
 /* Durations read as a note under the year, so they are smaller, quieter and
    centred in the column rather than hanging off the rule. */
@@ -207,6 +213,7 @@
   font-size: .72rem;
   opacity: .8;
   margin-top: .1rem;
+  white-space: nowrap;
 }
 
 .cv-text { font-size: .9rem; line-height: 1.55 }
@@ -250,6 +257,7 @@
     border-right: 0;
     font-size: .76rem;
   }
+  .cv-date { align-items: flex-start; justify-content: flex-start }
   .cv-year, .cv-dur { text-align: left }
   .cv-dur { margin-top: 0 }
 }
@@ -260,5 +268,7 @@
    :has() keeps this to the CV page even though cv.css is only ever loaded by
    the cv shortcode in the first place. */
 #main-content > article.max-w-full > header + section:has(.cv) {
-  margin-top: clamp(.875rem, 2.25vh, 1.5rem);
+  /* Midway between the shared gap in custom.css, clamp(1.75rem, 4.5vh, 3rem),
+     and the halved value that turned out to sit too high. */
+  margin-top: clamp(1.3rem, 3.375vh, 2.25rem);
 }
