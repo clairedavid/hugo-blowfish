@@ -1,0 +1,90 @@
+{{- /* Contact page: a Formspree form, submitted via plain fetch with a
+     no-JS native-POST fallback.
+
+     Styles: assets/css/contact.css, all scoped under .cf (plus one rule that
+       centres this page's own h1, scoped with :has() the same way the CV
+       page's header-gap override is, so nothing here touches the theme).
+     Code: assets/js/contact.js.
+     Every URL goes through .RelPermalink, so it resolves under the
+     /hugo-blowfish/ subpath. Nothing is fetched from a CDN, and the only
+     network request this page ever makes at runtime is the form's own POST
+     to Formspree. */ -}}
+
+{{- $css := resources.Get "css/contact.css" | minify | fingerprint -}}
+{{- $js  := resources.Get "js/contact.js"  | minify | fingerprint -}}
+
+<link rel="stylesheet" href="{{ $css.RelPermalink }}">
+<div class="cf" id="cf">
+  <p class="cf-tagline">Connections are everything.</p>
+
+  <form class="cf-form" id="cf-form"
+        action="https://formspree.io/f/mrpbdlop" method="POST">
+
+    <div class="cf-row cf-row-2">
+      <div class="cf-field">
+        <label for="cf-first-name">First name</label>
+        <input type="text" id="cf-first-name" name="first_name"
+               autocomplete="given-name" required>
+      </div>
+      <div class="cf-field">
+        <label for="cf-last-name">Last name</label>
+        <input type="text" id="cf-last-name" name="last_name"
+               autocomplete="family-name" required>
+      </div>
+    </div>
+
+    <div class="cf-field">
+      <label for="cf-email">Email</label>
+      <input type="email" id="cf-email" name="email"
+             autocomplete="email" required>
+    </div>
+
+    <div class="cf-field">
+      <label for="cf-addressing">How would you like to be addressed? (optional)</label>
+      <select id="cf-addressing" name="addressing">
+        <option value="" selected>How would you like to be addressed? (optional)</option>
+        <option value="Informally, by my first name">Informally, by my first name</option>
+        <option value="Formally (please specify in your message, thanks)">Formally (please specify in your message, thanks)</option>
+      </select>
+    </div>
+
+    <div class="cf-field">
+      <label for="cf-topic">Topic</label>
+      <select id="cf-topic" name="topic" required>
+        <option value="" disabled selected>Choose a topic&hellip;</option>
+        <option value="Collaboration">Collaboration</option>
+        <option value="Teaching invitation">Teaching invitation</option>
+        <option value="Speaking invitation">Speaking invitation</option>
+        <option value="Job opportunity">Job opportunity</option>
+        <option value="A physics question!">A physics question!</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+
+    <div class="cf-field">
+      <label for="cf-message">Your message</label>
+      <textarea id="cf-message" name="message" rows="8" required></textarea>
+    </div>
+
+    {{- /* Honeypot. Real visitors never see or reach this: off-screen, not in
+         the tab order, and hidden from assistive tech. A bot filling every
+         field it finds will fill this one too, which is the tell. */ -}}
+    <input type="text" class="cf-hp" name="_gotcha" tabindex="-1"
+           autocomplete="off" aria-hidden="true">
+
+    {{- /* Overwritten by contact.js right before the request is sent, with
+         the chosen topic and the visitor's name. This static value is only
+         what ships if JS never runs, i.e. the no-JS native-POST path. */ -}}
+    <input type="hidden" name="_subject" id="cf-subject" value="[Website] Contact form">
+
+    <p class="cf-error" id="cf-error" hidden>Something went wrong. Please try again in a moment.</p>
+
+    <button type="submit" class="cf-submit" id="cf-submit">Send message</button>
+  </form>
+
+  <div class="cf-success" id="cf-success" role="status" aria-live="polite"
+       tabindex="-1" hidden>
+    Thanks for reaching out!
+  </div>
+</div>
+<script src="{{ $js.RelPermalink }}" defer></script>

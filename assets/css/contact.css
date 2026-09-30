@@ -1,0 +1,177 @@
+/* Contact page. Every rule is scoped under .cf so nothing leaks into
+   Blowfish and Blowfish cannot leak in, the same discipline as the map's
+   .imap, the gallery's .pgal and the CV's .cv.
+   Colours are taken from the theme's own neutral ramp rather than fixed hex,
+   so light and dark both follow the site with nothing to keep in step here;
+   they land on exactly the values the brief specified (neutral-800 is
+   #1e293b, neutral-100 is #f1f5f9, neutral-900 is #0f172a) because that ramp
+   is Tailwind's slate scale, which is what was asked for.
+   Inter is self-hosted site-wide via assets/css/custom.css.
+   Native <select> option lists already render correctly in both themes on
+   their own: the theme sets color-scheme: light / dark on <html> tied to the
+   same .dark class this file uses, so nothing here needs to touch them. */
+
+.cf {
+  --cf-ink: rgb(var(--color-neutral-900));
+  --cf-muted: rgb(var(--color-neutral-500));
+  --cf-border: rgb(var(--color-neutral-300));
+  --cf-bg: #ffffff;
+  --cf-focus: rgb(var(--color-primary-500));
+
+  --cf-btn-bg: rgb(var(--color-neutral-800));
+  --cf-btn-bg-hover: rgb(var(--color-neutral-700));
+  --cf-btn-ink: #ffffff;
+
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  color: var(--cf-ink);
+  max-width: 640px;
+  margin: 0 auto;
+  padding-inline: 16px;
+  box-sizing: border-box;
+}
+
+.dark .cf {
+  --cf-ink: rgb(var(--color-neutral-100));
+  --cf-muted: rgb(var(--color-neutral-400));
+  --cf-border: rgb(var(--color-neutral-600));
+  --cf-bg: rgb(var(--color-neutral-800));
+
+  --cf-btn-bg: rgb(var(--color-neutral-100));
+  --cf-btn-bg-hover: rgb(var(--color-neutral-300));
+  --cf-btn-ink: rgb(var(--color-neutral-900));
+}
+
+.cf * { box-sizing: border-box }
+
+/* The page sits inside Tailwind Typography's `prose`, which styles bare p,
+   label, input, select, textarea, button and form. Neutralised here rather
+   than relying on prose staying as it is. */
+.cf p, .cf form, .cf label { margin: 0; padding: 0 }
+.cf input, .cf select, .cf textarea, .cf button { font: inherit }
+
+/* This page's own <h1>, "Contact", comes from the theme's simple.html and is
+   left-aligned by default like every other tab. Centred here instead, scoped
+   to only the page that carries this form, the same :has() technique used to
+   scope the CV page's header-gap override, so no other "simple" page is
+   touched and the theme file itself is never edited. Top spacing above the
+   heading is untouched: it is the shared header { padding-top } rule in
+   custom.css, which already applies identically to every simple-layout page,
+   Contact included. */
+#main-content > article.max-w-full > header:has(+ section .cf) h1 {
+  text-align: center;
+}
+
+.cf-tagline {
+  text-align: center;
+  color: var(--cf-muted);
+  font-size: 1rem;
+  margin-bottom: clamp(2rem, 5vh, 3rem);
+}
+
+/* ---- layout ---- */
+
+.cf-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.cf-row { display: grid; grid-template-columns: 1fr; gap: 1.25rem }
+
+@media (min-width: 600px) {
+  .cf-row-2 { grid-template-columns: 1fr 1fr }
+}
+
+.cf-field { display: flex; flex-direction: column; gap: .4rem }
+
+.cf-field label {
+  font-size: .875rem;
+  font-weight: 500;
+  color: var(--cf-ink);
+  text-align: left;
+}
+
+/* ---- controls ---- */
+
+.cf-field input,
+.cf-field select,
+.cf-field textarea {
+  width: 100%;
+  min-height: 44px;              /* comfortable tap target */
+  font-size: 1rem;               /* >=16px stops iOS zooming in on focus */
+  line-height: 1.4;
+  padding: .55rem .75rem;
+  color: var(--cf-ink);
+  background: var(--cf-bg);
+  border: 1px solid var(--cf-border);
+  border-radius: 8px;
+  transition: border-color .15s ease;
+}
+
+.cf-field textarea {
+  min-height: 10rem;             /* about 8 rows at this line-height */
+  resize: vertical;
+}
+
+.cf-field select { cursor: pointer }
+
+.cf-field input:focus,
+.cf-field select:focus,
+.cf-field textarea:focus {
+  outline: 2px solid var(--cf-focus);
+  outline-offset: 1px;
+  border-color: var(--cf-focus);
+}
+
+/* Honeypot: off-screen rather than display:none, which some spam bots skip
+   past, and never in the tab order or announced to assistive tech. */
+.cf-hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* ---- feedback ---- */
+
+.cf-error {
+  font-size: .875rem;
+  color: rgb(220 38 38);        /* red-600, readable on white and slate-800 */
+}
+
+.dark .cf-error { color: rgb(248 113 113) }  /* red-400 */
+
+.cf-success {
+  text-align: center;
+  font-size: 1.15rem;
+  color: var(--cf-ink);
+  padding: 3rem 0;
+}
+
+/* ---- button ---- */
+
+.cf-submit {
+  width: 100%;
+  min-height: 48px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--cf-btn-ink);
+  background: var(--cf-btn-bg);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color .15s ease;
+}
+
+.cf-submit:hover:not(:disabled) { background: var(--cf-btn-bg-hover) }
+
+.cf-submit:focus-visible {
+  outline: 2px solid var(--cf-focus);
+  outline-offset: 2px;
+}
+
+.cf-submit:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
