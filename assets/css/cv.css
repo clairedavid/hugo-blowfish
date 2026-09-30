@@ -78,7 +78,7 @@
 /* p.cv-updated, not .cv-updated: the prose-guard reset above is .cv p,
    which outranks a bare class, so a plain .cv-updated margin is silently
    discarded. */
-.cv p.cv-updated { margin-top: 3.5rem; font-size: .78rem; color: var(--cv-muted) }
+.cv p.cv-updated { margin-top: 1.5rem; font-size: .78rem; color: var(--cv-muted) }
 
 /* ---- two columns ---- */
 
