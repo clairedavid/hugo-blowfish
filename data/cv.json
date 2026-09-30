@@ -1,0 +1,1952 @@
+{
+  "sections": [
+    {
+      "id": "education",
+      "title": "Education",
+      "groups": [
+        {
+          "heading": "",
+          "entries": [
+            {
+              "date": "2010 – 2016",
+              "duration": "",
+              "lines": [
+                "<strong>PhD in Experimental Particle Physics, University of Victoria, Canada</strong>",
+                "<span class=\"cv-muted\">Supervisors: Rob McPherson &amp; Michel Lefebvre</span>",
+                "<span class=\"cv-muted\">GPA: 8.63/9</span>",
+                "<span class=\"cv-muted\">Based at CERN (2012) for authorship qualification, ATLAS Experiment</span>"
+              ]
+            },
+            {
+              "date": "2005 – 2010",
+              "duration": "",
+              "lines": [
+                "<strong>Master of Engineering in Applied Physics, INSA Toulouse, France</strong>",
+                "<span class=\"cv-muted\">4<sup>th</sup> year: exchange semester on Fundamental Physics (in German), Humboldt-Universität Berlin</span>",
+                "<span class=\"cv-muted\">5<sup>th</sup> year: specialization in Nanophysics &amp; Instrumentation</span>",
+                "<span class=\"cv-muted\">Rank: top 5%</span>"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "appointments",
+      "title": "Appointments",
+      "groups": [
+        {
+          "heading": "",
+          "entries": [
+            {
+              "date": "2023 – 2025",
+              "duration": "",
+              "lines": [
+                "<strong>Academic Director, <em>AI for Science</em>*, AIMS South Africa</strong>",
+                "<strong>Resident Researcher in Machine Learning, AIMS South Africa</strong>",
+                "<span class=\"cv-muted\">* MSc program funded by Google DeepMind: <a href=\"https://ai.aims.ac.za\" target=\"_blank\" rel=\"noopener\">ai.aims.ac.za</a></span>"
+              ]
+            },
+            {
+              "date": "2022 – 2023",
+              "duration": "",
+              "lines": [
+                "<strong>Visiting Scholar, AIMS South Africa</strong>",
+                "<strong>McDonald Institute Ambassador</strong>",
+                "<span class=\"cv-muted\">Canada's astroparticle physics network; sponsored fellow</span>"
+              ]
+            },
+            {
+              "date": "2019 – 2023",
+              "duration": "",
+              "lines": [
+                "<strong>Assistant Professor, York University, Canada</strong><span class=\"cv-muted\">, jointly appointed as</span>",
+                "<strong>Research Scientist, Fermilab, USA</strong>",
+                "<span class=\"cv-muted\">ATLAS Experiment, CERN &amp; Deep Underground Neutrino Experiment, Fermilab</span>"
+              ]
+            },
+            {
+              "date": "2016 – 2019",
+              "duration": "",
+              "lines": [
+                "<strong>Postdoctoral Researcher, DESY, Hamburg, Germany</strong>",
+                "<span class=\"cv-muted\">ATLAS Experiment, CERN</span>"
+              ]
+            },
+            {
+              "date": "2010 – 2016",
+              "duration": "",
+              "lines": [
+                "<strong>Graduate Research Associate, University of Victoria, Canada</strong>",
+                "<span class=\"cv-muted\">ATLAS Experiment, CERN; based at TRIUMF</span>"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "professional-development",
+      "title": "Professional Development",
+      "groups": [
+        {
+          "heading": "",
+          "entries": [
+            {
+              "date": "2026",
+              "duration": "",
+              "lines": [
+                "<strong>Technical AI Safety, Blue Dot Impact</strong>",
+                "<span class=\"cv-muted\">6-week course with weekly facilitated discussions; certificate of completion</span>"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "skills",
+      "title": "Skills",
+      "groups": [
+        {
+          "heading": "",
+          "entries": [
+            {
+              "date": "Research expertise",
+              "duration": "",
+              "lines": [
+                "Collider physics, machine learning, advanced data analysis, statistical inference"
+              ]
+            },
+            {
+              "date": "Programming",
+              "duration": "",
+              "lines": [
+                "Python (NumPy, PyTorch, scikit-learn), C, C++, ROOT, LabVIEW, Unix shell"
+              ]
+            },
+            {
+              "date": "Communication",
+              "duration": "",
+              "lines": [
+                "University-level instruction, public speaking, science popularization"
+              ]
+            },
+            {
+              "date": "Mentoring",
+              "duration": "",
+              "lines": [
+                "Academic coaching, student placement across international institutions"
+              ]
+            },
+            {
+              "date": "Languages",
+              "duration": "",
+              "lines": [
+                "French (native), English (fluent), German (fluent), Spanish (highly proficient)"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "research",
+      "title": "Research",
+      "groups": [
+        {
+          "heading": "Highlights",
+          "entries": [
+            {
+              "date": "2020 – 2022",
+              "duration": "",
+              "lines": [
+                "<strong>Co-convener of Training &amp; Documentation, DUNE Computing Consortium</strong>",
+                "<span class=\"cv-muted\">Deep Underground Neutrino Experiment, Fermilab; <a href=\"https://doi.org/10.48550/arXiv.2310.07342\" target=\"_blank\" rel=\"noopener\">arXiv:2310.07342</a></span>"
+              ]
+            },
+            {
+              "date": "2019",
+              "duration": "",
+              "lines": [
+                "<strong>Co-founded DUNE-Canada group</strong>",
+                "<span class=\"cv-muted\">Deep Underground Neutrino Experiment, Fermilab</span>"
+              ]
+            },
+            {
+              "date": "2018",
+              "duration": "",
+              "lines": [
+                "<strong>Observation of the Higgs boson production mode with a top-antitop quark pair</strong>",
+                "<span class=\"cv-muted\">ATLAS Experiment, CERN LHC; <a href=\"https://doi.org/10.1016/j.physletb.2018.07.035\" target=\"_blank\" rel=\"noopener\">Phys.Lett. B <strong>784</strong> (2018) 173</a></span>"
+              ]
+            },
+            {
+              "date": "2016 – 2019",
+              "duration": "",
+              "lines": [
+                "<strong>Led thermal validation and radiation length measurements of the ATLAS ITk silicon strip sensor support structure</strong>",
+                "<span class=\"cv-muted\">ATLAS Experiment, CERN LHC; <a href=\"https://cds.cern.ch/record/2261511\" target=\"_blank\" rel=\"noopener\">ATLAS-TDR-025</a></span>"
+              ]
+            },
+            {
+              "date": "2015 – 2016",
+              "duration": "",
+              "lines": [
+                "<strong>pMSSM reinterpretation of LHC Run 1 SUSY searches; featured in CERN Courier</strong>",
+                "<span class=\"cv-muted\">ATLAS Experiment, CERN LHC; <a href=\"http://link.springer.com/article/10.1007%2FJHEP10%282015%29134\" target=\"_blank\" rel=\"noopener\">JHEP <strong>10</strong> (2015) 134</a></span>"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Current Projects",
+          "entries": [
+            {
+              "date": "2025 – 2026",
+              "duration": "",
+              "lines": [
+                "<strong>Automatic mapping of confidence sets to confidence intervals for intractable statistical models</strong>",
+                "<span class=\"cv-muted\">With Prof. Harrison B. Prosper (Florida State U.) &amp; Prof. Olivia Prosper-Feldman (U. of Tennessee)</span>",
+                "<span class=\"cv-muted\">Expected completion: December 2026</span>"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "As Resident Researcher in Machine Learning at AIMS South Africa",
+          "entries": [
+            {
+              "date": "2025 – 2026",
+              "duration": "",
+              "lines": [
+                "<strong>Physics-Informed Neural Network as solver of the photon orbit equation around a black hole</strong>",
+                "<span class=\"cv-muted\">With Tlotlo Oepeng (formerly AIMS South Africa) &amp; Prof. H. B. Prosper (FSU)</span>",
+                "<span class=\"cv-muted\">Paper submitted to the Machine Learning for Physical Science (ML4PS) 2026 workshop</span>"
+              ]
+            },
+            {
+              "date": "2025",
+              "duration": "",
+              "lines": [
+                "<strong>Graph autoencoders for anomaly detection in particle physics</strong>",
+                "<span class=\"cv-muted\">With Raktim Mukherjee (Universität Heidelberg), Prof. H. B. Prosper (FSU)</span>"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "As Research Scientist at Fermilab (York University, Toronto, Canada)",
+          "entries": [
+            {
+              "date": "2020 – 2023",
+              "duration": "",
+              "lines": [
+                "<strong>DUNE Computing Consortium</strong>",
+                "<span class=\"cv-muted\">Led first R&amp;D on an interactive analysis facility for DUNE using columnar computing</span>",
+                "<span class=\"cv-muted\">Re-designed and co-organized three DUNE Computing tutorials → <a href=\"https://doi.org/10.3389/fdata.2025.1497622\" target=\"_blank\" rel=\"noopener\">Front. Big Data <strong>8</strong> (2025) 1497622</a></span>",
+                "<span class=\"cv-muted\">Modernized DUNE Computing wiki; designed &amp; deployed DUNE's automated <a href=\"https://abc.dunescience.org/\" target=\"_blank\" rel=\"noopener\">glossary</a></span>"
+              ]
+            },
+            {
+              "date": "2019 – 2023",
+              "duration": "",
+              "lines": [
+                "<strong>DUNE-Canada group</strong>",
+                "<span class=\"cv-muted\">Secured 3-year NSERC funding to launch first Canadian effort (3 PIs)</span>",
+                "<span class=\"cv-muted\">Secured 5-year CFI infrastructure funding for a cryogenic facility for <a href=\"https://argoncube.org/\" target=\"_blank\" rel=\"noopener\">ArgonCube</a> R&amp;D</span>"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "As Postdoctoral Researcher at DESY, Hamburg, Germany",
+          "entries": [
+            {
+              "date": "2017 – 2019",
+              "duration": "",
+              "lines": [
+                "<strong>Observation of tt̄h (→ bb̄) process, ATLAS Experiment, CERN LHC</strong>",
+                "<span class=\"cv-muted\">Developed interface for Matrix Element Method in official analysis code</span>",
+                "<span class=\"cv-muted\">Validated Boosted Decision Trees' input distributions across Monte Carlo generators</span>",
+                "<span class=\"cv-muted\">Led fake lepton background estimate, one-lepton channel → <a href=\"https://doi.org/10.1016/j.physletb.2018.07.035\" target=\"_blank\" rel=\"noopener\">Phys.Lett. B <strong>784</strong> (2018) 173</a></span>"
+              ]
+            },
+            {
+              "date": "2016 – 2019",
+              "duration": "",
+              "lines": [
+                "<strong>ATLAS Inner Tracker upgrade for High-Luminosity LHC</strong>",
+                "<span class=\"cv-muted\">Led a team (3 engineers, 3 technicians, 4 students) to deliver first measurements of the prototype's thermal performance; developed infrared camera data acquisition interface</span>",
+                "<span class=\"cv-muted\">Led first measurements of radiation length (X/X0) using EUDET telescopes</span>",
+                "<span class=\"cv-muted\">Created custom entries of prototype's components in the production database</span>"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "As Graduate Student Research Associate, University of Victoria, Canada",
+          "entries": [
+            {
+              "date": "2013 – 2015",
+              "duration": "",
+              "lines": [
+                "<strong>Search for electroweak Supersymmetry, ATLAS Experiment, CERN LHC</strong>",
+                "<span class=\"cv-muted\">Main analyzer and editor of internal note of the search in the h → bb̄ channel</span>",
+                "<span class=\"cv-muted\">Reinterpreted the search as part of Run,1 summary paper in the context of the 19-parameter pMSSM</span>",
+                "<span class=\"cv-muted\"><a href=\"http://link.springer.com/article/10.1007%2FJHEP10%282015%29134\" target=\"_blank\" rel=\"noopener\">JHEP 10 (<strong>2015</strong>) 134</a></span>"
+              ]
+            },
+            {
+              "date": "2012 – 2013",
+              "duration": "",
+              "lines": [
+                "<strong>ATLAS Liquid Argon Calorimeter Operation</strong>",
+                "<span class=\"cv-muted\">Software on-call expert during 2012 data taking (leading to the Higgs boson discovery)</span>",
+                "<span class=\"cv-muted\">Co-organized software expert training; created web-portal for shifters in control room</span>",
+                "<span class=\"cv-muted\">Developed ATLAS Online Software plugin revision to filter error messages</span>"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "engineering-experience",
+      "title": "Engineering Experience",
+      "groups": [
+        {
+          "heading": "",
+          "entries": [
+            {
+              "date": "2010",
+              "duration": "5 months",
+              "lines": [
+                "<strong>ATLAS Forward Calorimeter upgrade, TRIUMF, Vancouver, Canada</strong>",
+                "<span class=\"cv-muted\">Instrumented a radiation hardness test for diamond sensors using TRIUMF's cyclotron proton beam; created acquisition interface with TestPoint</span>",
+                "<span class=\"cv-muted\">Developed and tested the data analysis framework with ROOT → <a href=\"http://iopscience.iop.org/article/10.1088/1748-0221/6/05/P05011/meta\" target=\"_blank\" rel=\"noopener\">JINST <strong>6</strong> P05011 (2011)</a></span>"
+              ]
+            },
+            {
+              "date": "2009",
+              "duration": "3 months",
+              "lines": [
+                "<strong>Pulse-shape modelling for IceCube, DESY, Berlin, Germany</strong>",
+                "<span class=\"cv-muted\">Developed data analysis framework to measure the transfer function of IceCube Neutrino Observatory's photomultiplier modules, improving detector simulations</span>"
+              ]
+            },
+            {
+              "date": "2008",
+              "duration": "2 months",
+              "lines": [
+                "<strong>Afterglow tests monitoring, Hilger Crystals Company*, UK</strong>",
+                "<span class=\"cv-muted\">Monitored scintillation crystals afterglow tests under X-Rays; created a PhP/MySQL database for managing the test results</span>",
+                "<span class=\"cv-muted\">* developed crystals for the BaBar experiment</span>"
+              ]
+            },
+            {
+              "date": "2007",
+              "duration": "1 month",
+              "lines": [
+                "<strong>French National High Magnetic Field Laboratory, Toulouse, France</strong>",
+                "<span class=\"cv-muted\">Experimentations on the scotch-tape method for graphene exfoliation</span>"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "research-supervision",
+      "title": "Research Supervision",
+      "groups": [
+        {
+          "heading": "At AIMS South Africa",
+          "entries": [
+            {
+              "date": "2024 – 2026",
+              "duration": "",
+              "lines": [
+                "<span class=\"cv-tag\">Postdoc</span> <strong>Ryan Atkin</strong>, AIMS South Africa",
+                "<span class=\"cv-muted\">Main supervisor; anomaly detection for ATLAS High-Level Triggers</span>"
+              ]
+            },
+            {
+              "date": "2025",
+              "duration": "2 months",
+              "lines": [
+                "<span class=\"cv-tag\">MSc</span> <strong>Raktim Mukherjee</strong>, visitor from Universität Heidelberg, Germany",
+                "<span class=\"cv-muted\">Supervisor; investigation of Graph Auto-Encoder for anomaly detection for ATLAS triggers</span>"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "At York University",
+          "entries": [
+            {
+              "date": "2021 – 2023",
+              "duration": "",
+              "lines": [
+                "<span class=\"cv-tag\">Postdoc</span> <strong>Tejin Cai</strong>, York University",
+                "<span class=\"cv-muted\">Main supervisor; interactive analysis facility for DUNE on Compute Canada cloud</span>",
+                "<span class=\"cv-muted\">Now: software engineer at Black Duck</span>"
+              ]
+            },
+            {
+              "date": "2020",
+              "duration": "",
+              "lines": [
+                "<span class=\"cv-tag\">MSc</span> <strong>Alfred Ferwerda</strong>, York University",
+                "<span class=\"cv-muted\">Thesis committee member; CERN ALPHA Experiment</span>"
+              ]
+            },
+            {
+              "date": "2019 – 2020",
+              "duration": "",
+              "lines": [
+                "<span class=\"cv-tag\">PhD</span> <strong>Darij Starko</strong>, York University",
+                "<span class=\"cv-muted\">Local supervisor; ATLAS qualification task, Flavour tagging group, CERN</span>",
+                "<span class=\"cv-muted\">Now: data science consultant at Wyatt AI Inc.</span>"
+              ]
+            },
+            {
+              "date": "2021",
+              "duration": "",
+              "lines": [
+                "<span class=\"cv-tag\">BSc</span> <strong>Amin Jafarov</strong>, York University, NSERC USRA recipient",
+                "<span class=\"cv-muted\">Main supervisor; searches for long-lived particles using ML</span>",
+                "<span class=\"cv-muted\">Now: Medical School, University of Central Lancashire, UK</span>"
+              ]
+            },
+            {
+              "date": "2021",
+              "duration": "",
+              "lines": [
+                "<span class=\"cv-tag\">BSc</span> <strong>Anita Nasiri</strong>, York University",
+                "<span class=\"cv-muted\">Co-op research project supervisor; long-lived particle event 3D visualisation in ATLAS</span>"
+              ]
+            },
+            {
+              "date": "2020",
+              "duration": "",
+              "lines": [
+                "<span class=\"cv-tag\">BSc</span> <strong>Majd Salam</strong>, York University",
+                "<span class=\"cv-muted\">Co-op research project supervisor; first ML classifier for ATLAS long-lived particle search</span>",
+                "<span class=\"cv-muted\">Now: PhD candidate, Theoretical Astrophysics, Western University, Canada</span>"
+              ]
+            },
+            {
+              "date": "2020",
+              "duration": "",
+              "lines": [
+                "<span class=\"cv-tag\">BSc</span> <strong>Damith Deshan</strong>, York University",
+                "<span class=\"cv-muted\">Co-op research project supervisor; automatic scans of chip pack labels for ATLAS ITk production database</span>"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "As postdoctoral researcher at DESY",
+          "entries": [
+            {
+              "date": "2016 – 2019",
+              "duration": "",
+              "lines": [
+                "<span class=\"cv-tag\">PhD</span> <strong>Jan-Hendrik Arling</strong>, DESY",
+                "<span class=\"cv-muted\">Local technical supervisor; ATLAS ITk upgrade</span>",
+                "<span class=\"cv-muted\">Now: junior staff at DESY</span>"
+              ]
+            },
+            {
+              "date": "2018",
+              "duration": "",
+              "lines": [
+                "<span class=\"cv-tag\">BSc</span> <strong>Anna Beck</strong>, DESY summer student",
+                "<span class=\"cv-muted\">Supervisor; ATLAS ITk thermal characterization</span>",
+                "<span class=\"cv-muted\">PhD at University of Warwick; now postdoctoral researcher at MIT</span>"
+              ]
+            },
+            {
+              "date": "2017",
+              "duration": "",
+              "lines": [
+                "<span class=\"cv-tag\">BSc</span> <strong>Maximilian Caspar</strong>, DESY summer student",
+                "<span class=\"cv-muted\">Supervisor; ATLAS ITk upgrade, instrumentation</span>",
+                "<span class=\"cv-muted\">PhD at Universität Wuppertal/DESY; now consultant at Basycon</span>"
+              ]
+            },
+            {
+              "date": "2016 – 2017",
+              "duration": "",
+              "lines": [
+                "<span class=\"cv-tag\">PhD</span> <strong>Yasiel Delabat Diaz</strong>, DESY",
+                "<span class=\"cv-muted\">Local supervisor; ATLAS qualification task, ITk upgrade</span>",
+                "<span class=\"cv-muted\">PhD at Humboldt-Universität/DESY; now software developer at Safetec</span>"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "As research assistant at University of Victoria",
+          "entries": [
+            {
+              "date": "2011",
+              "duration": "",
+              "lines": [
+                "<span class=\"cv-tag\">BSc</span> <strong>Philipp Koenig</strong>, University of Victoria",
+                "<span class=\"cv-muted\">Co-op project co-supervisor; ATLAS Higgs group</span>",
+                "<span class=\"cv-muted\">PhD at Universität Bonn; now senior data analyst at Syna</span>"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "teaching-experience",
+      "title": "Teaching Experience",
+      "groups": [
+        {
+          "heading": "Invited Lectures",
+          "entries": [
+            {
+              "date": "Oct. 2025",
+              "duration": "",
+              "lines": [
+                "<strong>Introduction to Artificial Intelligence &amp; Data Science, AIMS Cameroon</strong>",
+                "<span class=\"cv-muted\">Graduate course; 15 lectures (30 hours) + tutorials (10 hours); 108 students</span>",
+                "<span class=\"cv-muted\">Skill course, required for all MSc streams</span>"
+              ]
+            },
+            {
+              "date": "Sep. 2025",
+              "duration": "",
+              "lines": [
+                "<strong>Introduction to Machine Learning (modernized version), AIMS South Africa</strong>",
+                "<span class=\"cv-muted\">MSc course <em>AI for Science</em>; 10 lectures (20 hours) + tutorials (5 hours); 33 students</span>",
+                "<span class=\"cv-muted\">Co-teaching with Prof. Harrison Prosper (FSU)</span>"
+              ]
+            },
+            {
+              "date": "Jul. 2025",
+              "duration": "",
+              "lines": [
+                "<strong>Basic Concepts in Machine Learning, EASY-ML* Summer School, Nairobi, Kenya</strong>",
+                "<span class=\"cv-muted\">10 lectures (15 hours) + tutorials (5 hours); 35 students</span>",
+                "<span class=\"cv-muted\">* East-African School for Young Researchers on Advanced Machine Learning; CNRS, France</span>"
+              ]
+            },
+            {
+              "date": "Sep. 2024",
+              "duration": "",
+              "lines": [
+                "<strong>Introduction to Machine Learning, AIMS South Africa</strong>",
+                "<span class=\"cv-muted\">MSc course <em>AI for Science</em>; 15 lectures (30 hours) + tutorials (10 hours); 21 students</span>",
+                "<span class=\"cv-muted\">Delivered again in December–January for 10 students who joined late due to visa delays</span>"
+              ]
+            },
+            {
+              "date": "Apr. 2024",
+              "duration": "",
+              "lines": [
+                "<strong>Machine Learning by Hand, AIMS South Africa</strong>",
+                "<span class=\"cv-muted\">MSc course <em>AI for Science</em>; 15 lectures (30 hours) + tutorials (10 hours); 14 students</span>",
+                "<span class=\"cv-muted\">Adapted content for students joining in January due to visa delays</span>"
+              ]
+            },
+            {
+              "date": "Feb. 2024",
+              "duration": "",
+              "lines": [
+                "<strong>Introduction to Artificial Intelligence &amp; Data Science, AIMS Cameroon</strong>",
+                "<span class=\"cv-muted\">Graduate course; 15 lectures (30 hours) + tutorials (10 hours); 35 students</span>"
+              ]
+            },
+            {
+              "date": "Jan. 2024",
+              "duration": "",
+              "lines": [
+                "<strong>Introduction to Machine Learning, AIMS Senegal</strong>",
+                "<span class=\"cv-muted\">Graduate course; 15 lectures (30 hours) + tutorials (10 hours); 20 students</span>"
+              ]
+            },
+            {
+              "date": "Sep. 2023",
+              "duration": "",
+              "lines": [
+                "<strong>Introduction to Machine Learning, AIMS South Africa</strong>",
+                "<span class=\"cv-muted\">MSc course <em>AI for Science</em>; 15 lectures (30 hours) + tutorials (10 hours); 16 students</span>",
+                "<span class=\"cv-muted\">+ 24 auditing students from the Mathematical Science stream</span>"
+              ]
+            },
+            {
+              "date": "May 2023",
+              "duration": "",
+              "lines": [
+                "<strong>Introduction to Machine Learning &amp; Data Science, AIMS Ghana</strong>",
+                "<span class=\"cv-muted\">Graduate course; 15 lectures (30 hours) + tutorials (10 hours); 19 students</span>"
+              ]
+            },
+            {
+              "date": "Mar. 2023",
+              "duration": "",
+              "lines": [
+                "<strong>Learn the Math behind Neural Networks, University of Johannesburg, South Africa</strong>",
+                "<span class=\"cv-muted\">One-day workshop: theory (3 hours) and practice in Python (3 hours); 22 participants</span>",
+                "<span class=\"cv-muted\">Open to all academic levels from 4<sup>th</sup> year undergraduate</span>"
+              ]
+            },
+            {
+              "date": "Feb. 2023",
+              "duration": "",
+              "lines": [
+                "<strong>Machine Learning in Particle Physics, AIMS South Africa</strong>",
+                "<span class=\"cv-muted\">Graduate course; 15 lectures (30 hours) + tutorials (10 hours); 33 students</span>"
+              ]
+            },
+            {
+              "date": "Jan. 2023",
+              "duration": "",
+              "lines": [
+                "<strong>Machine Learning in Particle Physics, AIMS Senegal</strong>",
+                "<span class=\"cv-muted\">Graduate course; 15 lectures (30 hours) + tutorials (10 hours); 19 students</span>"
+              ]
+            },
+            {
+              "date": "Dec. 2022",
+              "duration": "",
+              "lines": [
+                "<strong>Introduction to Machine Learning, ASP2022*, Gqeberha, South Africa</strong>",
+                "<span class=\"cv-muted\">Two morning sessions (6 hours); 40 participants</span>",
+                "<span class=\"cv-muted\">* African School of Physics: <a href=\"https://africanschoolofphysics.org/\" target=\"_blank\" rel=\"noopener\">africanschoolofphysics.org</a></span>"
+              ]
+            },
+            {
+              "date": "Jan. 2019",
+              "duration": "",
+              "lines": [
+                "<strong>Life of a Particle: Stochastic Modelling in Particle Physics, AIMS Ghana</strong>",
+                "<span class=\"cv-muted\">Graduate course; 15 lectures (30 hours) + tutorials (10 hours); 38 students</span>",
+                "<span class=\"cv-muted\">Co-taught with Dr. Samuel Meehan</span>"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Teaching at York University",
+          "entries": [
+            {
+              "date": "Fall 2021",
+              "duration": "",
+              "lines": [
+                "<strong>Special Relativity and Introduction to Modern Physics (PHYS2040)</strong>",
+                "<span class=\"cv-muted\">Second year undergraduates in Physics &amp; Engineering Majors (online); 57 students</span>"
+              ]
+            },
+            {
+              "date": "Fall 2020",
+              "duration": "",
+              "lines": [
+                "<strong>Special Relativity and Introduction to Modern Physics (PHYS2040)</strong>",
+                "<span class=\"cv-muted\">Second year undergraduates in Physics &amp; Engineering Majors (online); 64 students</span>"
+              ]
+            },
+            {
+              "date": "Fall 2019",
+              "duration": "",
+              "lines": [
+                "<strong>Special Relativity and Introduction to Modern Physics (PHYS2040)</strong>",
+                "<span class=\"cv-muted\">Second year undergraduates in Physics &amp; Engineering Majors; 58 students</span>"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Previous Teaching Experience",
+          "entries": [
+            {
+              "date": "Sep. 2018",
+              "duration": "",
+              "lines": [
+                "<strong>Autumn School for High Energy Physics, Maria Laach, Germany</strong>",
+                "<span class=\"cv-muted\">Invited group coordinator; tutoring graduate students projects in experimental particle physics; 15 participants</span>"
+              ]
+            },
+            {
+              "date": "Jan. 2016",
+              "duration": "",
+              "lines": [
+                "<strong>TRIUMF Junior Research School, Vancouver, Canada</strong>",
+                "<span class=\"cv-muted\">Invited lecturer: “The Higgs boson mechanism”; 10 Singaporean college students</span>"
+              ]
+            },
+            {
+              "date": "Jan. 2015",
+              "duration": "",
+              "lines": [
+                "<strong>TRIUMF Junior Research School, Vancouver, Canada</strong>",
+                "<span class=\"cv-muted\">Invited lecturer: “The Higgs boson mechanism”; 10 Singaporean college students</span>"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "student-placement",
+      "title": "Student Placement",
+      "groups": [
+        {
+          "heading": "As Academic Director at AIMS South Africa",
+          "entries": [
+            {
+              "date": "2024 – 2025",
+              "duration": "",
+              "lines": [
+                "<strong>33 students guided to MSc graduation, <em>AI for Science</em></strong>",
+                "<span class=\"cv-muted\">Selected placements:</span>",
+                "<span class=\"cv-muted\"><strong>Ahmed Nadir</strong>, Research Intern, ML &amp; Global Health Network, University of Oxford; active learning for survey design</span>",
+                "<span class=\"cv-muted\"><strong>Antony Gitau</strong>, PhD student, University of South-Eastern Norway; AI for medical imaging</span>",
+                "<span class=\"cv-muted\"><strong>Benedict Ejelonu</strong>, G-RIPS Fellow, Tohoku University, Japan; AIMS–Tübingen Data Science &amp; AI Fellow</span>",
+                "<span class=\"cv-muted\"><strong>Harlette Denebeye</strong>, Marie Skłodowska-Curie Doctoral Researcher, Université Paris-Saclay/CEA-CNRGH; trustworthy AI</span>",
+                "<span class=\"cv-muted\"><strong>Josiah Kimani</strong>, AI for Weather Prediction researcher, AfriClimate AI; 2<sup>nd</sup> prize poster, Deep Learning Indaba 2025</span>",
+                "<span class=\"cv-muted\"><strong>Koomi Toussaint Amoussouvi</strong>, AI for Weather Prediction researcher, AfriClimate AI; 1<sup>st</sup> prize poster, Deep Learning Indaba 2025</span>",
+                "<span class=\"cv-muted\"><strong>Mushtaha El-Amin</strong>, Visiting Researcher, LiGHT Laboratory, EPFL; global health &amp; humanitarian response technologies</span>",
+                "<span class=\"cv-muted\"><strong>Omer Ebead</strong>, Research Fellow, Cooperative AI Foundation; multi-agent privacy; intern at InstaDeep on MARL</span>",
+                "<span class=\"cv-muted\"><strong>Onintsoa Rakotondranisa</strong>, PhD student, University of Cape Town; astrophysics</span>",
+                "<span class=\"cv-muted\"><strong>Rodeo Toha</strong>, Head of data and AI at Grow-UP AI, Abomey-Calavi, Benin</span>",
+                "<span class=\"cv-muted\"><strong>Tim Hitge</strong>, Research Assistant, Imperial College London; surrogate models &amp; simulation-based inference; paper + poster at NeurIPS 2025</span>"
+              ]
+            },
+            {
+              "date": "2023 – 2024",
+              "duration": "",
+              "lines": [
+                "<strong>30 students guided to MSc graduation, <em>AI for Science</em> inaugural cohort</strong>",
+                "<span class=\"cv-muted\">Selected placements:</span>",
+                "<span class=\"cv-muted\"><strong>Abel Legese</strong>, Senior AI Research Engineer, Ersilia; open-source drug discovery</span>",
+                "<span class=\"cv-muted\"><strong>Carlin Foka</strong>, PhD student, Centre for Epidemic Response &amp; Innovation (CERI)</span>",
+                "<span class=\"cv-muted\"><strong>Catherine Essuman</strong>, PhD candidate (from Sept. 2026), Ontario Tech University, Canada; Canada Impact+ Research Award recipient</span>",
+                "<span class=\"cv-muted\"><strong>Daniel Rajaonarivelomanantsoa</strong>, Research Fellow, InstaDeep; <a href=\"https://instadeep.com/2025/12/neurips-2025/\" target=\"_blank\" rel=\"noopener\">first Malagasy oral presenter at NeurIPS 2025</a>; PhD, Stellenbosch University</span>",
+                "<span class=\"cv-muted\"><strong>Dariose Diffo</strong>, PhD student, Università di Bologna; AI &amp; computational methods for astronomy and physics</span>",
+                "<span class=\"cv-muted\"><strong>Haingo Andry</strong>, Recipient of the 2025 Google PhD Fellowship, Stellenbosch University/CERI</span>",
+                "<span class=\"cv-muted\"><strong>Herman Tesso</strong>, Doctoral Researcher, Aalto University, Finland; first-author paper at AABI workshop, ICLR 2025; simulation-based inference &amp; spatial statistics</span>",
+                "<span class=\"cv-muted\"><strong>Isaac Omolayo</strong>, PhD student, Universität Tübingen; contrastive learning for connectome-constrained neural networks, fruit fly visual system</span>",
+                "<span class=\"cv-muted\"><strong>Shâma Wache</strong>, PhD student, TU Chemnitz, Germany; inverse problems in medical imaging</span>",
+                "<span class=\"cv-muted\"><strong>Tiana Ramonjison</strong>, MSc student, Simon Fraser University/TRIUMF; dark matter detector design</span>"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Informal Mentoring &amp; Connections",
+          "entries": [
+            {
+              "date": "2025",
+              "duration": "",
+              "lines": [
+                "<strong>Catherine Essuman &amp; Pelumi Aderinto</strong>, <em>AI for Science</em> alumni",
+                "<span class=\"cv-muted\">Led on my behalf the tutorial “The Math Behind Neural Networks” at Deep Learning Indaba, Lagos, Nigeria</span>"
+              ]
+            },
+            {
+              "date": "2025",
+              "duration": "",
+              "lines": [
+                "<strong>Angel Bashyal</strong>, MSc in Astrophysics, Tribhuvan University, Nepal",
+                "<span class=\"cv-muted\">Met at BCVSPIN 2024; connected to potential supervisors via McDonald Institute network</span>",
+                "<span class=\"cv-muted\">Recipient of Swiss Government Excellence Scholarship; PhD in Astrophysics, start Sept. 2026</span>"
+              ]
+            },
+            {
+              "date": "2025",
+              "duration": "",
+              "lines": [
+                "<strong>Nishan Lamichhane</strong>, MSc student, Tribhuvan Vishwavidalaya, Nepal",
+                "<span class=\"cv-muted\">Connected with Prof. Aaron Vincent, Queen's University, for honour's research project</span>",
+                "<span class=\"cv-muted\">Now accepted for a PhD in Physics &amp; Astronomy at Queen's University; start Sept. 2026</span>"
+              ]
+            },
+            {
+              "date": "2024",
+              "duration": "",
+              "lines": [
+                "<strong>Jeffrey Katabo</strong>, MSc student, AIMS Cameroon",
+                "<span class=\"cv-muted\">Connected with Prof. Joel Zylberberg (CIFAR Fellow, York University); meta-learning for models of primate visual cortex (AIMS capstone project)</span>",
+                "<span class=\"cv-muted\">Now pre-doctoral research fellow, Freie Universität Berlin / Bernstein Center for Computational Neuroscience</span>"
+              ]
+            },
+            {
+              "date": "2023",
+              "duration": "",
+              "lines": [
+                "<strong>Ufuk Çakr</strong>, AIMS–Universität Heidelberg research intern",
+                "<span class=\"cv-muted\">DPhil student, Intelligent Earth CDT, University of Oxford; RL for wildfire response</span>"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "academic-service",
+      "title": "Academic Service",
+      "groups": [
+        {
+          "heading": "Service to AIMS",
+          "entries": [
+            {
+              "date": "2024 – 2026",
+              "duration": "",
+              "lines": [
+                "<strong>Designed and led student onboarding programme, AIMS South Africa</strong>",
+                "<span class=\"cv-muted\">Week-long induction: campus life, values, systems, cultural exchange, wellness walks</span>",
+                "<span class=\"cv-muted\">4 editions: Sept. 2024, Jan. 2025, Sept. 2025, Jan. 2026</span>"
+              ]
+            },
+            {
+              "date": "2023 – 2025",
+              "duration": "",
+              "lines": [
+                "<strong>Founded student clubs to foster initiative and campus life, AIMS South Africa</strong>",
+                "<span class=\"cv-muted\">Student-run, with dedicated budget; adapted each year to cohort interests</span>",
+                "<span class=\"cv-muted\">2023–24: Arts, Fitness, Hike &amp; Walk, Paper Reading, Running</span>",
+                "<span class=\"cv-muted\">2024–25: Board Game, Cultural, Dance, Media, Running, Soccer</span>"
+              ]
+            },
+            {
+              "date": "2023 – 2025",
+              "duration": "",
+              "lines": [
+                "<strong>Co-created formal lecturer contracts and tutor agreements, AIMS South Africa</strong>"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Service to Fermilab/York University",
+          "entries": [
+            {
+              "date": "2020 – 2021",
+              "duration": "",
+              "lines": [
+                "<strong>Member, Fermilab Neutrino Division postdoc hiring committee</strong>"
+              ]
+            },
+            {
+              "date": "2020 – 2021",
+              "duration": "",
+              "lines": [
+                "<strong>Co-chair, Physics &amp; Astronomy Department Weekly Colloquium, York University</strong>"
+              ]
+            },
+            {
+              "date": "2019 – 2020",
+              "duration": "",
+              "lines": [
+                "<strong>Member, Faculty of Science Award Committee, York University</strong>"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Service to the Field",
+          "entries": [
+            {
+              "date": "2024",
+              "duration": "",
+              "lines": [
+                "<strong>Session co-chair, Sustainability Track, 42<sup>nd</sup> International Conference on High Energy Physics (ICHEP), Prague</strong>",
+                "<span class=\"cv-muted\">First dedicated sustainability track at ICHEP; environmental impact of HEP accelerators, detectors and computing</span>"
+              ]
+            },
+            {
+              "date": "2022 – 2023",
+              "duration": "",
+              "lines": [
+                "<strong>Sustainable HECAP+ Initiative</strong>",
+                "<span class=\"cv-muted\">Creator of <a href=\"https://sustainable-hecap-plus.github.io\" target=\"_blank\" rel=\"noopener\">sustainable-hecap-plus.github.io</a>; advocate for sustainable practices in high-energy physics</span>"
+              ]
+            },
+            {
+              "date": "2022",
+              "duration": "",
+              "lines": [
+                "<strong>Judge, Best Student Competition, Particle Physics division</strong>",
+                "<span class=\"cv-muted\">Canadian Association of Physicists' Congress, Hamilton, Canada</span>"
+              ]
+            },
+            {
+              "date": "2021 – 2022",
+              "duration": "",
+              "lines": [
+                "<strong>Elected Vice-Chair, Particle Physics Division, Canadian Association of Physicists (CAP)</strong>"
+              ]
+            },
+            {
+              "date": "2021",
+              "duration": "",
+              "lines": [
+                "<strong>Session convener, Neutrino session, CAP Congress 2021</strong>"
+              ]
+            },
+            {
+              "date": "2020 – 2022",
+              "duration": "",
+              "lines": [
+                "<strong>Co-convener, DUNE Training &amp; Documentation working group, Fermilab</strong>"
+              ]
+            },
+            {
+              "date": "2019 – 2020",
+              "duration": "",
+              "lines": [
+                "<strong>Institute contact (York University), ATLAS Inner Tracker production database</strong>"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Memberships",
+          "entries": [
+            {
+              "date": "2024 – 2025",
+              "duration": "",
+              "lines": [
+                "Hydrogen Intensity and Real-time Analysis eXperiment (HIRAX)",
+                "<span class=\"cv-muted\">Member of Management Team</span>"
+              ]
+            },
+            {
+              "date": "2023 –  2026",
+              "duration": "",
+              "lines": [
+                "South African Institute of Physics (SAIP)"
+              ]
+            },
+            {
+              "date": "2020 – 2022",
+              "duration": "",
+              "lines": [
+                "Canadian Association of Physicists (CAP)"
+              ]
+            },
+            {
+              "date": "2019 – 2022",
+              "duration": "",
+              "lines": [
+                "Institute of Particle Physics (IPP), Canada"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Peer Review",
+          "entries": [
+            {
+              "date": "2026",
+              "duration": "",
+              "lines": [
+                "<strong>Reviewer, Nederlandse Organisatie voor Wetenschappelijk Onderzoek (NOW)</strong>",
+                "<span class=\"cv-muted\">Dutch Research Council</span>"
+              ]
+            },
+            {
+              "date": "2025",
+              "duration": "",
+              "lines": [
+                "<strong>Nominated reviewer, Machine Learning for Physical Sciences Workshop (ML4PS), NeurIPS 2025</strong>",
+                "<span class=\"cv-muted\">Reviewed 2 papers</span>"
+              ]
+            },
+            {
+              "date": "2024",
+              "duration": "",
+              "lines": [
+                "<strong>Nominated reviewer, Machine Learning for Physical Sciences Workshop (ML4PS), NeurIPS 2024</strong>",
+                "<span class=\"cv-muted\">Reviewed 2 papers</span>"
+              ]
+            },
+            {
+              "date": "2019",
+              "duration": "",
+              "lines": [
+                "<strong>Referee, Journal of Instrumentation</strong>",
+                "<span class=\"cv-muted\">Nominated by peers</span>"
+              ]
+            },
+            {
+              "date": "2017",
+              "duration": "",
+              "lines": [
+                "<strong>Referee, Journal of Instrumentation</strong>",
+                "<span class=\"cv-muted\">Nominated by peers</span>"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Editorial Work",
+          "entries": [
+            {
+              "date": "2021",
+              "duration": "",
+              "lines": [
+                "<strong>Selected reviewer, DUNE Vertical Drift Conceptual Design Report</strong>",
+                "<span class=\"cv-muted\">Chapter: Trigger &amp; Data Acquisition</span>"
+              ]
+            },
+            {
+              "date": "2019 – 2021",
+              "duration": "",
+              "lines": [
+                "<strong>Editorial Board Member, ATLAS Collaboration</strong>",
+                "<span class=\"cv-muted\">“Configuration and performance of the ATLAS b-jet triggers in Run,2”; Eur. Phys. J. C <strong>81</strong> (2021) 1087</span>"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Event Organization",
+          "entries": [
+            {
+              "date": "2025",
+              "duration": "",
+              "lines": [
+                "<strong>International Masterclass “Hands-on Particle Physics”, AIMS South Africa</strong>",
+                "<span class=\"cv-muted\">First edition hosted by AIMS; 25 high school students from 8 Cape Town schools</span>",
+                "<span class=\"cv-muted\">Organized in partnership with IPPOG; live conference with CERN</span>"
+              ]
+            },
+            {
+              "date": "2023 – 2024",
+              "duration": "",
+              "lines": [
+                "<strong>Siyakhula Festival, AIMS 20<sup>th</sup> Birthday Celebration, Muizenberg, South Africa</strong>",
+                "<span class=\"cv-muted\">Organizing committee member; 6-day festival, March 17–22, 2024</span>"
+              ]
+            },
+            {
+              "date": "2021",
+              "duration": "",
+              "lines": [
+                "<strong>DUNE Computing Tutorial, extended version (online)</strong>",
+                "<span class=\"cv-muted\">Co-organizer; 3-day format with interactive platform, quizzes and expert Q&amp;A</span>"
+              ]
+            },
+            {
+              "date": "2021",
+              "duration": "",
+              "lines": [
+                "<strong>Poster session organizer, TIPP 2021 (online)</strong>",
+                "<span class=\"cv-muted\">International Conference on Technology and Instrumentation in Particle Physics; GatherTown platform</span>"
+              ]
+            },
+            {
+              "date": "2021",
+              "duration": "",
+              "lines": [
+                "<strong>DUNE Computing Tutorial, one-day workshop (online)</strong>",
+                "<span class=\"cv-muted\">Main organizer; teaching basics of DUNE computing to new members</span>"
+              ]
+            },
+            {
+              "date": "2019",
+              "duration": "",
+              "lines": [
+                "<strong>ATLAS Higgs &amp; Top Quark Workshop (HTop), DESY, Hamburg, Germany</strong>",
+                "<span class=\"cv-muted\">Member of the Local Organizing Committee</span>"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Other Service",
+          "entries": [
+            {
+              "date": "2007 – 2008",
+              "duration": "",
+              "lines": [
+                "<strong>Founder &amp; spokesperson, Commission Réussite, INSA Toulouse</strong>",
+                "<span class=\"cv-muted\">Designed &amp; implemented programme where students in difficulty choose a mentor among professors</span>",
+                "<span class=\"cv-muted\">Approved by administration as a dedicated commission; system still active in 2026</span>"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "grants-awards",
+      "title": "Grants & Awards",
+      "groups": [
+        {
+          "heading": "Research Grants",
+          "entries": [
+            {
+              "date": "2022 – 2027",
+              "duration": "",
+              "lines": [
+                "<strong>Canadian Foundation for Innovation (CFI) John R. Evans Leaders Fund (JELF)</strong> (PI, CAD $125,000)",
+                "<span class=\"cv-muted\">Next-generation neutrino detector for DUNE</span>"
+              ]
+            },
+            {
+              "date": "2022 – 2023",
+              "duration": "",
+              "lines": [
+                "<strong>Compute Canada Fast Track Competition, one-year extension</strong> (PI, CAD $23,339)"
+              ]
+            },
+            {
+              "date": "2021 – 2022",
+              "duration": "",
+              "lines": [
+                "<strong>Compute Canada Resources Competition</strong> (PI, CAD $32,225)",
+                "<span class=\"cv-muted\">Interactive Analysis Facility for DUNE</span>"
+              ]
+            },
+            {
+              "date": "2021 – 2022",
+              "duration": "",
+              "lines": [
+                "<strong>NSERC Discovery COVID-19 Extension</strong> (non-competitive, CAD $50,000)"
+              ]
+            },
+            {
+              "date": "2020 – 2023",
+              "duration": "",
+              "lines": [
+                "<strong>NSERC Subatomic Physics Discovery Grant</strong> (Co-PI, CAD $465,000)",
+                "<span class=\"cv-muted\">Neutrinos exposed: from the cosmos to deep underground</span>"
+              ]
+            },
+            {
+              "date": "2020 – 2021",
+              "duration": "",
+              "lines": [
+                "<strong>NSERC Subatomic Physics Discovery Grant</strong> (PI, CAD $50,000)",
+                "<span class=\"cv-muted\">Higgs boson and top quark in ATLAS: gateway to new physics</span>"
+              ]
+            },
+            {
+              "date": "2019 – 2023",
+              "duration": "",
+              "lines": [
+                "<strong>York University Internal Research Fund, Startup</strong> (CAD $110,000)"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Awards &amp; Recognitions",
+          "entries": [
+            {
+              "date": "2025",
+              "duration": "",
+              "lines": [
+                "<strong>Breakthrough Prize in Fundamental Physics</strong>",
+                "<span class=\"cv-muted\">Shared with ATLAS, CMS, ALICE and LHCb collaborations (13,508 researchers)</span>",
+                "<span class=\"cv-muted\"><a href=\"https://breakthroughprize.org/Laureates/1/L3993\" target=\"_blank\" rel=\"noopener\">breakthroughprize.org</a></span>"
+              ]
+            },
+            {
+              "date": "2020",
+              "duration": "",
+              "lines": [
+                "<strong>York University Minor Research Grant &amp; Junior Faculty Fund</strong> (CAD $3,100)"
+              ]
+            },
+            {
+              "date": "2017 – 2018",
+              "duration": "",
+              "lines": [
+                "<strong>DESY Bonus Merit</strong> (3,200)",
+                "<span class=\"cv-muted\">Thermal validation of ATLAS ITk prototype</span>"
+              ]
+            },
+            {
+              "date": "2016 – 2017",
+              "duration": "",
+              "lines": [
+                "<strong>DESY Bonus Merit</strong> (3,200)",
+                "<span class=\"cv-muted\">First infrared measurements of ATLAS ITk sensor structures</span>"
+              ]
+            },
+            {
+              "date": "2016",
+              "duration": "",
+              "lines": [
+                "<strong>DESY Postdoctoral Fellowship</strong>, High Energy Physics division"
+              ]
+            },
+            {
+              "date": "2011 – 2012",
+              "duration": "",
+              "lines": [
+                "<strong>Nora and Mark de Goutiere Memorial Fellowship</strong> (CAD $10,000)"
+              ]
+            },
+            {
+              "date": "2010",
+              "duration": "",
+              "lines": [
+                "<strong>University of Victoria Entrance Award</strong> (CAD $10,000)",
+                "<span class=\"cv-muted\">Nominated for Vanier Scholarship, Dept. of Physics &amp; Astronomy, UVic</span>"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "presentations",
+      "title": "Presentations",
+      "groups": [
+        {
+          "heading": "International Conferences",
+          "entries": [
+            {
+              "date": "2026",
+              "duration": "",
+              "lines": [
+                "<strong>High Dimensional Problems for Statistical Methods in Fundamental Physics, BIRS, Banff, Canada</strong>",
+                "<span class=\"cv-muted\">Invited talk: “Leveraging Machine Learning, and its limits” (co-presenter: Anthony Ozerov)</span>"
+              ]
+            },
+            {
+              "date": "2025",
+              "duration": "",
+              "lines": [
+                "<strong>32<sup>nd</sup> International Workshop on Deep Inelastic Scattering (DIS2025), Cape Town, South Africa</strong>",
+                "<span class=\"cv-muted\">Invited plenary talk: “Diversity, Equity and Inclusion in Physics”</span>"
+              ]
+            },
+            {
+              "date": "2023",
+              "duration": "",
+              "lines": [
+                "<strong>11<sup>th</sup> Large Hadron Collider Physics Conference (LHCP), Belgrade, Serbia</strong>",
+                "<span class=\"cv-muted\">Invited talk: “Statistics on participation of emerging countries in LHC and other experiments”</span>"
+              ]
+            },
+            {
+              "date": "2020",
+              "duration": "",
+              "lines": [
+                "<strong>30<sup>th</sup> International Linear Accelerator Conference (LINAC), Liverpool, UK (online)</strong>",
+                "<span class=\"cv-muted\">Invited panelist: “Women in Science and Engineering: Should I stay or should I go now?”</span>"
+              ]
+            },
+            {
+              "date": "2019",
+              "duration": "",
+              "lines": [
+                "<strong>Conference on Flavor Physics and CP Violation (FPCP), Victoria, Canada</strong>",
+                "<span class=\"cv-muted\">Invited talk: “Higgs boson couplings to quarks at the ATLAS experiment”</span>"
+              ]
+            },
+            {
+              "date": "2018",
+              "duration": "",
+              "lines": [
+                "<strong>Conference on Standard Model at LHC, Berlin, Germany</strong>",
+                "<span class=\"cv-muted\">Young Scientist talk: “Search for tt̄H production in the H→ bb̄ channel”</span>"
+              ]
+            },
+            {
+              "date": "2017",
+              "duration": "",
+              "lines": [
+                "<strong>11<sup>th</sup> International Conference on Position Sensitive Detectors (PSD11), Milton Keynes, UK</strong>",
+                "<span class=\"cv-muted\">Invited plenary talk: “A new strips tracker for the upgraded ATLAS ITk detector”</span>"
+              ]
+            },
+            {
+              "date": "2016",
+              "duration": "",
+              "lines": [
+                "<strong>Lake Louise Winter Institute, Alberta, Canada</strong>",
+                "<span class=\"cv-muted\">Invited plenary talk: “Search for supersymmetry with the ATLAS detector in final states with leptons, jets and missing transverse momentum”</span>"
+              ]
+            },
+            {
+              "date": "2014",
+              "duration": "",
+              "lines": [
+                "<strong>International Conference on High-Energy Physics (ICHEP), Valencia, Spain</strong>",
+                "<span class=\"cv-muted\">Poster: “Search for chargino and neutralino production with a Higgs boson in the decay chain with one or three leptons final state events”</span>"
+              ]
+            },
+            {
+              "date": "2013",
+              "duration": "",
+              "lines": [
+                "<strong>International Conference on New Frontiers in Physics (ICNFP), Kolymbari, Greece</strong>",
+                "<span class=\"cv-muted\">Invited talk: “ATLAS results in SUSY searches for 3<sup>rd</sup> generation squarks and electroweak production”</span>"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Funding Agencies &amp; Institutional Reviews",
+          "entries": [
+            {
+              "date": "2021",
+              "duration": "",
+              "lines": [
+                "<strong>Institute of Particle Physics (IPP) Annual General Meeting (online)</strong>",
+                "<span class=\"cv-muted\">Invited talk: “Deep Underground Neutrino Experiment: current status, Canadian effort &amp; funding”</span>"
+              ]
+            },
+            {
+              "date": "2018",
+              "duration": "",
+              "lines": [
+                "<strong>DESY Program-Oriented Funding (POF) Evaluation, Hamburg, Germany</strong>",
+                "<span class=\"cv-muted\">Invited poster: “ATLAS and CMS tracker end-caps for the High-Luminosity LHC” (co-author Dr. J. Keaveney); official tour guide for Helmholtz Association reviewers</span>"
+              ]
+            },
+            {
+              "date": "2016",
+              "duration": "",
+              "lines": [
+                "<strong>Helmholtz Programme Matter and the Universe, Mainz, Germany</strong>",
+                "<span class=\"cv-muted\">Invited poster: “Anatomy of ATLAS and CMS strip tracker end-caps for High-Luminosity LHC”</span>"
+              ]
+            },
+            {
+              "date": "2013",
+              "duration": "",
+              "lines": [
+                "<strong>TRIUMF International Review Committee, Canada</strong>",
+                "<span class=\"cv-muted\">Invited poster: “Search for Higgs production in supersymmetric decay cascades with ATLAS”</span>"
+              ]
+            },
+            {
+              "date": "2013",
+              "duration": "",
+              "lines": [
+                "<strong>VIP Visit, ATLAS Control Room, CERN, Geneva, Switzerland</strong>",
+                "<span class=\"cv-muted\">Invited speaker for P. Young (Chair, TRIUMF Board of Management) &amp; G. Patry (CEO, Canada Foundation for Innovation)</span>"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Local &amp; Regional Conferences",
+          "entries": [
+            {
+              "date": "2021",
+              "duration": "",
+              "lines": [
+                "<strong>Canadian Association of Physicists Congress (CAP), online</strong>",
+                "<span class=\"cv-muted\">Invited talk: “Deep Underground Neutrino Experiment: Review and Recent Progress”</span>"
+              ]
+            },
+            {
+              "date": "2021",
+              "duration": "",
+              "lines": [
+                "<strong>Third Summer Particle Astrophysics Workshop, Queen's University, Canada (online)</strong>",
+                "<span class=\"cv-muted\">Plenary talk: “The Deep Underground Neutrino Experiment: DUNE”</span>"
+              ]
+            },
+            {
+              "date": "2020",
+              "duration": "",
+              "lines": [
+                "<strong>Winter Nuclear &amp; Particle Physics Conference (WNPPC), Banff, Canada</strong>",
+                "<span class=\"cv-muted\">Plenary talk: “Higgs boson physics and upgrade work with ATLAS at the Large Hadron Collider”</span>"
+              ]
+            },
+            {
+              "date": "2019",
+              "duration": "",
+              "lines": [
+                "<strong>HTop Workshop, DESY, Hamburg, Germany</strong>",
+                "<span class=\"cv-muted\">Plenary talk: “Small backgrounds in the leptonic channels”</span>"
+              ]
+            },
+            {
+              "date": "2018",
+              "duration": "",
+              "lines": [
+                "<strong>Preliminary Design Review ITk Strip Local Support Structures, CERN</strong>",
+                "<span class=\"cv-muted\">Final presentation of results on thermo-mechanical petal prototypes; passing review</span>"
+              ]
+            },
+            {
+              "date": "2018",
+              "duration": "",
+              "lines": [
+                "<strong>Forum on Tracking Detector Mechanics, Valencia, Spain</strong>",
+                "<span class=\"cv-muted\">Plenary talk: “Thermo-mechanical characterization of Petals as Local Support Structures for the ATLAS ITk Strip Detector”</span>"
+              ]
+            },
+            {
+              "date": "2018",
+              "duration": "",
+              "lines": [
+                "<strong>HTop Workshop, CERN, Switzerland</strong>",
+                "<span class=\"cv-muted\">Invited talk: “Fakes and other backgrounds in tt̄H(bb̄) leptonic channels” (co-author J. Mellenthin)</span>"
+              ]
+            },
+            {
+              "date": "2014",
+              "duration": "",
+              "lines": [
+                "<strong>LHCC, CERN, Switzerland</strong>",
+                "<span class=\"cv-muted\">Poster: “Search for charginos, neutralinos and sleptons in one or two leptons final state events with ATLAS” (co-author R. Ueno)</span>"
+              ]
+            },
+            {
+              "date": "2011",
+              "duration": "",
+              "lines": [
+                "<strong>ATLAS Canada Workshop, Vancouver, Canada</strong>",
+                "<span class=\"cv-muted\">Talk: “Search for SUSY Higgs in the bb̄ final state”</span>"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Public Talks",
+          "entries": [
+            {
+              "date": "2026",
+              "duration": "",
+              "lines": [
+                "<strong>Career Thursday, Qhubeka Youth Development Programme, Langa, South Africa</strong>",
+                "<span class=\"cv-muted\">Featured guest; Q&amp;A on experimental physics &amp; AI in education; organized by Just Grace</span>"
+              ]
+            },
+            {
+              "date": "2023",
+              "duration": "",
+              "lines": [
+                "<strong>Université Kongo, Mbanza-Ngungu, Congo DRC</strong>",
+                "<span class=\"cv-muted\">Co-talk with Dr. Nour Skaf: “From the smallest to the largest: a journey from particle physics to astrophysics”</span>"
+              ]
+            },
+            {
+              "date": "2023",
+              "duration": "",
+              "lines": [
+                "<strong>Dakar Academy, Senegal</strong>",
+                "<span class=\"cv-muted\">Invited speaker: experimental particle physics to 200+ college-preparatory students</span>"
+              ]
+            },
+            {
+              "date": "2022",
+              "duration": "",
+              "lines": [
+                "<strong>Neutrino Day, Sanford Underground Research Facility, Lead, South Dakota, USA</strong>",
+                "<span class=\"cv-muted\">Keynote speaker at Lead's Opera House; VIP underground visit with YouTuber Physics Girl (Dianna Cowern)</span>",
+                "<span class=\"cv-muted\">Live radio broadcast for South Dakota radio about DUNE and Neutrino Day</span>"
+              ]
+            },
+            {
+              "date": "2021",
+              "duration": "",
+              "lines": [
+                "<strong>Royal Astronomical Society of Canada, Toronto, Canada</strong>",
+                "<span class=\"cv-muted\">Invited speaker, Speaker's Night livestream: “What is DUNE? Embark on the underground telescope to pierce the secrets of matter!” [<a href=\"https://www.youtube.com/watch?v=TF9mXxf3c30\" target=\"_blank\" rel=\"noopener\">YouTube</a>]</span>"
+              ]
+            },
+            {
+              "date": "2015",
+              "duration": "",
+              "lines": [
+                "<strong>Science Innovation &amp; Technology Speaker Series, Richmond, BC, Canada</strong>",
+                "<span class=\"cv-muted\">“The Triumphant Discovery of the Higgs Boson”</span>"
+              ]
+            },
+            {
+              "date": "2014",
+              "duration": "",
+              "lines": [
+                "<strong>Cafés Scientifiques, Alliance Française, Vancouver, Canada</strong>",
+                "<span class=\"cv-muted\">“La triomphante découverte du boson de Higgs”; organized by the French Consulate</span>"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Invited Colloquia",
+          "entries": [
+            {
+              "date": "2026",
+              "duration": "",
+              "lines": [
+                "<strong>Integrative Think Tank (ITT), AIMS South Africa</strong>",
+                "<span class=\"cv-muted\">Five-day industry-academia workshop; invited talk: “How I became a scientist: the backstory not read on my CV”</span>"
+              ]
+            },
+            {
+              "date": "2025",
+              "duration": "",
+              "lines": [
+                "<strong>AIMS Cameroon, Limbé, Cameroon</strong>",
+                "<span class=\"cv-muted\">“A journey inside matter: experimental particle physics with ATLAS and DUNE”</span>"
+              ]
+            },
+            {
+              "date": "2025",
+              "duration": "",
+              "lines": [
+                "<strong>AIMS Cameroon, Limbé, Cameroon</strong>",
+                "<span class=\"cv-muted\">“How I became a scientist: the backstory not read on my CV”</span>"
+              ]
+            },
+            {
+              "date": "2024",
+              "duration": "",
+              "lines": [
+                "<strong>AIMS Cameroon, Limbé, Cameroon</strong>",
+                "<span class=\"cv-muted\">“A journey inside matter: experimental particle physics with ATLAS and DUNE”</span>"
+              ]
+            },
+            {
+              "date": "2024",
+              "duration": "",
+              "lines": [
+                "<strong>AIMS Cameroon, Limbé, Cameroon</strong>",
+                "<span class=\"cv-muted\">“How I became a scientist: the backstory not read on my CV”</span>"
+              ]
+            },
+            {
+              "date": "2023",
+              "duration": "",
+              "lines": [
+                "<strong>Université de Montréal, Département de Physique, Canada</strong>",
+                "<span class=\"cv-muted\">“Half a year in Africa: AI, AIMS &amp; opportunities”</span>"
+              ]
+            },
+            {
+              "date": "2023",
+              "duration": "",
+              "lines": [
+                "<strong>East African Institute for Fundamental Research (EAIFR), Kigali, Rwanda</strong>",
+                "<span class=\"cv-muted\">Co-talk with Dr. Nour Skaf: “From the smallest to the largest: a journey from particle physics to astrophysics”</span>"
+              ]
+            },
+            {
+              "date": "2023",
+              "duration": "",
+              "lines": [
+                "<strong>University of Ghana, Department of Physics, Accra, Ghana</strong>",
+                "<span class=\"cv-muted\">“A journey inside matter: experimental particle physics with ATLAS and DUNE”</span>"
+              ]
+            },
+            {
+              "date": "2023",
+              "duration": "",
+              "lines": [
+                "<strong>AIMS Rwanda, Kigali, Rwanda</strong>",
+                "<span class=\"cv-muted\">“A journey inside matter: experimental particle physics with ATLAS and DUNE”</span>"
+              ]
+            },
+            {
+              "date": "2023",
+              "duration": "",
+              "lines": [
+                "<strong>AIMS Cameroon, Limbé, Cameroon</strong>",
+                "<span class=\"cv-muted\">“A journey inside matter: experimental particle physics with ATLAS and DUNE”</span>"
+              ]
+            },
+            {
+              "date": "2023",
+              "duration": "",
+              "lines": [
+                "<strong>Université de Lomé &amp; CERME, Lomé, Togo</strong>",
+                "<span class=\"cv-muted\">“The ATLAS Experiment at CERN: a detector, an analysis and an upgrade program”</span>"
+              ]
+            },
+            {
+              "date": "2023",
+              "duration": "",
+              "lines": [
+                "<strong>International Chair in Mathematical Physics &amp; Applications, Cotonou, Benin</strong>",
+                "<span class=\"cv-muted\">“A journey inside matter: experimental particle physics with ATLAS and DUNE”</span>"
+              ]
+            },
+            {
+              "date": "2023",
+              "duration": "",
+              "lines": [
+                "<strong>AIMS South Africa, Muizenberg, South Africa</strong>",
+                "<span class=\"cv-muted\">“How I became a scientist: the backstory not read on my CV”</span>"
+              ]
+            },
+            {
+              "date": "2020",
+              "duration": "",
+              "lines": [
+                "<strong>McGill Physical Society Colloquium, Montréal, Canada (online)</strong>",
+                "<span class=\"cv-muted\">“Data analysis and detector development with ATLAS at the Large Hadron Collider” [<a href=\"https://www.youtube.com/watch?v=cYu4E7PKMRE\" target=\"_blank\" rel=\"noopener\">YouTube</a>]</span>"
+              ]
+            },
+            {
+              "date": "2019",
+              "duration": "",
+              "lines": [
+                "<strong>York University, Dept. of Physics &amp; Astronomy Colloquium, Toronto, Canada</strong>",
+                "<span class=\"cv-muted\">“Sorting needles in a haystack and cooling a sandwich: data analysis and detector development with ATLAS”</span>"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "publications",
+      "title": "Publications",
+      "groups": [
+        {
+          "heading": "",
+          "entries": [
+            {
+              "date": "2026",
+              "duration": "",
+              "lines": [
+                "<strong>David C.</strong>, Oepeng T., Prosper H., “PINN-Slicer: Exploiting Rotational Symmetry to Solve the Photon Orbit Equation Around a Black Hole”",
+                "<span class=\"cv-muted\">Submitted to the <a href=\"https://ml4physicalsciences.github.io/2026/\" target=\"_blank\" rel=\"noopener\">ML4PS 2026 workshop</a></span>"
+              ]
+            },
+            {
+              "date": "2025",
+              "duration": "",
+              "lines": [
+                "Reinsvold Hall A., Skidmore N., Benelli G., Carlson B., <strong>David C.</strong> et al., “Training and onboarding initiatives in high energy physics experiments”",
+                "<span class=\"cv-muted\">Front. Big Data <strong>8</strong> (2025) 1497622 <a href=\"https://doi.org/10.3389/fdata.2025.1497622\" target=\"_blank\" rel=\"noopener\">doi:10.3389/fdata.2025.1497622</a></span>"
+              ]
+            },
+            {
+              "date": "2023",
+              "duration": "",
+              "lines": [
+                "Sustainable HECAP+ Initiative, “Environmental sustainability in basic research: a perspective from HECAP+”",
+                "<span class=\"cv-muted\"><a href=\"https://arxiv.org/abs/2306.02837\" target=\"_blank\" rel=\"noopener\">arXiv:2306.02837</a>; <a href=\"https://sustainable-hecap-plus.github.io\" target=\"_blank\" rel=\"noopener\">sustainable-hecap-plus platform</a></span>"
+              ]
+            },
+            {
+              "date": "2022",
+              "duration": "",
+              "lines": [
+                "DUNE Collaboration, “Design, construction and operation of the ProtoDUNE-SP Liquid Argon TPC”",
+                "<span class=\"cv-muted\">JINST <strong>17</strong> (2022) P01005</span>"
+              ]
+            },
+            {
+              "date": "2021",
+              "duration": "",
+              "lines": [
+                "ATLAS Collaboration, “Search for exotic decays of the Higgs boson into long-lived particles in pp collisions at √s=13,TeV using displaced vertices in the ATLAS inner detector”",
+                "<span class=\"cv-muted\">JHEP <strong>11</strong> (2021) 229</span>"
+              ]
+            },
+            {
+              "date": "2021",
+              "duration": "",
+              "lines": [
+                "DUNE Collaboration, “Deep Underground Neutrino Experiment (DUNE) Near Detector Conceptual Design Report”",
+                "<span class=\"cv-muted\">FERMILAB-PUB-21-067-E-LBNF-PPD-SCD-T</span>"
+              ]
+            },
+            {
+              "date": "2020",
+              "duration": "",
+              "lines": [
+                "Poley L., Sawyer C. et al., “The ABC130 barrel module prototyping programme for the ATLAS strip tracker”",
+                "<span class=\"cv-muted\">JINST <strong>15</strong> (2020) P09004</span>"
+              ]
+            },
+            {
+              "date": "2020",
+              "duration": "",
+              "lines": [
+                "DUNE Collaboration, “Long-baseline neutrino oscillation physics potential of the DUNE experiment”",
+                "<span class=\"cv-muted\">Eur. Phys. J. C <strong>80</strong> (2020) 978</span>"
+              ]
+            },
+            {
+              "date": "2018",
+              "duration": "",
+              "lines": [
+                "ATLAS Collaboration, “Observation of Higgs boson production in association with a top quark pair at the LHC with the ATLAS detector”",
+                "<span class=\"cv-muted\">Phys. Lett. B <strong>784</strong> (2018) 173–191</span>"
+              ]
+            },
+            {
+              "date": "2018",
+              "duration": "",
+              "lines": [
+                "ATLAS Collaboration, “Search for the SM Higgs boson produced in association with top quarks and decaying into a bb̄ pair in pp collisions at √s=13,TeV with the ATLAS detector”",
+                "<span class=\"cv-muted\">Phys. Rev. D <strong>97</strong> (2018) 072016</span>"
+              ]
+            },
+            {
+              "date": "2018",
+              "duration": "",
+              "lines": [
+                "Albertsson K. et al., “Machine Learning in High Energy Physics Community White Paper”",
+                "<span class=\"cv-muted\"><a href=\"https://arxiv.org/abs/1807.02876\" target=\"_blank\" rel=\"noopener\">arXiv:1807.02876</a> → FERMILAB-PUB-18-318-CD-DI-PPD</span>"
+              ]
+            },
+            {
+              "date": "2017",
+              "duration": "",
+              "lines": [
+                "ATLAS Collaboration, “Technical Design Report for the ATLAS Inner Tracker Strip Detector”",
+                "<span class=\"cv-muted\">CERN-LHCC-2017-005, ATLAS-TDR-025</span>"
+              ]
+            },
+            {
+              "date": "2015",
+              "duration": "",
+              "lines": [
+                "ATLAS Collaboration, “Summary of the ATLAS experiment's sensitivity to supersymmetry after LHC Run,1 – interpreted in the phenomenological MSSM”",
+                "<span class=\"cv-muted\">JHEP <strong>10</strong> (2015) 134</span>"
+              ]
+            },
+            {
+              "date": "2015",
+              "duration": "",
+              "lines": [
+                "ATLAS Collaboration, “Search for direct pair production of a chargino and a neutralino decaying to the 125,GeV Higgs boson in √s=8,TeV pp collisions with the ATLAS detector”",
+                "<span class=\"cv-muted\">Eur. Phys. J. C <strong>75</strong> (2015) 208</span>"
+              ]
+            },
+            {
+              "date": "2013",
+              "duration": "",
+              "lines": [
+                "ATLAS Collaboration, “Search for chargino and neutralino production in final states with one lepton, two b-jets consistent with a Higgs boson, and missing transverse momentum with the ATLAS detector in 20.3,fb<sup>-1</sup> of √s=8,TeV pp collisions”",
+                "<span class=\"cv-muted\">ATLAS-CONF-2013-093</span>"
+              ]
+            },
+            {
+              "date": "2011",
+              "duration": "",
+              "lines": [
+                "Axen D. et al., “Diamond detector irradiation tests at TRIUMF”",
+                "<span class=\"cv-muted\">JINST <strong>6</strong> (2011) P05011</span>"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "proceedings",
+      "title": "Proceedings",
+      "groups": [
+        {
+          "heading": "",
+          "entries": [
+            {
+              "date": "2025",
+              "duration": "",
+              "lines": [
+                "<strong>David C.</strong>, “What is AI, what is it not, how we use it in physics and how it impactsyou”",
+                "<span class=\"cv-muted\">BCVSPIN 2024: Particle Physics and Cosmology in the Himalayas, Kathmandu, Nepal</span>",
+                "<span class=\"cv-muted\"><a href=\"https://arxiv.org/abs/2504.01827\" target=\"_blank\" rel=\"noopener\">arXiv:2504.01827</a></span>"
+              ]
+            },
+            {
+              "date": "2024",
+              "duration": "",
+              "lines": [
+                "<strong>David C.</strong>, “Statistics on participation of emerging and developing countries in LHC and other experiments”",
+                "<span class=\"cv-muted\">PoS(LHCP2023) <strong>450</strong> (2024) 062; <a href=\"https://doi.org/10.22323/1.450.0062\" target=\"_blank\" rel=\"noopener\">doi:10.22323/1.450.0062</a></span>"
+              ]
+            },
+            {
+              "date": "2018",
+              "duration": "",
+              "lines": [
+                "<strong>David C.</strong>, “A new strips tracker for the upgraded ATLAS ITk detector”",
+                "<span class=\"cv-muted\">Proceedings of PSD11, JINST <strong>13</strong> (2018) C01003</span>"
+              ]
+            },
+            {
+              "date": "2016",
+              "duration": "",
+              "lines": [
+                "<strong>David C.</strong>, “Search for chargino and neutralino production with a Higgs boson in the decay chain in one or three leptons final state events with ATLAS”",
+                "<span class=\"cv-muted\">Nucl. Part. Phys. Proc. <strong>273–275</strong> (2016) 2400–2402</span>"
+              ]
+            },
+            {
+              "date": "2014",
+              "duration": "",
+              "lines": [
+                "<strong>David C.</strong>, “New ATLAS results in SUSY searches for 3<sup>rd</sup> generation squarks and electroweak production”",
+                "<span class=\"cv-muted\">EPJ Web of Conferences <strong>71</strong> (2014) 00034</span>"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "other-activities",
+      "title": "Other Activities",
+      "groups": [
+        {
+          "heading": "Panels",
+          "entries": [
+            {
+              "date": "2025",
+              "duration": "",
+              "lines": [
+                "<strong>SA-CERN 15 Year Celebrations, iThemba LABS, South Africa</strong>",
+                "<span class=\"cv-muted\">Invited panelist: “Fundamental Science for South African Development”</span>"
+              ]
+            },
+            {
+              "date": "2023",
+              "duration": "",
+              "lines": [
+                "<strong>Science &amp; Technology Week, Kinshasa, Congo DRC</strong>",
+                "<span class=\"cv-muted\">Invited panelist: “Science and technology for sustainable development in Africa” (in French)</span>"
+              ]
+            },
+            {
+              "date": "2023",
+              "duration": "",
+              "lines": [
+                "<strong>11<sup>th</sup> Large Hadron Collider Physics Conference (LHCP), Belgrade, Serbia</strong>",
+                "<span class=\"cv-muted\">Invited panelist: “Challenges for emerging countries to join/participate in LHC experiments”</span>"
+              ]
+            },
+            {
+              "date": "2020",
+              "duration": "",
+              "lines": [
+                "<strong>30<sup>th</sup> International Linear Accelerator Conference (LINAC), Liverpool, UK (online)</strong>",
+                "<span class=\"cv-muted\">Invited panelist: “Women in Science and Engineering: Should I stay or should I go now?”</span>"
+              ]
+            },
+            {
+              "date": "2014",
+              "duration": "",
+              "lines": [
+                "<strong>Screening of “Particle Fever”, Vancouver International Film Festival, Canada</strong>",
+                "<span class=\"cv-muted\">Invited panelist with movie producer &amp; Prof. David Kaplan</span>"
+              ]
+            },
+            {
+              "date": "2011",
+              "duration": "",
+              "lines": [
+                "<strong>Emily Carr University of Art and Design, Vancouver, Canada</strong>",
+                "<span class=\"cv-muted\">Panel speaker: “But ℏ? Particle Interactions in Physics and Arts: Artistic Transformation”</span>"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Science Festivals &amp; Tours",
+          "entries": [
+            {
+              "date": "2023",
+              "duration": "",
+              "lines": [
+                "<strong>Village of Sciences, École de la Gombé, Kinshasa, Congo DRC</strong>",
+                "<span class=\"cv-muted\">Introduced CERN and ATLAS to 10,000+ high school students; trained selected learners as booth animators</span>"
+              ]
+            },
+            {
+              "date": "2017",
+              "duration": "",
+              "lines": [
+                "<strong>DESY Open Day (DESYDAY), Hamburg, Germany</strong>",
+                "<span class=\"cv-muted\">Organizer of ATLAS exhibition &amp; infrared camera booth; 20,000+ visitors</span>"
+              ]
+            },
+            {
+              "date": "2015 – 2016",
+              "duration": "",
+              "lines": [
+                "<strong>TRIUMF Tour Guide, Vancouver, Canada</strong>",
+                "<span class=\"cv-muted\">Monthly tours for high schools, graduate students and the general public</span>"
+              ]
+            },
+            {
+              "date": "2014",
+              "duration": "",
+              "lines": [
+                "<strong>ATLAS Masterclass, University of Victoria, Canada</strong>",
+                "<span class=\"cv-muted\">One-day hands-on for high-school students; invited talk: “Data analysis with ATLAS at the LHC”; organized by VISPA</span>"
+              ]
+            },
+            {
+              "date": "2013",
+              "duration": "",
+              "lines": [
+                "<strong>TRIUMF Open House, Vancouver, Canada</strong>",
+                "<span class=\"cv-muted\">Volunteer at the ATLAS booth; 1,200+ visitors</span>"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Online &amp; Media",
+          "entries": [
+            {
+              "date": "2023",
+              "duration": "",
+              "lines": [
+                "<strong>ATLAS Virtual Visit, ATLAS Control Room, CERN</strong>",
+                "<span class=\"cv-muted\">Lycée Liziba, Kinshasa, Congo DRC; girls' secondary school [<a href=\"https://atlas.cern/Discover/Visit/Virtual-Visit/lycee-liziba\" target=\"_blank\" rel=\"noopener\">atlas.cern</a>]</span>"
+              ]
+            },
+            {
+              "date": "2023",
+              "duration": "",
+              "lines": [
+                "<strong>ATLAS Virtual Visit, ATLAS Control Room, CERN</strong>",
+                "<span class=\"cv-muted\">Malaika School, Lubumbashi, Congo DRC; free education for 400+ girls [<a href=\"https://atlas.cern/Discover/Visit/Virtual-Visit/malaika-malaikaorg\" target=\"_blank\" rel=\"noopener\">atlas.cern</a>]</span>"
+              ]
+            },
+            {
+              "date": "2021",
+              "duration": "",
+              "lines": [
+                "<strong>Allan I. Carswell Observatory, York University, Canada</strong>",
+                "<span class=\"cv-muted\">TeleTube series: “The Triumphant Discovery of the Higgs Boson at the Large Hadron Collider” [<a href=\"https://www.youtube.com/watch?v=Er1-N2NnPjc\" target=\"_blank\" rel=\"noopener\">YouTube</a>]</span>"
+              ]
+            },
+            {
+              "date": "2020",
+              "duration": "",
+              "lines": [
+                "<strong>“The Drift” series, Sanford Underground Research Facility, USA</strong>",
+                "<span class=\"cv-muted\">“What is so special about neutrinos?” on SURF's YouTube channel [<a href=\"https://www.youtube.com/watch?v=6ZWX1nMZqlI\" target=\"_blank\" rel=\"noopener\">YouTube</a>]</span>"
+              ]
+            },
+            {
+              "date": "2020",
+              "duration": "",
+              "lines": [
+                "<strong>Neutrino Day, SURF's Free Science Festival (online)</strong>",
+                "<span class=\"cv-muted\">“DUNE scientists answer your questions” [<a href=\"https://www.youtube.com/watch?v=TF9mXxf3c30\" target=\"_blank\" rel=\"noopener\">YouTube</a>]</span>"
+              ]
+            },
+            {
+              "date": "2013",
+              "duration": "",
+              "lines": [
+                "<strong>ATLAS Virtual Visit, ATLAS Control Room, CERN</strong>",
+                "<span class=\"cv-muted\">Europe Day Symposium, Vancouver; TELUS World of Science Celebration, Vancouver [<a href=\"https://videos.cern.ch/record/1547080/embed\" target=\"_blank\" rel=\"noopener\">video</a>]</span>"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

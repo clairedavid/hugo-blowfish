@@ -1,0 +1,1532 @@
+\documentclass[a4paper,11pt,oneside]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+%\usepackage[left=1.5cm, right=1.5cm, bottom=1.2cm, top=2.4cm]{geometry}
+\usepackage[left=1.5cm, right=1.5cm, bottom=1.1cm, top=2.3cm]{geometry}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\usepackage{helvet}
+\usepackage[table]{xcolor}
+\definecolor{cvblue}{RGB}{31, 73, 125}
+\definecolor{cvgray}{RGB}{120,120,120}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,urlcolor=cvblue,linkcolor=cvblue,citecolor=cvblue}
+\usepackage{array}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{bm}
+\setlength{\headheight}{14pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[R]{\normalsize\color{cvgray}
+  Claire {\scshape David} \qquad CV \qquad
+  \thepage\,/\,\pageref*{LastPage}}
+\fancypagestyle{firstpage}{\fancyhf{}\renewcommand{\headrulewidth}{0pt}}
+
+\newcommand{\tdot}{\quad{\small\textbullet}\quad}
+%\newcommand{\light}[1]{\textcolor{cvgray}{#1}}
+%\newcommand{\light}[1]{\textcolor{cvgray}{\small #1}}
+\newcommand{\light}[1]{\textcolor{cvgray}{{\small #1}}}
+
+\newlength{\datecol}\setlength{\datecol}{2.3cm}
+\newlength{\contentcol}
+\setlength{\contentcol}{\dimexpr\textwidth-\datecol-0.5cm\relax}
+
+\newlength{\supdatecol}\setlength{\supdatecol}{2cm}
+\newlength{\supcontentcol}
+\setlength{\supcontentcol}{\dimexpr\textwidth-\supdatecol-0.5cm\relax}
+
+\newlength{\pubdatecol}\setlength{\pubdatecol}{1.2cm}
+\newlength{\pubcontentcol}
+\setlength{\pubcontentcol}{\dimexpr\textwidth-\pubdatecol-0.5cm\relax}
+
+\newcommand{\cvrow}[2]{%
+  \begingroup
+  \arrayrulecolor{cvblue}%
+  \setlength{\arrayrulewidth}{0.5pt}%
+  \setlength{\extrarowheight}{0.5pt}%
+  \noindent\begin{tabular}{@{}%
+      >{\centering\arraybackslash}m{\datecol}%
+      @{\hspace{6pt}}|@{\hspace{8pt}}%
+      >{\arraybackslash}m{\contentcol}@{}}
+    {\small #1} & #2
+  \end{tabular}%
+  \endgroup
+  % \vspace{7pt}\par}
+  \vspace{8pt}\par}
+
+\newcommand{\suprow}[2]{%
+  \begingroup
+  \arrayrulecolor{cvblue}%
+  \setlength{\arrayrulewidth}{0.5pt}%
+  \setlength{\extrarowheight}{0.5pt}%
+  \noindent\begin{tabular}{@{}%
+      >{\centering\arraybackslash}m{\supdatecol}%
+      @{\hspace{6pt}}|@{\hspace{8pt}}%
+      >{\arraybackslash}m{\supcontentcol}@{}}
+    {\small #1} & #2
+  \end{tabular}%
+  \endgroup
+  \vspace{7pt}\par}
+
+\newcommand{\pubrow}[2]{%
+  \begingroup
+  \arrayrulecolor{cvblue}%
+  \setlength{\arrayrulewidth}{0.5pt}%
+  \setlength{\extrarowheight}{0.5pt}%
+  \noindent\begin{tabular}{@{}%
+      >{\centering\arraybackslash}m{\pubdatecol}%
+      @{\hspace{6pt}}|@{\hspace{8pt}}%
+      >{\arraybackslash}m{\pubcontentcol}@{}}
+    {\small #1} & #2
+  \end{tabular}%
+  \endgroup
+  \vspace{7pt}\par}
+
+\newcommand{\datemonths}[2]{\hspace{1.5ex}#1\newline\light{#2}}
+
+\newcommand{\tag}[1]{%
+  \textcolor{white}{\colorbox{cvblue}{\small\sffamily\,#1\,}}%
+}
+\newcommand{\tagg}[1]{%
+  \textcolor{cvblue}{\small\sffamily[#1]}%
+}
+
+\titleformat{\section}
+  {\sffamily\fontsize{13}{15}\selectfont\bfseries\color{cvblue}}
+  {}{0em}{}[{\color{cvblue}\titlerule[0.6pt]}]
+% \titlespacing{\section}{0pt}{14pt}{8pt}
+\titlespacing{\section}{0pt}{12pt}{10pt}
+
+
+\titleformat{\subsection}
+  {\sffamily\fontsize{12}{14}\selectfont\bfseries\color{cvblue}}
+  {}{0em}{}[]
+\titlespacing{\subsection}{0pt}{0pt}{6pt}
+\newcommand{\h}[1]{\vspace{10pt}\subsection{#1}}
+
+% \newcommand{\cvheader}{%
+%   \begin{center}
+%     {\sffamily\LARGE\bfseries\color{cvblue} Claire {\MakeUppercase{David}}}\\[8pt]
+%     {\normalsize\color{cvgray}
+%       Particle Physicist\tdot AI Educator\tdot Science Connector}\\[8pt]
+%     {\color{cvblue}\rule{\textwidth}{0.8pt}}\\[6pt]
+%     \small
+%     \href{mailto:claired@aims.ac.za}{claired@aims.ac.za}
+%     \qquad
+%     \href{https://clairedavid.online}{clairedavid.online}
+%     \qquad
+%     \href{https://www.linkedin.com/in/claire-david-particles}{linkedin.com/in/claire-david-particles}\\[4pt]
+%     \textcolor{cvgray}{%
+%       French citizen, Canadian permanent resident
+%       \qquad
+%       Fluent in French (native), English, German, Spanish}
+%   \end{center}\vspace{4pt}}
+
+
+% \newcommand{\cvheader}{%
+%   \vspace*{-1.8cm}%
+%   \noindent
+%   \begin{minipage}[t]{0.60\textwidth}
+%     \vspace{0pt}%
+%     {\sffamily\LARGE\bfseries\color{cvblue} Claire {\MakeUppercase{David}}}\\[5pt]
+%     {\normalsize\color{cvgray}
+%       Particle Physicist\tdot AI Educator\tdot Science Connector}%
+%   \end{minipage}%
+%   \hfill
+%   \begin{minipage}[t]{0.36\textwidth}
+%     \vspace{0pt}%
+%     \raggedleft\small
+%     \vspace{10pt}\\
+%     \href{mailto:claire.david@wavefunction.eu}{claire.david@wavefunction.eu}\\[3pt]
+%     \href{https://clairedavid.online}{clairedavid.online}\\[3pt]
+%     \href{https://www.linkedin.com/in/claire-david-particles}{linkedin.com/in/claire-david-particles}%
+%   \end{minipage}%
+%   \\[5pt]
+%   {\color{cvblue}\rule{\textwidth}{0.8pt}}\\[4pt]
+%   {\small\color{cvgray}%
+%     French citizen, Canadian permanent resident
+%     \hfill Fluent in French (native), English, German, Spanish}%
+%   \vspace{6pt}\par}
+
+
+% \newcommand{\cvheader}{%
+%   \vspace*{-1.4cm}%
+%   \noindent
+%   % {\sffamily\LARGE\bfseries\color{cvblue} Claire {\MakeUppercase{David}}}\\[5pt]
+%   {\sffamily\LARGE\bfseries\color{cvblue} Claire {\MakeUppercase{David}}}\par\vspace{5pt}%
+%   \noindent
+%   \begin{minipage}[t]{0.60\textwidth}
+%     \vspace{10pt}%
+%     {\normalsize\color{cvgray}
+%       Particle Physicist\tdot AI/ML Educator\tdot Science Enabler}%
+%   \end{minipage}%
+%   \hfill
+%   \begin{minipage}[t]{0.36\textwidth}
+%     \vspace{0pt}%
+%     \raggedleft\small
+%     \href{https://www.linkedin.com/in/claire-david-particles}{linkedin.com/in/claire-david-particles}\\[3pt]
+%     \href{mailto:claire.david@wavefunction.eu}{claire.david@wavefunction.eu}\\[3pt]
+%     \href{https://clairedavid.online}{clairedavid.online}%
+%   \end{minipage}%
+%   \\[6pt]
+%   %{\color{cvblue}\rule{\textwidth}{0.8pt}}\\[3pt]
+%   {\raggedleft\small\color{cvgray} French citizen, Canadian permanent resident\par}%
+%   %\vspace{4pt}
+%   }
+
+\newcommand{\cvheader}{%
+  \vspace*{-1.8cm}%
+  \noindent
+  \begin{minipage}[t]{0.60\textwidth}
+    \vspace{0pt}%
+    {\sffamily\LARGE\bfseries\color{cvblue} Claire {\MakeUppercase{David}}}\\[8pt]
+    {\normalsize\color{cvgray}
+      Particle Physicist\tdot AI/ML Educator\tdot Science Enabler}%
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[t]{0.36\textwidth}
+    \vspace{4pt}%
+    \raggedleft\small
+    \href{https://www.linkedin.com/in/claire-david-particles}{linkedin.com/in/claire-david-particles}\\[3pt]
+    \href{mailto:claire.david@wavefunction.eu}{claire.david@wavefunction.eu}\\[3pt]
+    \href{https://clairedavid.online}{clairedavid.online}%
+  \end{minipage}%
+  \\[8pt]
+  {\color{cvblue}\rule{\textwidth}{0.8pt}}\\[3pt]
+  {\raggedleft\small\color{cvgray} French citizen, Canadian permanent resident\par}%
+  \vspace{4pt}\par}
+
+  
+
+%============================================================
+\begin{document}
+\thispagestyle{firstpage}
+\cvheader
+%------------------------------------------------------------
+\vspace{-4pt}
+\section{EDUCATION}
+%------------------------------------------------------------
+
+\suprow {2010\,--\,2016}{%
+  \textbf{PhD in Experimental Particle Physics, University of Victoria, Canada}\newline
+  \light{Supervisors: Rob McPherson \& Michel Lefebvre}\newline
+  \light{GPA: 8.63/9}\newline
+  \light{Based at CERN (2012) for authorship qualification, ATLAS Experiment}%
+  %\light{Based at CERN (2012) as on-call for authorship qualification, ATLAS Experiment}%
+}
+
+\suprow{2005\,--\,2010}{%
+  \textbf{Master of Engineering in Applied Physics, INSA Toulouse, France}\newline
+  \light{4\textsuperscript{th} year: exchange semester on Fundamental Physics (in German),
+  Humboldt-Universit\"at Berlin}\newline
+  \light{5\textsuperscript{th} year: specialization in Nanophysics \& Instrumentation}\newline
+  \light{Rank: top 5\%}%
+}
+
+%------------------------------------------------------------
+\section{APPOINTMENTS}
+%------------------------------------------------------------
+
+\suprow{2023\,--\,2025}{%
+  \textbf{Academic Director, \textit{AI for Science}*, AIMS South Africa}\newline
+  \textbf{Resident Researcher in Machine Learning, AIMS South Africa}\newline
+  \light{* MSc program funded by Google DeepMind: \href{https://ai.aims.ac.za}{ai.aims.ac.za}}%
+}
+
+\suprow{2022\,--\,2023}{%
+  \textbf{Visiting Scholar, AIMS South Africa}\newline
+  \textbf{McDonald Institute Ambassador}\newline
+  \light{Canada's astroparticle physics network; sponsored fellow}%
+}
+
+\suprow{2019\,--\,2023}{%
+  \textbf{Assistant Professor, York University, Canada}\light{, jointly appointed as}\newline
+  \textbf{Research Scientist, Fermilab, USA}\newline
+  \light{ATLAS Experiment, CERN \& Deep Underground Neutrino Experiment, Fermilab}%
+}
+
+\suprow{2016\,--\,2019}{%
+  \textbf{Postdoctoral Researcher, DESY, Hamburg, Germany}\newline
+  \light{ATLAS Experiment, CERN}%
+}
+
+\suprow{2010\,--\,2016}{%
+  \textbf{Graduate Research Associate, University of Victoria, Canada}\newline
+  \light{ATLAS Experiment, CERN; based at TRIUMF}%
+}
+
+
+%------------------------------------------------------------
+\section{PROFESSIONAL DEVELOPMENT}
+%------------------------------------------------------------
+
+\suprow{2026}{%
+  \textbf{Technical AI Safety, Blue Dot Impact}\newline
+  \light{6-week course with weekly facilitated discussions; certificate of completion}%
+}
+
+
+%------------------------------------------------------------
+\section{SKILLS}
+%------------------------------------------------------------
+\vspace{6pt}
+\noindent \textbf{Research expertise:} collider physics, machine learning, advanced data analysis, statistical inference\\[6pt]
+\textbf{Programming:} Python (NumPy, PyTorch, scikit-learn), C, C++, ROOT, LabVIEW, Unix shell\\[6pt]
+\textbf{Communication:} university-level instruction, public speaking, science popularization\\[6pt]
+\textbf{Mentoring:} academic coaching, student placement across international institutions\\[6pt]
+\textbf{Languages:} French (native), English (fluent), German (fluent), Spanish (highly proficient)
+\vspace{7pt}
+
+
+%------------------------------------------------------------
+%  I N L I N E     T O C     N A V I G A T O R
+%------------------------------------------------------------
+
+\vfill
+{\small
+{\color{cvgray}Contents:} \hyperref[sec:research]{Research} (p.~\underline{\hyperref[sec:research]{\pageref{sec:research}}}) {\small$\cdot$}
+\hyperref[sec:engineering]{Engineering Experience} (p.~\underline{\hyperref[sec:engineering]{\pageref{sec:engineering}}}) {\small$\cdot$}
+\hyperref[sec:supervision]{Research Supervision} (p.~\underline{\hyperref[sec:supervision]{\pageref{sec:supervision}}}) {\small$\cdot$}
+\hyperref[sec:teaching]{Teaching Experience} (p.~\underline{\hyperref[sec:teaching]{\pageref{sec:teaching}}})~{\small$\cdot$}
+\hyperref[sec:mentoring]{Student Mentoring \& Placement} (p.~\underline{\hyperref[sec:mentoring]{\pageref{sec:mentoring}}}) {\small$\cdot$}
+\hyperref[sec:service]{Academic Service} (p.~\underline{\hyperref[sec:service]{\pageref{sec:service}}}) {\small$\cdot$}
+\hyperref[sec:grants]{Grants \& Awards} (p.~\underline{\hyperref[sec:grants]{\pageref{sec:grants}}}) {\small$\cdot$}
+\hyperref[sec:presentations]{Presentations} (p.~\underline{\hyperref[sec:presentations]{\pageref{sec:presentations}}}) {\small$\cdot$}
+\hyperref[sec:publications]{Publications} (p.~\underline{\hyperref[sec:publications]{\pageref{sec:publications}}}) {\small$\cdot$}
+\hyperref[sec:proceedings]{Proceedings} (p.~\underline{\hyperref[sec:proceedings]{\pageref{sec:proceedings}}}) {\small$\cdot$}
+\hyperref[sec:other]{Other Activities} (p.~\underline{\hyperref[sec:other]{\pageref{sec:other}}})%
+}
+
+%------------------------------------------------------------
+\section{RESEARCH}
+%------------------------------------------------------------
+\label{sec:research}
+
+\h{Highlights}
+
+\suprow{2020\,--\,2022}{%
+  \textbf{Co-convener of Training \& Documentation, DUNE Computing Consortium}\newline
+  \light{Deep Underground Neutrino Experiment, Fermilab; \href{https://doi.org/10.48550/arXiv.2310.07342}{arXiv:2310.07342}}%
+}
+
+\suprow{2019}{%
+  \textbf{Co-founded DUNE-Canada group}\newline
+  \light{Deep Underground Neutrino Experiment, Fermilab}%
+}
+
+\suprow{2018}{%
+  \textbf{Observation of the Higgs boson production mode with a top-antitop quark pair}\newline
+  \light{ATLAS Experiment, CERN LHC; \href{https://doi.org/10.1016/j.physletb.2018.07.035}{Phys.Lett.\ B \textbf{784} (2018) 173}}%
+}
+
+\suprow{2016\,--\,2019}{%
+  \textbf{Led thermal validation and radiation length measurements of the ATLAS ITk silicon strip sensor support structure}\newline
+  \light{ATLAS Experiment, CERN LHC; \href{https://cds.cern.ch/record/2261511}{ATLAS-TDR-025}}%
+}
+
+% \suprow{2017}{%
+%   \textbf{Led first thermal validation of next-generation silicon strip detector}\newline
+%   \light{ATLAS Experiment, CERN LHC}\newline
+%   \light{\href{https://inspirehep.net/literature/1614102}{ATLAS-TDR-025}}%
+% }
+% \suprow{2017}{%
+%   \textbf{Led first radiation length (X/X0) measurement of the sensor support structure for ATLAS Inner Strip tracking detector}\newline
+%   \light{ATLAS Experiment, CERN LHC}\newline
+%   \light{\href{https://cds.cern.ch/record/2261511}{ATLAS-TDR-025}}%
+% }
+
+\suprow{2015\,--\,2016}{%
+  \textbf{pMSSM reinterpretation of LHC Run 1 SUSY searches; featured in CERN Courier}\newline
+  \light{ATLAS Experiment, CERN LHC; \href{http://link.springer.com/article/10.1007\%2FJHEP10\%282015\%29134}{JHEP \textbf{10} (2015) 134}}%
+}
+
+% \section{SELECTED PUBLICATIONS}
+
+% \pubrow{2023}{%
+%   Sustainable HECAP+ Initiative $\rightarrow$
+%   ``Environmental sustainability in basic research: a perspective from HECAP+''\newline
+%   \light{\href{https://arxiv.org/abs/2306.02837}{arXiv:2306.02837}}%
+% }
+
+% \pubrow{2021}{%
+%   DUNE Collaboration $\rightarrow$
+%   ``Deep Underground Neutrino Experiment (DUNE) Near Detector Conceptual Design Report''\newline
+%   \light{FERMILAB-PUB-21-067-E-LBNF-PPD-SCD-T}%
+% }
+
+% \pubrow{2020}{%
+%   Poley L., Sawyer C.\ et al.\ $\rightarrow$
+%   ``The ABC130 barrel module prototyping programme for the ATLAS strip tracker''\newline
+%   \light{JINST \textbf{15} (2020) P09004}%
+% }
+
+% \pubrow{2018}{%
+%   ATLAS Collaboration $\rightarrow$
+%   ``Observation of Higgs boson production in association with a top quark pair at the LHC
+%   with the ATLAS detector''\newline
+%   \light{Phys.\ Lett.\ B \textbf{784} (2018) 173--191}%
+% }
+
+% \pubrow{2015}{%
+%   ATLAS Collaboration $\rightarrow$
+%   ``Summary of the ATLAS experiment's sensitivity to supersymmetry after LHC Run\,1
+%   --- interpreted in the phenomenological MSSM''\newline
+%   \light{JHEP \textbf{10} (2015) 134}%
+% }
+
+\h{Current Projects}
+
+\suprow{2025\,--\,2026}{%
+  \textbf{Automatic mapping of confidence sets to confidence intervals for intractable statistical models}\newline
+  \light{With Prof.\ Harrison B.\ Prosper (Florida State U.) \& Prof.\ Olivia Prosper-Feldman (U.\ of Tennessee)}\newline
+  \light{Expected completion: December 2026}%
+}
+
+\h{As Resident Researcher in Machine Learning at AIMS South Africa}
+
+\suprow{2025\,--\,2026}{%
+  \textbf{Physics-Informed Neural Network as solver of the photon orbit equation around a black hole}\newline
+  \light{With Tlotlo Oepeng (formerly AIMS South Africa) \& Prof.\ H.\ B.\ Prosper (FSU)}\newline
+  \light{Paper submitted to the Machine Learning for Physical Science (ML4PS) 2026 workshop}%
+}
+\suprow{2025}{%
+  \textbf{Graph autoencoders for anomaly detection in particle physics}\newline
+  \light{With Raktim Mukherjee (Universit\"at Heidelberg), Prof.\ H.\ B.\ Prosper (FSU)}%
+  %\newline
+  %\light{Expected completion: December 2026}%
+}
+
+
+\h{As Research Scientist at Fermilab (York University, Toronto, Canada)}
+
+\suprow{2020\,--\,2023}{%
+  \textbf{DUNE Computing Consortium}\newline
+  \light{Led first R\&D on an interactive analysis facility for DUNE using columnar computing}\newline
+  \light{Re-designed and co-organized three DUNE Computing tutorials
+ $\rightarrow$ \href{https://doi.org/10.3389/fdata.2025.1497622}{Front.\ Big Data \textbf{8} (2025) 1497622}}\newline
+  % \light{Re-designed and co-organized three DUNE Computing tutorials
+  % (\href{https://doi.org/10.48550/arXiv.2310.07342}{arXiv:2310.07342})}\newline
+  \light{Modernized DUNE Computing wiki; designed \& deployed DUNE's automated
+  \href{https://abc.dunescience.org/}{glossary}}%
+}
+
+\suprow{2019\,--\,2023}{%
+  \textbf{DUNE-Canada group}\newline
+  \light{Secured 3-year NSERC funding to launch first Canadian effort (3 PIs)}\newline
+  \light{Secured 5-year CFI infrastructure funding for a cryogenic facility for
+  \href{https://argoncube.org/}{ArgonCube} R\&D}%
+}
+
+\h{As Postdoctoral Researcher at DESY, Hamburg, Germany}
+
+\suprow{2017\,--\,2019}{%
+  \textbf{Observation of $\bm{t\bar{t}h\,(\rightarrow b\bar{b})}$ process, ATLAS Experiment, CERN LHC}\newline
+  \light{Developed interface for Matrix Element Method in official analysis code}\newline
+  \light{Validated Boosted Decision Trees' input distributions across Monte Carlo generators}\newline
+  \light{Led fake lepton background estimate, one-lepton channel $\rightarrow$
+  \href{https://doi.org/10.1016/j.physletb.2018.07.035}{Phys.Lett.\ B \textbf{784} (2018) 173}}%
+}
+
+\suprow{2016\,--\,2019}{%
+  \textbf{ATLAS Inner Tracker upgrade for High-Luminosity LHC}\newline
+  \light{Led a team (3 engineers, 3 technicians, 4 students) to deliver first measurements of the prototype's thermal performance; developed infrared camera data acquisition interface}\newline
+  \light{Led first measurements of radiation length (X/X0) using EUDET telescopes}\newline
+  \light{Created custom entries of prototype's components in the production database}%
+}
+
+\h{As Graduate Student Research Associate, University of Victoria, Canada}
+
+\suprow{2013\,--\,2015}{%
+  \textbf{Search for electroweak Supersymmetry, ATLAS Experiment, CERN LHC}\newline
+  \light{Main analyzer and editor of internal note of the search in the $h\,\rightarrow b\bar{b}$ channel}\newline
+  \light{Reinterpreted the search as part of Run\,1 summary paper in the context of the 19-parameter pMSSM}\newline
+  \light{\href{http://link.springer.com/article/10.1007\%2FJHEP10\%282015\%29134}{JHEP 10 (\textbf{2015}) 134}}%
+}
+
+\suprow{2012\,--\,2013}{%
+  \textbf{ATLAS Liquid Argon Calorimeter Operation}\newline
+  \light{Software on-call expert during 2012 data taking (leading to the Higgs boson discovery)}\newline
+  \light{Co-organized software expert training; created web-portal for shifters in control room}\newline
+  \light{Developed ATLAS Online Software plugin revision to filter error messages}%
+}
+
+%------------------------------------------------------------
+\section{ENGINEERING EXPERIENCE}
+%------------------------------------------------------------
+\label{sec:engineering}
+
+\suprow{\datemonths{2010}{5 months}}{%
+  \textbf{ATLAS Forward Calorimeter upgrade, TRIUMF, Vancouver, Canada}\newline
+  \light{Instrumented a radiation hardness test for diamond sensors using TRIUMF's cyclotron proton beam; created acquisition interface with TestPoint}\newline
+  \light{Developed and tested the data analysis framework with ROOT $\rightarrow$
+  \href{http://iopscience.iop.org/article/10.1088/1748-0221/6/05/P05011/meta}{JINST \textbf{6} P05011 (2011)}}%
+}
+
+\suprow{\datemonths{2009}{3 months}}{%
+  \textbf{Pulse-shape modelling for IceCube, DESY, Berlin, Germany}\newline
+  \light{Developed data analysis framework to measure the transfer function of IceCube Neutrino Observatory's photomultiplier modules, improving detector simulations}%
+}
+
+\suprow{\datemonths{2008}{2 months}}{%
+  \textbf{Afterglow tests monitoring, Hilger Crystals Company*, UK}\newline
+  \light{Monitored scintillation crystals afterglow tests under X-Rays; created a PhP/MySQL database for managing the test results}\newline
+  \light{* developed crystals for the \textsc{BaBar} experiment}%
+}
+
+\suprow{\datemonths{2007}{1 month}}{%
+  \textbf{French National High Magnetic Field Laboratory, Toulouse, France}\newline
+  \light{Experimentations on the scotch-tape method for graphene exfoliation}%
+}
+
+%------------------------------------------------------------
+\section{RESEARCH SUPERVISION}
+%------------------------------------------------------------
+\label{sec:supervision}
+
+\h{At AIMS South Africa}
+
+\suprow{2024\,--\,2026}{%
+  \tag{Postdoc} \textbf{Ryan Atkin}, AIMS South Africa\newline
+  \light{Main supervisor; anomaly detection for ATLAS High-Level Triggers}%
+}
+
+\suprow{\datemonths{2025}{2 months}}{%
+  \tag{MSc} \textbf{Raktim Mukherjee}, visitor from Universit\"at Heidelberg, Germany\newline
+  \light{Supervisor; investigation of Graph Auto-Encoder for anomaly detection for ATLAS triggers}%
+}
+
+\h{At York University}
+
+\suprow{2021\,--\,2023}{%
+  \tag{Postdoc} \textbf{Tejin Cai}, York University\newline
+  \light{Main supervisor; interactive analysis facility for DUNE on Compute Canada cloud}\newline
+  \light{Now: software engineer at Black Duck}%
+}
+
+\suprow{2020}{%
+  \tag{MSc} \textbf{Alfred Ferwerda}, York University\newline
+  \light{Thesis committee member; CERN ALPHA Experiment}%
+}
+
+\suprow{2019\,--\,2020}{%
+  \tag{PhD} \textbf{Darij Starko}, York University\newline
+  \light{Local supervisor; ATLAS qualification task, Flavour tagging group, CERN}\newline
+  \light{Now: data science consultant at Wyatt AI Inc.}%
+}
+
+\suprow{2021}{%
+  \tag{BSc} \textbf{Amin Jafarov}, York University, NSERC USRA recipient\newline
+  \light{Main supervisor; searches for long-lived particles using ML}\newline
+  \light{Now: Medical School, University of Central Lancashire, UK}%
+}
+
+\suprow{2021}{%
+  \tag{BSc} \textbf{Anita Nasiri}, York University\newline
+  \light{Co-op research project supervisor; long-lived particle event 3D visualisation in ATLAS}%
+}
+
+\suprow{2020}{%
+  \tag{BSc} \textbf{Majd Salam}, York University\newline
+  \light{Co-op research project supervisor; first ML classifier for ATLAS long-lived particle search}\newline
+  \light{Now: PhD candidate, Theoretical Astrophysics, Western University, Canada}%
+}
+
+\suprow{2020}{%
+  \tag{BSc} \textbf{Damith Deshan}, York University\newline
+  \light{Co-op research project supervisor; automatic scans of chip pack labels for ATLAS ITk production database}%
+}
+
+\h{As postdoctoral researcher at DESY}
+
+\suprow{2016\,--\,2019}{%
+  \tag{PhD} \textbf{Jan-Hendrik Arling}, DESY\newline
+  \light{Local technical supervisor; ATLAS ITk upgrade}\newline
+  \light{Now: junior staff at DESY}%
+}
+
+\suprow{2018}{%
+  \tag{BSc} \textbf{Anna Beck}, DESY summer student\newline
+  \light{Supervisor; ATLAS ITk thermal characterization}\newline
+  \light{PhD at University of Warwick; now postdoctoral researcher at MIT}%
+}
+
+\suprow{2017}{%
+  \tag{BSc} \textbf{Maximilian Caspar}, DESY summer student\newline
+  \light{Supervisor; ATLAS ITk upgrade, instrumentation}\newline
+  \light{PhD at Universit\"at Wuppertal/DESY; now consultant at Basycon}%
+}
+
+\suprow{2016\,--\,2017}{%
+  \tag{PhD} \textbf{Yasiel Delabat Diaz}, DESY\newline
+  \light{Local supervisor; ATLAS qualification task, ITk upgrade}\newline
+  \light{PhD at Humboldt-Universit\"at/DESY; now software developer at Safetec}%
+}
+
+\h{As research assistant at University of Victoria}
+
+\suprow{2011}{%
+  \tag{BSc} \textbf{Philipp Koenig}, University of Victoria\newline
+  \light{Co-op project co-supervisor; ATLAS Higgs group}\newline
+  \light{PhD at Universit\"at Bonn; now senior data analyst at Syna}%
+}
+
+%------------------------------------------------------------
+\section{TEACHING EXPERIENCE}
+%------------------------------------------------------------
+\label{sec:teaching}
+
+\h{Invited Lectures}
+
+{\small Main course website: \href{https://clairedavid.github.io/intro_to_ml}{clairedavid.github.io/intro\_to\_ml}}
+\vspace{4pt}
+
+\suprow{Oct. 2025}{%
+  \textbf{Introduction to Artificial Intelligence \& Data Science, AIMS Cameroon}\newline
+  \light{Graduate course; 15 lectures (30 hours) + tutorials (10 hours); 108 students}\newline
+  \light{Skill course, required for all MSc streams}%
+}
+
+\suprow{Sep. 2025}{%
+  \textbf{Introduction to Machine Learning (modernized version), AIMS South Africa}\newline
+  \light{MSc course \textit{AI for Science}; 10 lectures (20 hours) + tutorials (5 hours); 33 students}\newline
+  \light{Co-teaching with Prof.\ Harrison Prosper (FSU)}%
+}
+
+\suprow{Jul. 2025}{%
+  \textbf{Basic Concepts in Machine Learning, EASY-ML* Summer School, Nairobi, Kenya}\newline
+  \light{10 lectures (15 hours) + tutorials (5 hours); 35 students}\newline
+  \light{* East-African School for Young Researchers on Advanced Machine Learning; CNRS, France}%
+}
+
+\suprow{Sep. 2024}{%
+  \textbf{Introduction to Machine Learning, AIMS South Africa}\newline
+  \light{MSc course \textit{AI for Science}; 15 lectures (30 hours) + tutorials (10 hours); 21 students}\newline
+  \light{Delivered again in December--January for 10 students who joined late due to visa delays}%
+}
+
+\suprow{Apr. 2024}{%
+  \textbf{Machine Learning by Hand, AIMS South Africa}\newline
+  \light{MSc course \textit{AI for Science}; 15 lectures (30 hours) + tutorials (10 hours); 14 students}\newline
+  \light{Adapted content for students joining in January due to visa delays}%
+}
+
+\suprow{Feb. 2024}{%
+  \textbf{Introduction to Artificial Intelligence \& Data Science, AIMS Cameroon}\newline
+  \light{Graduate course; 15 lectures (30 hours) + tutorials (10 hours); 35 students}%
+}
+
+\suprow{Jan. 2024}{%
+  \textbf{Introduction to Machine Learning, AIMS Senegal}\newline
+  \light{Graduate course; 15 lectures (30 hours) + tutorials (10 hours); 20 students}%
+}
+
+\suprow{Sep. 2023}{%
+  \textbf{Introduction to Machine Learning, AIMS South Africa}\newline
+  \light{MSc course \textit{AI for Science}; 15 lectures (30 hours) + tutorials (10 hours); 16 students}\newline
+  \light{+ 24 auditing students from the Mathematical Science stream}%
+}
+
+\suprow{May 2023}{%
+  \textbf{Introduction to Machine Learning \& Data Science, AIMS Ghana}\newline
+  \light{Graduate course; 15 lectures (30 hours) + tutorials (10 hours); 19 students}%
+}
+
+\suprow{Mar. 2023}{%
+  \textbf{Learn the Math behind Neural Networks, University of Johannesburg, South Africa}\newline
+  \light{One-day workshop: theory (3 hours) and practice in Python (3 hours); 22 participants}\newline
+  \light{Open to all academic levels from 4\textsuperscript{th} year undergraduate}%
+}
+
+\suprow{Feb. 2023}{%
+  \textbf{Machine Learning in Particle Physics, AIMS South Africa}\newline
+  \light{Graduate course; 15 lectures (30 hours) + tutorials (10 hours); 33 students}%
+}
+
+\suprow{Jan. 2023}{%
+  \textbf{Machine Learning in Particle Physics, AIMS Senegal}\newline
+  \light{Graduate course; 15 lectures (30 hours) + tutorials (10 hours); 19 students}%
+}
+
+\suprow{Dec. 2022}{%
+  \textbf{Introduction to Machine Learning, ASP2022*, Gqeberha, South Africa}\newline
+  \light{Two morning sessions (6 hours); 40 participants}\newline
+  \light{* African School of Physics: \href{https://africanschoolofphysics.org/}{africanschoolofphysics.org}}%
+}
+
+\suprow{Jan. 2019}{%
+  \textbf{Life of a Particle: Stochastic Modelling in Particle Physics, AIMS Ghana}\newline
+  \light{Graduate course; 15 lectures (30 hours) + tutorials (10 hours); 38 students}\newline
+  \light{Co-taught with Dr.\ Samuel Meehan}%
+}
+
+\h{Teaching at York University}
+
+\suprow{Fall 2021}{%
+  \textbf{Special Relativity and Introduction to Modern Physics (PHYS2040)}\newline
+  \light{Second year undergraduates in Physics \& Engineering Majors (online); 57 students}%
+}
+
+\suprow{Fall 2020}{%
+  \textbf{Special Relativity and Introduction to Modern Physics (PHYS2040)}\newline
+  \light{Second year undergraduates in Physics \& Engineering Majors (online); 64 students}%
+}
+
+\suprow{Fall 2019}{%
+  \textbf{Special Relativity and Introduction to Modern Physics (PHYS2040)}\newline
+  \light{Second year undergraduates in Physics \& Engineering Majors; 58 students}%
+}
+
+\h{Previous Teaching Experience}
+
+\suprow{Sep. 2018}{%
+  \textbf{Autumn School for High Energy Physics, Maria Laach, Germany}\newline
+  \light{Invited group coordinator; tutoring graduate students projects in experimental particle physics; 15 participants}%
+}
+
+\suprow{Jan. 2016}{%
+  \textbf{TRIUMF Junior Research School, Vancouver, Canada}\newline
+  \light{Invited lecturer: ``The Higgs boson mechanism''; 10 Singaporean college students}%
+}
+
+\suprow{Jan. 2015}{%
+  \textbf{TRIUMF Junior Research School, Vancouver, Canada}\newline
+  \light{Invited lecturer: ``The Higgs boson mechanism''; 10 Singaporean college students}%
+}
+
+%------------------------------------------------------------
+\section{STUDENT PLACEMENT}
+%------------------------------------------------------------
+\label{sec:mentoring}
+
+
+\h{As Academic Director at AIMS South Africa}
+
+{\small Matched students with capstone supervisors; one-on-one mentoring \& tailored career guidance; connected and referred students for post-AIMS positions.}
+\vspace{8pt}
+
+\suprow{2024\,--\,2025}{%
+  \textbf{33 students guided to MSc graduation, \textit{AI for Science}}\newline
+  \light{Selected placements:}\newline
+  \light{\textbf{\textcolor{black}{Ahmed Nadir}}, Research Intern, ML \& Global Health Network, University of Oxford; active learning for survey design}\newline
+  \light{\textbf{\textcolor{black}{Antony Gitau}}, PhD student, University of South-Eastern Norway; AI for medical imaging}\newline
+  \light{\textbf{\textcolor{black}{Benedict Ejelonu}}, G-RIPS Fellow, Tohoku University, Japan; AIMS--T\"ubingen Data Science \& AI Fellow}\newline
+  \light{\textbf{\textcolor{black}{Harlette Denebeye}}, Marie Sk\l{}odowska-Curie Doctoral Researcher, Universit\'e Paris-Saclay/CEA-CNRGH; trustworthy AI}\newline
+  \light{\textbf{\textcolor{black}{Josiah Kimani}}, AI for Weather Prediction researcher, AfriClimate AI; 2\textsuperscript{nd} prize poster, Deep Learning Indaba 2025}\newline
+  \light{\textbf{\textcolor{black}{Koomi Toussaint Amoussouvi}}, AI for Weather Prediction researcher, AfriClimate AI; 1\textsuperscript{st} prize poster, Deep Learning Indaba 2025}\newline
+  \light{\textbf{\textcolor{black}{Mushtaha El-Amin}}, Visiting Researcher, LiGHT Laboratory, EPFL; global health \& humanitarian response technologies}\newline
+  \light{\textbf{\textcolor{black}{Omer Ebead}}, Research Fellow, Cooperative AI Foundation; multi-agent privacy; intern at InstaDeep on MARL}\newline
+  \light{\textbf{\textcolor{black}{Onintsoa Rakotondranisa}}, PhD student, University of Cape Town; astrophysics}\newline
+  \light{\textbf{\textcolor{black}{Rodeo Toha}}, Head of data and AI at Grow-UP AI, Abomey-Calavi, Benin}\newline
+  \light{\textbf{\textcolor{black}{Tim Hitge}}, Research Assistant, Imperial College London; surrogate models \& simulation-based inference; paper + poster at NeurIPS 2025}%
+}
+\vspace{2ex}
+\suprow{2023\,--\,2024}{%
+  \textbf{30 students guided to MSc graduation, \textit{AI for Science} inaugural cohort}\newline
+  \light{Selected placements:}\newline
+  \light{\textbf{\textcolor{black}{Abel Legese}}, Senior AI Research Engineer, Ersilia; open-source drug discovery}\newline
+  \light{\textbf{\textcolor{black}{Carlin Foka}}, PhD student, Centre for Epidemic Response \& Innovation (CERI)}\newline
+  \light{\textbf{\textcolor{black}{Catherine Essuman}}, PhD candidate (from Sept.\ 2026), Ontario Tech University, Canada; Canada Impact+ Research Award recipient}\newline
+  \light{\textbf{\textcolor{black}{Daniel Rajaonarivelomanantsoa}}, Research Fellow, InstaDeep; \href{https://instadeep.com/2025/12/neurips-2025/}{first Malagasy oral presenter at NeurIPS 2025}; PhD, Stellenbosch University}\newline
+  \light{\textbf{\textcolor{black}{Dariose Diffo}}, PhD student, Universit\`a di Bologna; AI \& computational methods for astronomy and physics}\newline
+  \light{\textbf{\textcolor{black}{Haingo Andry}}, Recipient of the 2025 Google PhD Fellowship, Stellenbosch University/CERI}\newline
+  \light{\textbf{\textcolor{black}{Herman Tesso}}, Doctoral Researcher, Aalto University, Finland; first-author paper at AABI workshop, ICLR 2025; simulation-based inference \& spatial statistics}\newline
+  \light{\textbf{\textcolor{black}{Isaac Omolayo}}, PhD student, Universit\"at T\"ubingen; contrastive learning for connectome-constrained neural networks, fruit fly visual system}\newline
+  \light{\textbf{\textcolor{black}{Sh\^ama Wache}}, PhD student, TU Chemnitz, Germany; inverse problems in medical imaging}\newline
+  \light{\textbf{\textcolor{black}{Tiana Ramonjison}}, MSc student, Simon Fraser University/TRIUMF; dark matter detector design}%
+}
+
+
+\h{Informal Mentoring \& Connections}
+
+\suprow{2025}{%
+  {\small\textbf{Catherine Essuman \& Pelumi Aderinto}, \textit{AI for Science} alumni}\newline
+  \light{Led on my behalf the tutorial ``The Math Behind Neural Networks'' at Deep Learning Indaba, Lagos, Nigeria}%
+}
+
+\suprow{2025}{%
+  {\small\textbf{Angel Bashyal}, MSc in Astrophysics, Tribhuvan University, Nepal}\newline
+  \light{Met at BCVSPIN 2024; connected to potential supervisors via McDonald Institute network}\newline
+  \light{Recipient of Swiss Government Excellence Scholarship; PhD in Astrophysics, start Sept.\ 2026}%
+}
+
+\suprow{2025}{%
+  {\small\textbf{Nishan Lamichhane}, MSc student, Tribhuvan Vishwavidalaya, Nepal}\newline
+  \light{Connected with Prof.\ Aaron Vincent, Queen's University, for honour's research project}\newline
+  \light{Now accepted for a PhD in Physics \& Astronomy at Queen's University; start Sept. 2026}%
+}
+
+\suprow{2024}{%
+  {\small\textbf{Jeffrey Katabo}, MSc student, AIMS Cameroon}\newline
+  \light{Connected with Prof.\ Joel Zylberberg (CIFAR Fellow, York University); meta-learning for models of primate visual cortex (AIMS capstone project)}\newline
+  \light{Now pre-doctoral research fellow, Freie Universit\"at Berlin / Bernstein Center for Computational Neuroscience}%
+}
+
+\suprow{2023}{%
+  {\small\textbf{Ufuk \c{C}ak{\i}r}, AIMS--Universit\"at Heidelberg research intern}\newline
+  \light{DPhil student, Intelligent Earth CDT, University of Oxford; RL for wildfire response}%
+}
+
+%------------------------------------------------------------
+\section{ACADEMIC SERVICE}
+%------------------------------------------------------------
+\label{sec:service}
+
+%---------------------------------------------------
+\h{Service to AIMS}
+%---------------------------------------------------
+\suprow{2024\,--\,2026}{%
+  \textbf{Designed and led student onboarding programme, AIMS South Africa}\newline
+  \light{Week-long induction: campus life, values, systems, cultural exchange, wellness walks}\newline
+  \light{4 editions: Sept.\ 2024, Jan.\ 2025, Sept.\ 2025, Jan.\ 2026}%
+}
+
+\suprow{2023\,--\,2025}{%
+  \textbf{Founded student clubs to foster initiative and campus life, AIMS South Africa}\newline
+  \light{Student-run, with dedicated budget; adapted each year to cohort interests}\newline
+  \light{2023--24: Arts, Fitness, Hike \& Walk, Paper Reading, Running}\newline
+  \light{2024--25: Board Game, Cultural, Dance, Media, Running, Soccer}%
+}
+
+\suprow{2023\,--\,2025}{%
+  \textbf{Co-created formal lecturer contracts and tutor agreements, AIMS South Africa}%
+}
+
+%---------------------------------------------------
+\h{Service to Fermilab/York University}
+%---------------------------------------------------
+
+\suprow{2020\,--\,2021}{%
+  \textbf{Member, Fermilab Neutrino Division postdoc hiring committee}%
+}
+
+\suprow{2020\,--\,2021}{%
+  \textbf{Co-chair, Physics \& Astronomy Department Weekly Colloquium, York University}%
+  %\light{Selecting speakers, advertising and chairing sessions \& Q\&A}%
+}
+
+\suprow{2019\,--\,2020}{%
+  \textbf{Member, Faculty of Science Award Committee, York University}%
+}
+
+%---------------------------------------------------
+\h{Service to the Field}
+%---------------------------------------------------
+
+\suprow{2024}{%
+  \textbf{Session co-chair, Sustainability Track, 42\textsuperscript{nd} International Conference on High Energy Physics (ICHEP), Prague}\newline
+  \light{First dedicated sustainability track at ICHEP; environmental impact of HEP accelerators, detectors and computing}%
+}
+
+\suprow{2022\,--\,2023}{%
+  \textbf{Sustainable HECAP+ Initiative}\newline
+  \light{Creator of \href{https://sustainable-hecap-plus.github.io}{sustainable-hecap-plus.github.io}; advocate for sustainable practices in high-energy physics}%
+}
+
+\suprow{2022}{%
+  \textbf{Judge, Best Student Competition, Particle Physics division}\newline
+  \light{Canadian Association of Physicists' Congress, Hamilton, Canada}%
+}
+
+
+\suprow{2021\,--\,2022}{%
+  \textbf{Elected Vice-Chair, Particle Physics Division, Canadian Association of Physicists (CAP)}%
+}
+
+\suprow{2021}{%
+  \textbf{Session convener, Neutrino session, CAP Congress 2021}%
+}
+
+\suprow{2020\,--\,2022}{%
+  \textbf{Co-convener, DUNE Training \& Documentation working group, Fermilab}%
+}
+
+\suprow{2019\,--\,2020}{%
+  \textbf{Institute contact (York University), ATLAS Inner Tracker production database}%
+}
+
+
+
+%---------------------------------------------------
+\h{Memberships}
+%---------------------------------------------------
+
+\suprow{2024\,--\,2025}{%
+  Hydrogen Intensity and Real-time Analysis eXperiment (HIRAX)\newline
+  \light{Member of Management Team}%
+}
+
+\suprow{2023\,--\, 2026}{%
+  South African Institute of Physics (SAIP)%
+}
+
+\suprow{2020\,--\,2022}{%
+  Canadian Association of Physicists (CAP)%
+}
+
+\suprow{2019\,--\,2022}{%
+  Institute of Particle Physics (IPP), Canada%
+}
+
+%---------------------------------------------------
+\h{Peer Review}
+%---------------------------------------------------
+
+\suprow{2026}{%
+  \textbf{Reviewer, Nederlandse Organisatie voor Wetenschappelijk Onderzoek (NOW)}\newline
+  \light{Dutch Research Council}%
+}
+
+\suprow{2025}{%
+  \textbf{Nominated reviewer, Machine Learning for Physical Sciences Workshop (ML4PS), NeurIPS 2025}\newline
+  \light{Reviewed 2 papers}%
+}
+
+\suprow{2024}{%
+  \textbf{Nominated reviewer, Machine Learning for Physical Sciences Workshop (ML4PS), NeurIPS 2024}\newline
+  \light{Reviewed 2 papers}%
+}
+
+\suprow{2019}{%
+  \textbf{Referee, Journal of Instrumentation}\newline % ; nominated by peers%
+  \light{Nominated by peers}%
+}
+
+\suprow{2017}{%
+  \textbf{Referee, Journal of Instrumentation}\newline % ; nominated by peers%
+  \light{Nominated by peers}%
+}
+
+%---------------------------------------------------
+\h{Editorial Work}
+%---------------------------------------------------
+
+\suprow{2021}{%
+  \textbf{Selected reviewer, DUNE Vertical Drift Conceptual Design Report}\newline
+  \light{Chapter: Trigger \& Data Acquisition}%
+}
+
+\suprow{2019\,--\,2021}{%
+  \textbf{Editorial Board Member, ATLAS Collaboration}\newline
+  \light{``Configuration and performance of the ATLAS b-jet triggers in Run\,2''; Eur.\ Phys.\ J.\ C \textbf{81} (2021) 1087}%
+}
+
+\h{Event Organization}
+
+\suprow{2025}{%
+  \textbf{International Masterclass ``Hands-on Particle Physics'', AIMS South Africa}\newline
+  \light{First edition hosted by AIMS; 25 high school students from 8 Cape Town schools}\newline
+  \light{Organized in partnership with IPPOG; live conference with CERN}%
+}
+
+\suprow{2023\,--\,2024}{%
+  \textbf{Siyakhula Festival, AIMS 20\textsuperscript{th} Birthday Celebration, Muizenberg, South Africa}\newline
+  \light{Organizing committee member; 6-day festival, March 17--22, 2024}%
+}
+
+\suprow{2021}{%
+  \textbf{DUNE Computing Tutorial, extended version (online)}\newline
+  \light{Co-organizer; 3-day format with interactive platform, quizzes and expert Q\&A}%
+}
+
+\suprow{2021}{%
+  \textbf{Poster session organizer, TIPP 2021 (online)}\newline
+  \light{International Conference on Technology and Instrumentation in Particle Physics; GatherTown platform}%
+}
+
+\suprow{2021}{%
+  \textbf{DUNE Computing Tutorial, one-day workshop (online)}\newline
+  \light{Main organizer; teaching basics of DUNE computing to new members}%
+}
+
+\suprow{2019}{%
+  \textbf{ATLAS Higgs \& Top Quark Workshop (HTop), DESY, Hamburg, Germany}\newline
+  \light{Member of the Local Organizing Committee}%
+}
+
+\h{Other Service}
+
+
+\suprow{2007\,--\,2008}{%
+  \textbf{Founder \& spokesperson, Commission R\'eussite, INSA Toulouse}\newline
+  \light{Designed \& implemented programme where students in difficulty choose a mentor among professors}\newline
+  \light{Approved by administration as a dedicated commission; system still active in 2026}%
+}
+
+%------------------------------------------------------------
+\section{GRANTS \& AWARDS}
+%------------------------------------------------------------
+\label{sec:grants}
+
+\h{Research Grants}
+
+\suprow{2022\,--\,2027}{%
+  \textbf{Canadian Foundation for Innovation (CFI) John R.\ Evans Leaders Fund (JELF)} (PI, CAD \$125,000)\newline
+  \light{Next-generation neutrino detector for DUNE}%
+}
+
+\suprow{2022\,--\,2023}{%
+  \textbf{Compute Canada Fast Track Competition, one-year extension} (PI, CAD \$23,339)%
+}
+
+\suprow{2021\,--\,2022}{%
+  \textbf{Compute Canada Resources Competition} (PI, CAD \$32,225)\newline
+  \light{Interactive Analysis Facility for DUNE}%
+}
+
+\suprow{2021\,--\,2022}{%
+  \textbf{NSERC Discovery COVID-19 Extension} (non-competitive, CAD \$50,000)%
+}
+
+\suprow{2020\,--\,2023}{%
+  \textbf{NSERC Subatomic Physics Discovery Grant} (Co-PI, CAD \$465,000)\newline
+  \light{Neutrinos exposed: from the cosmos to deep underground}%
+}
+
+\suprow{2020\,--\,2021}{%
+  \textbf{NSERC Subatomic Physics Discovery Grant} (PI, CAD \$50,000)\newline
+  \light{Higgs boson and top quark in ATLAS: gateway to new physics}%
+}
+
+\suprow{2019\,--\,2023}{%
+  \textbf{York University Internal Research Fund, Startup} (CAD \$110,000)%
+}
+
+\h{Awards \& Recognitions}
+
+\suprow{2025}{%
+  \textbf{Breakthrough Prize in Fundamental Physics}\newline
+  \light{Shared with ATLAS, CMS, ALICE and LHCb collaborations (13,508 researchers)}\newline
+  \light{\href{https://breakthroughprize.org/Laureates/1/L3993}{breakthroughprize.org}}%
+}
+
+\suprow{2020}{%
+  \textbf{York University Minor Research Grant \& Junior Faculty Fund} (CAD \$3,100)%
+}
+
+\suprow{2017\,--\,2018}{%
+  \textbf{DESY Bonus Merit} (\texteuro 3,200)\newline
+  \light{Thermal validation of ATLAS ITk prototype}%
+}
+
+\suprow{2016\,--\,2017}{%
+  \textbf{DESY Bonus Merit} (\texteuro 3,200)\newline
+  \light{First infrared measurements of ATLAS ITk sensor structures}%
+}
+
+\suprow{2016}{%
+  \textbf{DESY Postdoctoral Fellowship}, High Energy Physics division%
+}
+
+\suprow{2011\,--\,2012}{%
+  \textbf{Nora and Mark de Goutiere Memorial Fellowship} (CAD \$10,000)%
+}
+
+\suprow{2010}{%
+  \textbf{University of Victoria Entrance Award} (CAD \$10,000)\newline
+  \light{Nominated for Vanier Scholarship, Dept.\ of Physics \& Astronomy, UVic}%
+}
+
+%------------------------------------------------------------
+\section{PRESENTATIONS}
+%------------------------------------------------------------
+\label{sec:presentations}
+
+\h{International Conferences}
+
+\pubrow{2026}{%
+  \textbf{High Dimensional Problems for Statistical Methods in Fundamental Physics, BIRS, Banff, Canada}\newline
+  \light{Invited talk: ``Leveraging Machine Learning, and its limits'' (co-presenter: Anthony Ozerov)}%
+}
+
+\pubrow{2025}{%
+  \textbf{32\textsuperscript{nd} International Workshop on Deep Inelastic Scattering (DIS2025), Cape Town, South Africa}\newline
+  \light{Invited plenary talk: ``Diversity, Equity and Inclusion in Physics''}%
+}
+
+\pubrow{2023}{%
+  \textbf{11\textsuperscript{th} Large Hadron Collider Physics Conference (LHCP), Belgrade, Serbia}\newline
+  \light{Invited talk: ``Statistics on participation of emerging countries in LHC and other experiments''}%
+}
+
+\pubrow{2020}{%
+  \textbf{30\textsuperscript{th} International Linear Accelerator Conference (LINAC), Liverpool, UK (online)}\newline
+  \light{Invited panelist: ``Women in Science and Engineering: Should I stay or should I go now?''}%
+}
+
+\pubrow{2019}{%
+  \textbf{Conference on Flavor Physics and CP Violation (FPCP), Victoria, Canada}\newline
+  \light{Invited talk: ``Higgs boson couplings to quarks at the ATLAS experiment''}%
+}
+
+\pubrow{2018}{%
+  \textbf{Conference on Standard Model at LHC, Berlin, Germany}\newline
+  \light{Young Scientist talk: ``Search for $t\bar{t}H$ production in the $H\rightarrow b\bar{b}$ channel''}%
+}
+
+\pubrow{2017}{%
+  \textbf{11\textsuperscript{th} International Conference on Position Sensitive Detectors (PSD11), Milton~Keynes, UK}\newline
+  \light{Invited plenary talk: ``A new strips tracker for the upgraded ATLAS ITk detector''}%
+}
+
+\pubrow{2016}{%
+  \textbf{Lake Louise Winter Institute, Alberta, Canada}\newline
+  \light{Invited plenary talk: ``Search for supersymmetry with the ATLAS detector in final states with leptons, jets and missing transverse momentum''}%
+}
+
+\pubrow{2014}{%
+  \textbf{International Conference on High-Energy Physics (ICHEP), Valencia, Spain}\newline
+  \light{Poster: ``Search for chargino and neutralino production with a Higgs boson in the decay chain with one or three leptons final state events''}%
+}
+
+\pubrow{2013}{%
+  \textbf{International Conference on New Frontiers in Physics (ICNFP), Kolymbari, Greece}\newline
+  \light{Invited talk: ``ATLAS results in SUSY searches for 3\textsuperscript{rd} generation squarks and electroweak production''}%
+}
+
+\h{Funding Agencies \& Institutional Reviews}
+
+\pubrow{2021}{%
+  \textbf{Institute of Particle Physics (IPP) Annual General Meeting (online)}\newline
+  \light{Invited talk: ``Deep Underground Neutrino Experiment: current status, Canadian effort \& funding''}%
+}
+
+\pubrow{2018}{%
+  \textbf{DESY Program-Oriented Funding (POF) Evaluation, Hamburg, Germany}\newline
+  \light{Invited poster: ``ATLAS and CMS tracker end-caps for the High-Luminosity LHC'' (co-author Dr.\ J.\ Keaveney); official tour guide for Helmholtz Association reviewers}%
+}
+
+\pubrow{2016}{%
+  \textbf{Helmholtz Programme Matter and the Universe, Mainz, Germany}\newline
+  \light{Invited poster: ``Anatomy of ATLAS and CMS strip tracker end-caps for High-Luminosity LHC''}%
+}
+
+\pubrow{2013}{%
+  \textbf{TRIUMF International Review Committee, Canada}\newline
+  \light{Invited poster: ``Search for Higgs production in supersymmetric decay cascades with ATLAS''}%
+}
+
+\pubrow{2013}{%
+  \textbf{VIP Visit, ATLAS Control Room, CERN, Geneva, Switzerland}\newline
+  \light{Invited speaker for P.\ Young (Chair, TRIUMF Board of Management) \& G.\ Patry (CEO, Canada Foundation for Innovation)}%
+}
+
+\h{Local \& Regional Conferences}
+
+\pubrow{2021}{%
+  \textbf{Canadian Association of Physicists Congress (CAP), online}\newline
+  \light{Invited talk: ``Deep Underground Neutrino Experiment: Review and Recent Progress''}%
+}
+
+\pubrow{2021}{%
+  \textbf{Third Summer Particle Astrophysics Workshop, Queen's University, Canada (online)}\newline
+  \light{Plenary talk: ``The Deep Underground Neutrino Experiment: DUNE''}%
+}
+
+\pubrow{2020}{%
+  \textbf{Winter Nuclear \& Particle Physics Conference (WNPPC), Banff, Canada}\newline
+  \light{Plenary talk: ``Higgs boson physics and upgrade work with ATLAS at the Large Hadron Collider''}%
+}
+
+\pubrow{2019}{%
+  \textbf{HTop Workshop, DESY, Hamburg, Germany}\newline
+  \light{Plenary talk: ``Small backgrounds in the leptonic channels''}%
+}
+
+\pubrow{2018}{%
+  \textbf{Preliminary Design Review ITk Strip Local Support Structures, CERN}\newline
+  \light{Final presentation of results on thermo-mechanical petal prototypes; passing review}%
+}
+
+\pubrow{2018}{%
+  \textbf{Forum on Tracking Detector Mechanics, Valencia, Spain}\newline
+  \light{Plenary talk: ``Thermo-mechanical characterization of Petals as Local Support Structures for the ATLAS ITk Strip Detector''}%
+}
+
+\pubrow{2018}{%
+  \textbf{HTop Workshop, CERN, Switzerland}\newline
+  \light{Invited talk: ``Fakes and other backgrounds in $t\bar{t}H(b\bar{b})$ leptonic channels'' (co-author J.\ Mellenthin)}%
+}
+
+\pubrow{2014}{%
+  \textbf{LHCC, CERN, Switzerland}\newline
+  \light{Poster: ``Search for charginos, neutralinos and sleptons in one or two leptons final state events with ATLAS'' (co-author R.\ Ueno)}%
+}
+
+\pubrow{2011}{%
+  \textbf{ATLAS Canada Workshop, Vancouver, Canada}\newline
+  \light{Talk: ``Search for SUSY Higgs in the $b\bar{b}$ final state''}%
+}
+
+\h{Public Talks}
+
+\pubrow{2026}{%
+  \textbf{Career Thursday, Qhubeka Youth Development Programme, Langa, South Africa}\newline
+  \light{Featured guest; Q\&A on experimental physics \& AI in education; organized by Just Grace}%
+}
+
+\pubrow{2023}{%
+  \textbf{Universit\'e Kongo, Mbanza-Ngungu, Congo DRC}\newline
+  \light{Co-talk with Dr.\ Nour Skaf: ``From the smallest to the largest: a journey from particle physics to astrophysics''}%
+}
+
+\pubrow{2023}{%
+  \textbf{Dakar Academy, Senegal}\newline
+  \light{Invited speaker: experimental particle physics to 200+ college-preparatory students}%
+}
+
+\pubrow{2022}{%
+  \textbf{Neutrino Day, Sanford Underground Research Facility, Lead, South Dakota, USA}\newline
+  \light{Keynote speaker at Lead's Opera House; VIP underground visit with YouTuber Physics Girl (Dianna Cowern)}\newline
+  \light{Live radio broadcast for South Dakota radio about DUNE and Neutrino Day}%
+}
+
+\pubrow{2021}{%
+  \textbf{Royal Astronomical Society of Canada, Toronto, Canada}\newline
+  \light{Invited speaker, Speaker's Night livestream: ``What is DUNE? Embark on the underground telescope to pierce the secrets of matter!'' [\href{https://www.youtube.com/watch?v=TF9mXxf3c30}{YouTube}]}%
+}
+
+\pubrow{2015}{%
+  \textbf{Science Innovation \& Technology Speaker Series, Richmond, BC, Canada}\newline
+  \light{``The Triumphant Discovery of the Higgs Boson''}%
+}
+
+\pubrow{2014}{%
+  \textbf{Caf\'es Scientifiques, Alliance Fran\c{c}aise, Vancouver, Canada}\newline
+  \light{``La triomphante d\'ecouverte du boson de Higgs''; organized by the French Consulate}%
+}
+
+
+\h{Invited Colloquia}
+
+\pubrow{2026}{%
+  \textbf{Integrative Think Tank (ITT), AIMS South Africa}\newline
+  \light{Five-day industry-academia workshop; invited talk: ``How I became a scientist: the backstory not read on my CV''}%
+}
+
+\pubrow{2025}{%
+  \textbf{AIMS Cameroon, Limb\'e, Cameroon}\newline
+  \light{``A journey inside matter: experimental particle physics with ATLAS and DUNE''}%
+}
+
+\pubrow{2025}{%
+  \textbf{AIMS Cameroon, Limb\'e, Cameroon}\newline
+  \light{``How I became a scientist: the backstory not read on my CV''}%
+}
+
+\pubrow{2024}{%
+  \textbf{AIMS Cameroon, Limb\'e, Cameroon}\newline
+  \light{``A journey inside matter: experimental particle physics with ATLAS and DUNE''}%
+}
+
+\pubrow{2024}{%
+  \textbf{AIMS Cameroon, Limb\'e, Cameroon}\newline
+  \light{``How I became a scientist: the backstory not read on my CV''}%
+}
+
+\pubrow{2023}{%
+  \textbf{Universit\'e de Montr\'eal, D\'epartement de Physique, Canada}\newline
+  \light{``Half a year in Africa: AI, AIMS \& opportunities''}%
+}
+
+\pubrow{2023}{%
+  \textbf{East African Institute for Fundamental Research (EAIFR), Kigali, Rwanda}\newline
+  \light{Co-talk with Dr.\ Nour Skaf: ``From the smallest to the largest: a journey from particle physics to astrophysics''}%
+}
+
+\pubrow{2023}{%
+  \textbf{University of Ghana, Department of Physics, Accra, Ghana}\newline
+  \light{``A journey inside matter: experimental particle physics with ATLAS and DUNE''}%
+}
+
+\pubrow{2023}{%
+  \textbf{AIMS Rwanda, Kigali, Rwanda}\newline
+  \light{``A journey inside matter: experimental particle physics with ATLAS and DUNE''}%
+}
+
+\pubrow{2023}{%
+  \textbf{AIMS Cameroon, Limb\'e, Cameroon}\newline
+  \light{``A journey inside matter: experimental particle physics with ATLAS and DUNE''}%
+}
+
+\pubrow{2023}{%
+  \textbf{Universit\'e de Lom\'e \& CERME, Lom\'e, Togo}\newline
+  \light{``The ATLAS Experiment at CERN: a detector, an analysis and an upgrade program''}%
+}
+
+\pubrow{2023}{%
+  \textbf{International Chair in Mathematical Physics \& Applications, Cotonou, Benin}\newline
+  \light{``A journey inside matter: experimental particle physics with ATLAS and DUNE''}%
+}
+
+\pubrow{2023}{%
+  \textbf{AIMS South Africa, Muizenberg, South Africa}\newline
+  \light{``How I became a scientist: the backstory not read on my CV''}%
+}
+
+\pubrow{2020}{%
+  \textbf{McGill Physical Society Colloquium, Montr\'eal, Canada (online)}\newline
+  \light{``Data analysis and detector development with ATLAS at the Large Hadron Collider'' [\href{https://www.youtube.com/watch?v=cYu4E7PKMRE}{YouTube}]}%
+}
+
+\pubrow{2019}{%
+  \textbf{York University, Dept.\ of Physics \& Astronomy Colloquium, Toronto, Canada}\newline
+  \light{``Sorting needles in a haystack and cooling a sandwich: data analysis and detector development with ATLAS''}%
+}
+
+%------------------------------------------------------------
+\section{PUBLICATIONS}
+%------------------------------------------------------------
+\label{sec:publications}
+
+% ATLAS author: March 2013 -- 2023 | DUNE author: September 2020 -- 2023
+% Full list: \href{https://inspirehep.net/authors/Claire.David.1}{INSPIRE: Claire.David.1}
+% ORCID: \href{https://orcid.org/0000-0002-1794-1443}{0000-0002-1794-1443}
+% Listed below: publications to which I have significantly contributed
+
+\pubrow{2026}{%
+  \textbf{David C.}, Oepeng T., Prosper H., ``PINN-Slicer: Exploiting Rotational Symmetry to Solve the Photon Orbit Equation Around a Black Hole''\newline
+  \light{Submitted to the \href{https://ml4physicalsciences.github.io/2026/}{ML4PS 2026 workshop}}%
+}
+
+\pubrow{2025}{%
+  Reinsvold Hall A., Skidmore N., Benelli G., Carlson B., \textbf{David C.}\ et al.,
+  ``Training and onboarding initiatives in high energy physics experiments''\newline
+  \light{Front.\ Big Data \textbf{8} (2025) 1497622 \quad
+  \href{https://doi.org/10.3389/fdata.2025.1497622}{doi:10.3389/fdata.2025.1497622}}%
+}
+
+\pubrow{2023}{%
+  Sustainable HECAP+ Initiative,
+  ``Environmental sustainability in basic research: a perspective from HECAP+''\newline
+  \light{\href{https://arxiv.org/abs/2306.02837}{arXiv:2306.02837}; \href{https://sustainable-hecap-plus.github.io}{sustainable-hecap-plus platform}}%
+}
+
+\pubrow{2022}{%
+  DUNE Collaboration,
+  ``Design, construction and operation of the ProtoDUNE-SP Liquid Argon TPC''\newline
+  \light{JINST \textbf{17} (2022) P01005}%
+}
+
+\pubrow{2021}{%
+  ATLAS Collaboration,
+  ``Search for exotic decays of the Higgs boson into long-lived particles in $pp$ collisions
+  at $\sqrt{s}=13$\,TeV using displaced vertices in the ATLAS inner detector''\newline
+  \light{JHEP \textbf{11} (2021) 229}%
+}
+
+\pubrow{2021}{%
+  DUNE Collaboration,
+  ``Deep Underground Neutrino Experiment (DUNE) Near Detector Conceptual Design Report''\newline
+  \light{FERMILAB-PUB-21-067-E-LBNF-PPD-SCD-T}%
+}
+
+\pubrow{2020}{%
+  Poley L., Sawyer C.\ et al.,
+  ``The ABC130 barrel module prototyping programme for the ATLAS strip tracker''\newline
+  \light{JINST \textbf{15} (2020) P09004}%
+}
+
+\pubrow{2020}{%
+  DUNE Collaboration,
+  ``Long-baseline neutrino oscillation physics potential of the DUNE experiment''\newline
+  \light{Eur.\ Phys.\ J.\ C \textbf{80} (2020) 978}%
+}
+
+\pubrow{2018}{%
+  ATLAS Collaboration,
+  ``Observation of Higgs boson production in association with a top quark pair at the LHC
+  with the ATLAS detector''\newline
+  \light{Phys.\ Lett.\ B \textbf{784} (2018) 173--191}%
+}
+
+\pubrow{2018}{%
+  ATLAS Collaboration,
+  ``Search for the SM Higgs boson produced in association with top quarks and decaying into
+  a $b\bar{b}$ pair in $pp$ collisions at $\sqrt{s}=13$\,TeV with the ATLAS detector''\newline
+  \light{Phys.\ Rev.\ D \textbf{97} (2018) 072016}%
+}
+
+\pubrow{2018}{%
+  Albertsson K.\ et al.,
+  ``Machine Learning in High Energy Physics Community White Paper''\newline
+  \light{\href{https://arxiv.org/abs/1807.02876}{arXiv:1807.02876} $\rightarrow$ FERMILAB-PUB-18-318-CD-DI-PPD}%
+}
+
+\pubrow{2017}{%
+  ATLAS Collaboration,
+  ``Technical Design Report for the ATLAS Inner Tracker Strip Detector''\newline
+  \light{CERN-LHCC-2017-005, ATLAS-TDR-025}%
+}
+
+\pubrow{2015}{%
+  ATLAS Collaboration,
+  ``Summary of the ATLAS experiment's sensitivity to supersymmetry after LHC Run\,1
+  --- interpreted in the phenomenological MSSM''\newline
+  \light{JHEP \textbf{10} (2015) 134}%
+}
+
+\pubrow{2015}{%
+  ATLAS Collaboration,
+  ``Search for direct pair production of a chargino and a neutralino decaying to the
+  125\,GeV Higgs boson in $\sqrt{s}=8$\,TeV $pp$ collisions with the ATLAS detector''\newline
+  \light{Eur.\ Phys.\ J.\ C \textbf{75} (2015) 208}%
+}
+
+\pubrow{2013}{%
+  ATLAS Collaboration,
+  ``Search for chargino and neutralino production in final states with one lepton, two
+  $b$-jets consistent with a Higgs boson, and missing transverse momentum with the ATLAS
+  detector in 20.3\,fb$^{-1}$ of $\sqrt{s}=8$\,TeV $pp$ collisions''\newline
+  \light{ATLAS-CONF-2013-093}%
+}
+
+\pubrow{2011}{%
+  Axen D.\ et al.,
+  ``Diamond detector irradiation tests at TRIUMF''\newline
+  \light{JINST \textbf{6} (2011) P05011}%
+}
+
+%------------------------------------------------------------
+\section{PROCEEDINGS}
+%------------------------------------------------------------
+\label{sec:proceedings}
+
+\pubrow{2025}{%
+  \textbf{David C.},
+  ``What is AI, what is it not, how we use it in physics and how it impacts\ldots you''\newline
+  \light{BCVSPIN 2024: Particle Physics and Cosmology in the Himalayas, Kathmandu, Nepal}\newline
+  \light{\href{https://arxiv.org/abs/2504.01827}{arXiv:2504.01827}}%
+}
+
+\pubrow{2024}{%
+  \textbf{David C.},
+  ``Statistics on participation of emerging and developing countries in LHC and other experiments''\newline
+  \light{PoS(LHCP2023) \textbf{450} (2024) 062; 
+  \href{https://doi.org/10.22323/1.450.0062}{doi:10.22323/1.450.0062}}%
+}
+
+\pubrow{2018}{%
+  \textbf{David C.},
+  ``A new strips tracker for the upgraded ATLAS ITk detector''\newline
+  \light{Proceedings of PSD11, JINST \textbf{13} (2018) C01003}%
+}
+
+\pubrow{2016}{%
+  \textbf{David C.},
+  ``Search for chargino and neutralino production with a Higgs boson in the decay chain
+  in one or three leptons final state events with ATLAS''\newline
+  \light{Nucl.\ Part.\ Phys.\ Proc.\ \textbf{273--275} (2016) 2400--2402}%
+}
+
+\pubrow{2014}{%
+  \textbf{David C.},
+  ``New ATLAS results in SUSY searches for 3\textsuperscript{rd} generation squarks
+  and electroweak production''\newline
+  \light{EPJ Web of Conferences \textbf{71} (2014) 00034}%
+}
+
+
+
+%------------------------------------------------------------
+\section{OTHER ACTIVITIES}
+%------------------------------------------------------------
+\label{sec:other}
+
+\h{Panels}
+
+\pubrow{2025}{%
+  \textbf{SA-CERN 15 Year Celebrations, iThemba LABS, South Africa}\newline
+  \light{Invited panelist: ``Fundamental Science for South African Development''}%
+}
+
+\pubrow{2023}{%
+  \textbf{Science \& Technology Week, Kinshasa, Congo DRC}\newline
+  \light{Invited panelist: ``Science and technology for sustainable development in Africa'' (in French)}%
+}
+
+\pubrow{2023}{%
+  \textbf{11\textsuperscript{th} Large Hadron Collider Physics Conference (LHCP), Belgrade, Serbia}\newline
+  \light{Invited panelist: ``Challenges for emerging countries to join/participate in LHC experiments''}%
+}
+
+\pubrow{2020}{%
+  \textbf{30\textsuperscript{th} International Linear Accelerator Conference (LINAC), Liverpool, UK (online)}\newline
+  \light{Invited panelist: ``Women in Science and Engineering: Should I stay or should I go now?''}%
+}
+
+\pubrow{2014}{%
+  \textbf{Screening of ``Particle Fever'', Vancouver International Film Festival, Canada}\newline
+  \light{Invited panelist with movie producer \& Prof.\ David Kaplan}%
+}
+
+\pubrow{2011}{%
+  \textbf{Emily Carr University of Art and Design, Vancouver, Canada}\newline
+  \light{Panel speaker: ``But $\hbar$? Particle Interactions in Physics and Arts: Artistic Transformation''}%
+}
+
+
+\h{Science Festivals \& Tours}
+
+\pubrow{2023}{%
+  \textbf{Village of Sciences, \'Ecole de la Gomb\'e, Kinshasa, Congo DRC}\newline
+  \light{Introduced CERN and ATLAS to 10,000+ high school students; trained selected learners as booth animators}%
+}
+
+\pubrow{2017}{%
+  \textbf{DESY Open Day (DESYDAY), Hamburg, Germany}\newline
+  \light{Organizer of ATLAS exhibition \& infrared camera booth; 20,000+ visitors}%
+}
+
+\pubrow{2015\,--\,2016}{%
+  \textbf{TRIUMF Tour Guide, Vancouver, Canada}\newline
+  \light{Monthly tours for high schools, graduate students and the general public}%
+}
+
+\pubrow{2014}{%
+  \textbf{ATLAS Masterclass, University of Victoria, Canada}\newline
+  \light{One-day hands-on for high-school students; invited talk: ``Data analysis with ATLAS at the LHC''; organized by VISPA}%
+}
+
+\pubrow{2013}{%
+  \textbf{TRIUMF Open House, Vancouver, Canada}\newline
+  \light{Volunteer at the ATLAS booth; 1,200+ visitors}%
+}
+
+\h{Online \& Media}
+
+\pubrow{2023}{%
+  \textbf{ATLAS Virtual Visit, ATLAS Control Room, CERN}\newline
+  \light{Lyc\'ee Liziba, Kinshasa, Congo DRC; girls' secondary school [\href{https://atlas.cern/Discover/Visit/Virtual-Visit/lycee-liziba}{atlas.cern}]}%
+}
+
+\pubrow{2023}{%
+  \textbf{ATLAS Virtual Visit, ATLAS Control Room, CERN}\newline
+  \light{Malaika School, Lubumbashi, Congo DRC; free education for 400+ girls [\href{https://atlas.cern/Discover/Visit/Virtual-Visit/malaika-malaikaorg}{atlas.cern}]}%
+}
+
+\pubrow{2021}{%
+  \textbf{Allan I.\ Carswell Observatory, York University, Canada}\newline
+  \light{TeleTube series: ``The Triumphant Discovery of the Higgs Boson at the Large Hadron Collider'' [\href{https://www.youtube.com/watch?v=Er1-N2NnPjc}{YouTube}]}%
+}
+
+\pubrow{2020}{%
+  \textbf{``The Drift'' series, Sanford Underground Research Facility, USA}\newline
+  \light{``What is so special about neutrinos?'' on SURF's YouTube channel [\href{https://www.youtube.com/watch?v=6ZWX1nMZqlI}{YouTube}]}%
+}
+
+\pubrow{2020}{%
+  \textbf{Neutrino Day, SURF's Free Science Festival (online)}\newline
+  \light{``DUNE scientists answer your questions'' [\href{https://www.youtube.com/watch?v=TF9mXxf3c30}{YouTube}]}%
+}
+
+\pubrow{2013}{%
+  \textbf{ATLAS Virtual Visit, ATLAS Control Room, CERN}\newline
+  \light{Europe Day Symposium, Vancouver; TELUS World of Science Celebration, Vancouver [\href{https://videos.cern.ch/record/1547080/embed}{video}]}%
+}
+
+
+\end{document}

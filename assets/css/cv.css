@@ -1,0 +1,277 @@
+/* CV page. Every rule is scoped under .cv so nothing leaks into Blowfish and
+   Blowfish cannot leak in, the same discipline as the map's .imap and the
+   gallery's .pgal.
+   Colours are taken from the theme's own neutral ramp rather than fixed hex,
+   so light and dark both follow the site with nothing to keep in step here.
+   Inter is self-hosted site-wide via assets/css/custom.css. */
+
+.cv {
+  --cv-ink: rgb(var(--color-neutral-700));
+  --cv-strong: rgb(var(--color-neutral-800));
+  --cv-muted: rgb(var(--color-neutral-500));
+  --cv-rule: rgb(var(--color-neutral-200));
+  --cv-nav: rgb(var(--color-neutral-500));
+  --cv-nav-on: rgb(var(--color-neutral-800));
+
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  color: var(--cv-ink);
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+/* Blowfish puts .dark on <html> and its appearance.js already folds
+   prefers-color-scheme into that class, so the class is the single source of
+   truth. A bare @media (prefers-color-scheme: dark) block is deliberately not
+   used: it would darken the page for a reader who picked light while their OS
+   was dark. */
+.dark .cv {
+  --cv-ink: rgb(var(--color-neutral-300));
+  --cv-strong: rgb(var(--color-neutral-100));
+  --cv-muted: rgb(var(--color-neutral-400));
+  --cv-rule: rgb(var(--color-neutral-700));
+  --cv-nav: rgb(var(--color-neutral-400));
+  --cv-nav-on: rgb(var(--color-neutral-100));
+}
+
+.cv * { box-sizing: border-box }
+
+/* The page sits inside Tailwind Typography's `prose`, which styles bare p, ul,
+   li, h2, h3 and a. Those are inbound leaks, so they are neutralised here
+   rather than relying on prose staying as it is. */
+.cv p, .cv ul, .cv li, .cv h2, .cv h3 { margin: 0; padding: 0 }
+.cv ul { list-style: none }
+
+/* ---- header ---- */
+
+/* The header sits inside .cv-right, so "centred" means centred on the content
+   column rather than on the whole page. */
+.cv-right { min-width: 0 }
+.cv-head { text-align: center; margin: 0 0 clamp(2rem, 5vh, 3.25rem) }
+
+.cv-print {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .7rem;
+  font-size: .98rem;      /* a label, not a headline */
+  color: var(--cv-strong);
+}
+
+.cv-pdf {
+  display: inline-flex;
+  color: var(--cv-muted);
+  text-decoration: none;
+  transition: color .15s ease, transform .15s ease;
+}
+
+.cv-pdf svg { width: 2.1rem; height: auto; display: block }
+
+.cv-pdf:hover { color: var(--cv-strong); transform: translateY(-1px) }
+
+.cv-pdf:focus-visible {
+  outline: 2px solid var(--cv-strong);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* Button, then a clear empty line, then the date. */
+/* p.cv-updated, not .cv-updated: the prose-guard reset above is .cv p,
+   which outranks a bare class, so a plain .cv-updated margin is silently
+   discarded. */
+.cv p.cv-updated { margin-top: 1.5rem; font-size: .78rem; color: var(--cv-muted) }
+
+/* ---- two columns ---- */
+
+.cv-body { display: grid; grid-template-columns: 1fr; gap: 0 }
+
+@media (min-width: 900px) {
+  .cv-body { grid-template-columns: 12.5rem minmax(0, 1fr); gap: 0 2.5rem }
+}
+
+/* Sticky rail. Only ever shown on desktop; the phone gets .cv-jump instead. */
+.cv-nav { display: none }
+
+@media (min-width: 900px) {
+  .cv-nav {
+    display: block;
+    position: sticky;
+    top: 4.25rem;
+    align-self: start;
+    max-height: calc(100vh - 7rem);
+    overflow-y: auto;
+  }
+  .cv-nav li { margin: 0 }
+  .cv-nav a {
+    display: block;
+    padding: .28rem 0;
+    font-size: .88rem;
+    line-height: 1.35;
+    color: var(--cv-nav);
+    text-decoration: none;
+    font-weight: 400;
+    /* Bold is the only active signal, deliberately no colour change. Reserving
+       the bold width up front stops the list reflowing as you scroll. */
+    transition: color .15s ease;
+  }
+  .cv-nav a::before {
+    content: attr(data-label);
+    display: block;
+    height: 0;
+    overflow: hidden;
+    font-weight: 700;
+    visibility: hidden;
+  }
+  .cv-nav a:hover { color: var(--cv-nav-on) }
+  .cv-nav a.is-current { font-weight: 700; color: var(--cv-nav-on) }
+}
+
+/* Phone: a disclosure above the content. */
+.cv-jump {
+  margin: 0 0 1.75rem;
+  border: 1px solid var(--cv-rule);
+  border-radius: 6px;
+  padding: .55rem .8rem;
+}
+
+.cv-jump summary {
+  cursor: pointer;
+  font-size: .9rem;
+  color: var(--cv-strong);
+  list-style: none;
+}
+
+.cv-jump summary::-webkit-details-marker { display: none }
+.cv-jump summary::after { content: " \25be"; color: var(--cv-muted) }
+.cv-jump[open] summary::after { content: " \25b4" }
+
+.cv-jump ul { margin-top: .6rem; columns: 2; column-gap: 1rem }
+.cv-jump li { break-inside: avoid }
+.cv-jump a {
+  display: block;
+  padding: .2rem 0;
+  font-size: .84rem;
+  color: var(--cv-ink);
+  text-decoration: none;
+}
+
+@media (min-width: 900px) { .cv-jump { display: none } }
+
+/* ---- content ---- */
+
+.cv-section { scroll-margin-top: 5rem }
+
+.cv-section + .cv-section { margin-top: clamp(2.25rem, 5vh, 3.25rem) }
+
+.cv-section h2 {
+  font-size: 1.16rem;
+  font-weight: 600;
+  letter-spacing: .01em;
+  color: var(--cv-strong);
+  padding-bottom: .4rem;
+  border-bottom: 1px solid var(--cv-rule);
+  margin-bottom: 1.1rem;
+}
+
+.cv-section h3 {
+  font-size: .95rem;
+  font-weight: 600;
+  color: var(--cv-strong);
+  margin: 1.5rem 0 .7rem;
+}
+
+.cv-section h3:first-of-type { margin-top: 0 }
+
+/* Entry: date rail on the left, content on the right, with a hairline between,
+   mirroring the printed CV's two-column rows. */
+.cv-entry {
+  display: grid;
+  grid-template-columns: 6.5rem minmax(0, 1fr);
+  gap: 0 1rem;
+  padding: 0 0 .95rem;
+}
+
+/* align-self defaults to stretch, so the cell fills the row and its right
+   border runs the full height of the entry. Centring happens inside the cell
+   with justify-content, so the full-height rule and the centred year are not
+   in competition: the earlier align-self:center shrank the cell to its text
+   and took the rule down with it. */
+.cv-date {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;    /* year pair centred against the whole entry */
+  align-items: center;        /* and centred across the column, no ragged edge */
+  font-size: .8rem;
+  line-height: 1.45;
+  color: var(--cv-muted);
+  padding-right: 1rem;
+  border-right: 1px solid var(--cv-rule);
+}
+
+.cv-year { text-align: center; white-space: nowrap }
+
+/* Durations read as a note under the year, so they are smaller, quieter and
+   centred in the column rather than hanging off the rule. */
+.cv-dur {
+  text-align: center;
+  font-size: .72rem;
+  opacity: .8;
+  margin-top: .1rem;
+  white-space: nowrap;
+}
+
+.cv-text { font-size: .9rem; line-height: 1.55 }
+.cv-text p { margin: 0 0 .18rem }
+.cv-text p:last-child { margin-bottom: 0 }
+.cv-text strong { color: var(--cv-strong); font-weight: 600 }
+
+.cv-muted { color: var(--cv-muted) }
+
+/* Postdoc / MSc / PhD. Ink and border both follow the text colour, so the tag
+   is navy on light and near-white on dark instead of fading into the page. */
+.cv-tag {
+  display: inline-block;
+  font-size: .74rem;
+  padding: .04rem .38rem;
+  border: 1px solid currentColor;
+  border-radius: 3px;
+  color: var(--cv-strong);
+  font-weight: 500;
+}
+
+.cv a[href] {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--cv-rule);
+}
+
+.cv a[href]:hover { text-decoration-color: currentColor }
+
+@media (max-width: 599px) {
+  /* Stack the date above its entry: 6.5rem of rail is too much of a narrow
+     screen, and the hairline reads as clutter at that width. */
+  .cv-entry { grid-template-columns: 1fr; gap: .15rem }
+  .cv-date {
+    flex-direction: row;
+    gap: .4rem;
+    align-self: start;
+    padding-right: 0;
+    border-right: 0;
+    font-size: .76rem;
+  }
+  .cv-date { align-items: flex-start; justify-content: flex-start }
+  .cv-year, .cv-dur { text-align: left }
+  .cv-dur { margin-top: 0 }
+}
+
+/* The "CV" page title sits closer to the content than on the other tabs. This
+   page opens with a nav rail rather than prose, so the shared gap set in
+   custom.css reads as a hole above it. Exactly half that value.
+   :has() keeps this to the CV page even though cv.css is only ever loaded by
+   the cv shortcode in the first place. */
+#main-content > article.max-w-full > header + section:has(.cv) {
+  /* Midway between the shared gap in custom.css, clamp(1.75rem, 4.5vh, 3rem),
+     and the halved value that turned out to sit too high. */
+  margin-top: clamp(1.3rem, 3.375vh, 2.25rem);
+}
