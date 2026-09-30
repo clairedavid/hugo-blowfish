@@ -43,14 +43,17 @@
 
 /* ---- header ---- */
 
+/* The header sits inside .cv-right, so "centred" means centred on the content
+   column rather than on the whole page. */
+.cv-right { min-width: 0 }
 .cv-head { text-align: center; margin: 0 0 clamp(2rem, 5vh, 3.25rem) }
 
 .cv-print {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: .75rem;
-  font-size: 1.15rem;
+  gap: .7rem;
+  font-size: .98rem;      /* a label, not a headline */
   color: var(--cv-strong);
 }
 
@@ -71,7 +74,8 @@
   border-radius: 3px;
 }
 
-.cv-updated { margin-top: .55rem; font-size: .82rem; color: var(--cv-muted) }
+/* A blank line's worth of air above it, and a touch larger than before. */
+.cv-updated { margin-top: 1.5rem; font-size: .9rem; color: var(--cv-muted) }
 
 /* ---- two columns ---- */
 
@@ -88,7 +92,7 @@
   .cv-nav {
     display: block;
     position: sticky;
-    top: 5.5rem;
+    top: 4.25rem;
     align-self: start;
     max-height: calc(100vh - 7rem);
     overflow-y: auto;
@@ -184,13 +188,25 @@
 }
 
 .cv-date {
+  display: flex;
+  flex-direction: column;
+  align-self: center;         /* the year sits against the middle of its entry */
   font-size: .8rem;
   line-height: 1.45;
   color: var(--cv-muted);
-  text-align: right;
   padding-right: 1rem;
   border-right: 1px solid var(--cv-rule);
-  padding-top: .1rem;
+}
+
+.cv-year { text-align: right; white-space: nowrap }
+
+/* Durations read as a note under the year, so they are smaller, quieter and
+   centred in the column rather than hanging off the rule. */
+.cv-dur {
+  text-align: center;
+  font-size: .72rem;
+  opacity: .8;
+  margin-top: .1rem;
 }
 
 .cv-text { font-size: .9rem; line-height: 1.55 }
@@ -200,13 +216,16 @@
 
 .cv-muted { color: var(--cv-muted) }
 
+/* Postdoc / MSc / PhD. Ink and border both follow the text colour, so the tag
+   is navy on light and near-white on dark instead of fading into the page. */
 .cv-tag {
   display: inline-block;
   font-size: .74rem;
   padding: .04rem .38rem;
-  border: 1px solid var(--cv-rule);
+  border: 1px solid currentColor;
   border-radius: 3px;
-  color: var(--cv-muted);
+  color: var(--cv-strong);
+  font-weight: 500;
 }
 
 .cv a[href] {
@@ -224,9 +243,22 @@
      screen, and the hairline reads as clutter at that width. */
   .cv-entry { grid-template-columns: 1fr; gap: .15rem }
   .cv-date {
-    text-align: left;
+    flex-direction: row;
+    gap: .4rem;
+    align-self: start;
     padding-right: 0;
     border-right: 0;
     font-size: .76rem;
   }
+  .cv-year, .cv-dur { text-align: left }
+  .cv-dur { margin-top: 0 }
+}
+
+/* The "CV" page title sits closer to the content than on the other tabs. This
+   page opens with a nav rail rather than prose, so the shared gap set in
+   custom.css reads as a hole above it. Exactly half that value.
+   :has() keeps this to the CV page even though cv.css is only ever loaded by
+   the cv shortcode in the first place. */
+#main-content > article.max-w-full > header + section:has(.cv) {
+  margin-top: clamp(.875rem, 2.25vh, 1.5rem);
 }

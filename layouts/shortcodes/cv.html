@@ -38,29 +38,6 @@
 <link rel="stylesheet" href="{{ $css.RelPermalink }}">
 <div class="cv" id="cv">
 
-  <header class="cv-head">
-    <p class="cv-print">
-      <span>Printable version:</span>
-      <a class="cv-pdf" href="{{ $pdf.RelPermalink }}" download
-         aria-label="Download the CV as PDF">
-        {{- /* Sober sheet with a folded corner and PDF set inside it.
-             currentColor throughout, so it follows the page in both themes. */ -}}
-        <svg viewBox="0 0 48 60" role="img" aria-hidden="true" focusable="false">
-          <path d="M5 2h26l12 12v44a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"
-                fill="none" stroke="currentColor" stroke-width="3"
-                stroke-linejoin="round"/>
-          <path d="M31 2v12h12" fill="none" stroke="currentColor" stroke-width="3"
-                stroke-linejoin="round"/>
-          <text x="23" y="43" text-anchor="middle" font-size="16"
-                font-weight="700" fill="currentColor"
-                font-family="Inter, ui-sans-serif, system-ui, sans-serif">PDF</text>
-        </svg>
-      </a>
-    </p>
-    {{- with $updated }}
-    <p class="cv-updated">Last updated: {{ . }}</p>
-    {{- end }}
-  </header>
 
   <div class="cv-body">
     {{- /* Mobile: the same list, collapsed into a disclosure above the content.
@@ -82,16 +59,43 @@
       </ul>
     </nav>
 
+    <div class="cv-right">
+    <header class="cv-head">
+      <p class="cv-print">
+        <span>Download</span>
+        <a class="cv-pdf" href="{{ $pdf.RelPermalink }}" download target="_blank" rel="noopener"
+           aria-label="Download the CV as PDF">
+          {{- /* Sober sheet with a folded corner and PDF set inside it.
+               currentColor throughout, so it follows the page in both themes. */ -}}
+          <svg viewBox="0 0 48 60" role="img" aria-hidden="true" focusable="false">
+            <path d="M5 2h26l12 12v44a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"
+                  fill="none" stroke="currentColor" stroke-width="3"
+                  stroke-linejoin="round"/>
+            <path d="M31 2v12h12" fill="none" stroke="currentColor" stroke-width="3"
+                  stroke-linejoin="round"/>
+            <text x="23" y="43" text-anchor="middle" font-size="16"
+                  font-weight="700" fill="currentColor"
+                  font-family="Inter, ui-sans-serif, system-ui, sans-serif">PDF</text>
+          </svg>
+        </a>
+      </p>
+      {{- with $updated }}
+      <p class="cv-updated">Last updated: {{ . }}</p>
+      {{- end }}
+    </header>
     <div class="cv-main">
       {{- range $sections }}
       <section class="cv-section" id="cv-{{ .id }}">
         <h2>{{ .title }}</h2>
         {{- range .groups }}
-        {{- with .heading }}<h3>{{ . }}</h3>{{ end }}
+        {{- with .heading }}<h3>{{ . | safeHTML }}</h3>{{ end }}
         <div class="cv-entries">
           {{- range .entries }}
           <div class="cv-entry">
-            <div class="cv-date">{{ .date | safeHTML }}</div>
+            <div class="cv-date">
+              <span class="cv-year">{{ .date | safeHTML }}</span>
+              {{- with .duration }}<span class="cv-dur">({{ . | safeHTML }})</span>{{ end }}
+            </div>
             <div class="cv-text">
               {{- range .lines }}<p>{{ . | safeHTML }}</p>{{ end }}
             </div>
@@ -101,6 +105,7 @@
         {{- end }}
       </section>
       {{- end }}
+      </div>
     </div>
   </div>
 </div>

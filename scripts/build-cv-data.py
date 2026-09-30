@@ -23,6 +23,7 @@ import json
 import pathlib
 import re
 import sys
+import unicodedata
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 TEX = ROOT / "cv-source" / "CV_Claire_David.tex"
@@ -39,7 +40,7 @@ TITLES = [
     ("ENGINEERING EXPERIENCE", "Engineering Experience"),
     ("RESEARCH SUPERVISION", "Research Supervision"),
     ("TEACHING EXPERIENCE", "Teaching Experience"),
-    ("STUDENT MENTORING & PLACEMENT", "Student Mentoring & Placement"),
+    ("STUDENT PLACEMENT", "Student Placement"),
     ("ACADEMIC SERVICE", "Academic Service"),
     ("GRANTS & AWARDS", "Grants & Awards"),
     ("PRESENTATIONS", "Presentations"),
@@ -48,12 +49,31 @@ TITLES = [
     ("OTHER ACTIVITIES", "Other Activities"),
 ]
 
-ACCENTS = {
-    r'\"a': "ä", r'\"o': "ö", r'\"u': "ü", r'\"A': "Ä", r'\"O': "Ö", r'\"U': "Ü",
-    r"\'e": "é", r"\'E": "É", r"\'a": "á", r"\'o": "ó", r"\'i": "í", r"\'c": "ć",
-    r"\`e": "è", r"\`a": "à", r"\^e": "ê", r"\^o": "ô", r"\^i": "î", r"\~n": "ñ",
-    r"\c{c}": "ç", r"\ss": "ß",
+# LaTeX accents map onto combining marks, then NFC composes them: \^a -> â.
+# Handled generally rather than as a lookup table, so an accent that has not
+# appeared in the CV before still comes out right.
+ACCENT_COMB = {
+    "'": "\u0301", "`": "\u0300", "^": "\u0302", '"': "\u0308",
+    "~": "\u0303", "=": "\u0304", ".": "\u0307",
+    "u": "\u0306", "v": "\u030c", "H": "\u030b",
+    "c": "\u0327", "k": "\u0328", "d": "\u0323", "b": "\u0331", "r": "\u030a",
 }
+LIGATURES = {r"\ss": "\u00df", r"\ae": "\u00e6", r"\oe": "\u0153",
+             r"\o": "\u00f8", r"\l": "\u0142", r"\aa": "\u00e5"}
+
+
+def accents(s):
+    def rep(m):
+        comb = ACCENT_COMB.get(m.group(1))
+        return unicodedata.normalize("NFC", m.group(2) + comb) if comb else m.group(2)
+    # symbol accents are safe unbraced: those characters never start a command
+    s = re.sub(r"\\(['`^\"~=.])\s*\{([A-Za-z])\}", rep, s)
+    s = re.sub(r"\\(['`^\"~=.])\s*([A-Za-z])", rep, s)
+    # letter accents only in braced form, or they would eat \usepackage etc.
+    s = re.sub(r"\\([uvHckdbr])\s*\{([A-Za-z])\}", rep, s)
+    for k, v in LIGATURES.items():
+        s = re.sub(re.escape(k) + r"(?![a-zA-Z])", v, s)
+    return s
 
 
 def strip_comments(text):
@@ -159,8 +179,8 @@ def inline(tex):
         return "".join(out)
 
     # links first, so their text is not mangled
-    s = repl_cmd(s, "href", (2, lambda u, t: f'<a href="{u}" rel="noopener">{t}</a>'))
-    s = repl_cmd(s, "url", (1, lambda u: f'<a href="{u}" rel="noopener">{u}</a>'))
+    s = repl_cmd(s, "href", (2, lambda u, t: f'<a href="{u}" target="_blank" rel="noopener">{t}</a>'))
+    s = repl_cmd(s, "url", (1, lambda u: f'<a href="{u}" target="_blank" rel="noopener">{u}</a>'))
     s = repl_cmd(s, "textbf", (1, lambda t: f"<strong>{t}</strong>"))
     s = repl_cmd(s, "textit", (1, lambda t: f"<em>{t}</em>"))
     s = repl_cmd(s, "emph", (1, lambda t: f"<em>{t}</em>"))
@@ -181,10 +201,9 @@ def inline(tex):
     s = re.sub(r"\\label\{[^}]*\}", "", s)
 
     s = s.replace(r"\tdot", " &middot; ")
-    s = s.replace(r"\,--\,", "\u2013").replace(r"\,-\,", "\u2013")
+    s = s.replace(r"\,--\,", "\u2009\u2013\u2009").replace(r"\,-\,", "\u2009\u2013\u2009")
     s = s.replace("---", "\u2013").replace("--", "\u2013")   # never an em dash
-    for k, v in ACCENTS.items():
-        s = s.replace(k, v)
+    s = accents(s)
     s = s.replace(r"\&", "&amp;").replace(r"\%", "%").replace(r"\_", "_")
     s = s.replace(r"\#", "#").replace(r"\$", "$")
     s = s.replace("~", "\u00a0")
@@ -221,9 +240,36 @@ def parse_blocks(body):
             break
         args, end = read_args(body, m.end(), 2)
         date_raw, content = args
-        entries.append({"date": inline(date_raw), "lines": split_lines(content)})
+        entry = {"date": "", "duration": "", "lines": split_lines(content)}
+        # \datemonths{2010}{5 months} is a year with a duration under it. Kept
+        # as two fields so the page can centre the year and set the duration on
+        # its own line, rather than running them together as "20105 months".
+        dm = re.match(r"\s*\\datemonths\s*\{", date_raw)
+        if dm:
+            parts, _ = read_args(date_raw, dm.end() - 1, 2)
+            entry["date"] = inline(parts[0])
+            entry["duration"] = inline(parts[1])
+        else:
+            entry["date"] = inline(date_raw)
+        entries.append(entry)
         i = end
     return entries
+
+
+def cap_first(html_frag):
+    """Upper-case the first visible character of an HTML fragment."""
+    m = re.search(r">?([^<>])", html_frag)
+    for i, ch in enumerate(html_frag):
+        if ch == "<":
+            j = html_frag.find(">", i)
+            if j == -1:
+                break
+            continue
+        if ch.isalpha():
+            return html_frag[:i] + ch.upper() + html_frag[i + 1:]
+        if ch not in " \t":
+            break
+    return html_frag
 
 
 def parse_skills(body):
@@ -241,7 +287,11 @@ def parse_skills(body):
         rest = re.sub(r"\\\\\[[^\]]*\]", "", rest)
         val = inline(rest)
         if label and val:
-            entries.append({"date": label, "lines": [val]})
+            # Online CV only: the .tex reads "Communication: university-level
+            # ..." inline, which needs no capital; as a standalone cell it does.
+            # First character only, so "AI", "C++" and the rest are untouched.
+            val = cap_first(val)
+            entries.append({"date": label, "duration": "", "lines": [val]})
     return entries
 
 
