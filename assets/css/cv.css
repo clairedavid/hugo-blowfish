@@ -75,7 +75,7 @@
 }
 
 /* Button, then a clear empty line, then the date. */
-.cv-updated { margin-top: 2.75rem; font-size: .78rem; color: var(--cv-muted) }
+.cv-updated { margin-top: 4.25rem; font-size: .78rem; color: var(--cv-muted) }
 
 /* ---- two columns ---- */
 
