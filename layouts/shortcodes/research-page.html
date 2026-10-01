@@ -39,7 +39,10 @@
 <div class="res" id="res-page">
   <div class="res-page">
 
-    <a class="res-back-top" href="{{ $researchURL }}">&larr; Back</a>
+    {{- /* The top "Back" link lives in layouts/research/simple.html, before
+         the <h1>: a shortcode's output always lands inside .Content, after
+         the theme's header block, so it can never reach above the title on
+         its own. */}}
 
     {{- /* Banner: a single pre-composed image when banner.single is set (the
          <slug>-banner.* override, see build-research-data.py), otherwise the
@@ -100,18 +103,26 @@
               {{- partial "research/picture.html" (dict
                     "slug" $slug "stem" .image "alt" .name) }}
               <div class="res-team-name">{{ .name }}</div>
-              {{- with .affiliation }}<div class="res-team-affiliation">{{ . }}</div>{{ end }}
+              {{- range .lines }}<div class="res-team-affiliation">{{ . }}</div>{{ end }}
             </div>
             {{- end }}
           </div>
         </div>
         {{- end }}
         {{- with $project.panel.links }}
-        <div class="res-panel-block">
+        <div class="res-panel-block res-panel-block-links">
           <h3>Links</h3>
           <div class="res-links">
             {{- range . }}
+            {{- if eq .kind "inline" }}
+            <div class="res-links-line">
+              {{- range .segments }}
+                {{- if .url }}<a href="{{ .url }}" target="_blank" rel="noopener">{{ .text }}</a>{{- else }}{{ .text }}{{- end }}
+              {{- end }}
+            </div>
+            {{- else }}
             <a href="{{ .url }}" target="_blank" rel="noopener">{{ .label }}</a>
+            {{- end }}
             {{- end }}
           </div>
         </div>

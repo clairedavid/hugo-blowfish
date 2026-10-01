@@ -45,7 +45,8 @@
    relying on prose staying as it is, the same guard every other widget on
    this site carries. */
 .res p, .res ul, .res li, .res h2, .res h3, .res hr,
-.res blockquote, .res figure, .res figcaption { margin: 0; padding: 0 }
+.res blockquote, .res figure, .res figcaption, .res img,
+.res picture { margin: 0; padding: 0 }
 .res ul { list-style: none }
 .res a { color: inherit; text-decoration: none }
 
@@ -165,7 +166,10 @@
 
 /* ---- card page: banner -------------------------------------------------- */
 
-.res-page { margin-top: .5rem }
+/* No margin of its own: the theme's section wrapper already gives 1.5rem
+   (mt-6) between the title and whatever comes first here, which is exactly
+   the gap the title-to-banner spacing calls for. */
+.res-page { margin-top: 0 }
 
 /* Every figure, banner images included, sits on the same card: a thin
    border, rounded corners, small padding, and a background that stays white
@@ -213,23 +217,19 @@
 }
 
 /* A single pre-composed banner (the <slug>-banner.* override): one image,
-   no card, no padding, nothing cropped. Its width matches the combined
-   width of the left panel and the text column below (220px + 2.5rem gap +
-   700px = 960px, see .res-panel/.res-body/.res-text), so its left and right
-   edges line up with that row exactly instead of spanning the wider .res-page
-   container; below the row breakpoint it matches .res-text's own 700px cap,
-   since panel and text are stacked there and there is no row to align to. */
+   no card, no padding, nothing cropped. Full width of .res-page, which
+   already matches the site header's own left/right edges exactly (measured:
+   both are capped only by the theme's body-level max-w-7xl, nothing
+   narrower in between), so the banner needs no width cap of its own to line
+   up with the header; it just needs to fill its container. .res-body below
+   fills that same width too, so the two align without any extra alignment
+   rule tying them together. */
 .res-banner-single {
   display: block;
   width: 100%;
-  max-width: 700px;
   height: auto;
   border: 1.5px solid var(--res-card-border);
   border-radius: 10px;
-}
-
-@media (min-width: 900px) {
-  .res-banner-single { max-width: 960px }
 }
 
 /* research/picture.html wraps the img in <picture> when a WebP sibling
@@ -257,24 +257,44 @@
   gap: 1.75rem;
 }
 
+/* Panel 260px, text capped at 820px, and the gap between them (48px
+   minimum) takes whatever width is left over: a grid with the gap as its
+   own middle column, rather than a fixed flex gap, is what lets that middle
+   column actually grow instead of just the fixed 48px. On this site the row
+   never gets wider than the header's own ~1024px content box, so the text
+   column does not reach its 820px cap here, and the extra goes to the gap
+   column, exactly as wide as it would need to be either way. */
 @media (min-width: 900px) {
-  .res-body { flex-direction: row; align-items: flex-start; gap: 2.5rem }
+  .res-body {
+    display: grid;
+    grid-template-columns: 260px minmax(48px, 1fr) minmax(0, 820px);
+    align-items: start;
+    gap: 0;
+  }
 }
 
+/* No flex gap here: each .res-panel-block sets its own margin-top instead,
+   since the Links block needs a larger one than the rest (see below). */
 .res-panel {
   display: flex;
   flex-direction: column;
-  gap: 1.3rem;
   font-size: .85rem;
 }
 
 @media (min-width: 900px) {
   .res-panel {
-    flex: 0 0 220px;
+    grid-column: 1;
     position: sticky;
     top: 5.5rem;
   }
 }
+
+/* Each block gets its own top margin instead of a shared flex gap, since
+   Links needs a bigger one than the rest; :first-child cancels it so the
+   first label is not pushed down from the top of the panel. */
+.res-panel-block { margin-top: 1.75rem }
+.res-panel-block:first-child { margin-top: 0 }
+.res-panel-block-links { margin-top: 2.5rem }
 
 .res-panel-block h3 {
   font-size: .72rem;
@@ -287,7 +307,7 @@
 
 .res-panel-value { color: var(--res-ink); line-height: 1.4 }
 
-.res-team { display: flex; flex-direction: column; gap: 1.25rem }
+.res-team { display: flex; flex-direction: column; gap: 1.5rem }
 
 /* Each member centred in the panel column: portrait, then name, then
    affiliation, no separators between members. The three parts need
@@ -302,8 +322,8 @@
 }
 
 .res-team-member img {
-  width: 56px;
-  height: 56px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   object-fit: cover;
   border: 1px solid var(--res-border);
@@ -314,7 +334,9 @@
 
 .res-links { display: flex; flex-direction: column; gap: .5rem }
 
-/* Label only: the URL is the href, never shown as text. */
+/* Label only: the URL is the href, never shown as text. Covers both the
+   plain "label | url" row and an inline [text](url) line's own <a>, so only
+   the bracketed words are underlined and the surrounding prose is not. */
 .res-links a {
   font-size: .82rem;
   text-decoration: underline;
@@ -324,13 +346,19 @@
 
 .res-links a:hover { text-decoration-color: currentColor }
 
+.res-links-line { font-size: .82rem; line-height: 1.5; color: var(--res-body) }
+
 /* ---- card page: text column ---------------------------------------------- */
 
 .res-text {
   min-width: 0;
-  max-width: 700px;
+  max-width: 820px;
   font-size: .97rem;
   line-height: 1.65;
+}
+
+@media (min-width: 900px) {
+  .res-body > .res-text { grid-column: 3 }
 }
 
 .res-text p { margin: 0 0 1.1rem }
@@ -389,7 +417,7 @@
   justify-content: space-between;
   gap: 1rem;
   cursor: pointer;
-  font-size: .88rem;
+  font-size: 1.2rem;
   font-weight: 600;
   color: var(--res-ink);
   list-style: none;
@@ -397,16 +425,16 @@
 
 .res-technical summary::-webkit-details-marker { display: none }
 
-/* A drawn triangle rather than a text glyph, so "about 20px wide" is exact
-   rather than a font-size guess, and it rotates cleanly in place. */
+/* A drawn triangle rather than a text glyph, so the width is exact rather
+   than a font-size guess, and it rotates cleanly in place. */
 .res-technical summary::after {
   content: "";
   flex: 0 0 auto;
   width: 0;
   height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-top: 11px solid var(--res-muted);
+  border-left: 6.5px solid transparent;
+  border-right: 6.5px solid transparent;
+  border-top: 7px solid var(--res-muted);
   transition: transform .15s ease;
 }
 
@@ -416,14 +444,36 @@
 
 /* ---- back links ---------------------------------------------------------- */
 
-.res-back-top {
+/* custom.css gives every "simple"-layout page a responsive clamp() for the
+   space above its <h1> and between the h1 and its content (deliberately
+   wider than the theme's own 1.5rem default, see custom.css itself). That
+   is the right call for a bare title, but here it stacks with .res-back-top's
+   own margin and leaves .res-back-top sitting much further from the nav
+   than its own "about 1.5rem" asks for. Both scoped to pages that actually
+   have a .res-back-top, so every other "simple" page (About, CV, Contact,
+   the research overview) keeps its existing spacing untouched. */
+#main-content > article.max-w-full > header:has(.res-back-top) {
+  padding-top: 0;
+}
+
+#main-content > article.max-w-full > header:has(.res-back-top) + section {
+  margin-top: 1.5rem;
+}
+
+/* .res-back-top carries class="res" on itself (see layouts/research/simple.html):
+   it sits in the theme's own header, above and outside #res-page, so it is
+   not a descendant of any other .res element and needs its own local scope
+   for the --res-muted custom property. Its selector is the compound
+   .res.res-back-top, not the plain class, so it reliably beats the
+   generic ".res a { color: inherit }" reset regardless of source order. */
+.res.res-back-top {
   display: inline-block;
-  margin: 1rem 0 1.5rem;
+  margin: 1.5rem 0;
   font-size: .85rem;
   color: var(--res-muted);
 }
 
-.res-back-top:hover { color: var(--res-ink) }
+.res.res-back-top:hover { color: var(--res-ink) }
 
 .res-back-bottom {
   margin: 3rem 0;

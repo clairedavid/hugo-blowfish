@@ -1,0 +1,36 @@
+{{- /* Project-root override of themes/blowfish/layouts/_default/simple.html,
+     scoped to the research section only (Hugo checks layouts/research/simple.html
+     before layouts/_default/simple.html for any research page, since both
+     carry front matter layout: "simple"). The only change: a "Back" link
+     rendered before the <h1>, which a shortcode can never do on its own,
+     since a shortcode's output always lands inside .Content, after the
+     theme's own header block.
+
+     The research overview (content/research/_index.md) uses this same
+     layout and section, so it would get the back-link too without the
+     $isOverview guard below; that page is approved and must render exactly
+     as the theme default, hence the guard rather than a second file. */ -}}
+{{ define "main" }}
+  <article class="max-w-full">
+    <header>
+      {{ if .Params.showBreadcrumbs | default (.Site.Params.article.showBreadcrumbs | default false) }}
+        {{ partial "breadcrumbs.html" . }}
+      {{ end }}
+      {{- $researchURL := (site.GetPage "/research").RelPermalink -}}
+      {{- $isOverview := eq .RelPermalink $researchURL -}}
+      {{- if not $isOverview }}
+      <a class="res res-back-top" href="{{ $researchURL }}">&larr; Back</a>
+      {{- end }}
+      <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        {{ .Title | emojify }}
+      </h1>
+    </header>
+    <section class="max-w-full mt-6 prose dark:prose-invert">
+      {{ .Content }}
+    </section>
+    <footer class="pt-8 print:hidden">
+      {{ partial "sharing-links.html" . }}
+      {{ partial "article-comments.html" . }}
+    </footer>
+  </article>
+{{ end }}

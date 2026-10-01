@@ -175,16 +175,60 @@ def parse_banner(body, slug, converted_dir):
     }
 
 
+INLINE_LINK_RE = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
+
+
+def parse_links_lines(body):
+    """Lines after "Links:", in one of two forms: the old "label | url" row
+    (parse_pipe_rows' own format), or prose containing one or more inline
+    [text](url) links, where only the bracketed text is ever clickable and
+    the url itself is never shown. Which form a line is in is decided by
+    whether it contains that [..](..) syntax, not by the presence of a pipe,
+    since an inline-link line has no pipe either. Returns a list of
+    {"kind": "plain", "label", "url"} or {"kind": "inline", "segments": [...]}."""
+    lines = body.split("\n")
+    try:
+        start = next(i for i, l in enumerate(lines) if l.strip().startswith("Links:"))
+    except StopIteration:
+        return []
+    first = lines[start].split(":", 1)[1].strip()
+    raw = [first] if first else []
+    for l in lines[start + 1:]:
+        if re.match(r"^[A-Za-z ]+:\s*", l) and "|" not in l and not INLINE_LINK_RE.search(l):
+            break
+        if l.strip():
+            raw.append(l.strip())
+    raw = [r for r in raw if r]
+    if len(raw) == 1 and EMPTY_MARKERS.match(raw[0]):
+        return []
+
+    out = []
+    for line in raw:
+        if INLINE_LINK_RE.search(line):
+            segments = []
+            pos = 0
+            for m in INLINE_LINK_RE.finditer(line):
+                if m.start() > pos:
+                    segments.append({"text": line[pos:m.start()], "url": ""})
+                segments.append({"text": m.group(1), "url": m.group(2)})
+                pos = m.end()
+            if pos < len(line):
+                segments.append({"text": line[pos:], "url": ""})
+            out.append({"kind": "inline", "segments": segments})
+        else:
+            parts = [p.strip() for p in line.split("|")]
+            out.append({"kind": "plain", "label": parts[0], "url": parts[1] if len(parts) > 1 else ""})
+    return out
+
+
 def parse_panel(body, card):
     kv = parse_kv(body)
     team = [
-        {"image": stem(r[0]), "name": r[1], "affiliation": r[2] if len(r) > 2 else ""}
+        {"image": stem(r[0]), "name": r[1],
+         "lines": [p.strip() for p in r[2].split(" · ")] if len(r) > 2 and r[2].strip() else []}
         for r in parse_pipe_rows(body, "Team")
     ]
-    links = [
-        {"label": r[0], "url": r[1] if len(r) > 1 else ""}
-        for r in parse_pipe_rows(body, "Links")
-    ]
+    links = parse_links_lines(body)
     return {
         "role": kv.get("Role", ""),
         # Years/Status fall back to the CARD's own, when the panel does not

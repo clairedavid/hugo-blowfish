@@ -27,16 +27,21 @@
               {
                 "image": "harrison_circle",
                 "name": "Prof. Harrison B. Prosper",
-                "affiliation": "Florida State University"
+                "lines": [
+                  "Florida State University"
+                ]
               },
               {
                 "image": "tlotlo_circle",
                 "name": "Tlotlo Openg",
-                "affiliation": "2023–24 AI for Science AIMS alumnus"
+                "lines": [
+                  "2023–24 AI for Science AIMS alumnus"
+                ]
               }
             ],
             "links": [
               {
+                "kind": "plain",
                 "label": "Submitted to the Machine Learning for Physical Sciences (ML4PS) workshop",
                 "url": "https://ml4physicalsciences.github.io/2026/"
               }
@@ -70,12 +75,18 @@
               {
                 "image": "raktim_circle",
                 "name": "Raktim Mukherjee",
-                "affiliation": "Research intern, AIMS South Africa · Heidelberg University"
+                "lines": [
+                  "Research intern, AIMS South Africa",
+                  "Heidelberg University"
+                ]
               },
               {
                 "image": "harrison_circle",
                 "name": "Prof. Harrison Prosper",
-                "affiliation": "Co-supervisor (remote) · Florida State University"
+                "lines": [
+                  "Co-supervisor (remote)",
+                  "Florida State University"
+                ]
               }
             ],
             "links": []
