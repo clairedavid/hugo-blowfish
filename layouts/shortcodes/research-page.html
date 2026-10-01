@@ -1,0 +1,119 @@
+{{- /* One research project page, /research/<slug>/. Usage:
+         {{< research-page slug="pinn" >}}
+     Data: data/research.json (see research-overview.html for how it is
+       built). TEXT and TECHNICAL are stored as raw markdown and rendered
+       here with Hugo's own markdownify, rather than pre-rendered in Python:
+       the source already reads as markdown (paragraphs, *emphasis*, a
+       > quote), so re-parsing it in the build script would just be a worse
+       copy of Goldmark, and markdownify already honours this project's own
+       markup.toml (passthrough, unsafe HTML) the same as ordinary content.
+     Maths: loaded only on pages where has_math is true. The katex marker
+       shortcode that triggers it has to live in the page's own markdown, not
+       here: Blowfish's vendor.html keys its conditional CSS/JS injection off
+       .Page.HasShortcode "katex", and shortcode syntax is only recognised by
+       the markdown parser, never from inside another shortcode's own
+       template. So scripts/build-research-data.py writes that marker
+       straight into content/research/<slug>/_index.md when has_math is true;
+       see assets/js/katex-render.js at the project root for the
+       one-delimiter fix this also needs. */ -}}
+
+{{- $slug := .Get "slug" -}}
+{{- if not $slug -}}{{- errorf "research-page: slug is required" -}}{{- end -}}
+
+{{- $css := resources.Get "css/research.css" | minify | fingerprint -}}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}">
+
+{{- $project := "" -}}
+{{- range (index hugo.Data.research "themes") -}}
+  {{- range .projects -}}
+    {{- if eq .slug $slug -}}{{- $project = . -}}{{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- if not $project -}}{{- errorf "research-page: no project with slug %q in data/research.json" $slug -}}{{- end -}}
+
+<div class="res" id="res-page">
+  <div class="res-page">
+
+    {{- /* Banner: same height row, stacked on phones, each image on its own
+         white figure card. */}}
+    <div class="res-banner">
+      {{- range $project.banner.images }}
+      <div class="res-figure-card">
+        {{- partial "research/picture.html" (dict
+              "slug" $slug "stem" . "alt" $project.page_heading) }}
+      </div>
+      {{- end }}
+    </div>
+
+    {{- with $project.figures }}
+    <div class="res-figures">
+      {{- range . }}
+      <div class="res-figure-card">
+        {{- partial "research/picture.html" (dict
+              "slug" $slug "stem" . "alt" $project.page_heading) }}
+      </div>
+      {{- end }}
+    </div>
+    {{- end }}
+
+    <div class="res-body">
+      <aside class="res-panel">
+        {{- with $project.panel.role }}
+        <div class="res-panel-block">
+          <h3>Role</h3>
+          <div class="res-panel-value">{{ . }}</div>
+        </div>
+        {{- end }}
+        {{- with $project.panel.years }}
+        <div class="res-panel-block">
+          <h3>Years</h3>
+          <div class="res-panel-value">{{ . }}</div>
+        </div>
+        {{- end }}
+        {{- with $project.panel.status }}
+        <div class="res-panel-block">
+          <h3>Status</h3>
+          <div class="res-panel-value">{{ . }}</div>
+        </div>
+        {{- end }}
+        {{- with $project.panel.team }}
+        <div class="res-panel-block">
+          <h3>Team</h3>
+          <div class="res-team">
+            {{- range . }}
+            <div class="res-team-member">
+              {{- partial "research/picture.html" (dict
+                    "slug" $slug "stem" .image "alt" .name) }}
+              <div class="res-team-name">{{ .name }}</div>
+              {{- with .affiliation }}<div class="res-team-affiliation">{{ . }}</div>{{ end }}
+            </div>
+            {{- end }}
+          </div>
+        </div>
+        {{- end }}
+        {{- with $project.panel.links }}
+        <div class="res-panel-block">
+          <h3>Links</h3>
+          <div class="res-links">
+            {{- range . }}
+            <a href="{{ .url }}" target="_blank" rel="noopener">{{ .label }}</a>
+            {{- end }}
+          </div>
+        </div>
+        {{- end }}
+      </aside>
+
+      <div class="res-text">
+        {{ $project.text | markdownify }}
+      </div>
+    </div>
+
+    {{- with $project.technical }}
+    <details class="res-technical">
+      <summary>Technical details</summary>
+      <div class="res-text">{{ . | markdownify }}</div>
+    </details>
+    {{- end }}
+
+  </div>
+</div>

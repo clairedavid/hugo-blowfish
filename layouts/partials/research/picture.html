@@ -1,0 +1,35 @@
+{{- /* Resolve one research image by slug + filename stem and emit the right
+     markup for whatever format(s) scripts/build-research-data.py actually
+     copied for it: SVG alone (the two PDF plots), a WebP+raster pair (the
+     GAE diagrams, the PINN card), or a single raster file (the portraits).
+     Params: .slug .stem .class .alt (.loading defaults to "lazy")
+
+     Looking the file up here, at render time, rather than trusting the data
+     file to say which format a stem has, means a missing asset fails the
+     build with errorf instead of becoming a broken <img> in production. */ -}}
+{{- $slug := .slug -}}
+{{- $stem := .stem -}}
+{{- $class := .class | default "" -}}
+{{- $alt := .alt | default "" -}}
+{{- $loading := .loading | default "lazy" -}}
+{{- $svg := resources.Get (printf "research/%s/%s.svg" $slug $stem) -}}
+{{- if $svg -}}
+<img class="{{ $class }}" src="{{ $svg.RelPermalink }}" alt="{{ $alt }}" loading="{{ $loading }}">
+{{- else -}}
+  {{- $webp := resources.Get (printf "research/%s/%s.webp" $slug $stem) -}}
+  {{- $raster := or (resources.Get (printf "research/%s/%s.png" $slug $stem))
+                     (resources.Get (printf "research/%s/%s.jpg" $slug $stem)) -}}
+  {{- if not $raster -}}
+    {{- errorf "research/picture: no asset found for %s/%s (looked for .svg, .webp+.png, .webp+.jpg, .png, .jpg)" $slug $stem -}}
+  {{- end -}}
+  {{- if $webp -}}
+  <picture>
+    <source srcset="{{ $webp.RelPermalink }}" type="image/webp">
+    <img class="{{ $class }}" src="{{ $raster.RelPermalink }}" alt="{{ $alt }}"
+         loading="{{ $loading }}" width="{{ $raster.Width }}" height="{{ $raster.Height }}">
+  </picture>
+  {{- else -}}
+  <img class="{{ $class }}" src="{{ $raster.RelPermalink }}" alt="{{ $alt }}"
+       loading="{{ $loading }}" width="{{ $raster.Width }}" height="{{ $raster.Height }}">
+  {{- end -}}
+{{- end -}}

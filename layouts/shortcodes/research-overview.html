@@ -1,0 +1,48 @@
+{{- /* Research overview, /research/. One section per theme (only "Machine
+     Learning" for now): a heading, an optional intro, then a card grid.
+     Data: data/research.json, written by scripts/build-research-data.py from
+       the content source files; re-running that script after editing a
+       _content.txt is the whole update path, nothing here parses content.
+     Images: assets/research/<slug>/, resolved per stem by
+       partials/research/picture.html.
+     Styles: assets/css/research.css, scoped under .res.
+     Every URL goes through .RelPermalink, so it resolves under the
+     /hugo-blowfish/ subpath. Nothing is fetched from a CDN. */ -}}
+
+{{- $css := resources.Get "css/research.css" | minify | fingerprint -}}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}">
+
+<div class="res" id="res">
+  {{- range (index hugo.Data.research "themes") }}
+  <section class="res-theme">
+    {{- /* Written directly rather than as markdown: the heading text is
+         data, so it never passes through goldmark's render-heading.html
+         hook. .about-section is added by hand here for the same reason;
+         see research.css for why that is the right class to reuse. */ -}}
+    <h2 class="relative group about-section">{{ .title }}</h2>
+    {{- with .intro }}
+    <p class="res-intro">{{ . }}</p>
+    {{- end }}
+
+    <div class="res-grid">
+      {{- range .projects }}
+      {{- $slug := .slug }}
+      {{- $card := .card }}
+      <a class="res-card" href="{{ printf "/research/%s/" $slug | relURL }}">
+        <div class="res-thumb">
+          {{- $fitClass := cond (eq $card.fit "contain") "res-fit-contain" "res-fit-cover" }}
+          {{- partial "research/picture.html" (dict
+                "slug" $slug "stem" $card.image
+                "class" $fitClass "alt" $card.title) }}
+        </div>
+        <div class="res-card-body">
+          <div class="res-card-title">{{ $card.title }}</div>
+          <div class="res-card-subtitle">{{ $card.subtitle }}</div>
+          <div class="res-card-years">{{ $card.years }}</div>
+        </div>
+      </a>
+      {{- end }}
+    </div>
+  </section>
+  {{- end }}
+</div>

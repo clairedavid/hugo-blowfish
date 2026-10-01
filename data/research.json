@@ -1,0 +1,98 @@
+{
+  "themes": [
+    {
+      "id": "machine-learning",
+      "title": "Machine Learning",
+      "intro": "Exploring machine learning techniques to help fundamental physics, from theoretical models to experimental data.",
+      "projects": [
+        {
+          "slug": "pinn",
+          "card": {
+            "title": "PINN-Slicer",
+            "subtitle": "Exploiting symmetry, general relativity in a neural network to get any photon orbit around a black hole",
+            "years": "2025 – 2026",
+            "status": "Paper submitted",
+            "image": "pinn-card",
+            "fit": "cover"
+          },
+          "banner": {
+            "images": [
+              "coordinates-init-cond",
+              "xy_uphi_fd_pinn_dphi010_demo"
+            ],
+            "style": "row (same height)"
+          },
+          "panel": {
+            "role": "Co-lead",
+            "years": "2025 – 2026",
+            "status": "Paper submitted",
+            "team": [
+              {
+                "image": "harrison_circle",
+                "name": "Prof. Harrison B. Prosper",
+                "affiliation": "Florida State University"
+              },
+              {
+                "image": "tlotlo_circle",
+                "name": "Tlotlo Openg",
+                "affiliation": "2023–24 AI for Science AIMS alumnus"
+              }
+            ],
+            "links": [
+              {
+                "label": "Submitted to the Machine Learning for Physical Sciences (ML4PS) workshop",
+                "url": "https://ml4physicalsciences.github.io/2026/"
+              }
+            ]
+          },
+          "page_heading": "Exploiting Rotational Symmetry to Solve the Photon Orbit Equation Around a Black Hole",
+          "text": "Physics-informed neural networks (PINNs) are a type of Machine Learning algorithm that include physics knowledge directly in their optimization process. In other words: the quantity to minimize, which measures how well the model fits the data, receives extra terms that enforce known constraints and established results. PINNs are mostly used to solve partial differential equations, which are the mathematical translation of how physical systems evolve in space and time.\n\nIn this project, we developed a method to compute the orbit of a photon, a particle of light, approaching a black hole. A black hole warps spacetime so strongly that its gravity bends even the path of a massless photon. Depending on its starting distance and angle, the photon is deflected away, or it spirals in and is swallowed. The one exception is a perfectly circular orbit, possible only at a special distance and angle. The orbit equation comes from Albert Einstein's General Relativity.\n\nBut while classical solvers would need to be recomputed each time the initial conditions are new (distance to the black hole and incident angle), PINN-Slicer is trained once for all possible initial conditions, and can then give any orbit with an RMS deviation below $10^{-3}$.\n\nThe trick is to exploit a feature of the photon orbit differential equation: it is an *autonomous* differential equation, that is to say invariant under translations of the independent variable (azimuthal angle $\\phi$). In other words, the coordinate system can be rotated to a different starting azimuthal angle. Therefore, it is possible to train the PINN only over a thinner range of the angle $\\phi$ (a $\\phi$-slice) and deploy it recursively across the desired angular domain.",
+          "figures": [],
+          "technical": "We solve the null geodesic equation in the Schwarzschild metric, which describes a non-rotating, uncharged, spherically symmetric black hole of Schwarzschild radius $r_s$. The initial conditions are the distance $r_0$ from the centre and the incident angle $\\delta_0$, converted into $u_0 = r_s/r_0$ and $v_0 = du/d\\phi$, where $\\phi$ is the azimuthal angle in spherical polar coordinates. Our method accurately reproduces a custom fourth-order Taylor-series solver, and it generalizes to any second-order autonomous ODE of the form $\\ddot{u} = G(u)$, where $G(u)$ does not depend explicitly on the independent variable $\\phi$.",
+          "has_math": true
+        },
+        {
+          "slug": "gae",
+          "card": {
+            "title": "Graph Autoencoders for Particle Collisions",
+            "subtitle": "Compressing a particle collision into a graph, and decoding it back, to spot the unusual",
+            "years": "2025",
+            "status": "Exploratory, concluded",
+            "image": "project_gae_encode_decode",
+            "fit": "contain"
+          },
+          "banner": {
+            "images": [
+              "project_gae_graph_event",
+              "project_gae_encode_decode"
+            ],
+            "style": "row (same height)"
+          },
+          "panel": {
+            "role": "Supervisor",
+            "years": "Nov – Dec 2025",
+            "status": "Exploratory, concluded",
+            "team": [
+              {
+                "image": "raktim_circle",
+                "name": "Raktim Mukherjee",
+                "affiliation": "Research intern, AIMS South Africa · Heidelberg University"
+              },
+              {
+                "image": "harrison_circle",
+                "name": "Prof. Harrison Prosper",
+                "affiliation": "Co-supervisor (remote) · Florida State University"
+              }
+            ],
+            "links": []
+          },
+          "page_heading": "Graph Autoencoders for Particle Collisions",
+          "text": "A graph is a way to represent data: dots (nodes) connected by straight lines (edges). There is an entire branch of mathematics dedicated to them, called graph theory.\n\nHere we want to represent a particle physics collision as a graph, then squeeze this graph into a compacted version with fewer dimensions (called a latent space, storing the essential information) to then decode it back into a graph. We do this encoding-decoding because it forces the model to capture the most important patterns among a large collection of collisions. As physicists, one collision can't tell us much about new particles or interactions, but with many collisions we can apply statistical tools to test theories or spot something interestingly unusual. The decoding part is the challenge: it is far from trivial and can become very computationally intensive if not implemented cleverly.\n\nIn November and December 2025, Raktim Mukherjee, then an undergraduate student at Heidelberg University, spent two months at AIMS South Africa working on optimizing a so-called autoencoder that takes a graph as input and outputs a graph. Using real data from the ATLAS experiment at CERN, he found an optimized architecture for the available dataset. At the end of his stay, he was invited to give a talk summarizing his optimization at a technical meeting of the GELATO group at CERN, which develops anomaly-detection algorithms for the ATLAS trigger system.\n\nProf. Harrison Prosper, invited co-supervisor on this project, later informed us that a Google Summer of Code team had worked on exactly this problem. Moreover, transformers are gaining momentum on the graph decoding problem. The time frame of the project did not allow us to investigate this direction further. \n\n\n> \"This short-term project highly impacted my research experience, and Dr. David just pushed me to perfection. I also got acquainted with Prof. Harrison Prosper, who was not only supportive during the project but also very inspiring.\"\n>\n> Raktim Mukherjee\n\nRaktim is now a graduate student at the University of Heidelberg working within the ALICE Collaboration.",
+          "figures": [],
+          "technical": "The goal is to map a graph to a graph with high fidelity through a latent space of fixed dimension, as fast as possible. Fully-connected graph models scale as $N^2$ in the number of particles $N$; in the context of fast event generation we target a method scaling as $N \\times n$, where $n$ is a fixed number of nearest neighbours, thus effectively linear in $N$.\n\nRaktim optimized the architecture using a grid search on a set of 2,000 graphs. He found the best results (highest AUC) for an autoencoder with 3 encoder and 3 decoder layers, with the middle layer having half the nodes of the first. Among the convolution types, SAGEConv avoids the over-smoothing effects observed with GCNConv and GINConv.\n\nThe open questions at the end of his stay were on finding the optimal $p_T$ threshold range: higher thresholds improve AUC but reduce statistics. It was found that the overlap removal changes the classifier's emphasis on different features. It was still a debate whether it was necessary to implement it.\n\nOne important issue regarding the decoding of graphs is handling the permutation invariance: a graph is to be seen as a 3D object with nodes connected with edges. The order in which items are listed does not matter. But for a computer, there needs to be a list. So some arbitrary order. The self-attention mechanism, the key algorithm at the core of transformers, is naturally permutation-invariant.",
+          "has_math": true
+        }
+      ]
+    }
+  ]
+}

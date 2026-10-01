@@ -1,0 +1,326 @@
+/* Research tab: the /research/ overview and each /research/<slug>/ page.
+   Every rule is scoped under .res, the same discipline as the map's .imap,
+   the gallery's .pgal, the CV's .cv and the contact form's .cf.
+   Colours come from the theme's own neutral ramp, so light and dark both
+   follow the site with nothing to keep in step here. Mobile first: base
+   rules are the phone layout, min-width media queries widen from there. */
+
+.res {
+  --res-ink: rgb(var(--color-neutral-900));
+  --res-body: rgb(var(--color-neutral-700));
+  --res-muted: rgb(var(--color-neutral-500));
+  --res-border: rgb(var(--color-neutral-200));
+  --res-card-bg: rgb(var(--color-neutral-50));
+
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  color: var(--res-body);
+}
+
+.dark .res {
+  --res-ink: rgb(var(--color-neutral-100));
+  --res-body: rgb(var(--color-neutral-300));
+  --res-muted: rgb(var(--color-neutral-400));
+  --res-border: rgb(var(--color-neutral-700));
+  --res-card-bg: rgb(var(--color-neutral-800));
+}
+
+.res * { box-sizing: border-box }
+
+/* The page sits inside Tailwind Typography's `prose`, which styles bare p,
+   ul, li, h2, h3, a, blockquote and figure. Neutralised here rather than
+   relying on prose staying as it is, the same guard every other widget on
+   this site carries. */
+.res p, .res ul, .res li, .res h2, .res h3,
+.res blockquote, .res figure, .res figcaption { margin: 0; padding: 0 }
+.res ul { list-style: none }
+.res a { color: inherit; text-decoration: none }
+
+/* ---- theme heading, overview page ------------------------------------- */
+
+/* Written directly in HTML by the research-overview shortcode rather than
+   routed through goldmark (the heading text is data, not markdown content),
+   so it carries the theme's own h2 classes plus .about-section by hand: that
+   second class is the existing rule in custom.css that gives About's section
+   headings their extra top margin, reused as-is rather than duplicated, so
+   the two stay identical by construction instead of by two separately tuned
+   values. */
+.res .res-theme h2.about-section {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--res-ink);
+}
+
+.res .res-intro {
+  margin-top: .75rem;
+  max-width: 65ch;
+  font-size: 1rem;
+  color: var(--res-muted);
+}
+
+/* ---- card grid ---------------------------------------------------------- */
+
+.res-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 1.75rem;
+}
+
+@media (min-width: 900px) {
+  .res-grid { grid-template-columns: 1fr 1fr; gap: 2rem 1.75rem }
+}
+
+.res-card {
+  display: block;
+  border: 1px solid var(--res-border);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: border-color .15s ease, transform .15s ease;
+}
+
+.res-card:hover { border-color: var(--res-muted); transform: translateY(-2px) }
+
+.res-card:focus-visible {
+  outline: 2px solid rgb(var(--color-primary-500));
+  outline-offset: 2px;
+}
+
+/* Every thumbnail shares one 3:2 box. A plot or photo covers it; the
+   encode/decode diagram, flagged contain by the data (it already reads as a
+   self-contained figure, so covering it would crop its own margins again),
+   sits whole on a neutral card so its white background does not read as a
+   mistake next to the ones that do fill the box. */
+.res-card .res-thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  background: var(--res-card-bg);
+  overflow: hidden;
+}
+
+.res-card .res-thumb img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.res-card .res-thumb img.res-fit-cover { object-fit: cover }
+.res-card .res-thumb img.res-fit-contain { object-fit: contain; padding: 6% }
+
+.res-card-body { padding: 1rem 1.1rem 1.15rem }
+
+.res-card-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--res-ink);
+  line-height: 1.3;
+}
+
+.res-card-subtitle {
+  margin-top: .35rem;
+  font-size: .88rem;
+  line-height: 1.45;
+  color: var(--res-body);
+}
+
+.res-card-years {
+  margin-top: .6rem;
+  font-size: .78rem;
+  color: var(--res-muted);
+}
+
+/* ---- card page: banner -------------------------------------------------- */
+
+.res-page { margin-top: .5rem }
+
+/* Every figure, banner images included, sits on the same card: a thin
+   border, rounded corners, small padding, and a background that stays white
+   in both themes. The plots carry an opaque white background baked into
+   their own pixels (confirmed while preparing these assets), so a card that
+   went dark in dark mode would frame them in a colour they are not actually
+   sitting on; fixing that at the card level, once, is simpler than trying to
+   make six baked-white images transparent after the fact. */
+.res-figure-card {
+  background: #ffffff;
+  border: 1px solid var(--res-border);
+  border-radius: 8px;
+  padding: .6rem;
+}
+
+.res-banner {
+  display: flex;
+  flex-direction: column;
+  gap: .9rem;
+}
+
+@media (min-width: 640px) {
+  .res-banner { flex-direction: row; align-items: stretch }
+  .res-banner .res-figure-card {
+    flex: 1 1 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+  }
+}
+
+.res-banner img, .res-banner svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 320px;
+  object-fit: contain;
+}
+
+@media (min-width: 640px) {
+  /* Row style, same height: each image is let to size by its own content at
+     a shared height, rather than being stretched edge to edge. */
+  .res-banner img, .res-banner svg { width: auto; max-width: 100%; height: 260px }
+}
+
+/* Any additional figures beyond the banner use the same card; neither
+   project currently has one, so this is unused today but kept consistent
+   with the banner's own treatment for when one does. */
+.res-figures {
+  margin-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* ---- card page: two columns --------------------------------------------- */
+
+.res-body {
+  margin-top: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+@media (min-width: 900px) {
+  .res-body { flex-direction: row; align-items: flex-start; gap: 2.5rem }
+}
+
+.res-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+  font-size: .85rem;
+}
+
+@media (min-width: 900px) {
+  .res-panel {
+    flex: 0 0 220px;
+    position: sticky;
+    top: 5.5rem;
+  }
+}
+
+.res-panel-block h3 {
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--res-muted);
+  margin-bottom: .35rem;
+}
+
+.res-panel-value { color: var(--res-ink); line-height: 1.4 }
+
+.res-team { display: flex; flex-direction: column; gap: .9rem }
+
+.res-team-member {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: .4rem;
+}
+
+.res-team-member img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--res-border);
+}
+
+.res-team-name { font-size: .83rem; font-weight: 600; color: var(--res-ink) }
+.res-team-affiliation { font-size: .76rem; color: var(--res-muted); line-height: 1.35 }
+
+.res-links { display: flex; flex-direction: column; gap: .5rem }
+
+/* Label only: the URL is the href, never shown as text. */
+.res-links a {
+  font-size: .82rem;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-color: var(--res-border);
+}
+
+.res-links a:hover { text-decoration-color: currentColor }
+
+/* ---- card page: text column ---------------------------------------------- */
+
+.res-text {
+  min-width: 0;
+  max-width: 700px;
+  font-size: .97rem;
+  line-height: 1.65;
+}
+
+.res-text p { margin: 0 0 1.1rem }
+.res-text p:last-child { margin-bottom: 0 }
+.res-text em { font-style: italic }
+.res-text strong { font-weight: 600; color: var(--res-ink) }
+
+.res-text blockquote {
+  margin: 1.4rem 0;
+  padding-left: 1rem;
+  border-left: 3px solid var(--res-border);
+  font-style: italic;
+  color: var(--res-ink);
+}
+
+/* The attribution is the blockquote's own last paragraph (a blank-line
+   separated second > line in the source), styled apart from the quote
+   itself: smaller, upright again, muted, with a small gap above. */
+.res-text blockquote p:last-child {
+  margin-top: .5rem;
+  font-style: normal;
+  font-size: .85rem;
+  color: var(--res-muted);
+}
+
+.res-text ul, .res-text ol {
+  margin: 0 0 1.1rem;
+  padding-inline-start: 1.3rem;
+  list-style: disc;
+}
+
+.res-text ol { list-style: decimal }
+.res-text li { margin: 0 0 .4rem }
+
+/* ---- technical details ---------------------------------------------------- */
+
+.res-technical {
+  margin-top: 1.75rem;
+  max-width: 700px;
+  border: 1px solid var(--res-border);
+  border-radius: 8px;
+  padding: .85rem 1.1rem;
+}
+
+.res-technical summary {
+  cursor: pointer;
+  font-size: .88rem;
+  font-weight: 600;
+  color: var(--res-ink);
+  list-style: none;
+}
+
+.res-technical summary::-webkit-details-marker { display: none }
+.res-technical summary::after { content: " \25be"; color: var(--res-muted) }
+.res-technical[open] summary::after { content: " \25b4" }
+
+.res-technical .res-text { margin-top: .9rem; max-width: none; font-size: .93rem }
