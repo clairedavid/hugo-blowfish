@@ -155,11 +155,23 @@ def parse_card(body, slug, converted_dir):
     }
 
 
-def parse_banner(body):
+def parse_banner(body, slug, converted_dir):
+    """A file named <slug>-banner.* in _converted/, if one exists, replaces
+    the whole BANNER section: one pre-composed image, not a row built from
+    the "Images:" list. Same override convention as parse_card's <slug>-card,
+    and for the same reason, the prose/list in _content.txt describes an
+    older row-of-plots banner that these projects no longer use."""
     kv = parse_kv(body)
+    override = f"{slug}-banner"
+    has_override = converted_dir and any(
+        (converted_dir / f"{override}{ext}").exists()
+        for ext in (".png", ".webp", ".jpg", ".svg"))
+    if has_override:
+        return {"images": [], "style": "single", "single": override}
     return {
         "images": parse_image_list(body),
         "style": kv.get("Style", "row"),
+        "single": "",
     }
 
 
@@ -223,7 +235,7 @@ def build_project(slug, path, converted_dir):
         sys.exit(1)
 
     card = parse_card(sections["CARD"], slug, converted_dir)
-    banner = parse_banner(sections["BANNER"])
+    banner = parse_banner(sections["BANNER"], slug, converted_dir)
     panel = parse_panel(sections["LEFT PANEL"], card)
     text = split_quote_attribution(sections["TEXT"].strip())
     technical = sections["TECHNICAL"].strip()
@@ -248,6 +260,8 @@ def collect_assets(*projects):
     for p in projects:
         stems.add(p["card"]["image"])
         stems.update(p["banner"]["images"])
+        if p["banner"].get("single"):
+            stems.add(p["banner"]["single"])
         stems.update(p["figures"])
         stems.update(m["image"] for m in p["panel"]["team"])
     stems.discard("")
@@ -342,9 +356,10 @@ def main():
     write_content_pages(projects)
     print(f"wrote {OUT.relative_to(ROOT)}: {len(projects)} project(s)")
     for p in projects:
+        banner_desc = f"single({p['banner']['single']})" if p['banner'].get('single') else f"{len(p['banner']['images'])} image(s)"
         print(f"  {p['slug']:6} math={p['has_math']!s:5}  "
               f"team={len(p['panel']['team'])}  links={len(p['panel']['links'])}  "
-              f"banner={len(p['banner']['images'])}  figures={len(p['figures'])}")
+              f"banner={banner_desc}  figures={len(p['figures'])}")
 
     if converted.is_dir():
         print(f"\ncopying assets from {converted}")

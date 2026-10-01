@@ -31,11 +31,25 @@
 {{- end -}}
 {{- if not $project -}}{{- errorf "research-page: no project with slug %q in data/research.json" $slug -}}{{- end -}}
 
+{{- /* site.GetPage + .RelPermalink, not a hand-built "/research/" string:
+     see research-overview.html for why relURL on a manual string 404s under
+     the /hugo-blowfish/ subpath. */ -}}
+{{- $researchURL := (site.GetPage "/research").RelPermalink -}}
+
 <div class="res" id="res-page">
   <div class="res-page">
 
-    {{- /* Banner: same height row, stacked on phones, each image on its own
+    <a class="res-back-top" href="{{ $researchURL }}">&larr; Back</a>
+
+    {{- /* Banner: a single pre-composed image when banner.single is set (the
+         <slug>-banner.* override, see build-research-data.py), otherwise the
+         older same-height row built from the Images: list, each on its own
          white figure card. */}}
+    {{- if $project.banner.single }}
+    {{- partial "research/picture.html" (dict
+          "slug" $slug "stem" $project.banner.single "class" "res-banner-single"
+          "alt" $project.page_heading) }}
+    {{- else }}
     <div class="res-banner">
       {{- range $project.banner.images }}
       <div class="res-figure-card">
@@ -44,6 +58,7 @@
       </div>
       {{- end }}
     </div>
+    {{- end }}
 
     {{- with $project.figures }}
     <div class="res-figures">
@@ -105,15 +120,19 @@
 
       <div class="res-text">
         {{ $project.text | markdownify }}
+
+        {{- with $project.technical }}
+        <details class="res-technical">
+          <summary>Technical details</summary>
+          <div class="res-text">{{ . | markdownify }}</div>
+        </details>
+        {{- end }}
+
+        <div class="res-back-bottom">
+          <a href="{{ $researchURL }}">&larr; Back</a>
+        </div>
       </div>
     </div>
-
-    {{- with $project.technical }}
-    <details class="res-technical">
-      <summary>Technical details</summary>
-      <div class="res-text">{{ . | markdownify }}</div>
-    </details>
-    {{- end }}
 
   </div>
 </div>

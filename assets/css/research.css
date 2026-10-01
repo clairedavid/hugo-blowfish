@@ -212,6 +212,32 @@
   .res-banner img, .res-banner svg { width: auto; max-width: 100%; height: 260px }
 }
 
+/* A single pre-composed banner (the <slug>-banner.* override): one image,
+   no card, no padding, nothing cropped. Its width matches the combined
+   width of the left panel and the text column below (220px + 2.5rem gap +
+   700px = 960px, see .res-panel/.res-body/.res-text), so its left and right
+   edges line up with that row exactly instead of spanning the wider .res-page
+   container; below the row breakpoint it matches .res-text's own 700px cap,
+   since panel and text are stacked there and there is no row to align to. */
+.res-banner-single {
+  display: block;
+  width: 100%;
+  max-width: 700px;
+  height: auto;
+  border: 1.5px solid var(--res-card-border);
+  border-radius: 10px;
+}
+
+@media (min-width: 900px) {
+  .res-banner-single { max-width: 960px }
+}
+
+/* research/picture.html wraps the img in <picture> when a WebP sibling
+   exists (it does here); picture is inline by default, which would leave a
+   few stray pixels of line-box space under the image, so it is made to
+   size with its block img instead. */
+.res-page > picture:has(.res-banner-single) { display: block }
+
 /* Any additional figures beyond the banner use the same card; neither
    project currently has one, so this is unused today but kept consistent
    with the banner's own treatment for when one does. */
@@ -261,13 +287,18 @@
 
 .res-panel-value { color: var(--res-ink); line-height: 1.4 }
 
-.res-team { display: flex; flex-direction: column; gap: .9rem }
+.res-team { display: flex; flex-direction: column; gap: 1.25rem }
 
+/* Each member centred in the panel column: portrait, then name, then
+   affiliation, no separators between members. The three parts need
+   different gaps (8px, then 2px), so margins on the name/affiliation do the
+   spacing rather than a single flex gap, which could only give them one
+   shared value. */
 .res-team-member {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: .4rem;
+  align-items: center;
+  text-align: center;
 }
 
 .res-team-member img {
@@ -278,8 +309,8 @@
   border: 1px solid var(--res-border);
 }
 
-.res-team-name { font-size: .83rem; font-weight: 600; color: var(--res-ink) }
-.res-team-affiliation { font-size: .76rem; color: var(--res-muted); line-height: 1.35 }
+.res-team-name { margin-top: 8px; font-size: .83rem; font-weight: 600; color: var(--res-ink) }
+.res-team-affiliation { margin-top: 2px; font-size: .76rem; color: var(--res-muted); line-height: 1.35 }
 
 .res-links { display: flex; flex-direction: column; gap: .5rem }
 
@@ -336,15 +367,27 @@
 
 /* ---- technical details ---------------------------------------------------- */
 
+/* In the text column now, directly under the running text, at exactly that
+   column's own width (no max-width of its own needed, since its parent
+   .res-text already caps at 700px). A visible dropdown frame: the same card
+   border token as the grid, not the subtler --res-border used for plain
+   dividers elsewhere on this page, since this is meant to read as clickable
+   the way the cards do. */
 .res-technical {
   margin-top: 1.75rem;
-  max-width: 700px;
-  border: 1px solid var(--res-border);
-  border-radius: 8px;
-  padding: .85rem 1.1rem;
+  border: 1.5px solid var(--res-card-border);
+  border-radius: 10px;
+  padding: 14px 18px;
+  transition: border-color .15s ease;
 }
 
+.res-technical:hover { border-color: var(--res-card-border-hover) }
+
 .res-technical summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
   cursor: pointer;
   font-size: .88rem;
   font-weight: 600;
@@ -353,7 +396,43 @@
 }
 
 .res-technical summary::-webkit-details-marker { display: none }
-.res-technical summary::after { content: " \25be"; color: var(--res-muted) }
-.res-technical[open] summary::after { content: " \25b4" }
+
+/* A drawn triangle rather than a text glyph, so "about 20px wide" is exact
+   rather than a font-size guess, and it rotates cleanly in place. */
+.res-technical summary::after {
+  content: "";
+  flex: 0 0 auto;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 11px solid var(--res-muted);
+  transition: transform .15s ease;
+}
+
+.res-technical[open] summary::after { transform: rotate(180deg) }
 
 .res-technical .res-text { margin-top: .9rem; max-width: none; font-size: .93rem }
+
+/* ---- back links ---------------------------------------------------------- */
+
+.res-back-top {
+  display: inline-block;
+  margin: 1rem 0 1.5rem;
+  font-size: .85rem;
+  color: var(--res-muted);
+}
+
+.res-back-top:hover { color: var(--res-ink) }
+
+.res-back-bottom {
+  margin: 3rem 0;
+  text-align: center;
+}
+
+.res-back-bottom a {
+  font-size: .85rem;
+  color: var(--res-muted);
+}
+
+.res-back-bottom a:hover { color: var(--res-ink) }

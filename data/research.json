@@ -15,11 +15,9 @@
             "image": "pinn-card"
           },
           "banner": {
-            "images": [
-              "coordinates-init-cond",
-              "xy_uphi_fd_pinn_dphi010_demo"
-            ],
-            "style": "row (same height)"
+            "images": [],
+            "style": "single",
+            "single": "pinn-banner"
           },
           "panel": {
             "role": "Co-lead",
@@ -60,11 +58,9 @@
             "image": "gae-card"
           },
           "banner": {
-            "images": [
-              "project_gae_graph_event",
-              "project_gae_encode_decode"
-            ],
-            "style": "row (same height)"
+            "images": [],
+            "style": "single",
+            "single": "gae-banner"
           },
           "panel": {
             "role": "Supervisor",
