@@ -20,6 +20,7 @@
          hook. .about-section is added by hand here for the same reason;
          see research.css for why that is the right class to reuse. */ -}}
     <h2 class="relative group about-section">{{ .title }}</h2>
+    <hr class="res-theme-rule">
     {{- with .intro }}
     <p class="res-intro">{{ . }}</p>
     {{- end }}
@@ -28,12 +29,28 @@
       {{- range .projects }}
       {{- $slug := .slug }}
       {{- $card := .card }}
-      <a class="res-card" href="{{ printf "/research/%s/" $slug | relURL }}">
+      {{- /* site.GetPage returns the real Page object for
+           content/research/<slug>/_index.md, whose .RelPermalink is the
+           correctly computed URL including the site's own subpath.
+           relURL on a hand-built string ("/research/" + slug + "/") was
+           the bug this replaces: that function returns a URL relative to
+           the protocol and host only, not to the configured baseURL's own
+           path segment, so every card link landed one level too high
+           (/research/pinn/ instead of /hugo-blowfish/research/pinn/) and
+           404'd, both when clicked from the overview and when the bare
+           URL was opened directly. */ -}}
+      {{- $pagePath := printf "/research/%s" $slug -}}
+      {{- $target := site.GetPage $pagePath -}}
+      {{- if not $target -}}{{- errorf "research-overview: no page found at %s" $pagePath -}}{{- end -}}
+      <a class="res-card" href="{{ $target.RelPermalink }}">
         <div class="res-thumb">
-          {{- $fitClass := cond (eq $card.fit "contain") "res-fit-contain" "res-fit-cover" }}
+          {{- /* Every thumbnail is fitted whole (object-fit: contain in
+               research.css), not cropped: pinn-card and gae-card are already
+               pre-baked to the exact 900x600 box with white padding, so
+               contain is a no-op for them, and it is the safe default for
+               any future card image that is not. */ -}}
           {{- partial "research/picture.html" (dict
-                "slug" $slug "stem" $card.image
-                "class" $fitClass "alt" $card.title) }}
+                "slug" $slug "stem" $card.image "alt" $card.title) }}
         </div>
         <div class="res-card-body">
           <div class="res-card-title">{{ $card.title }}</div>

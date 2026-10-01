@@ -12,8 +12,7 @@
             "subtitle": "Exploiting symmetry, general relativity in a neural network to get any photon orbit around a black hole",
             "years": "2025 – 2026",
             "status": "Paper submitted",
-            "image": "pinn-card",
-            "fit": "cover"
+            "image": "pinn-card"
           },
           "banner": {
             "images": [
@@ -58,8 +57,7 @@
             "subtitle": "Compressing a particle collision into a graph, and decoding it back, to spot the unusual",
             "years": "2025",
             "status": "Exploratory, concluded",
-            "image": "project_gae_encode_decode",
-            "fit": "contain"
+            "image": "gae-card"
           },
           "banner": {
             "images": [

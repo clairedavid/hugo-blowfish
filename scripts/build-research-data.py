@@ -124,31 +124,34 @@ def parse_image_list(body):
     return out
 
 
-# The CARD section's "Card image:" line is prose describing what was done
-# ("xy_uphi_fd_pinn_dphi010_demo.pdf, left plot only, cropped with equal
-# margins around the axes"), not necessarily the final asset's own filename.
-# PINN's card is a distinct cropped derivative, pinn-card, that the prose
-# names only indirectly; this is the one case here where the described source
-# and the actual asset stem differ, so it is resolved explicitly rather than
-# guessed at from the sentence.
-CARD_IMAGE_OVERRIDE = {
-    "pinn": "pinn-card",
-}
-
-
-def parse_card(body, slug):
+def parse_card(body, slug, converted_dir):
+    """The CARD section's "Card image:" line is prose describing what was
+    done ("xy_uphi_fd_pinn_dphi010_demo.pdf, left plot only, cropped with
+    equal margins around the axes"), not necessarily the final asset's own
+    filename. A file named <slug>-card.* in _converted/, if one exists,
+    overrides it outright: that naming convention means "this is the
+    purpose-built thumbnail for this card," always taking priority over
+    whatever the prose happens to say. pinn-card and gae-card are both
+    pre-baked to the full 900x600 thumbnail box already (crop, then pad with
+    white so nothing is ever cropped at display time; see research.css,
+    which fits every thumbnail with object-fit: contain for the same
+    reason), so no separate cover/contain distinction is needed per card
+    any more: every thumbnail is "contain", uniformly, whether or not it
+    happens to already fill the box exactly."""
     kv = parse_kv(body)
     card_image_desc = kv.get("Card image", "")
-    image_stem = CARD_IMAGE_OVERRIDE.get(slug) or (
+    override = f"{slug}-card"
+    has_override = converted_dir and any(
+        (converted_dir / f"{override}{ext}").exists()
+        for ext in (".png", ".webp", ".jpg", ".svg"))
+    image_stem = override if has_override else (
         stem(card_image_desc.split(",")[0]) if card_image_desc else "")
-    fit = "contain" if re.search(r"\bwhole\b", card_image_desc, re.I) else "cover"
     return {
         "title": kv.get("Title", ""),
         "subtitle": kv.get("Subtitle", ""),
         "years": kv.get("Years", ""),
         "status": kv.get("Status", ""),
         "image": image_stem,
-        "fit": fit,
     }
 
 
@@ -211,7 +214,7 @@ def has_math(*texts):
     return any("$" in (t or "") for t in texts)
 
 
-def build_project(slug, path):
+def build_project(slug, path, converted_dir):
     sections = parse_sections(path.read_text(encoding="utf-8"))
     required = ["CARD", "BANNER", "LEFT PANEL", "PAGE HEADING", "TEXT", "TECHNICAL"]
     missing = [s for s in required if s not in sections]
@@ -219,7 +222,7 @@ def build_project(slug, path):
         print(f"  ERROR {slug}: missing sections {missing}", file=sys.stderr)
         sys.exit(1)
 
-    card = parse_card(sections["CARD"], slug)
+    card = parse_card(sections["CARD"], slug, converted_dir)
     banner = parse_banner(sections["BANNER"])
     panel = parse_panel(sections["LEFT PANEL"], card)
     text = split_quote_attribution(sections["TEXT"].strip())
@@ -313,6 +316,7 @@ def main():
 
     intro_path = args.src / "_intro.txt"
     intro = intro_path.read_text(encoding="utf-8").strip() if intro_path.exists() else ""
+    converted = args.src / "_converted"
 
     projects = []
     for slug in ("pinn", "gae"):
@@ -320,7 +324,7 @@ def main():
         if not content.exists():
             print(f"ERROR: {content} not found", file=sys.stderr)
             sys.exit(1)
-        projects.append(build_project(slug, content))
+        projects.append(build_project(slug, content, converted if converted.is_dir() else None))
 
     data = {
         "themes": [
@@ -342,7 +346,6 @@ def main():
               f"team={len(p['panel']['team'])}  links={len(p['panel']['links'])}  "
               f"banner={len(p['banner']['images'])}  figures={len(p['figures'])}")
 
-    converted = args.src / "_converted"
     if converted.is_dir():
         print(f"\ncopying assets from {converted}")
         for slug, s, result in copy_assets(converted, projects):

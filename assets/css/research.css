@@ -12,6 +12,16 @@
   --res-border: rgb(var(--color-neutral-200));
   --res-card-bg: rgb(var(--color-neutral-50));
 
+  /* Card frame: a step more contrast than --res-border, which is the
+     subtler divider used elsewhere (the theme rule, figure cards), so the
+     card grid still reads as a deliberately framed set of tiles next to
+     that quieter line. --res-card-border-hover is lighter in dark mode and
+     darker in light mode, i.e. a bigger jump from the page background
+     either way, not a literal "darker" value in both. */
+  --res-card-border: rgb(var(--color-neutral-300));
+  --res-card-border-hover: rgb(var(--color-neutral-500));
+  --res-card-shadow: 0 1px 3px rgba(15, 23, 42, .08);
+
   font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
   color: var(--res-body);
 }
@@ -22,6 +32,10 @@
   --res-muted: rgb(var(--color-neutral-400));
   --res-border: rgb(var(--color-neutral-700));
   --res-card-bg: rgb(var(--color-neutral-800));
+
+  --res-card-border: rgb(var(--color-neutral-600));
+  --res-card-border-hover: rgb(var(--color-neutral-400));
+  --res-card-shadow: 0 1px 3px rgba(0, 0, 0, .35);
 }
 
 .res * { box-sizing: border-box }
@@ -30,7 +44,7 @@
    ul, li, h2, h3, a, blockquote and figure. Neutralised here rather than
    relying on prose staying as it is, the same guard every other widget on
    this site carries. */
-.res p, .res ul, .res li, .res h2, .res h3,
+.res p, .res ul, .res li, .res h2, .res h3, .res hr,
 .res blockquote, .res figure, .res figcaption { margin: 0; padding: 0 }
 .res ul { list-style: none }
 .res a { color: inherit; text-decoration: none }
@@ -50,8 +64,17 @@
   color: var(--res-ink);
 }
 
+/* A thin rule directly under the heading, full width of the content area
+   (the theme section's own width governs that; nothing extra is needed
+   here), before the intro and the cards. */
+.res-theme-rule {
+  margin: .85rem 0 0;
+  border: none;
+  border-top: 1px solid var(--res-border);
+}
+
 .res .res-intro {
-  margin-top: .75rem;
+  margin-top: 1rem;
   max-width: 65ch;
   font-size: 1rem;
   color: var(--res-muted);
@@ -66,30 +89,36 @@
   margin-top: 1.75rem;
 }
 
+@media (min-width: 600px) {
+  .res-grid { grid-template-columns: 1fr 1fr }
+}
+
 @media (min-width: 900px) {
-  .res-grid { grid-template-columns: 1fr 1fr; gap: 2rem 1.75rem }
+  .res-grid { grid-template-columns: 1fr 1fr 1fr }
 }
 
 .res-card {
-  display: block;
-  border: 1px solid var(--res-border);
+  display: flex;
+  flex-direction: column;
+  border: 1.5px solid var(--res-card-border);
   border-radius: 10px;
   overflow: hidden;
+  box-shadow: var(--res-card-shadow);
   transition: border-color .15s ease, transform .15s ease;
 }
 
-.res-card:hover { border-color: var(--res-muted); transform: translateY(-2px) }
+.res-card:hover { border-color: var(--res-card-border-hover); transform: translateY(-2px) }
 
 .res-card:focus-visible {
   outline: 2px solid rgb(var(--color-primary-500));
   outline-offset: 2px;
 }
 
-/* Every thumbnail shares one 3:2 box. A plot or photo covers it; the
-   encode/decode diagram, flagged contain by the data (it already reads as a
-   self-contained figure, so covering it would crop its own margins again),
-   sits whole on a neutral card so its white background does not read as a
-   mistake next to the ones that do fill the box. */
+/* Every thumbnail shares one 3:2 box, pre-baked to that exact ratio with
+   white padding (pinn-card, gae-card), so contain is a no-op for them; it
+   stays the universal rule here as the safe default for any future image
+   that is not already pre-baked, so a mismatch never crops instead of
+   silently cropping again. */
 .res-card .res-thumb {
   position: relative;
   width: 100%;
@@ -103,30 +132,34 @@
   inset: 0;
   width: 100%;
   height: 100%;
+  object-fit: contain;
 }
 
-.res-card .res-thumb img.res-fit-cover { object-fit: cover }
-.res-card .res-thumb img.res-fit-contain { object-fit: contain; padding: 6% }
-
-.res-card-body { padding: 1rem 1.1rem 1.15rem }
+.res-card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 1rem;
+}
 
 .res-card-title {
   font-size: 1.05rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--res-ink);
   line-height: 1.3;
 }
 
 .res-card-subtitle {
   margin-top: .35rem;
-  font-size: .88rem;
+  font-size: .9rem;
   line-height: 1.45;
   color: var(--res-body);
 }
 
 .res-card-years {
-  margin-top: .6rem;
-  font-size: .78rem;
+  margin-top: auto;
+  padding-top: .6rem;
+  font-size: .8rem;
   color: var(--res-muted);
 }
 
