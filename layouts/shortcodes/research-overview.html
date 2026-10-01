@@ -48,9 +48,15 @@
                research.css), not cropped: pinn-card and gae-card are already
                pre-baked to the exact 900x600 box with white padding, so
                contain is a no-op for them, and it is the safe default for
-               any future card image that is not. */ -}}
+               any future card image that is not.
+               nozoom: the theme's medium-zoom (themes/blowfish/assets/js/
+               medium-zoom.js) targets every <img> site-wide except ones
+               carrying this class, the same opt-out already used for the
+               header logo and the background canvas. Without it, clicking
+               a thumbnail opened the zoom lightbox on top of navigating to
+               the card's own page, both firing from the same click. */ -}}
           {{- partial "research/picture.html" (dict
-                "slug" $slug "stem" $card.image "alt" $card.title) }}
+                "slug" $slug "stem" $card.image "alt" $card.title "class" "nozoom") }}
         </div>
         <div class="res-card-body">
           <div class="res-card-title">{{ $card.title }}</div>
