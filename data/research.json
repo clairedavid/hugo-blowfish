@@ -41,9 +41,21 @@
             ],
             "links": [
               {
-                "kind": "plain",
-                "label": "Submitted to the Machine Learning for Physical Sciences (ML4PS) workshop",
-                "url": "https://ml4physicalsciences.github.io/2026/"
+                "kind": "inline",
+                "segments": [
+                  {
+                    "text": "Submitted to the ",
+                    "url": ""
+                  },
+                  {
+                    "text": "Machine Learning for Physical Sciences (ML4PS) 2026",
+                    "url": "https://ml4physicalsciences.github.io/2026/"
+                  },
+                  {
+                    "text": " workshop.",
+                    "url": ""
+                  }
+                ]
               }
             ]
           },
