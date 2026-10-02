@@ -242,14 +242,14 @@
             "status": "",
             "image": "dune-computing-card",
             "source_stem": "dune-computing-card",
-            "original_stem": "grid-computing-07-0213-11D.hr_",
-            "credit": "Photo: Reidar Hahn, Fermilab"
+            "original_stem": "",
+            "credit": ""
           },
           "banner": {
             "images": [],
             "style": "single",
             "single": "dune-computing-banner",
-            "original_stem": "grid-computing-07-0213-11D.hr_",
+            "original_stem": "",
             "credit": "Photo: Reidar Hahn, Fermilab"
           },
           "panel": {
@@ -309,7 +309,7 @@
           "text": [
             {
               "kind": "markdown",
-              "content": "As part of the DUNE Computing Consortium, I co-convened the training and documentation working group, coordinating coherent support across the collaboration's reconstruction algorithms and software. I rebranded the onboarding process and organized tutorial sessions to help newcomers get started with DUNE software, most of it built on LArSoft, the framework used for event generation, detector simulation, and reconstruction of data from Liquid Argon Time Projection Chambers (LArTPC).\n\nMy team led the first R&D on an interactive analysis facility for DUNE using columnar computing, a way of processing large datasets that speeds up analyses considerably, an effort carried out in collaboration with other High Energy Physics experiments.\n\nI also modernized the DUNE Computing wiki and re-designed three onboarding tutorials with my co-conveners, work we later documented in a paper for Frontiers in Big Data."
+              "content": "As part of the Computing Consortium, I co-convened the Training and Documentation subgroup. We redesigned the onboarding and co-organized three tutorial sessions to help newcomers grasp the DUNE analysis workflow. The tutorials focused mostly on LArSoft, the software framework for event generation, detector simulation and reconstruction used to analyze data from Liquid Argon Time Projection Chambers (LArTPCs). I also modernized the DUNE Computing wiki, and designed and deployed DUNE's automated glossary.\n\nMy team led the first R&D on an interactive analysis facility for DUNE using columnar computing. This was done using the Coffea Python toolkit, a prototype package to supply high-energy collider physics (HEP) experiments with big-data technologies for physics analyses."
             }
           ],
           "figures": [],
