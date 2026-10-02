@@ -132,16 +132,24 @@
             {{- else if eq .kind "image" }}
             {{- /* A logo or similar inline image inside Links:, always
                  centred (see research.css), e.g. "![Coffea logo](coffea_
-                 logo.svg)" under its own project link. A white rounded
-                 tile is only needed when the image would otherwise vanish
-                 against the dark page, checked by eye per logo, not
-                 guessed here: add class "res-links-image-tile" alongside
-                 "res-links-image" below when one needs it. Dropped
-                 entirely at build time if its file is missing, so nothing
-                 to guard here. */ -}}
+                 logo.svg)" under its own project link, or the logo itself
+                 as the link via "[![alt](file)](url)" (.href set) when a
+                 separate "visit" line next to it would be redundant. A
+                 white rounded tile is only needed when the image would
+                 otherwise vanish against the dark page, checked by eye per
+                 logo, not guessed here: add class "res-links-image-tile"
+                 alongside "res-links-image" below when one needs it.
+                 Dropped entirely at build time if its file is missing, so
+                 nothing to guard here. nozoom: same reason as the card
+                 thumbnails, the theme's medium-zoom targets every <img>
+                 by default, which would otherwise show a magnifier cursor
+                 on a logo that is now sometimes itself a clickable
+                 link. */ -}}
             <div class="res-links-image-wrap">
+              {{- if .href }}<a href="{{ .href }}" target="_blank" rel="noopener">{{ end -}}
               {{- partial "research/picture.html" (dict
-                    "slug" $slug "stem" .src "alt" .alt "class" "res-links-image") }}
+                    "slug" $slug "stem" .src "alt" .alt "class" "res-links-image nozoom") }}
+              {{- if .href }}</a>{{ end -}}
             </div>
             {{- else }}
             {{- /* A "plain" entry with no url (e.g. "DUNE's official

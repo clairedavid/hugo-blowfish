@@ -383,6 +383,12 @@
 .res-links-image-wrap { display: flex; justify-content: center }
 .res-links-image { display: block; max-width: 175px; width: 100%; height: auto }
 
+/* When the logo itself is the link ("[![alt](file)](url)", .href set): a
+   small hover fade is the only cue needed, since the cursor already shows
+   a pointer and the surrounding label line says what it links to. */
+.res-links-image-wrap a { transition: opacity .15s ease }
+.res-links-image-wrap a:hover { opacity: .75 }
+
 .res-links-image-tile {
   background: #ffffff;
   border-radius: 8px;
@@ -458,6 +464,16 @@
 .res-text p:last-child { margin-bottom: 0 }
 .res-text em { font-style: italic }
 .res-text strong { font-weight: 600; color: var(--res-ink) }
+
+/* A paragraph that opens with a bold lead-in (e.g. "**DUNE in 2
+   minutes**") reads as a mini heading, so it gets extra air above it:
+   2.1rem (33.6px), almost double the ordinary 1.1rem (17.6px) paragraph
+   gap. Set directly as the target gap, not "+1rem" on top of the
+   existing one: adjacent vertical margins between sibling <p>s collapse to
+   whichever is larger, not their sum, so this margin-top simply needs to
+   already be the full gap. Matched structurally (a <p> whose first child
+   is <strong>), not by a special syntax in the source. */
+.res-text p:has(> strong:first-child) { margin-top: 2.1rem }
 
 /* Underlined in both themes, same colour as the surrounding text (.res a's
    own color: inherit is untouched): just a decoration, not a new link

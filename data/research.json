@@ -203,11 +203,12 @@
                 "kind": "image",
                 "alt": "DUNE logo",
                 "src": "dune-logo",
+                "href": "",
                 "centered": true
               }
             ]
           },
-          "page_heading": "Bringing Canada into DUNE, the international flagship neutrino experiment",
+          "page_heading": "Bringing Canada into DUNE, an international flagship neutrino experiment",
           "text": [
             {
               "kind": "markdown",
@@ -270,47 +271,48 @@
             "team": [],
             "links": [
               {
+                "kind": "plain",
+                "label": "Paper: \"Training and Onboarding initiatives in High Energy Physics experiments\"",
+                "url": "",
+                "centered": false
+              },
+              {
                 "kind": "inline",
                 "segments": [
-                  {
-                    "text": "Paper: \"Training and Onboarding initiatives in High Energy Physics experiments\", ",
-                    "url": ""
-                  },
                   {
                     "text": "Frontiers in Big Data (2025) ↗",
                     "url": "https://doi.org/10.3389/fdata.2025.1497622"
                   }
                 ],
+                "centered": true
+              },
+              {
+                "kind": "plain",
+                "label": "DUNE automated glossary:",
+                "url": "",
                 "centered": false
               },
               {
                 "kind": "inline",
                 "segments": [
-                  {
-                    "text": "DUNE automated glossary: ",
-                    "url": ""
-                  },
                   {
                     "text": "abc.dunescience.org",
                     "url": "https://abc.dunescience.org/"
                   }
                 ],
-                "centered": false
+                "centered": true
               },
               {
-                "kind": "inline",
-                "segments": [
-                  {
-                    "text": "Coffea Python toolkit",
-                    "url": "https://coffea-hep.readthedocs.io/en/latest/"
-                  }
-                ],
+                "kind": "plain",
+                "label": "Coffea Python toolkit:",
+                "url": "",
                 "centered": false
               },
               {
                 "kind": "image",
                 "alt": "Coffea logo",
                 "src": "coffea_logo",
+                "href": "https://coffea-hep.readthedocs.io/en/latest/",
                 "centered": true
               }
             ]

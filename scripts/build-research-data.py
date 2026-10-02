@@ -233,6 +233,7 @@ def parse_banner(body, slug, converted_dir):
 
 INLINE_LINK_RE = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
 IMAGE_LINE_RE = re.compile(r"^!\[([^\]]*)\]\(([^)]+)\)$")
+LINKED_IMAGE_RE = re.compile(r"^\[!\[([^\]]*)\]\(([^)]+)\)\]\(([^)]+)\)$")
 
 
 def parse_inline_segments(text):
@@ -275,9 +276,13 @@ def parse_links_lines(body, slug, converted_dir):
     time): that is the one place in this panel a missing asset is expected
     and should not break the build, matching parse_card/parse_banner's own
     override-checks rather than research/picture.html's normal hard-fail.
+    A bare image may itself be the link: "[![alt](file)](url)" (a linked
+    image) carries that url as "href" instead of being wrapped in a
+    separate inline link item, for a logo that is its own call to action
+    with no extra "visit" text needed.
     Returns a list of {"kind": "plain", "label", "url", "centered"},
     {"kind": "inline", "segments": [...], "centered"} or {"kind": "image",
-    "alt", "src", "centered": True}."""
+    "alt", "src", "href", "centered": True}."""
     lines = body.split("\n")
     try:
         start = next(i for i, l in enumerate(lines) if l.strip().startswith("Links:"))
@@ -286,7 +291,12 @@ def parse_links_lines(body, slug, converted_dir):
     first = lines[start].split(":", 1)[1].strip()
     raw = [first] if first else []
     for l in lines[start + 1:]:
-        if re.match(r"^[A-Za-z ]+:\s*", l) and "|" not in l and not INLINE_LINK_RE.search(l):
+        # A genuine next LEFT PANEL field, not a Links: content line that
+        # happens to end in ":" too ("Paper:", "DUNE automated glossary:",
+        # "Coffea Python toolkit:" are all labels, not section markers):
+        # checked against the actual field names this format has, not any
+        # "word(s) then colon" line.
+        if re.match(r"^(Role|Years|Status|Logo|Team|Links):\s*", l):
             break
         if l.strip():
             raw.append(l.strip())
@@ -298,7 +308,8 @@ def parse_links_lines(body, slug, converted_dir):
     for line in raw:
         centered = bool(CENTER_PREFIX_RE.match(line))
         line = CENTER_PREFIX_RE.sub("", line)
-        m = IMAGE_LINE_RE.match(line)
+        lm = LINKED_IMAGE_RE.match(line)
+        m = lm or IMAGE_LINE_RE.match(line)
         if m:
             src = stem(m.group(2))
             exists = converted_dir and any(
@@ -308,7 +319,8 @@ def parse_links_lines(body, slug, converted_dir):
                 print(f"  WARNING {slug}: Links image {m.group(2)!r} not found in "
                       f"_converted/, skipping", file=sys.stderr)
                 continue
-            out.append({"kind": "image", "alt": m.group(1), "src": src, "centered": True})
+            href = lm.group(3) if lm else ""
+            out.append({"kind": "image", "alt": m.group(1), "src": src, "href": href, "centered": True})
         elif INLINE_LINK_RE.search(line):
             out.append({"kind": "inline", "segments": parse_inline_segments(line), "centered": centered})
         else:
