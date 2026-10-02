@@ -52,6 +52,9 @@
     {{- partial "research/picture.html" (dict
           "slug" $slug "stem" $project.banner.single "class" "res-banner-single"
           "alt" $project.page_heading) }}
+    {{- with $project.banner.credit }}
+    <div class="res-banner-credit">{{ . }}</div>
+    {{- end }}
     {{- else }}
     <div class="res-banner">
       {{- range $project.banner.images }}
@@ -109,6 +112,12 @@
           </div>
         </div>
         {{- end }}
+        {{- with $project.panel.logo }}
+        <div class="res-panel-block res-panel-logo">
+          {{- partial "research/picture.html" (dict
+                "slug" $slug "stem" . "alt" (printf "%s logo" $project.page_heading)) }}
+        </div>
+        {{- end }}
         {{- with $project.panel.links }}
         <div class="res-panel-block res-panel-block-links">
           <h3>Links</h3>
@@ -120,6 +129,16 @@
                 {{- if .url }}<a href="{{ .url }}" target="_blank" rel="noopener">{{ .text }}</a>{{- else }}{{ .text }}{{- end }}
               {{- end }}
             </div>
+            {{- else if eq .kind "image" }}
+            {{- /* A logo or similar inline image inside Links:, full panel
+                 width, e.g. "![Coffea logo](coffea_logo.svg)" under its own
+                 project link. Checked by eye in both themes when it is
+                 added (see research.css): a white rounded tile is only
+                 needed under it when the image itself would otherwise
+                 vanish against the dark page, which is a per-logo call, not
+                 something to guess here. */ -}}
+            {{- partial "research/picture.html" (dict
+                  "slug" $slug "stem" .src "alt" .alt "class" "res-links-image") }}
             {{- else }}
             <a href="{{ .url }}" target="_blank" rel="noopener">{{ .label }}</a>
             {{- end }}
@@ -130,7 +149,18 @@
       </aside>
 
       <div class="res-text">
-        {{ $project.text | markdownify }}
+        {{- /* $project.text is a list of {"kind":"markdown"} / {"kind":
+             "figure-row"} blocks (see split_text_blocks in
+             build-research-data.py), not one string, so a [[FIGURE-ROW]]
+             block can render as its own flex layout instead of being
+             passed through markdownify as literal text. */}}
+        {{- range $project.text }}
+          {{- if eq .kind "figure-row" }}
+          {{- partial "research/figure-row.html" (dict "slug" $slug "images" .images) }}
+          {{- else }}
+          {{ .content | markdownify }}
+          {{- end }}
+        {{- end }}
 
         {{- with $project.technical }}
         <details class="res-technical">

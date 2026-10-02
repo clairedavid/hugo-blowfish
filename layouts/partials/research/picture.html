@@ -2,7 +2,7 @@
      markup for whatever format(s) scripts/build-research-data.py actually
      copied for it: SVG alone (the two PDF plots), a WebP+raster pair (the
      GAE diagrams, the PINN card), or a single raster file (the portraits).
-     Params: .slug .stem .class .alt (.loading defaults to "lazy")
+     Params: .slug .stem .class .alt .title (.loading defaults to "lazy")
 
      Looking the file up here, at render time, rather than trusting the data
      file to say which format a stem has, means a missing asset fails the
@@ -11,10 +11,11 @@
 {{- $stem := .stem -}}
 {{- $class := .class | default "" -}}
 {{- $alt := .alt | default "" -}}
+{{- $title := .title | default "" -}}
 {{- $loading := .loading | default "lazy" -}}
 {{- $svg := resources.Get (printf "research/%s/%s.svg" $slug $stem) -}}
 {{- if $svg -}}
-<img class="{{ $class }}" src="{{ $svg.RelPermalink }}" alt="{{ $alt }}" loading="{{ $loading }}">
+<img class="{{ $class }}" src="{{ $svg.RelPermalink }}" alt="{{ $alt }}"{{ with $title }} title="{{ . }}"{{ end }} loading="{{ $loading }}">
 {{- else -}}
   {{- $webp := resources.Get (printf "research/%s/%s.webp" $slug $stem) -}}
   {{- $raster := or (resources.Get (printf "research/%s/%s.png" $slug $stem))
@@ -25,11 +26,11 @@
   {{- if $webp -}}
   <picture>
     <source srcset="{{ $webp.RelPermalink }}" type="image/webp">
-    <img class="{{ $class }}" src="{{ $raster.RelPermalink }}" alt="{{ $alt }}"
+    <img class="{{ $class }}" src="{{ $raster.RelPermalink }}" alt="{{ $alt }}"{{ with $title }} title="{{ . }}"{{ end }}
          loading="{{ $loading }}" width="{{ $raster.Width }}" height="{{ $raster.Height }}">
   </picture>
   {{- else -}}
-  <img class="{{ $class }}" src="{{ $raster.RelPermalink }}" alt="{{ $alt }}"
+  <img class="{{ $class }}" src="{{ $raster.RelPermalink }}" alt="{{ $alt }}"{{ with $title }} title="{{ . }}"{{ end }}
        loading="{{ $loading }}" width="{{ $raster.Width }}" height="{{ $raster.Height }}">
   {{- end -}}
 {{- end -}}

@@ -1,20 +1,35 @@
 #!/usr/bin/env python3
 """Turn the research content source into data/research.json.
 
-Source layout (default --src ~/Desktop/website_meta/research/machine-learning):
-    _intro.txt            one-line intro for the "Machine Learning" theme
-    <slug>/_content.txt   one project, in == SECTION == blocks
+Source layout (default --src ~/Desktop/website_meta/research):
+    <theme>/_intro.txt            one-line intro for that theme
+    <theme>/<slug>/_content.txt   one project, in == SECTION == blocks
+
+Themes are fixed, in site order: "machine-learning" (Machine Learning),
+then "dune" (DUNE). Machine Learning's two projects keep their own fixed
+order (pinn, gae); DUNE's projects are discovered from its subdirectories
+and sorted by an optional "Order:" line in == CARD == (lower first), falling
+back to alphabetical name for folders that do not set one, so dune-canada
+sorts before dune-computing without needing one.
 
 Each project's _content.txt holds, in this order:
     == CARD ==          Key: value lines (Title, Subtitle, Years, Status,
-                         Card image)
-    == BANNER ==         Images: (one filename stem per line) / Style:
+                         Card image, optional Order)
+    == BANNER ==         Either "Image:" (one pre-composed banner, optional
+                         "Credit:" line) or the older "Images:" list (one
+                         filename stem per line) / "Style:"
     == LEFT PANEL ==     Role: / Years: / Status: (optional, see below) /
-                         Team: (pipe rows "image | name | affiliation") /
-                         Links: (pipe rows "label | url", or "(none)")
+                         optional Logo: (one image, shown above Links) /
+                         Team: (pipe rows "image | name | affiliation",
+                         affiliation may itself be "role · affiliation") /
+                         Links: (pipe rows "label | url", inline markdown
+                         [text](url), a markdown image "![alt](file)", or
+                         "(none)")
     == PAGE HEADING ==   a single line, becomes the page's title and h1
     == TEXT ==           markdown: paragraphs, *emphasis*, a quote as two
-                         `> ` lines (text, then attribution)
+                         `> ` lines (text, then attribution), and optionally
+                         one [[FIGURE-ROW]]...[[/FIGURE-ROW]] block (see
+                         parse_figure_row_block)
     == FIGURES ==        optional, image stems one per line, or "(none...)"
     == TECHNICAL ==      markdown, folded into a <details> on the page
 
@@ -26,12 +41,19 @@ left untouched in that markdown; it survives Goldmark unharmed because every
 expression in this content has its underscores flanked by letters or digits,
 which CommonMark's intraword-emphasis rule already protects, and KaTeX's own
 auto-render (loaded by the page when `has_math` is true) renders it
-client-side afterwards.
+client-side afterwards. Inline [text](url) links (Links:, the theme intro)
+are the one exception handled in Python instead: markdownify alone cannot add
+target="_blank"/rel="noopener" to just those links without a site-wide render
+hook, so they are split into plain-text/link segments here and the template
+renders each segment itself.
 
 Images are referenced here by filename stem only (no extension). The site
-build copies whichever finals actually exist for that stem from
-_converted/ into assets/research/<slug>/, so this script does not need to
-know which format(s) a given stem ships in; see copy_assets().
+build copies whichever finals actually exist for that stem from a theme's
+own _converted/ into assets/research/<slug>/, so this script does not need
+to know which format(s) a given stem ships in; see copy_assets(). A
+"<file> <-- comment" trailing note after a filename field (Card image:,
+Image:, Logo:) is a human note-to-self in the source and is stripped before
+the filename is read.
 
 Usage:  python3 scripts/build-research-data.py [--src PATH]
 """
@@ -43,16 +65,34 @@ import shutil
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-DEFAULT_SRC = pathlib.Path.home() / "Desktop/website_meta/research/machine-learning"
+DEFAULT_SRC = pathlib.Path.home() / "Desktop/website_meta/research"
 OUT = ROOT / "data" / "research.json"
 ASSETS_OUT = ROOT / "assets" / "research"
 CONTENT_OUT = ROOT / "content" / "research"
+
+THEME_DEFS = [
+    {"id": "machine-learning", "title": "Machine Learning", "folder": "machine-learning", "slugs": ("pinn", "gae")},
+    {"id": "dune", "title": "DUNE", "folder": "dune", "slugs": None},
+]
 
 # Phase-1 review artifacts that live alongside the real finals in
 # _converted/ but are never site assets.
 NOT_ASSETS = {"preview.html", "maths-sample.png", "raktim_circle_preview.png"}
 
 EMPTY_MARKERS = re.compile(r"^\(none\b", re.I)
+TRAILING_COMMENT_RE = re.compile(r"\s*<--.*$")
+ORIGINAL_SOURCE_RE = re.compile(r"<--\s*from\s+(\S+)")
+
+
+def original_source_stem(raw_value):
+    """A "<-- from original.jpg, ..." comment names the one photo a target
+    file (a banner, a card thumbnail) was made from. Two targets with
+    different final names, e.g. dune-computing-banner.jpg and
+    dune-computing-card.jpg, can both carry this comment pointing at the
+    same original, which is how resolve_card_credit finds a card's credit
+    when the card and banner do not share a filename at all."""
+    m = ORIGINAL_SOURCE_RE.search(raw_value)
+    return stem(m.group(1)) if m else ""
 
 
 def parse_sections(text):
@@ -76,15 +116,15 @@ def parse_kv(body):
             continue
         m = re.match(r"^([A-Za-z ]+):\s*(.*)$", line)
         if m and m.group(1).strip() in (
-            "Title", "Subtitle", "Years", "Status", "Card image",
-            "Style", "Role",
+            "Title", "Subtitle", "Years", "Status", "Card image", "Order",
+            "Style", "Role", "Image", "Credit", "Logo",
         ):
             kv[m.group(1).strip()] = m.group(2).strip()
     return kv
 
 
 def stem(name):
-    return pathlib.Path(name.strip()).stem
+    return pathlib.Path(TRAILING_COMMENT_RE.sub("", name).strip()).stem
 
 
 def parse_pipe_rows(body, after_label):
@@ -126,66 +166,106 @@ def parse_image_list(body):
 
 def parse_card(body, slug, converted_dir):
     """The CARD section's "Card image:" line is prose describing what was
-    done ("xy_uphi_fd_pinn_dphi010_demo.pdf, left plot only, cropped with
-    equal margins around the axes"), not necessarily the final asset's own
-    filename. A file named <slug>-card.* in _converted/, if one exists,
-    overrides it outright: that naming convention means "this is the
-    purpose-built thumbnail for this card," always taking priority over
-    whatever the prose happens to say. pinn-card and gae-card are both
-    pre-baked to the full 900x600 thumbnail box already (crop, then pad with
-    white so nothing is ever cropped at display time; see research.css,
-    which fits every thumbnail with object-fit: contain for the same
-    reason), so no separate cover/contain distinction is needed per card
-    any more: every thumbnail is "contain", uniformly, whether or not it
-    happens to already fill the box exactly."""
+    done, or sometimes the final asset's own filename directly (DUNE); not
+    necessarily the stem the page should actually use, since a file named
+    <slug>-card.* in _converted/, if one exists, overrides it outright: that
+    naming convention means "this is the purpose-built thumbnail for this
+    card," always taking priority over whatever the prose happens to say.
+    source_stem is kept separately (the literal, un-overridden reference)
+    so build_project can cross-reference it against the banner's and any
+    figure-row image's own credit, for item 5's "same photo, same credit on
+    the card" rule, without the override renaming getting in the way."""
     kv = parse_kv(body)
     card_image_desc = kv.get("Card image", "")
+    # Comment stripped before the comma-split: an ML-style "file.pdf, left
+    # plot only..." description clause and a DUNE-style "file.jpg <-- from
+    # original.jpg, 2000px wide..." note both use a comma, for two different
+    # reasons, and only the first comma (if any) after the real filename
+    # should end up splitting anything.
+    clean_desc = TRAILING_COMMENT_RE.sub("", card_image_desc).strip()
+    source_stem = stem(clean_desc.split(",")[0]) if clean_desc else ""
     override = f"{slug}-card"
     has_override = converted_dir and any(
         (converted_dir / f"{override}{ext}").exists()
         for ext in (".png", ".webp", ".jpg", ".svg"))
-    image_stem = override if has_override else (
-        stem(card_image_desc.split(",")[0]) if card_image_desc else "")
+    image_stem = override if has_override else source_stem
     return {
         "title": kv.get("Title", ""),
         "subtitle": kv.get("Subtitle", ""),
         "years": kv.get("Years", ""),
         "status": kv.get("Status", ""),
         "image": image_stem,
+        "source_stem": source_stem,
+        "original_stem": original_source_stem(card_image_desc),
+        "credit": "",  # filled in by build_project once the banner/figure-row credits are known
     }
 
 
 def parse_banner(body, slug, converted_dir):
-    """A file named <slug>-banner.* in _converted/, if one exists, replaces
-    the whole BANNER section: one pre-composed image, not a row built from
-    the "Images:" list. Same override convention as parse_card's <slug>-card,
-    and for the same reason, the prose/list in _content.txt describes an
-    older row-of-plots banner that these projects no longer use."""
+    """Three ways a banner can be specified, checked in this order:
+    1. An explicit "Image:" line (one pre-composed banner), with an
+       optional "Credit:" line shown centred under it on the page.
+    2. A file named <slug>-banner.* in _converted/, the same override
+       convention as parse_card's <slug>-card, for a banner that is not
+       named directly in the prose.
+    3. The older "Images:" list rendered as a same-height row, for any
+       project that has not been moved to a single pre-composed banner."""
     kv = parse_kv(body)
+    credit = kv.get("Credit", "")
+    explicit_image = kv.get("Image", "")
+    if explicit_image:
+        return {"images": [], "style": "single", "single": stem(explicit_image),
+                "original_stem": original_source_stem(explicit_image), "credit": credit}
     override = f"{slug}-banner"
     has_override = converted_dir and any(
         (converted_dir / f"{override}{ext}").exists()
         for ext in (".png", ".webp", ".jpg", ".svg"))
     if has_override:
-        return {"images": [], "style": "single", "single": override}
+        return {"images": [], "style": "single", "single": override, "original_stem": "", "credit": credit}
     return {
         "images": parse_image_list(body),
         "style": kv.get("Style", "row"),
         "single": "",
+        "original_stem": "",
+        "credit": credit,
     }
 
 
 INLINE_LINK_RE = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
+IMAGE_LINE_RE = re.compile(r"^!\[([^\]]*)\]\(([^)]+)\)$")
+
+
+def parse_inline_segments(text):
+    """Split prose containing zero or more [text](url) links into alternating
+    plain-text/link segments: {"text", "url": ""} for plain runs, {"text",
+    "url"} for a link. Used for both a Links: line and the theme intro, so
+    the template can render each with explicit target="_blank" rel="noopener"
+    on just the link segments, something plain markdownify cannot do without
+    a site-wide render hook."""
+    segments = []
+    pos = 0
+    for m in INLINE_LINK_RE.finditer(text):
+        if m.start() > pos:
+            segments.append({"text": text[pos:m.start()], "url": ""})
+        segments.append({"text": m.group(1), "url": m.group(2)})
+        pos = m.end()
+    if pos < len(text):
+        segments.append({"text": text[pos:], "url": ""})
+    if not segments:
+        segments.append({"text": text, "url": ""})
+    return segments
 
 
 def parse_links_lines(body):
-    """Lines after "Links:", in one of two forms: the old "label | url" row
-    (parse_pipe_rows' own format), or prose containing one or more inline
+    """Lines after "Links:", in one of three forms: the old "label | url"
+    row (parse_pipe_rows' own format); prose containing one or more inline
     [text](url) links, where only the bracketed text is ever clickable and
-    the url itself is never shown. Which form a line is in is decided by
-    whether it contains that [..](..) syntax, not by the presence of a pipe,
-    since an inline-link line has no pipe either. Returns a list of
-    {"kind": "plain", "label", "url"} or {"kind": "inline", "segments": [...]}."""
+    the url itself is never shown; or a standalone markdown image
+    "![alt](file)", rendered full panel width instead of as a link. Which
+    form a line is in is decided by its own syntax, not by the presence of a
+    pipe, since neither of the other two forms has one. Returns a list of
+    {"kind": "plain", "label", "url"}, {"kind": "inline", "segments": [...]}
+    or {"kind": "image", "alt", "src"}."""
     lines = body.split("\n")
     try:
         start = next(i for i, l in enumerate(lines) if l.strip().startswith("Links:"))
@@ -204,17 +284,11 @@ def parse_links_lines(body):
 
     out = []
     for line in raw:
-        if INLINE_LINK_RE.search(line):
-            segments = []
-            pos = 0
-            for m in INLINE_LINK_RE.finditer(line):
-                if m.start() > pos:
-                    segments.append({"text": line[pos:m.start()], "url": ""})
-                segments.append({"text": m.group(1), "url": m.group(2)})
-                pos = m.end()
-            if pos < len(line):
-                segments.append({"text": line[pos:], "url": ""})
-            out.append({"kind": "inline", "segments": segments})
+        m = IMAGE_LINE_RE.match(line)
+        if m:
+            out.append({"kind": "image", "alt": m.group(1), "src": stem(m.group(2))})
+        elif INLINE_LINK_RE.search(line):
+            out.append({"kind": "inline", "segments": parse_inline_segments(line)})
         else:
             parts = [p.strip() for p in line.split("|")]
             out.append({"kind": "plain", "label": parts[0], "url": parts[1] if len(parts) > 1 else ""})
@@ -238,6 +312,7 @@ def parse_panel(body, card):
         # module docstring and the build report.
         "years": kv.get("Years") or card["years"],
         "status": kv.get("Status") or card["status"],
+        "logo": stem(kv["Logo"]) if kv.get("Logo") else "",
         "team": team,
         "links": links,
     }
@@ -250,6 +325,53 @@ def parse_figures(body):
     if not lines or EMPTY_MARKERS.match(lines[0]):
         return []
     return [stem(l) for l in lines]
+
+
+FIGURE_ROW_RE = re.compile(r"\[\[FIGURE-ROW\]\](.*?)\[\[/FIGURE-ROW\]\]", re.S)
+
+
+def parse_figure_row_block(body):
+    """The body between [[FIGURE-ROW]] markers: repeating Image:/Caption:/
+    Credit: triples, one figure per Image: line. Caption is kept as raw
+    markdown (rendered with markdownify at template time, like TEXT itself);
+    width/height/ratio are filled in later, once the final copied asset
+    exists to measure (see attach_figure_row_sizes)."""
+    images = []
+    cur = None
+    for line in body.strip("\n").split("\n"):
+        line = line.strip()
+        if not line:
+            continue
+        if line.startswith("Image:"):
+            if cur:
+                images.append(cur)
+            cur = {"image": stem(line.split(":", 1)[1]), "caption": "", "credit": ""}
+        elif line.startswith("Caption:") and cur is not None:
+            cur["caption"] = line.split(":", 1)[1].strip()
+        elif line.startswith("Credit:") and cur is not None:
+            cur["credit"] = line.split(":", 1)[1].strip()
+    if cur:
+        images.append(cur)
+    return images
+
+
+def split_text_blocks(raw_text):
+    """TEXT as a list of {"kind": "markdown", "content"} and {"kind":
+    "figure-row", "images"} blocks in source order, instead of one string,
+    so the template can render a figure row as its own flex layout instead
+    of markdown content. split_quote_attribution runs per markdown block
+    (its regex only ever matches within one, and the figure row's own
+    Image:/Caption:/Credit: lines must not be touched by it)."""
+    parts = FIGURE_ROW_RE.split(raw_text)
+    blocks = []
+    for i, part in enumerate(parts):
+        if i % 2 == 0:
+            content = split_quote_attribution(part.strip("\n"))
+            if content.strip():
+                blocks.append({"kind": "markdown", "content": content})
+        else:
+            blocks.append({"kind": "figure-row", "images": parse_figure_row_block(part)})
+    return blocks
 
 
 QUOTE_ATTRIB_RE = re.compile(r'(^> ".*"\s*)\n(> [^\n]+)$', re.M)
@@ -266,8 +388,38 @@ def split_quote_attribution(md):
     return QUOTE_ATTRIB_RE.sub(r"\1\n>\n\2", md)
 
 
-def has_math(*texts):
-    return any("$" in (t or "") for t in texts)
+def has_math(blocks, technical):
+    text_parts = [b["content"] for b in blocks if b["kind"] == "markdown"]
+    for b in blocks:
+        if b["kind"] == "figure-row":
+            text_parts.extend(f["caption"] for f in b["images"])
+    text_parts.append(technical or "")
+    return any("$" in t for t in text_parts)
+
+
+def resolve_card_credit(card, banner, blocks):
+    """Item 5: no visible credit on cards, but the thumbnail's title
+    attribute carries the credit of whichever figure or banner uses the
+    same original source photo, found by matching the card's own
+    (un-overridden) source_stem against the banner's and every figure-row
+    image's stem. Two targets can also point at the same original via a
+    "<-- from original.jpg" comment without sharing a filename themselves
+    (DUNE-Computing's card and banner are both cropped from the same photo
+    under their own distinct names), so original_stem is checked too,
+    whichever side carries it."""
+    credit_by_stem = {}
+    banner_image_stem = banner.get("single", "")
+    if banner_image_stem and banner.get("credit"):
+        credit_by_stem[banner_image_stem] = banner["credit"]
+        if banner.get("original_stem"):
+            credit_by_stem[banner["original_stem"]] = banner["credit"]
+    for b in blocks:
+        if b["kind"] == "figure-row":
+            for fig in b["images"]:
+                if fig.get("credit"):
+                    credit_by_stem[fig["image"]] = fig["credit"]
+    return (credit_by_stem.get(card["source_stem"])
+            or credit_by_stem.get(card.get("original_stem"), ""))
 
 
 def build_project(slug, path, converted_dir):
@@ -281,7 +433,8 @@ def build_project(slug, path, converted_dir):
     card = parse_card(sections["CARD"], slug, converted_dir)
     banner = parse_banner(sections["BANNER"], slug, converted_dir)
     panel = parse_panel(sections["LEFT PANEL"], card)
-    text = split_quote_attribution(sections["TEXT"].strip())
+    blocks = split_text_blocks(sections["TEXT"].strip())
+    card["credit"] = resolve_card_credit(card, banner, blocks)
     technical = sections["TECHNICAL"].strip()
     figures = parse_figures(sections.get("FIGURES"))
 
@@ -291,10 +444,10 @@ def build_project(slug, path, converted_dir):
         "banner": banner,
         "panel": panel,
         "page_heading": sections["PAGE HEADING"].strip(),
-        "text": text,
+        "text": blocks,
         "figures": figures,
         "technical": technical,
-        "has_math": has_math(text, technical),
+        "has_math": has_math(blocks, technical),
     }
 
 
@@ -308,6 +461,14 @@ def collect_assets(*projects):
             stems.add(p["banner"]["single"])
         stems.update(p["figures"])
         stems.update(m["image"] for m in p["panel"]["team"])
+        if p["panel"].get("logo"):
+            stems.add(p["panel"]["logo"])
+        for link in p["panel"]["links"]:
+            if link.get("kind") == "image":
+                stems.add(link["src"])
+        for block in p["text"]:
+            if block["kind"] == "figure-row":
+                stems.update(f["image"] for f in block["images"])
     stems.discard("")
     return stems
 
@@ -338,6 +499,56 @@ def copy_assets(src_converted, projects):
                 shutil.copy2(f, dest_dir / f.name)
             report.append((p["slug"], s, ", ".join(f.name for f in files)))
     return report
+
+
+def attach_figure_row_sizes(projects):
+    """Once copy_assets has placed the final files, read each figure-row
+    image's actual pixel size from assets/research/<slug>/ and store
+    width/height/ratio on it: the template's "flex: <ratio> 1 0" trick
+    (equal-height row, no cropping) needs the ratio, and the build report
+    wants the raw pixel sizes."""
+    from PIL import Image as PILImage
+
+    sizes = []
+    for p in projects:
+        dest_dir = ASSETS_OUT / p["slug"]
+        for block in p["text"]:
+            if block["kind"] != "figure-row":
+                continue
+            for fig in block["images"]:
+                path = None
+                for ext in (".jpg", ".jpeg", ".png", ".webp"):
+                    candidate = dest_dir / f"{fig['image']}{ext}"
+                    if candidate.exists():
+                        path = candidate
+                        break
+                if not path:
+                    print(f"  WARNING: figure-row image not found for {p['slug']}/{fig['image']}", file=sys.stderr)
+                    continue
+                with PILImage.open(path) as im:
+                    w, h = im.width, im.height
+                fig["width"] = w
+                fig["height"] = h
+                fig["ratio"] = round(w / h, 6)
+                sizes.append((p["slug"], fig["image"], w, h))
+    return sizes
+
+
+def discover_projects(theme_dir):
+    """A DUNE-style theme's project slugs: every subdirectory with its own
+    _content.txt, sorted by an optional "Order:" line in its == CARD ==
+    (lower first), folders without one sorting after those that have one,
+    alphabetically among themselves either way."""
+    slugs = sorted(d.name for d in theme_dir.iterdir()
+                   if d.is_dir() and (d / "_content.txt").exists())
+
+    def order_key(slug):
+        content = (theme_dir / slug / "_content.txt").read_text(encoding="utf-8")
+        kv = parse_kv(parse_sections(content).get("CARD", ""))
+        order = kv.get("Order")
+        return (int(order) if order else 999, slug)
+
+    return sorted(slugs, key=order_key)
 
 
 def write_content_pages(projects):
@@ -372,45 +583,64 @@ def main():
     ap.add_argument("--src", type=pathlib.Path, default=DEFAULT_SRC)
     args = ap.parse_args()
 
-    intro_path = args.src / "_intro.txt"
-    intro = intro_path.read_text(encoding="utf-8").strip() if intro_path.exists() else ""
-    converted = args.src / "_converted"
+    themes_out = []
+    all_projects = []
+    figure_row_sizes = []
 
-    projects = []
-    for slug in ("pinn", "gae"):
-        content = args.src / slug / "_content.txt"
-        if not content.exists():
-            print(f"ERROR: {content} not found", file=sys.stderr)
+    for theme_def in THEME_DEFS:
+        theme_dir = args.src / theme_def["folder"]
+        if not theme_dir.is_dir():
+            print(f"ERROR: theme folder {theme_dir} not found", file=sys.stderr)
             sys.exit(1)
-        projects.append(build_project(slug, content, converted if converted.is_dir() else None))
 
-    data = {
-        "themes": [
-            {
-                "id": "machine-learning",
-                "title": "Machine Learning",
-                "intro": intro,
-                "projects": projects,
-            }
-        ]
-    }
+        intro_path = theme_dir / "_intro.txt"
+        intro_raw = intro_path.read_text(encoding="utf-8").strip() if intro_path.exists() else ""
+        converted = theme_dir / "_converted"
 
+        slugs = theme_def["slugs"] or discover_projects(theme_dir)
+        projects = []
+        for slug in slugs:
+            content = theme_dir / slug / "_content.txt"
+            if not content.exists():
+                print(f"ERROR: {content} not found", file=sys.stderr)
+                sys.exit(1)
+            projects.append(build_project(slug, content, converted if converted.is_dir() else None))
+
+        themes_out.append({
+            "id": theme_def["id"],
+            "title": theme_def["title"],
+            "intro": parse_inline_segments(intro_raw) if intro_raw else [],
+            "projects": projects,
+        })
+        all_projects.extend(projects)
+
+        print(f"\ntheme {theme_def['id']}: {len(projects)} project(s)")
+        for p in projects:
+            banner_desc = f"single({p['banner']['single']})" if p['banner'].get('single') else f"{len(p['banner']['images'])} image(s)"
+            print(f"  {p['slug']:14} math={p['has_math']!s:5}  "
+                  f"team={len(p['panel']['team'])}  links={len(p['panel']['links'])}  "
+                  f"banner={banner_desc}  figures={len(p['figures'])}")
+
+        if converted.is_dir():
+            print(f"  copying assets from {converted}")
+            for slug, s, result in copy_assets(converted, projects):
+                marker = "  MISSING" if result == "MISSING" else ""
+                print(f"    {slug:14} {s:32} -> {result}{marker}")
+            figure_row_sizes.extend(attach_figure_row_sizes(projects))
+        else:
+            print(f"  WARNING: {converted} not found, no assets copied", file=sys.stderr)
+
+    data = {"themes": themes_out}
     OUT.parent.mkdir(exist_ok=True)
     OUT.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    write_content_pages(projects)
-    print(f"wrote {OUT.relative_to(ROOT)}: {len(projects)} project(s)")
-    for p in projects:
-        banner_desc = f"single({p['banner']['single']})" if p['banner'].get('single') else f"{len(p['banner']['images'])} image(s)"
-        print(f"  {p['slug']:6} math={p['has_math']!s:5}  "
-              f"team={len(p['panel']['team'])}  links={len(p['panel']['links'])}  "
-              f"banner={banner_desc}  figures={len(p['figures'])}")
+    write_content_pages(all_projects)
 
-    if converted.is_dir():
-        print(f"\ncopying assets from {converted}")
-        for slug, s, result in copy_assets(converted, projects):
-            print(f"  {slug:6} {s:32} -> {result}")
-    else:
-        print(f"\nWARNING: {converted} not found, no assets copied", file=sys.stderr)
+    print(f"\nwrote {OUT.relative_to(ROOT)}: {len(all_projects)} project(s) across {len(themes_out)} theme(s)")
+    if figure_row_sizes:
+        print("\nfigure-row image sizes:")
+        for slug, img, w, h in figure_row_sizes:
+            warn = "  WARNING: under 820px wide" if w < 820 else ""
+            print(f"  {slug:14} {img:32} {w}x{h}{warn}")
 
 
 if __name__ == "__main__":

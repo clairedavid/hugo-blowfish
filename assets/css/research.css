@@ -238,6 +238,13 @@
    size with its block img instead. */
 .res-page > picture:has(.res-banner-single) { display: block }
 
+.res-banner-credit {
+  margin-top: .5rem;
+  text-align: center;
+  font-size: .75rem;
+  color: var(--res-muted);
+}
+
 /* Any additional figures beyond the banner use the same card; neither
    project currently has one, so this is unused today but kept consistent
    with the banner's own treatment for when one does. */
@@ -296,6 +303,9 @@
 .res-panel-block:first-child { margin-top: 0 }
 .res-panel-block-links { margin-top: 2.5rem }
 
+.res-panel-logo { display: flex; justify-content: center }
+.res-panel-logo img { max-width: 100%; height: auto }
+
 .res-panel-block h3 {
   font-size: .72rem;
   font-weight: 600;
@@ -348,6 +358,21 @@
 
 .res-links-line { font-size: .82rem; line-height: 1.5; color: var(--res-body) }
 
+/* A logo or similar image inside Links: (e.g. "![Coffea logo](coffea_logo.svg)"),
+   full panel width, normal block spacing from .res-links' own gap. No tile
+   by default: add .res-links-image-tile by hand on the partial call for a
+   logo that would otherwise vanish against the dark page (see
+   research-page.html's comment on the "image" kind for when to use it). */
+.res-links-image { display: block; width: 100%; height: auto }
+
+.res-links-image-tile {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: .6rem;
+}
+
+.dark .res-links-image-tile { background: #ffffff }
+
 /* ---- card page: text column ---------------------------------------------- */
 
 .res-text {
@@ -359,6 +384,56 @@
 
 @media (min-width: 900px) {
   .res-body > .res-text { grid-column: 3 }
+}
+
+/* ---- figure row (a [[FIGURE-ROW]] block inside TEXT) ---------------------- */
+
+/* Equal height with nothing cropped: see partials/research/figure-row.html
+   for the flex-grow-as-aspect-ratio trick (flex-grow is set inline per
+   figure, to its own width/height ratio; flex-shrink/basis are the same
+   for every figure, set here). Below 600px the figures stack, each at full
+   width, which is the default align-items: stretch in column mode below;
+   at 600px+ they sit in a row, sized by their own ratio instead. */
+.res-figrow {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 1.5rem 0;
+}
+
+@media (min-width: 600px) {
+  .res-figrow { flex-direction: row; align-items: flex-start }
+}
+
+.res-figrow-item {
+  margin: 0;
+  flex-shrink: 1;
+  flex-basis: 0;
+  min-width: 0;
+}
+
+.res-figrow-item img { display: block; width: 100%; height: auto }
+
+/* Caption then credit, centred, top-aligned under each image: since every
+   image in the row comes out the same height (the point of the flex-grow
+   trick above), captions naturally start at the same y either way; this
+   only has to let them wrap independently afterwards, which an ordinary
+   block under each image already does without anything extra. */
+.res-figrow-item figcaption { margin-top: .6rem; text-align: center }
+
+.res-figrow-caption { font-size: .85rem; line-height: 1.45; color: var(--res-body) }
+.res-figrow-caption strong { font-weight: 600; color: var(--res-ink) }
+/* .res-text p further down adds back a 1.1rem bottom margin for ordinary
+   reading paragraphs; a caption is one short paragraph from markdownify
+   and does not want that gap before its own credit line. Specificity (not
+   just source order) is what makes this win, since it is declared before
+   that rule in the file. */
+.res-text .res-figrow-caption p { margin: 0 }
+
+.res-figrow-credit {
+  margin-top: .3rem;
+  font-size: .75rem;
+  color: var(--res-muted);
 }
 
 .res-text p { margin: 0 0 1.1rem }

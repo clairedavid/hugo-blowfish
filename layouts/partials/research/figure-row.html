@@ -1,0 +1,27 @@
+{{- /* One [[FIGURE-ROW]] block from a project's TEXT (see split_text_blocks
+     in build-research-data.py): 2 to 4 figures in a row, equal height, none
+     of them cropped. Param: .slug .images (the block's own .images list,
+     each {image, caption, credit, width, height, ratio}).
+
+     The equal-height-without-cropping trick: each figure's flex-grow is set
+     to its own width/height ratio (ratio recorded by the build script from
+     the actual copied file) while every image is width:100% height:auto
+     inside its figure. Flex distributes the row's width across figures in
+     proportion to their flex-grow, so a figure's computed width ends up
+     proportional to its own ratio; since height = width / ratio for an
+     auto-height image, every figure's height comes out equal regardless of
+     how many images are in the row or what their individual aspect ratios
+     are, no cropping and no JS needed. */ -}}
+{{- $slug := .slug -}}
+<div class="res-figrow">
+  {{- range .images }}
+  <figure class="res-figrow-item" style="flex-grow:{{ .ratio }}">
+    {{- partial "research/picture.html" (dict
+          "slug" $slug "stem" .image "alt" (.caption | plainify)) }}
+    <figcaption>
+      {{- with .caption }}<div class="res-figrow-caption">{{ . | markdownify }}</div>{{ end }}
+      {{- with .credit }}<div class="res-figrow-credit">{{ . }}</div>{{ end }}
+    </figcaption>
+  </figure>
+  {{- end }}
+</div>

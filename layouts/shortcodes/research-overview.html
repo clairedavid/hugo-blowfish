@@ -22,7 +22,15 @@
     <h2 class="relative group about-section">{{ .title }}</h2>
     <hr class="res-theme-rule">
     {{- with .intro }}
-    <p class="res-intro">{{ . }}</p>
+    {{- /* A list of {text, url} segments (see parse_inline_segments in
+         build-research-data.py), not a plain string: a bare string here
+         would print an inline [text](url) link as literal bracket-and-
+         paren text, since this is never passed through markdownify. */}}
+    <p class="res-intro">
+      {{- range . }}
+        {{- if .url }}<a href="{{ .url }}" target="_blank" rel="noopener">{{ .text }}</a>{{- else }}{{ .text }}{{- end }}
+      {{- end }}
+    </p>
     {{- end }}
 
     <div class="res-grid">
@@ -54,9 +62,14 @@
                carrying this class, the same opt-out already used for the
                header logo and the background canvas. Without it, clicking
                a thumbnail opened the zoom lightbox on top of navigating to
-               the card's own page, both firing from the same click. */ -}}
+               the card's own page, both firing from the same click.
+               title: item 5's "no visible credit on cards" rule, satisfied
+               as the title attribute (a hover tooltip) instead; alt stays
+               the card title, since that is what a screen reader or a
+               broken-image fallback should say this picture is. */ -}}
           {{- partial "research/picture.html" (dict
-                "slug" $slug "stem" $card.image "alt" $card.title "class" "nozoom") }}
+                "slug" $slug "stem" $card.image "alt" $card.title "class" "nozoom"
+                "title" $card.credit) }}
         </div>
         <div class="res-card-body">
           <div class="res-card-title">{{ $card.title }}</div>
