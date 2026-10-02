@@ -124,23 +124,33 @@
           <div class="res-links">
             {{- range . }}
             {{- if eq .kind "inline" }}
-            <div class="res-links-line">
+            <div class="res-links-line{{ if .centered }} res-links-centered{{ end }}">
               {{- range .segments }}
                 {{- if .url }}<a href="{{ .url }}" target="_blank" rel="noopener">{{ .text }}</a>{{- else }}{{ .text }}{{- end }}
               {{- end }}
             </div>
             {{- else if eq .kind "image" }}
-            {{- /* A logo or similar inline image inside Links:, full panel
-                 width, e.g. "![Coffea logo](coffea_logo.svg)" under its own
-                 project link. Checked by eye in both themes when it is
-                 added (see research.css): a white rounded tile is only
-                 needed under it when the image itself would otherwise
-                 vanish against the dark page, which is a per-logo call, not
-                 something to guess here. */ -}}
-            {{- partial "research/picture.html" (dict
-                  "slug" $slug "stem" .src "alt" .alt "class" "res-links-image") }}
+            {{- /* A logo or similar inline image inside Links:, always
+                 centred (see research.css), e.g. "![Coffea logo](coffea_
+                 logo.svg)" under its own project link. A white rounded
+                 tile is only needed when the image would otherwise vanish
+                 against the dark page, checked by eye per logo, not
+                 guessed here: add class "res-links-image-tile" alongside
+                 "res-links-image" below when one needs it. Dropped
+                 entirely at build time if its file is missing, so nothing
+                 to guard here. */ -}}
+            <div class="res-links-image-wrap">
+              {{- partial "research/picture.html" (dict
+                    "slug" $slug "stem" .src "alt" .alt "class" "res-links-image") }}
+            </div>
             {{- else }}
-            <a href="{{ .url }}" target="_blank" rel="noopener">{{ .label }}</a>
+            {{- /* A "plain" entry with no url (e.g. "DUNE's official
+                 website:") is a label, not a link: rendered as plain text,
+                 and given its own class so the next item's top margin can
+                 shrink to sit close under it (see research.css). */ -}}
+            <div class="res-links-plain{{ if not .url }} res-links-label{{ end }}{{ if .centered }} res-links-centered{{ end }}">
+              {{- if .url }}<a href="{{ .url }}" target="_blank" rel="noopener">{{ .label }}</a>{{- else }}{{ .label }}{{- end }}
+            </div>
             {{- end }}
             {{- end }}
           </div>

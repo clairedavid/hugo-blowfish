@@ -256,16 +256,28 @@ def parse_inline_segments(text):
     return segments
 
 
-def parse_links_lines(body):
+CENTER_PREFIX_RE = re.compile(r"^::center\s+")
+
+
+def parse_links_lines(body, slug, converted_dir):
     """Lines after "Links:", in one of three forms: the old "label | url"
     row (parse_pipe_rows' own format); prose containing one or more inline
     [text](url) links, where only the bracketed text is ever clickable and
     the url itself is never shown; or a standalone markdown image
     "![alt](file)", rendered full panel width instead of as a link. Which
     form a line is in is decided by its own syntax, not by the presence of a
-    pipe, since neither of the other two forms has one. Returns a list of
-    {"kind": "plain", "label", "url"}, {"kind": "inline", "segments": [...]}
-    or {"kind": "image", "alt", "src"}."""
+    pipe, since neither of the other two forms has one. A line may start
+    with "::center " (stripped before the rest is parsed) to render that one
+    item centred instead of the panel's own default left/ragged-right; an
+    image is always centred regardless, since there is no reading where a
+    panel logo would sit left-aligned. An "image" entry whose file does not
+    actually exist in converted_dir is dropped (not an errorf at render
+    time): that is the one place in this panel a missing asset is expected
+    and should not break the build, matching parse_card/parse_banner's own
+    override-checks rather than research/picture.html's normal hard-fail.
+    Returns a list of {"kind": "plain", "label", "url", "centered"},
+    {"kind": "inline", "segments": [...], "centered"} or {"kind": "image",
+    "alt", "src", "centered": True}."""
     lines = body.split("\n")
     try:
         start = next(i for i, l in enumerate(lines) if l.strip().startswith("Links:"))
@@ -284,25 +296,36 @@ def parse_links_lines(body):
 
     out = []
     for line in raw:
+        centered = bool(CENTER_PREFIX_RE.match(line))
+        line = CENTER_PREFIX_RE.sub("", line)
         m = IMAGE_LINE_RE.match(line)
         if m:
-            out.append({"kind": "image", "alt": m.group(1), "src": stem(m.group(2))})
+            src = stem(m.group(2))
+            exists = converted_dir and any(
+                (converted_dir / f"{src}{ext}").exists()
+                for ext in (".png", ".webp", ".jpg", ".svg"))
+            if not exists:
+                print(f"  WARNING {slug}: Links image {m.group(2)!r} not found in "
+                      f"_converted/, skipping", file=sys.stderr)
+                continue
+            out.append({"kind": "image", "alt": m.group(1), "src": src, "centered": True})
         elif INLINE_LINK_RE.search(line):
-            out.append({"kind": "inline", "segments": parse_inline_segments(line)})
+            out.append({"kind": "inline", "segments": parse_inline_segments(line), "centered": centered})
         else:
             parts = [p.strip() for p in line.split("|")]
-            out.append({"kind": "plain", "label": parts[0], "url": parts[1] if len(parts) > 1 else ""})
+            out.append({"kind": "plain", "label": parts[0],
+                        "url": parts[1] if len(parts) > 1 else "", "centered": centered})
     return out
 
 
-def parse_panel(body, card):
+def parse_panel(body, card, slug, converted_dir):
     kv = parse_kv(body)
     team = [
         {"image": stem(r[0]), "name": r[1],
          "lines": [p.strip() for p in r[2].split(" · ")] if len(r) > 2 and r[2].strip() else []}
         for r in parse_pipe_rows(body, "Team")
     ]
-    links = parse_links_lines(body)
+    links = parse_links_lines(body, slug, converted_dir)
     return {
         "role": kv.get("Role", ""),
         # Years/Status fall back to the CARD's own, when the panel does not
@@ -355,18 +378,42 @@ def parse_figure_row_block(body):
     return images
 
 
+def apply_hard_wraps(md):
+    """A single newline inside an ordinary paragraph becomes a real line
+    break instead of Goldmark's default CommonMark soft wrap (rendered as
+    just a space): two trailing spaces before the newline is CommonMark's
+    own hard-break syntax, so this needs no site-wide markup.toml change
+    (hardWraps would do the same thing, but for every page on the site, not
+    just this one field). A blank line still starts a new paragraph, since
+    the split below only touches non-blank-line-separated runs. A chunk
+    that is a blockquote (starts with ">") is left alone: split_quote_
+    attribution already gives it its own internal blank-"> "-line structure
+    for the quote/attribution split, and this must not interfere with
+    that."""
+    pieces = re.split(r"(\n\s*\n)", md)
+    out = []
+    for piece in pieces:
+        if not piece.strip() or piece.lstrip("\n").startswith(">"):
+            out.append(piece)
+        else:
+            out.append(piece.replace("\n", "  \n"))
+    return "".join(out)
+
+
 def split_text_blocks(raw_text):
     """TEXT as a list of {"kind": "markdown", "content"} and {"kind":
     "figure-row", "images"} blocks in source order, instead of one string,
     so the template can render a figure row as its own flex layout instead
     of markdown content. split_quote_attribution runs per markdown block
     (its regex only ever matches within one, and the figure row's own
-    Image:/Caption:/Credit: lines must not be touched by it)."""
+    Image:/Caption:/Credit: lines must not be touched by it), then
+    apply_hard_wraps, in that order so the blockquote's own attribution
+    split already exists by the time apply_hard_wraps decides what to skip."""
     parts = FIGURE_ROW_RE.split(raw_text)
     blocks = []
     for i, part in enumerate(parts):
         if i % 2 == 0:
-            content = split_quote_attribution(part.strip("\n"))
+            content = apply_hard_wraps(split_quote_attribution(part.strip("\n")))
             if content.strip():
                 blocks.append({"kind": "markdown", "content": content})
         else:
@@ -432,7 +479,7 @@ def build_project(slug, path, converted_dir):
 
     card = parse_card(sections["CARD"], slug, converted_dir)
     banner = parse_banner(sections["BANNER"], slug, converted_dir)
-    panel = parse_panel(sections["LEFT PANEL"], card)
+    panel = parse_panel(sections["LEFT PANEL"], card, slug, converted_dir)
     blocks = split_text_blocks(sections["TEXT"].strip())
     card["credit"] = resolve_card_credit(card, banner, blocks)
     technical = sections["TECHNICAL"].strip()

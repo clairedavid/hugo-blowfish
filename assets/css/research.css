@@ -74,9 +74,11 @@
   border-top: 1px solid var(--res-border);
 }
 
+/* Full width of the content area, the same as the card grid below it: no
+   max-width of its own (65ch previously capped it well short of the
+   grid's own width). */
 .res .res-intro {
   margin-top: 1rem;
-  max-width: 65ch;
   font-size: 1rem;
   color: var(--res-muted);
 }
@@ -150,8 +152,10 @@
   line-height: 1.3;
 }
 
+/* Title-to-subtitle gap: .35rem (5.6px) + 20% = .42rem (6.72px), above the
+   6px floor so the 20% value stands as computed. */
 .res-card-subtitle {
-  margin-top: .35rem;
+  margin-top: .42rem;
   font-size: .9rem;
   line-height: 1.45;
   color: var(--res-body);
@@ -342,7 +346,15 @@
 .res-team-name { margin-top: 8px; font-size: .83rem; font-weight: 600; color: var(--res-ink) }
 .res-team-affiliation { margin-top: 2px; font-size: .76rem; color: var(--res-muted); line-height: 1.35 }
 
-.res-links { display: flex; flex-direction: column; gap: .5rem }
+/* Items are spaced apart, so margin rather than a flex gap: each item sets
+   its own top margin (2.5rem, :first-child cancelled), except the one
+   right after a "label" item (e.g. "DUNE's official website:", a plain
+   entry with no url), which sits close under it at 1rem, per
+   .res-links-label + * below. */
+.res-links { display: flex; flex-direction: column }
+.res-links > * { margin-top: 2.5rem }
+.res-links > *:first-child { margin-top: 0 }
+.res-links-label + * { margin-top: 1rem }
 
 /* Label only: the URL is the href, never shown as text. Covers both the
    plain "label | url" row and an inline [text](url) line's own <a>, so only
@@ -356,14 +368,20 @@
 
 .res-links a:hover { text-decoration-color: currentColor }
 
-.res-links-line { font-size: .82rem; line-height: 1.5; color: var(--res-body) }
+.res-links-line, .res-links-plain { font-size: .82rem; line-height: 1.5; color: var(--res-body) }
+
+/* ::center in a Links: line (see parse_links_lines) sets this; everything
+   else stays left-aligned, ragged right. */
+.res-links-centered { text-align: center }
 
 /* A logo or similar image inside Links: (e.g. "![Coffea logo](coffea_logo.svg)"),
-   full panel width, normal block spacing from .res-links' own gap. No tile
-   by default: add .res-links-image-tile by hand on the partial call for a
-   logo that would otherwise vanish against the dark page (see
-   research-page.html's comment on the "image" kind for when to use it). */
-.res-links-image { display: block; width: 100%; height: auto }
+   always centred regardless of ::center, since a left-aligned logo is never
+   the intended reading. No tile by default: add .res-links-image-tile
+   alongside .res-links-image on the partial call for a logo that would
+   otherwise vanish against the dark page (see research-page.html's comment
+   on the "image" kind for when to use it). */
+.res-links-image-wrap { display: flex; justify-content: center }
+.res-links-image { display: block; max-width: 175px; width: 100%; height: auto }
 
 .res-links-image-tile {
   background: #ffffff;
@@ -398,7 +416,7 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin: 1.5rem 0;
+  margin: 3rem 0 2.5rem;
 }
 
 @media (min-width: 600px) {
@@ -440,6 +458,11 @@
 .res-text p:last-child { margin-bottom: 0 }
 .res-text em { font-style: italic }
 .res-text strong { font-weight: 600; color: var(--res-ink) }
+
+/* Underlined in both themes, same colour as the surrounding text (.res a's
+   own color: inherit is untouched): just a decoration, not a new link
+   colour scheme. */
+.res-text a { text-decoration: underline; text-underline-offset: 2px }
 
 .res-text blockquote {
   margin: 1.4rem 0;

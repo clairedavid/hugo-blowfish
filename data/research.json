@@ -66,7 +66,8 @@
                     "text": " workshop.",
                     "url": ""
                   }
-                ]
+                ],
+                "centered": false
               }
             ]
           },
@@ -159,7 +160,7 @@
         {
           "slug": "dune-canada",
           "card": {
-            "title": "DUNE-Canada",
+            "title": "DUNE Canada",
             "subtitle": "Co-launching the Canadian DUNE effort",
             "years": "2019 – 2022",
             "status": "",
@@ -179,36 +180,45 @@
             "role": "Co-PI, with two other PIs",
             "years": "2019 – 2022",
             "status": "",
-            "logo": "dune-logo",
+            "logo": "",
             "team": [],
             "links": [
+              {
+                "kind": "plain",
+                "label": "DUNE's official website:",
+                "url": "",
+                "centered": false
+              },
               {
                 "kind": "inline",
                 "segments": [
                   {
-                    "text": "To learn more, go to DUNE's official website: ",
-                    "url": ""
-                  },
-                  {
                     "text": "dunescience.org",
                     "url": "https://www.dunescience.org/"
                   }
-                ]
+                ],
+                "centered": true
+              },
+              {
+                "kind": "image",
+                "alt": "DUNE logo",
+                "src": "dune-logo",
+                "centered": true
               }
             ]
           },
-          "page_heading": "DUNE-Canada",
+          "page_heading": "Bringing Canada into DUNE, the international flagship neutrino experiment",
           "text": [
             {
               "kind": "markdown",
-              "content": "DUNE is dedicated to studying one mysterious elementary particle: the neutrino. They are the most abundant matter particles in the universe, yet very difficult to detect. DUNE will measure how neutrinos change over time, a phenomenon known as oscillations. It will also be able to observe neutrinos from a core-collapse supernova in the Milky Way, allowing us to peer inside a newly formed neutron star and potentially witness the birth of a black hole."
+              "content": "The Deep Underground Neutrino Experiment (DUNE) is a complex of detectors under construction in the United States. DUNE is dedicated to studying one mysterious elementary particle: the neutrino. They are the most abundant matter particles in the universe, yet very difficult to detect. DUNE will measure how neutrinos change over time, a phenomenon known as oscillations. It will also be able to observe neutrinos from a core-collapse supernova in the Milky Way, allowing us to peer inside a newly formed neutron star and potentially witness the birth of a black hole."
             },
             {
               "kind": "figure-row",
               "images": [
                 {
                   "image": "ProtoDUNE_cryostat_at_CERN",
-                  "caption": "**ProtoDUNE: a full-scale rehearsal.** Inside the ProtoDUNE cryostat at CERN. ProtoDUNE is a detector prototype built to test and validate liquid-argon technology at the unprecedented large scale of the DUNE modules. The yellow lighting is chosen to protect the photon detection system, and it reflects off the stainless-steel walls.",
+                  "caption": "Inside the cryostat of ProtoDUNE, a prototype built at CERN to validate the liquid-argon chamber technology at scale.",
                   "credit": "Credit: CERN",
                   "width": 1200,
                   "height": 800,
@@ -226,7 +236,7 @@
             },
             {
               "kind": "markdown",
-              "content": "In 2019, while I was faculty at York University, I co-launched the DUNE-Canada effort with two other principal investigators. We secured three-year funding from the Natural Sciences and Engineering Research Council (NSERC) to start the first Canadian effort, then five-year funding from the Canada Foundation for Innovation (CFI) to build a cryogenic facility for [ArgonCube](https://argoncube.lhep.unibe.ch/technologies.html), a research and development initiative designing the advanced Liquid Argon Time Projection Chamber (LArTPC) technology used for the Near Detector.\n\n**DUNE in 2 minutes**\nA great animation in this [short video from Fermilab ↗](https://www.youtube.com/watch?v=AYtKcZMJ_4c)\n\n**What is so special about neutrinos?**\nMy improvised take as a (very amateur) YouTuber: [video ↗](https://www.youtube.com/watch?v=6ZWX1nMZqlI)"
+              "content": "In 2019, while I was faculty at York University, I co-launched the DUNE-Canada effort with two other principal investigators. We secured three-year funding from the Natural Sciences and Engineering Research Council (NSERC) to start the first Canadian effort, then five-year funding from the Canada Foundation for Innovation (CFI) to build a cryogenic facility for [ArgonCube](https://argoncube.lhep.unibe.ch/technologies.html), a research and development initiative designing the advanced Liquid Argon Time Projection Chamber (LArTPC) technology used for the Near Detector.\n\n**DUNE in 2 minutes**  \nA great animation in this [short video from Fermilab ↗](https://www.youtube.com/watch?v=AYtKcZMJ_4c)\n\n**What is so special about neutrinos?**  \nMy improvised take as a (very amateur) YouTuber: [video ↗](https://www.youtube.com/watch?v=6ZWX1nMZqlI)"
             }
           ],
           "figures": [],
@@ -236,7 +246,7 @@
         {
           "slug": "dune-computing",
           "card": {
-            "title": "DUNE-Computing",
+            "title": "DUNE Computing",
             "subtitle": "Designing new training & onboarding, a glossary, and R&D on columnar data analysis",
             "years": "2020 – 2022",
             "status": "",
@@ -263,18 +273,15 @@
                 "kind": "inline",
                 "segments": [
                   {
-                    "text": "Paper: ",
+                    "text": "Paper: \"Training and Onboarding initiatives in High Energy Physics experiments\", ",
                     "url": ""
                   },
                   {
-                    "text": "\"Training and Onboarding initiatives in High Energy Physics experiments\"",
+                    "text": "Frontiers in Big Data (2025) ↗",
                     "url": "https://doi.org/10.3389/fdata.2025.1497622"
-                  },
-                  {
-                    "text": ", Frontiers in Big Data (2025)",
-                    "url": ""
                   }
-                ]
+                ],
+                "centered": false
               },
               {
                 "kind": "inline",
@@ -287,7 +294,8 @@
                     "text": "abc.dunescience.org",
                     "url": "https://abc.dunescience.org/"
                   }
-                ]
+                ],
+                "centered": false
               },
               {
                 "kind": "inline",
@@ -296,16 +304,18 @@
                     "text": "Coffea Python toolkit",
                     "url": "https://coffea-hep.readthedocs.io/en/latest/"
                   }
-                ]
+                ],
+                "centered": false
               },
               {
                 "kind": "image",
                 "alt": "Coffea logo",
-                "src": "coffea_logo"
+                "src": "coffea_logo",
+                "centered": true
               }
             ]
           },
-          "page_heading": "DUNE-Computing: designed new training & onboarding, a glossary, and R&D on columnar data analysis",
+          "page_heading": "DUNE Computing: new training, a glossary, and R&D on columnar data analysis",
           "text": [
             {
               "kind": "markdown",

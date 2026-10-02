@@ -1,6 +1,6 @@
 ---
 layout: "simple"
-title: "DUNE-Canada"
+title: "Bringing Canada into DUNE, the international flagship neutrino experiment"
 ---
 
 {{< research-page slug="dune-canada" >}}
