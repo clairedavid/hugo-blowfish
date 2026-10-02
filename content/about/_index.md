@@ -3,7 +3,7 @@ layout: "simple"
 title: "About"
 ---
 
-I like to fiddle with particle detectors, play with data, and share the beauty of physics, algorithms, and my latest adventures in nature.
+I enjoy fiddling with particle detectors, playing with data, and sharing the beauty of physics, algorithms, and my latest adventures in nature.
 
 I started as an engineer, then got intrigued by data analysis, so switched to fundamental science and realized a dream: working on one of the largest detectors at CERN.
 
