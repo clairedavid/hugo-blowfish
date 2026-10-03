@@ -45,9 +45,10 @@
          its own. */}}
 
     {{- /* Banner: a single pre-composed image when banner.single is set (the
-         <slug>-banner.* override, see build-research-data.py), otherwise the
-         older same-height row built from the Images: list, each on its own
-         white figure card. */}}
+         <slug>-banner.* override, see build-research-data.py), the older
+         same-height row built from the Images: list (each on its own white
+         figure card), or nothing at all for a project with no == BANNER ==
+         section (ATLAS: it leads straight into its own figure rows). */}}
     {{- if $project.banner.single }}
     {{- partial "research/picture.html" (dict
           "slug" $slug "stem" $project.banner.single "class" "res-banner-single"
@@ -56,14 +57,16 @@
     <div class="res-banner-credit">{{ . }}</div>
     {{- end }}
     {{- else }}
+    {{- with $project.banner.images }}
     <div class="res-banner">
-      {{- range $project.banner.images }}
+      {{- range . }}
       <div class="res-figure-card">
         {{- partial "research/picture.html" (dict
               "slug" $slug "stem" . "alt" $project.page_heading) }}
       </div>
       {{- end }}
     </div>
+    {{- end }}
     {{- end }}
 
     {{- with $project.figures }}
@@ -79,6 +82,21 @@
 
     <div class="res-body">
       <aside class="res-panel">
+        {{- /* Facts: new block, rendered first in the panel (see
+             parse_facts_lines in build-research-data.py). Each entry is its
+             own .res-panel-block, same label style as Role/Years/Status,
+             but with its values centred underneath instead of left/ragged-
+             right, one per "::center" line in the source. */}}
+        {{- with $project.panel.facts }}
+        {{- range . }}
+        <div class="res-panel-block">
+          <h3>{{ .label }}</h3>
+          <div class="res-panel-value res-panel-value-centered">
+            {{- range .values }}<div>{{ . }}</div>{{- end }}
+          </div>
+        </div>
+        {{- end }}
+        {{- end }}
         {{- with $project.panel.role }}
         <div class="res-panel-block">
           <h3>Role</h3>
@@ -120,13 +138,16 @@
         {{- end }}
         {{- with $project.panel.links }}
         <div class="res-panel-block res-panel-block-links">
-          <h3>Links</h3>
+          {{- /* "Links" by default, overridden by a "Label: <text>" first
+               line in the source (e.g. "Label: Official website"); see
+               parse_links_lines. */}}
+          <h3>{{ $project.panel.links_label }}</h3>
           <div class="res-links">
             {{- range . }}
             {{- if eq .kind "inline" }}
             <div class="res-links-line{{ if .centered }} res-links-centered{{ end }}">
               {{- range .segments }}
-                {{- if .url }}<a href="{{ .url }}" target="_blank" rel="noopener">{{ .text }}</a>{{- else }}{{ .text }}{{- end }}
+                {{- partial "research/link.html" (dict "url" .url "text" .text) }}
               {{- end }}
             </div>
             {{- else if eq .kind "image" }}
@@ -143,13 +164,24 @@
                  nothing to guard here. nozoom: same reason as the card
                  thumbnails, the theme's medium-zoom targets every <img>
                  by default, which would otherwise show a magnifier cursor
-                 on a logo that is now sometimes itself a clickable
-                 link. */ -}}
+                 on a logo that is now sometimes itself a clickable link.
+                 dark_src: a "<src>-dark" sibling found in _converted/ (see
+                 parse_links_lines); when set, both pictures render and
+                 research.css's .res-logo-light/.res-logo-dark toggle which
+                 one shows, the same .dark-ancestor convention the rest of
+                 this stylesheet already uses. */ -}}
+            {{- $item := . -}}
             <div class="res-links-image-wrap">
-              {{- if .href }}<a href="{{ .href }}" target="_blank" rel="noopener">{{ end -}}
+              {{- if $item.href }}<a href="{{ $item.href }}" target="_blank" rel="noopener">{{ end -}}
               {{- partial "research/picture.html" (dict
-                    "slug" $slug "stem" .src "alt" .alt "class" "res-links-image nozoom") }}
-              {{- if .href }}</a>{{ end -}}
+                    "slug" $slug "stem" $item.src "alt" $item.alt
+                    "class" (printf "res-links-image nozoom%s" (cond (ne $item.dark_src "") " res-logo-light" ""))) }}
+              {{- if $item.dark_src }}
+              {{- partial "research/picture.html" (dict
+                    "slug" $slug "stem" $item.dark_src "alt" $item.alt
+                    "class" "res-links-image nozoom res-logo-dark") }}
+              {{- end }}
+              {{- if $item.href }}</a>{{ end -}}
             </div>
             {{- else }}
             {{- /* A "plain" entry with no url (e.g. "DUNE's official
@@ -157,7 +189,7 @@
                  and given its own class so the next item's top margin can
                  shrink to sit close under it (see research.css). */ -}}
             <div class="res-links-plain{{ if not .url }} res-links-label{{ end }}{{ if .centered }} res-links-centered{{ end }}">
-              {{- if .url }}<a href="{{ .url }}" target="_blank" rel="noopener">{{ .label }}</a>{{- else }}{{ .label }}{{- end }}
+              {{- partial "research/link.html" (dict "url" .url "text" .label) }}
             </div>
             {{- end }}
             {{- end }}

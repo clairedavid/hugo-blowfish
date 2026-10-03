@@ -25,16 +25,29 @@
     {{- /* A list of {text, url} segments (see parse_inline_segments in
          build-research-data.py), not a plain string: a bare string here
          would print an inline [text](url) link as literal bracket-and-
-         paren text, since this is never passed through markdownify. */}}
+         paren text, since this is never passed through markdownify.
+         research/link.html splits internal ("/...") from external (http(s))
+         segments: see its own comment for why that cannot just be left to
+         the theme's render-link.html hook here. */}}
     <p class="res-intro">
       {{- range . }}
-        {{- if .url }}<a href="{{ .url }}" target="_blank" rel="noopener">{{ .text }}</a>{{- else }}{{ .text }}{{- end }}
+        {{- partial "research/link.html" (dict "url" .url "text" .text) }}
       {{- end }}
     </p>
     {{- end }}
 
+    {{- /* Unlisted projects (card.unlisted, from "Unlisted: yes" in ==
+         CARD ==) still get a page at their own URL (write_content_pages
+         builds it unconditionally) but are left out of this grid; a theme
+         where every project is unlisted (ATLAS today) then shows only its
+         heading and intro, with no empty grid box left dangling below
+         them. */ -}}
+    {{- $hasListed := false -}}
+    {{- range .projects }}{{- if not .card.unlisted }}{{- $hasListed = true -}}{{- end }}{{- end -}}
+    {{- if $hasListed }}
     <div class="res-grid">
       {{- range .projects }}
+      {{- if not .card.unlisted }}
       {{- $slug := .slug }}
       {{- $card := .card }}
       {{- /* site.GetPage returns the real Page object for
@@ -78,7 +91,9 @@
         </div>
       </a>
       {{- end }}
+      {{- end }}
     </div>
+    {{- end }}
   </section>
   {{- end }}
 </div>

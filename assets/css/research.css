@@ -321,6 +321,12 @@
 
 .res-panel-value { color: var(--res-ink); line-height: 1.4 }
 
+/* Facts: the label stays left-aligned (same h3 as Role/Years/Status above),
+   only the values underneath are centred, one per "::center" line in the
+   source (see parse_facts_lines). */
+.res-panel-value-centered { text-align: center }
+.res-panel-value-centered > div + div { margin-top: .2rem }
+
 .res-team { display: flex; flex-direction: column; gap: 1.5rem }
 
 /* Each member centred in the panel column: portrait, then name, then
@@ -396,6 +402,15 @@
 }
 
 .dark .res-links-image-tile { background: #ffffff }
+
+/* Light/dark logo pair (a Links: image whose file has a "<stem>-dark"
+   sibling, see parse_links_lines): both render, this just swaps which one
+   is visible, the same .dark-ancestor convention the rest of this
+   stylesheet uses rather than prefers-color-scheme, so it follows the
+   site's own manual toggle, not just the OS setting. */
+.res-logo-dark { display: none }
+.dark .res-logo-light { display: none }
+.dark .res-logo-dark { display: block }
 
 /* ---- card page: text column ---------------------------------------------- */
 

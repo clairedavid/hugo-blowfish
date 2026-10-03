@@ -16,8 +16,22 @@
 <div class="res-figrow">
   {{- range .images }}
   <figure class="res-figrow-item" style="flex-grow:{{ .ratio }}">
+    {{- /* needs_frame (see image_needs_frame in build-research-data.py): a
+         baked light/white background is framed in the same white figure
+         card used for the banner and == FIGURES ==, so it does not float
+         uncarded against the page; a photo is left bare. A single-image
+         row already fills the column's own full width on its own, since a
+         lone flex item absorbs all free space regardless of its flex-grow
+         value, so no extra markup is needed for that case specifically. */ -}}
+    {{- if .needs_frame }}
+    <div class="res-figure-card">
+      {{- partial "research/picture.html" (dict
+            "slug" $slug "stem" .image "alt" (.caption | plainify)) }}
+    </div>
+    {{- else }}
     {{- partial "research/picture.html" (dict
           "slug" $slug "stem" .image "alt" (.caption | plainify)) }}
+    {{- end }}
     <figcaption>
       {{- with .caption }}<div class="res-figrow-caption">{{ . | markdownify }}</div>{{ end }}
       {{- with .credit }}<div class="res-figrow-credit">{{ . }}</div>{{ end }}

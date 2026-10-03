@@ -20,7 +20,8 @@
             "image": "pinn-card",
             "source_stem": "xy_uphi_fd_pinn_dphi010_demo",
             "original_stem": "",
-            "credit": ""
+            "credit": "",
+            "unlisted": false
           },
           "banner": {
             "images": [],
@@ -50,6 +51,8 @@
                 ]
               }
             ],
+            "facts": [],
+            "links_label": "Links",
             "links": [
               {
                 "kind": "inline",
@@ -92,7 +95,8 @@
             "image": "gae-card",
             "source_stem": "project_gae_encode_decode",
             "original_stem": "",
-            "credit": ""
+            "credit": "",
+            "unlisted": false
           },
           "banner": {
             "images": [],
@@ -124,6 +128,8 @@
                 ]
               }
             ],
+            "facts": [],
+            "links_label": "Links",
             "links": []
           },
           "page_heading": "Graph Autoencoders for Particle Collisions",
@@ -167,7 +173,8 @@
             "image": "dune-canada-card",
             "source_stem": "ProtoDUNE_cryostat_at_CERN",
             "original_stem": "",
-            "credit": "Credit: CERN"
+            "credit": "Credit: CERN",
+            "unlisted": false
           },
           "banner": {
             "images": [],
@@ -182,6 +189,8 @@
             "status": "",
             "logo": "",
             "team": [],
+            "facts": [],
+            "links_label": "Links",
             "links": [
               {
                 "kind": "plain",
@@ -203,6 +212,7 @@
                 "kind": "image",
                 "alt": "DUNE logo",
                 "src": "dune-logo",
+                "dark_src": "",
                 "href": "",
                 "centered": true
               }
@@ -223,7 +233,8 @@
                   "credit": "Credit: CERN",
                   "width": 1200,
                   "height": 800,
-                  "ratio": 1.5
+                  "ratio": 1.5,
+                  "needs_frame": false
                 },
                 {
                   "image": "dune-far-detector",
@@ -231,7 +242,8 @@
                   "credit": "Credit: Fermilab",
                   "width": 800,
                   "height": 450,
-                  "ratio": 1.777778
+                  "ratio": 1.777778,
+                  "needs_frame": false
                 }
               ]
             },
@@ -254,7 +266,8 @@
             "image": "dune-computing-card",
             "source_stem": "dune-computing-card",
             "original_stem": "",
-            "credit": ""
+            "credit": "",
+            "unlisted": false
           },
           "banner": {
             "images": [],
@@ -269,6 +282,8 @@
             "status": "",
             "logo": "",
             "team": [],
+            "facts": [],
+            "links_label": "Links",
             "links": [
               {
                 "kind": "plain",
@@ -312,6 +327,7 @@
                 "kind": "image",
                 "alt": "Coffea logo",
                 "src": "coffea_logo",
+                "dark_src": "",
                 "href": "https://coffea-hep.readthedocs.io/en/latest/",
                 "centered": true
               }
@@ -322,6 +338,167 @@
             {
               "kind": "markdown",
               "content": "As part of the Computing Consortium, I co-convened the Training and Documentation subgroup. We redesigned the onboarding and co-organized three tutorial sessions to help newcomers grasp the DUNE analysis workflow. The tutorials focused mostly on LArSoft, the software framework for event generation, detector simulation and reconstruction used to analyze data from Liquid Argon Time Projection Chambers (LArTPCs). I also modernized the DUNE Computing wiki, and designed and deployed DUNE's automated glossary.\n\nMy team led the first R&D on an interactive analysis facility for DUNE using columnar computing. This was done using the Coffea Python toolkit, a prototype package to supply high-energy collider physics (HEP) experiments with big-data technologies for physics analyses."
+            }
+          ],
+          "figures": [],
+          "technical": "",
+          "has_math": false
+        }
+      ]
+    },
+    {
+      "id": "atlas",
+      "title": "ATLAS",
+      "intro": [
+        {
+          "text": "ATLAS (",
+          "url": ""
+        },
+        {
+          "text": "A Toroidal LHC ApparatuS",
+          "url": "https://atlas.cern/"
+        },
+        {
+          "text": ") is one of the largest particle detectors ever built, recording proton-proton collisions at CERN's Large Hadron Collider. ",
+          "url": ""
+        },
+        {
+          "text": "This short read",
+          "url": "/research/atlas-experiment/"
+        },
+        {
+          "text": " covers the detector and my years working on it.",
+          "url": ""
+        }
+      ],
+      "projects": [
+        {
+          "slug": "atlas-experiment",
+          "card": {
+            "title": "The ATLAS detector at the CERN Large Hadron Collider",
+            "subtitle": "",
+            "years": "2010 – 2022",
+            "status": "",
+            "image": "",
+            "source_stem": "",
+            "original_stem": "",
+            "credit": "",
+            "unlisted": true
+          },
+          "banner": {
+            "images": [],
+            "style": "row",
+            "single": "",
+            "original_stem": "",
+            "credit": ""
+          },
+          "panel": {
+            "role": "",
+            "years": "2010 – 2022",
+            "status": "",
+            "logo": "",
+            "team": [],
+            "facts": [
+              {
+                "label": "Approved",
+                "values": [
+                  "July 1, 1997",
+                  "(construction approval)"
+                ]
+              },
+              {
+                "label": "Completed",
+                "values": [
+                  "2008"
+                ]
+              },
+              {
+                "label": "Dimensions",
+                "values": [
+                  "46 × 25 × 25 m"
+                ]
+              },
+              {
+                "label": "Mass",
+                "values": [
+                  "7000 tonnes"
+                ]
+              },
+              {
+                "label": "Collaboration",
+                "values": [
+                  "5,500+ scientists"
+                ]
+              }
+            ],
+            "links_label": "Official website",
+            "links": [
+              {
+                "kind": "inline",
+                "segments": [
+                  {
+                    "text": "atlas.cern",
+                    "url": "https://atlas.cern/"
+                  }
+                ],
+                "centered": true
+              },
+              {
+                "kind": "image",
+                "alt": "ATLAS logo",
+                "src": "atlas-logo",
+                "dark_src": "atlas-logo-dark",
+                "href": "",
+                "centered": true
+              }
+            ]
+          },
+          "page_heading": "The ATLAS detector at the CERN Large Hadron Collider",
+          "text": [
+            {
+              "kind": "markdown",
+              "content": "Lying in an underground tunnel of 27 kilometre circumference under the French-Swiss border near Geneva, the Large Hadron Collider (LHC) accelerates particles close to the speed of light and lets them smash together at the centre of big detectors. The task for experimental particle physicists is to reconstruct the trajectories and identify the particles produced during these collisions, to then measure their properties for ultimately inferring on the presence of new processes in subatomic physics.\n\n\n[ATLAS (A Toroidal LHC ApparatuS)](https://atlas.cern/) is an arrangement of concentric sub-detectors, each recording specific information from the particles produced in a collision. It is the largest volume particle detector ever constructed. This [short video ↗](https://youtu.be/hnSonIRT7ac) from the great movie [Particle Fever ↗](https://www.youtube.com/watch?v=Rikc7foqvRI) gives an idea of what it feels like seeing ATLAS for the first time."
+            },
+            {
+              "kind": "figure-row",
+              "images": [
+                {
+                  "image": "map_lhc_blue",
+                  "caption": "Aerial map of the Large Hadron Collider, a 27-kilometre circular accelerator located in a tunnel 100 metres underground near Geneva, across the French–Swiss border. Depicted are also the interaction points where the four major particle detectors are situated. Credit: CERN.",
+                  "credit": "",
+                  "width": 960,
+                  "height": 552,
+                  "ratio": 1.73913,
+                  "needs_frame": false
+                },
+                {
+                  "image": "atlas_endcap-1400",
+                  "caption": "The ATLAS detector assembled with its calorimeter (inner cylinder) that measures the energy of particles. Humans for scale. Credit: Maximilien Brice/CERN.",
+                  "credit": "",
+                  "width": 1081,
+                  "height": 1503,
+                  "ratio": 0.719228,
+                  "needs_frame": false
+                }
+              ]
+            },
+            {
+              "kind": "figure-row",
+              "images": [
+                {
+                  "image": "atlas-photo-toroid",
+                  "caption": "The ATLAS detector under construction in 2005. The eight large magnets (toroids) are used to bend the path of charged particles, which helps identify them. Standing in the middle, for scale: Roger Ruber, who led the commissioning of another magnet from ATLAS, the solenoid (not pictured).",
+                  "credit": "Credit: CERN/Maximilien Brice",
+                  "width": 1400,
+                  "height": 933,
+                  "ratio": 1.500536,
+                  "needs_frame": false
+                }
+              ]
+            },
+            {
+              "kind": "markdown",
+              "content": "I started my Ph.D. just before the big LHC's success in 2012: the discovery of the Higgs boson, a long-sought particle responsible for giving massive particles their observed masses (the understanding of mass at the subatomic). I was relieved as my Ph.D. analysis required the presence of the Higgs boson! Moving on as a postdoc, I contributed to the observation of a rare process, also involving the Higgs boson: its production in association with a top quark pair (quarks are constituents of protons and neutrons). I also had fun playing with an infrared camera to characterise the thermal performance of the next generation of particle detectors; this was part of the ATLAS upgrade program, preparing for an enhanced collision phase called the [High-Luminosity LHC Project](https://hilumilhc.web.cern.ch/).\n\n\n**What fascinates me with collider physics:**  \nThe mere fact that we, as a species, are building the most gigantic and complex machines to discover the tiniest pieces of matter to ultimately answer a very simple question: what is everything made of?\n\n\n**Learn more**  \nAbout [the Large Hadron Collider (CERN's website) and frequently asked questions ↗](https://home.cern/science/accelerators/large-hadron-collider/).\n\nDiscover [ATLAS subsystems and take a virtual tour ↗](https://atlas.cern/Discover/Detector)"
             }
           ],
           "figures": [],

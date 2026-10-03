@@ -1,7 +1,10 @@
 {{- /* Resolve one research image by slug + filename stem and emit the right
      markup for whatever format(s) scripts/build-research-data.py actually
      copied for it: SVG alone (the two PDF plots), a WebP+raster pair (the
-     GAE diagrams, the PINN card), or a single raster file (the portraits).
+     GAE diagrams, the PINN card), a WebP file with no raster sibling (the
+     ATLAS map, a PNG over 500KB converted to lossless WebP with nothing
+     else kept, see build-research-data.py's module docstring), or a single
+     raster file (the portraits).
      Params: .slug .stem .class .alt .title (.loading defaults to "lazy")
 
      Looking the file up here, at render time, rather than trusting the data
@@ -20,17 +23,18 @@
   {{- $webp := resources.Get (printf "research/%s/%s.webp" $slug $stem) -}}
   {{- $raster := or (resources.Get (printf "research/%s/%s.png" $slug $stem))
                      (resources.Get (printf "research/%s/%s.jpg" $slug $stem)) -}}
-  {{- if not $raster -}}
-    {{- errorf "research/picture: no asset found for %s/%s (looked for .svg, .webp+.png, .webp+.jpg, .png, .jpg)" $slug $stem -}}
+  {{- if and (not $raster) (not $webp) -}}
+    {{- errorf "research/picture: no asset found for %s/%s (looked for .svg, .webp+.png, .webp+.jpg, .webp, .png, .jpg)" $slug $stem -}}
   {{- end -}}
-  {{- if $webp -}}
+  {{- if and $webp $raster -}}
   <picture>
     <source srcset="{{ $webp.RelPermalink }}" type="image/webp">
     <img class="{{ $class }}" src="{{ $raster.RelPermalink }}" alt="{{ $alt }}"{{ with $title }} title="{{ . }}"{{ end }}
          loading="{{ $loading }}" width="{{ $raster.Width }}" height="{{ $raster.Height }}">
   </picture>
   {{- else -}}
-  <img class="{{ $class }}" src="{{ $raster.RelPermalink }}" alt="{{ $alt }}"{{ with $title }} title="{{ . }}"{{ end }}
-       loading="{{ $loading }}" width="{{ $raster.Width }}" height="{{ $raster.Height }}">
+  {{- $only := $raster | default $webp -}}
+  <img class="{{ $class }}" src="{{ $only.RelPermalink }}" alt="{{ $alt }}"{{ with $title }} title="{{ . }}"{{ end }}
+       loading="{{ $loading }}" width="{{ $only.Width }}" height="{{ $only.Height }}">
   {{- end -}}
 {{- end -}}

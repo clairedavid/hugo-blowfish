@@ -6,15 +6,18 @@ Source layout (default --src ~/Desktop/website_meta/research):
     <theme>/<slug>/_content.txt   one project, in == SECTION == blocks
 
 Themes are fixed, in site order: "machine-learning" (Machine Learning),
-then "dune" (DUNE). Machine Learning's two projects keep their own fixed
-order (pinn, gae); DUNE's projects are discovered from its subdirectories
-and sorted by an optional "Order:" line in == CARD == (lower first), falling
-back to alphabetical name for folders that do not set one, so dune-canada
-sorts before dune-computing without needing one.
+"dune" (DUNE), then "atlas" (ATLAS). Machine Learning's two projects and
+ATLAS's one keep their own fixed order; DUNE's projects are discovered from
+its subdirectories and sorted by an optional "Order:" line in == CARD ==
+(lower first), falling back to alphabetical name for folders that do not set
+one, so dune-canada sorts before dune-computing without needing one.
 
 Each project's _content.txt holds, in this order:
     == CARD ==          Key: value lines (Title, Subtitle, Years, Status,
-                         Card image, optional Order)
+                         Card image, optional Order, optional "Unlisted:
+                         yes": the page still builds at its URL but is left
+                         out of the overview grid, so Subtitle/Years/Card
+                         image may then be empty or absent)
     == BANNER ==         Either "Image:" (one pre-composed banner, optional
                          "Credit:" line) or the older "Images:" list (one
                          filename stem per line) / "Style:"
@@ -22,14 +25,31 @@ Each project's _content.txt holds, in this order:
                          optional Logo: (one image, shown above Links) /
                          Team: (pipe rows "image | name | affiliation",
                          affiliation may itself be "role · affiliation") /
-                         Links: (pipe rows "label | url", inline markdown
-                         [text](url), a markdown image "![alt](file)", or
-                         "(none)")
+                         optional Facts: (see parse_facts_lines: a
+                         "<Label>:" line on its own starts an entry, the
+                         "::center <value>" lines under it are that entry's
+                         values, a blank line ends it; rendered first in the
+                         panel) / Links: (pipe rows "label | url", inline
+                         markdown [text](url), a markdown image
+                         "![alt](file)", or "(none)"; the first content line
+                         may be "Label: <text>" to override the panel's
+                         "Links" heading; an image line's file may have a
+                         "<stem>-dark" sibling of any extension in
+                         _converted/, shown instead in dark mode)
     == PAGE HEADING ==   a single line, becomes the page's title and h1
     == TEXT ==           markdown: paragraphs, *emphasis*, a quote as two
                          `> ` lines (text, then attribution), and optionally
-                         one [[FIGURE-ROW]]...[[/FIGURE-ROW]] block (see
-                         parse_figure_row_block)
+                         one or more [[FIGURE-ROW]]...[[/FIGURE-ROW]] blocks
+                         (see parse_figure_row_block). A single-image row
+                         fills the column's full width; any image whose
+                         corners are all light and opaque (see
+                         image_needs_frame) is framed in the same white
+                         figure card used elsewhere, photos are not.
+                         A markdown link starting with "/" is internal:
+                         resolved via site.GetPage, same tab, no
+                         target=_blank (see partials/research/link.html);
+                         this applies here, in the theme intro and in the
+                         panel's Links block alike.
     == FIGURES ==        optional, image stems one per line, or "(none...)"
     == TECHNICAL ==      markdown, folded into a <details> on the page
 
@@ -73,6 +93,7 @@ CONTENT_OUT = ROOT / "content" / "research"
 THEME_DEFS = [
     {"id": "machine-learning", "title": "Machine Learning", "folder": "machine-learning", "slugs": ("pinn", "gae")},
     {"id": "dune", "title": "DUNE", "folder": "dune", "slugs": None},
+    {"id": "atlas", "title": "ATLAS", "folder": "atlas", "slugs": ("atlas-experiment",)},
 ]
 
 # Phase-1 review artifacts that live alongside the real finals in
@@ -117,7 +138,7 @@ def parse_kv(body):
         m = re.match(r"^([A-Za-z ]+):\s*(.*)$", line)
         if m and m.group(1).strip() in (
             "Title", "Subtitle", "Years", "Status", "Card image", "Order",
-            "Style", "Role", "Image", "Credit", "Logo",
+            "Style", "Role", "Image", "Credit", "Logo", "Unlisted",
         ):
             kv[m.group(1).strip()] = m.group(2).strip()
     return kv
@@ -198,6 +219,11 @@ def parse_card(body, slug, converted_dir):
         "source_stem": source_stem,
         "original_stem": original_source_stem(card_image_desc),
         "credit": "",  # filled in by build_project once the banner/figure-row credits are known
+        # "Unlisted: yes" builds the page at its URL but leaves it out of the
+        # overview grid (research-overview.html skips it); Subtitle/Years/
+        # Card image may then be empty, which is fine since nothing reads
+        # them for a page that is never shown as a tile.
+        "unlisted": kv.get("Unlisted", "").strip().lower() in ("yes", "true"),
     }
 
 
@@ -258,6 +284,13 @@ def parse_inline_segments(text):
 
 
 CENTER_PREFIX_RE = re.compile(r"^::center\s+")
+LABEL_OVERRIDE_RE = re.compile(r"^Label:\s*(.+)$")
+
+
+def asset_exists(converted_dir, stem_name):
+    return bool(converted_dir) and any(
+        (converted_dir / f"{stem_name}{ext}").exists()
+        for ext in (".png", ".webp", ".jpg", ".svg"))
 
 
 def parse_links_lines(body, slug, converted_dir):
@@ -279,15 +312,24 @@ def parse_links_lines(body, slug, converted_dir):
     A bare image may itself be the link: "[![alt](file)](url)" (a linked
     image) carries that url as "href" instead of being wrapped in a
     separate inline link item, for a logo that is its own call to action
-    with no extra "visit" text needed.
-    Returns a list of {"kind": "plain", "label", "url", "centered"},
-    {"kind": "inline", "segments": [...], "centered"} or {"kind": "image",
-    "alt", "src", "href", "centered": True}."""
+    with no extra "visit" text needed. An image entry also looks for a
+    "<src>-dark" sibling in converted_dir (any extension, independent of the
+    light image's own) and records it as "dark_src": the template renders
+    both and toggles which one shows with the .dark ancestor class, the same
+    light/dark swap convention used for every other themed asset on this
+    site, so a logo whose official dark version only exists as e.g. an SVG
+    next to a PNG still works.
+    The first content line may be "Label: <text>" (e.g. "Label: Official
+    website"), which overrides the panel's own "Links" field heading instead
+    of being parsed as a link; returns ("Links" or override, out), out being
+    a list of {"kind": "plain", "label", "url", "centered"}, {"kind":
+    "inline", "segments": [...], "centered"} or {"kind": "image", "alt",
+    "src", "dark_src", "href", "centered": True}."""
     lines = body.split("\n")
     try:
         start = next(i for i, l in enumerate(lines) if l.strip().startswith("Links:"))
     except StopIteration:
-        return []
+        return "Links", []
     first = lines[start].split(":", 1)[1].strip()
     raw = [first] if first else []
     for l in lines[start + 1:]:
@@ -302,7 +344,12 @@ def parse_links_lines(body, slug, converted_dir):
             raw.append(l.strip())
     raw = [r for r in raw if r]
     if len(raw) == 1 and EMPTY_MARKERS.match(raw[0]):
-        return []
+        return "Links", []
+
+    label = "Links"
+    if raw and LABEL_OVERRIDE_RE.match(raw[0]):
+        label = LABEL_OVERRIDE_RE.match(raw[0]).group(1).strip()
+        raw = raw[1:]
 
     out = []
     for line in raw:
@@ -312,22 +359,66 @@ def parse_links_lines(body, slug, converted_dir):
         m = lm or IMAGE_LINE_RE.match(line)
         if m:
             src = stem(m.group(2))
-            exists = converted_dir and any(
-                (converted_dir / f"{src}{ext}").exists()
-                for ext in (".png", ".webp", ".jpg", ".svg"))
-            if not exists:
+            if not asset_exists(converted_dir, src):
                 print(f"  WARNING {slug}: Links image {m.group(2)!r} not found in "
                       f"_converted/, skipping", file=sys.stderr)
                 continue
+            dark_src = f"{src}-dark"
+            if not asset_exists(converted_dir, dark_src):
+                dark_src = ""
             href = lm.group(3) if lm else ""
-            out.append({"kind": "image", "alt": m.group(1), "src": src, "href": href, "centered": True})
+            out.append({"kind": "image", "alt": m.group(1), "src": src,
+                        "dark_src": dark_src, "href": href, "centered": True})
         elif INLINE_LINK_RE.search(line):
             out.append({"kind": "inline", "segments": parse_inline_segments(line), "centered": centered})
         else:
             parts = [p.strip() for p in line.split("|")]
             out.append({"kind": "plain", "label": parts[0],
                         "url": parts[1] if len(parts) > 1 else "", "centered": centered})
-    return out
+    return label, out
+
+
+FACT_LABEL_RE = re.compile(r"^([^:]+):\s*$")
+
+
+def parse_facts_lines(body):
+    """Lines after "Facts:", up to the next LEFT PANEL field or end of body.
+    A line that is only "<Label>:" (nothing after the colon) starts an
+    entry; "::center <value>" lines that follow are that entry's values, one
+    per line, trailing spaces trimmed; a blank line ends the entry (the next
+    label line would end it anyway, this just also covers a stray blank
+    inside one). Returns a list of {"label", "values": [...]}, in source
+    order, rendered first in the panel (see research-page.html), each as its
+    own block in the panel's normal field spacing, label styled like Role/
+    Years/Status, values centred under it."""
+    lines = body.split("\n")
+    try:
+        start = next(i for i, l in enumerate(lines) if l.strip() == "Facts:")
+    except StopIteration:
+        return []
+    entries = []
+    cur = None
+    for l in lines[start + 1:]:
+        if re.match(r"^(Role|Years|Status|Logo|Team|Links):\s*", l):
+            break
+        stripped = l.strip()
+        if not stripped:
+            if cur:
+                entries.append(cur)
+                cur = None
+            continue
+        if stripped.startswith("::center"):
+            if cur is not None:
+                cur["values"].append(CENTER_PREFIX_RE.sub("", stripped).strip())
+            continue
+        m = FACT_LABEL_RE.match(stripped)
+        if m:
+            if cur:
+                entries.append(cur)
+            cur = {"label": m.group(1).strip(), "values": []}
+    if cur:
+        entries.append(cur)
+    return entries
 
 
 def parse_panel(body, card, slug, converted_dir):
@@ -337,7 +428,8 @@ def parse_panel(body, card, slug, converted_dir):
          "lines": [p.strip() for p in r[2].split(" · ")] if len(r) > 2 and r[2].strip() else []}
         for r in parse_pipe_rows(body, "Team")
     ]
-    links = parse_links_lines(body, slug, converted_dir)
+    facts = parse_facts_lines(body)
+    links_label, links = parse_links_lines(body, slug, converted_dir)
     return {
         "role": kv.get("Role", ""),
         # Years/Status fall back to the CARD's own, when the panel does not
@@ -349,6 +441,8 @@ def parse_panel(body, card, slug, converted_dir):
         "status": kv.get("Status") or card["status"],
         "logo": stem(kv["Logo"]) if kv.get("Logo") else "",
         "team": team,
+        "facts": facts,
+        "links_label": links_label,
         "links": links,
     }
 
@@ -483,14 +577,16 @@ def resolve_card_credit(card, banner, blocks):
 
 def build_project(slug, path, converted_dir):
     sections = parse_sections(path.read_text(encoding="utf-8"))
-    required = ["CARD", "BANNER", "LEFT PANEL", "PAGE HEADING", "TEXT", "TECHNICAL"]
+    # BANNER is optional, like FIGURES: ATLAS has no pre-composed banner and
+    # leads straight into its own [[FIGURE-ROW]] blocks instead.
+    required = ["CARD", "LEFT PANEL", "PAGE HEADING", "TEXT", "TECHNICAL"]
     missing = [s for s in required if s not in sections]
     if missing:
         print(f"  ERROR {slug}: missing sections {missing}", file=sys.stderr)
         sys.exit(1)
 
     card = parse_card(sections["CARD"], slug, converted_dir)
-    banner = parse_banner(sections["BANNER"], slug, converted_dir)
+    banner = parse_banner(sections.get("BANNER", ""), slug, converted_dir)
     panel = parse_panel(sections["LEFT PANEL"], card, slug, converted_dir)
     blocks = split_text_blocks(sections["TEXT"].strip())
     card["credit"] = resolve_card_credit(card, banner, blocks)
@@ -525,6 +621,8 @@ def collect_assets(*projects):
         for link in p["panel"]["links"]:
             if link.get("kind") == "image":
                 stems.add(link["src"])
+                if link.get("dark_src"):
+                    stems.add(link["dark_src"])
         for block in p["text"]:
             if block["kind"] == "figure-row":
                 stems.update(f["image"] for f in block["images"])
@@ -560,12 +658,30 @@ def copy_assets(src_converted, projects):
     return report
 
 
+def image_needs_frame(im):
+    """True if the image's four corners are all light and opaque: a baked-in
+    white/light background that would otherwise float uncarded against the
+    page (see item 5, "check map_lhc_blue.png"), as opposed to a photo,
+    whose corners are typically dark or busy. Checked by sampling, not
+    guessed from the filename, so the rule generalises to any future
+    figure-row image rather than hardcoding one stem."""
+    rgba = im.convert("RGBA")
+    w, h = rgba.size
+    for x, y in ((0, 0), (w - 1, 0), (0, h - 1), (w - 1, h - 1)):
+        r, g, b, a = rgba.getpixel((x, y))
+        if a < 250 or min(r, g, b) < 225:
+            return False
+    return True
+
+
 def attach_figure_row_sizes(projects):
     """Once copy_assets has placed the final files, read each figure-row
     image's actual pixel size from assets/research/<slug>/ and store
     width/height/ratio on it: the template's "flex: <ratio> 1 0" trick
     (equal-height row, no cropping) needs the ratio, and the build report
-    wants the raw pixel sizes."""
+    wants the raw pixel sizes. Also stores needs_frame (see
+    image_needs_frame), so a single-image row with a busy/dark photo and one
+    with a baked-light background are told apart automatically."""
     from PIL import Image as PILImage
 
     sizes = []
@@ -586,10 +702,12 @@ def attach_figure_row_sizes(projects):
                     continue
                 with PILImage.open(path) as im:
                     w, h = im.width, im.height
+                    frame = image_needs_frame(im)
                 fig["width"] = w
                 fig["height"] = h
                 fig["ratio"] = round(w / h, 6)
-                sizes.append((p["slug"], fig["image"], w, h))
+                fig["needs_frame"] = frame
+                sizes.append((p["slug"], fig["image"], w, h, frame))
     return sizes
 
 
@@ -697,9 +815,10 @@ def main():
     print(f"\nwrote {OUT.relative_to(ROOT)}: {len(all_projects)} project(s) across {len(themes_out)} theme(s)")
     if figure_row_sizes:
         print("\nfigure-row image sizes:")
-        for slug, img, w, h in figure_row_sizes:
+        for slug, img, w, h, frame in figure_row_sizes:
             warn = "  WARNING: under 820px wide" if w < 820 else ""
-            print(f"  {slug:14} {img:32} {w}x{h}{warn}")
+            frame_note = "  framed (light bg)" if frame else ""
+            print(f"  {slug:14} {img:32} {w}x{h}{warn}{frame_note}")
 
 
 if __name__ == "__main__":

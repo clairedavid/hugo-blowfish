@@ -1,0 +1,25 @@
+{{- /* One <a> (or bare text if .url is empty) for a Links:/intro segment, or
+     a Links: "plain" row. Params: .url .text
+
+     External (http:/https:) opens in a new tab with rel=noopener, exactly
+     as before. Internal (starts with "/", e.g. "/research/atlas-experiment/"
+     in the atlas theme's own _intro.txt) resolves via site.GetPage, same
+     tab, no target/rel: these segments are hand-rendered from
+     parse_inline_segments / parse_links_lines in build-research-data.py,
+     never passed through markdownify, so they get none of the theme's own
+     render-link.html hook (which already does this same internal/external
+     split for ordinary TEXT markdown) without this partial doing it by
+     hand. site.GetPage, not relURL on the raw string: see
+     research-overview.html's own card-link comment for the bug that
+     caused. */ -}}
+{{- $url := .url -}}
+{{- $text := .text -}}
+{{- if not $url -}}
+{{- $text -}}
+{{- else if strings.HasPrefix $url "/" -}}
+  {{- $target := site.GetPage (strings.TrimSuffix "/" $url) -}}
+  {{- if not $target -}}{{- errorf "research/link: internal link target not found: %s" $url -}}{{- end -}}
+<a href="{{ $target.RelPermalink }}">{{ $text }}</a>
+{{- else -}}
+<a href="{{ $url }}" target="_blank" rel="noopener">{{ $text }}</a>
+{{- end -}}
