@@ -369,7 +369,7 @@
           "card": {
             "title": "The ATLAS detector at the CERN Large Hadron Collider",
             "subtitle": "",
-            "years": "2010 – 2022",
+            "years": "",
             "status": "",
             "image": "",
             "source_stem": "",
@@ -386,7 +386,7 @@
           },
           "panel": {
             "role": "",
-            "years": "2010 – 2022",
+            "years": "",
             "status": "",
             "logo": "",
             "team": [],
@@ -413,7 +413,7 @@
               {
                 "label": "Mass",
                 "values": [
-                  "7000 tonnes"
+                  "7,000 tonnes"
                 ]
               },
               {
@@ -490,7 +490,7 @@
             },
             {
               "kind": "markdown",
-              "content": "I started my Ph.D. just before the big LHC's success in 2012: the discovery of the Higgs boson, a long-sought particle responsible for giving massive particles their observed masses (the understanding of mass at the subatomic). I was relieved as my Ph.D. analysis required the presence of the Higgs boson! Moving on as a postdoc, I contributed to the observation of a rare process, also involving the Higgs boson: its production in association with a top quark pair (quarks are constituents of protons and neutrons). I also had fun playing with an infrared camera to characterise the thermal performance of the next generation of particle detectors; this was part of the ATLAS upgrade program, preparing for an enhanced collision phase called the [High-Luminosity LHC Project](https://hilumilhc.web.cern.ch/).\n\n\n**What fascinates me with collider physics:**  \nThe mere fact that we, as a species, are building the most gigantic and complex machines to discover the tiniest pieces of matter to ultimately answer a very simple question: what is everything made of?\n\n\n**Learn more**  \nAbout [the Large Hadron Collider (CERN's website) and frequently asked questions ↗](https://home.cern/science/accelerators/large-hadron-collider/).\n\nDiscover [ATLAS subsystems and take a virtual tour ↗](https://atlas.cern/Discover/Detector)"
+              "content": "I started my Ph.D. just before the big LHC's success in 2012: the discovery of the Higgs boson, a long-sought particle responsible for giving massive particles their observed masses (the understanding of mass at the subatomic). I was relieved as my Ph.D. analysis required the presence of the Higgs boson! Moving on as a postdoc, I contributed to the observation of a rare process, also involving the Higgs boson: its production in association with a top quark pair (quarks are constituents of protons and neutrons). I also had fun playing with an infrared camera to characterise the thermal performance of the next generation of particle detectors; this was part of the ATLAS upgrade program, preparing for an enhanced collision phase called the [High-Luminosity LHC Project ↗](https://hilumilhc.web.cern.ch/).\n\n\n**What fascinates me with collider physics:**  \nThe mere fact that we, as a species, are building the most gigantic and complex machines to discover the tiniest pieces of matter to ultimately answer a very simple question: what is everything made of?\n\n\n**Learn more**  \nAbout [the Large Hadron Collider (CERN's website) and frequently asked questions ↗](https://home.cern/science/accelerators/large-hadron-collider/).\n\nDiscover [ATLAS subsystems and take a virtual tour ↗](https://atlas.cern/Discover/Detector)"
             }
           ],
           "figures": [],
