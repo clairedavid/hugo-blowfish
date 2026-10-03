@@ -351,23 +351,15 @@
       "title": "ATLAS",
       "intro": [
         {
-          "text": "ATLAS (",
+          "text": "ATLAS is one of the largest particle detectors ever built, recording proton-proton collisions at CERN's Large Hadron Collider. Learn more about ATLAS and a summary of my years working on it ",
           "url": ""
         },
         {
-          "text": "A Toroidal LHC ApparatuS",
-          "url": "https://atlas.cern/"
-        },
-        {
-          "text": ") is one of the largest particle detectors ever built, recording proton-proton collisions at CERN's Large Hadron Collider. ",
-          "url": ""
-        },
-        {
-          "text": "This short read",
+          "text": "here",
           "url": "/research/atlas-experiment/"
         },
         {
-          "text": " covers the detector and my years working on it.",
+          "text": ".",
           "url": ""
         }
       ],

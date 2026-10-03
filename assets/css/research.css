@@ -83,6 +83,11 @@
   color: var(--res-muted);
 }
 
+/* Same treatment as .res-text a below: without this, .res a's own
+   "text-decoration: none" reset leaves an inline link with no visible cue
+   that it is one. */
+.res-intro a { text-decoration: underline; text-underline-offset: 2px }
+
 /* ---- card grid ---------------------------------------------------------- */
 
 .res-grid {
@@ -290,6 +295,13 @@
   display: flex;
   flex-direction: column;
   font-size: .85rem;
+  /* Centred throughout: labels, values, Facts, Links, everything. Left and
+     centred mixed (labels ragged-left, values centred, only some Links
+     lines centred by their own "::center") read as inconsistent/unfinished
+     side by side in a column this narrow; inherited from here rather than
+     set on each piece, so nothing new added later quietly reverts to
+     left/ragged-right by omission. */
+  text-align: center;
 }
 
 @media (min-width: 900px) {
@@ -321,11 +333,11 @@
 
 .res-panel-value { color: var(--res-ink); line-height: 1.4 }
 
-/* Facts: the label stays left-aligned (same h3 as Role/Years/Status above),
-   only the values underneath are centred, one per "::center" line in the
-   source (see parse_facts_lines). */
-.res-panel-value-centered { text-align: center }
-.res-panel-value-centered > div + div { margin-top: .2rem }
+/* Facts can hold more than one value line (e.g. "Approved" has the date and
+   a parenthetical below it, one <div> per "::center" line, see
+   parse_facts_lines): a small gap between them, distinct from the larger
+   gap .res-panel-block already gives the next field down. */
+.res-panel-value > div + div { margin-top: .2rem }
 
 .res-team { display: flex; flex-direction: column; gap: 1.5rem }
 
@@ -376,8 +388,10 @@
 
 .res-links-line, .res-links-plain { font-size: .82rem; line-height: 1.5; color: var(--res-body) }
 
-/* ::center in a Links: line (see parse_links_lines) sets this; everything
-   else stays left-aligned, ragged right. */
+/* ::center in a Links: line (see parse_links_lines) sets this; now a no-op
+   in practice since .res-panel centres everything by default, kept so the
+   source-level ::center marker still means something if that default ever
+   changes back. */
 .res-links-centered { text-align: center }
 
 /* A logo or similar image inside Links: (e.g. "![Coffea logo](coffea_logo.svg)"),
