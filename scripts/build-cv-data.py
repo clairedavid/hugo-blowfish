@@ -203,6 +203,10 @@ def inline(tex):
     s = s.replace(r"\tdot", " &middot; ")
     s = s.replace(r"\,--\,", "\u2009\u2013\u2009").replace(r"\,-\,", "\u2009\u2013\u2009")
     s = s.replace("---", "\u2013").replace("--", "\u2013")   # never an em dash
+    # \ldots: LaTeX swallows the space after a command, so a following word
+    # gets one back here ("impacts\ldots you" reads "impacts\u2026 you")
+    s = re.sub(r"\\l?dots(?![a-zA-Z])\s*(?=[A-Za-z0-9])", "\u2026 ", s)
+    s = re.sub(r"\\l?dots(?![a-zA-Z])\s*", "\u2026", s)
     s = accents(s)
     s = s.replace(r"\&", "&amp;").replace(r"\%", "%").replace(r"\_", "_")
     s = s.replace(r"\#", "#").replace(r"\$", "$")

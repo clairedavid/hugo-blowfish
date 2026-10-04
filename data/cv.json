@@ -193,7 +193,7 @@
               "date": "2015 – 2016",
               "duration": "",
               "lines": [
-                "<strong>pMSSM reinterpretation of LHC Run 1 SUSY searches; featured in CERN Courier</strong>",
+                "<strong>pMSSM reinterpretation of LHC Run 1 SUSY searches; featured in CERN Courier</strong>",
                 "<span class=\"cv-muted\">ATLAS Experiment, CERN LHC; <a href=\"http://link.springer.com/article/10.1007%2FJHEP10%282015%29134\" target=\"_blank\" rel=\"noopener\">JHEP <strong>10</strong> (2015) 134</a></span>"
               ]
             }
@@ -1620,15 +1620,15 @@
               "duration": "",
               "lines": [
                 "Reinsvold Hall A., Skidmore N., Benelli G., Carlson B., <strong>David C.</strong> et al., “Training and onboarding initiatives in high energy physics experiments”",
-                "<span class=\"cv-muted\">Front. Big Data <strong>8</strong> (2025) 1497622 <a href=\"https://doi.org/10.3389/fdata.2025.1497622\" target=\"_blank\" rel=\"noopener\">doi:10.3389/fdata.2025.1497622</a></span>"
+                "<span class=\"cv-muted\"><a href=\"https://doi.org/10.3389/fdata.2025.1497622\" target=\"_blank\" rel=\"noopener\">Front. Big Data <strong>8</strong> (2025) 1497622</a></span>"
               ]
             },
             {
-              "date": "2023",
+              "date": "2025",
               "duration": "",
               "lines": [
                 "Sustainable HECAP+ Initiative, “Environmental sustainability in basic research: a perspective from HECAP+”",
-                "<span class=\"cv-muted\"><a href=\"https://arxiv.org/abs/2306.02837\" target=\"_blank\" rel=\"noopener\">arXiv:2306.02837</a>; <a href=\"https://sustainable-hecap-plus.github.io\" target=\"_blank\" rel=\"noopener\">sustainable-hecap-plus platform</a></span>"
+                "<span class=\"cv-muted\"><a href=\"https://doi.org/10.1088/1748-0221/20/03/P03012\" target=\"_blank\" rel=\"noopener\">JINST <strong>20</strong> (2025) P03012</a>; <a href=\"https://www.hecap.eco/\" target=\"_blank\" rel=\"noopener\">www.hecap.eco</a></span>"
               ]
             },
             {
@@ -1636,7 +1636,7 @@
               "duration": "",
               "lines": [
                 "DUNE Collaboration, “Design, construction and operation of the ProtoDUNE-SP Liquid Argon TPC”",
-                "<span class=\"cv-muted\">JINST <strong>17</strong> (2022) P01005</span>"
+                "<span class=\"cv-muted\"><a href=\"https://doi.org/10.1088/1748-0221/17/01/P01005\" target=\"_blank\" rel=\"noopener\">JINST <strong>17</strong> (2022) P01005</a></span>"
               ]
             },
             {
@@ -1644,7 +1644,7 @@
               "duration": "",
               "lines": [
                 "ATLAS Collaboration, “Search for exotic decays of the Higgs boson into long-lived particles in pp collisions at √s=13,TeV using displaced vertices in the ATLAS inner detector”",
-                "<span class=\"cv-muted\">JHEP <strong>11</strong> (2021) 229</span>"
+                "<span class=\"cv-muted\"><a href=\"https://doi.org/10.1007/JHEP11(2021)229\" target=\"_blank\" rel=\"noopener\">JHEP <strong>11</strong> (2021) 229</a></span>"
               ]
             },
             {
@@ -1652,7 +1652,7 @@
               "duration": "",
               "lines": [
                 "DUNE Collaboration, “Deep Underground Neutrino Experiment (DUNE) Near Detector Conceptual Design Report”",
-                "<span class=\"cv-muted\">FERMILAB-PUB-21-067-E-LBNF-PPD-SCD-T</span>"
+                "<span class=\"cv-muted\"><a href=\"https://doi.org/10.3390/instruments5040031\" target=\"_blank\" rel=\"noopener\">Instruments <strong>5</strong> (2021) 31</a></span>"
               ]
             },
             {
@@ -1660,7 +1660,7 @@
               "duration": "",
               "lines": [
                 "Poley L., Sawyer C. et al., “The ABC130 barrel module prototyping programme for the ATLAS strip tracker”",
-                "<span class=\"cv-muted\">JINST <strong>15</strong> (2020) P09004</span>"
+                "<span class=\"cv-muted\"><a href=\"https://doi.org/10.1088/1748-0221/15/09/P09004\" target=\"_blank\" rel=\"noopener\">JINST <strong>15</strong> (2020) P09004</a></span>"
               ]
             },
             {
@@ -1668,7 +1668,7 @@
               "duration": "",
               "lines": [
                 "DUNE Collaboration, “Long-baseline neutrino oscillation physics potential of the DUNE experiment”",
-                "<span class=\"cv-muted\">Eur. Phys. J. C <strong>80</strong> (2020) 978</span>"
+                "<span class=\"cv-muted\"><a href=\"https://doi.org/10.1140/epjc/s10052-020-08456-z\" target=\"_blank\" rel=\"noopener\">Eur. Phys. J. C <strong>80</strong> (2020) 978</a></span>"
               ]
             },
             {
@@ -1676,7 +1676,7 @@
               "duration": "",
               "lines": [
                 "ATLAS Collaboration, “Observation of Higgs boson production in association with a top quark pair at the LHC with the ATLAS detector”",
-                "<span class=\"cv-muted\">Phys. Lett. B <strong>784</strong> (2018) 173–191</span>"
+                "<span class=\"cv-muted\"><a href=\"https://doi.org/10.1016/j.physletb.2018.07.035\" target=\"_blank\" rel=\"noopener\">Phys. Lett. B <strong>784</strong> (2018) 173–191</a></span>"
               ]
             },
             {
@@ -1684,7 +1684,7 @@
               "duration": "",
               "lines": [
                 "ATLAS Collaboration, “Search for the SM Higgs boson produced in association with top quarks and decaying into a bb̄ pair in pp collisions at √s=13,TeV with the ATLAS detector”",
-                "<span class=\"cv-muted\">Phys. Rev. D <strong>97</strong> (2018) 072016</span>"
+                "<span class=\"cv-muted\"><a href=\"https://doi.org/10.1103/PhysRevD.97.072016\" target=\"_blank\" rel=\"noopener\">Phys. Rev. D <strong>97</strong> (2018) 072016</a></span>"
               ]
             },
             {
@@ -1692,7 +1692,7 @@
               "duration": "",
               "lines": [
                 "Albertsson K. et al., “Machine Learning in High Energy Physics Community White Paper”",
-                "<span class=\"cv-muted\"><a href=\"https://arxiv.org/abs/1807.02876\" target=\"_blank\" rel=\"noopener\">arXiv:1807.02876</a> → FERMILAB-PUB-18-318-CD-DI-PPD</span>"
+                "<span class=\"cv-muted\"><a href=\"https://doi.org/10.1088/1742-6596/1085/2/022008\" target=\"_blank\" rel=\"noopener\">J. Phys.: Conf. Ser. <strong>1085</strong> (2018) 022008</a></span>"
               ]
             },
             {
@@ -1700,7 +1700,7 @@
               "duration": "",
               "lines": [
                 "ATLAS Collaboration, “Technical Design Report for the ATLAS Inner Tracker Strip Detector”",
-                "<span class=\"cv-muted\">CERN-LHCC-2017-005, ATLAS-TDR-025</span>"
+                "<span class=\"cv-muted\"><a href=\"https://cds.cern.ch/record/2257755?ln=en\" target=\"_blank\" rel=\"noopener\">CERN-LHCC-2017-005 ; ATLAS-TDR-025</a></span>"
               ]
             },
             {
@@ -1708,7 +1708,7 @@
               "duration": "",
               "lines": [
                 "ATLAS Collaboration, “Summary of the ATLAS experiment's sensitivity to supersymmetry after LHC Run,1 – interpreted in the phenomenological MSSM”",
-                "<span class=\"cv-muted\">JHEP <strong>10</strong> (2015) 134</span>"
+                "<span class=\"cv-muted\"><a href=\"https://doi.org/10.1007/JHEP10(2015)134\" target=\"_blank\" rel=\"noopener\">JHEP <strong>10</strong> (2015) 134</a></span>"
               ]
             },
             {
@@ -1716,7 +1716,7 @@
               "duration": "",
               "lines": [
                 "ATLAS Collaboration, “Search for direct pair production of a chargino and a neutralino decaying to the 125,GeV Higgs boson in √s=8,TeV pp collisions with the ATLAS detector”",
-                "<span class=\"cv-muted\">Eur. Phys. J. C <strong>75</strong> (2015) 208</span>"
+                "<span class=\"cv-muted\"><a href=\"https://doi.org/10.1140/epjc/s10052-015-3408-7\" target=\"_blank\" rel=\"noopener\">Eur. Phys. J. C <strong>75</strong> (2015) 208</a></span>"
               ]
             },
             {
@@ -1724,7 +1724,7 @@
               "duration": "",
               "lines": [
                 "ATLAS Collaboration, “Search for chargino and neutralino production in final states with one lepton, two b-jets consistent with a Higgs boson, and missing transverse momentum with the ATLAS detector in 20.3,fb<sup>-1</sup> of √s=8,TeV pp collisions”",
-                "<span class=\"cv-muted\">ATLAS-CONF-2013-093</span>"
+                "<span class=\"cv-muted\"><a href=\"https://cds.cern.ch/record/1595756\" target=\"_blank\" rel=\"noopener\">ATLAS-CONF-2013-093</a></span>"
               ]
             },
             {
@@ -1732,7 +1732,7 @@
               "duration": "",
               "lines": [
                 "Axen D. et al., “Diamond detector irradiation tests at TRIUMF”",
-                "<span class=\"cv-muted\">JINST <strong>6</strong> (2011) P05011</span>"
+                "<span class=\"cv-muted\"><a href=\"https://doi.org/10.1088/1748-0221/6/05/P05011\" target=\"_blank\" rel=\"noopener\">JINST <strong>6</strong> (2011) P05011</a></span>"
               ]
             }
           ]
@@ -1750,7 +1750,7 @@
               "date": "2025",
               "duration": "",
               "lines": [
-                "<strong>David C.</strong>, “What is AI, what is it not, how we use it in physics and how it impactsyou”",
+                "<strong>David C.</strong>, “What is AI, what is it not, how we use it in physics and how it impacts… you”",
                 "<span class=\"cv-muted\">BCVSPIN 2024: Particle Physics and Cosmology in the Himalayas, Kathmandu, Nepal</span>",
                 "<span class=\"cv-muted\"><a href=\"https://arxiv.org/abs/2504.01827\" target=\"_blank\" rel=\"noopener\">arXiv:2504.01827</a></span>"
               ]
@@ -1760,7 +1760,7 @@
               "duration": "",
               "lines": [
                 "<strong>David C.</strong>, “Statistics on participation of emerging and developing countries in LHC and other experiments”",
-                "<span class=\"cv-muted\">PoS(LHCP2023) <strong>450</strong> (2024) 062; <a href=\"https://doi.org/10.22323/1.450.0062\" target=\"_blank\" rel=\"noopener\">doi:10.22323/1.450.0062</a></span>"
+                "<span class=\"cv-muted\"><a href=\"https://doi.org/10.22323/1.450.0062\" target=\"_blank\" rel=\"noopener\">PoS(LHCP2023) <strong>450</strong> (2024) 062</a></span>"
               ]
             },
             {
@@ -1768,7 +1768,8 @@
               "duration": "",
               "lines": [
                 "<strong>David C.</strong>, “A new strips tracker for the upgraded ATLAS ITk detector”",
-                "<span class=\"cv-muted\">Proceedings of PSD11, JINST <strong>13</strong> (2018) C01003</span>"
+                "<span class=\"cv-muted\">Proceedings of PSD11</span>",
+                "<span class=\"cv-muted\"><a href=\"https://doi.org/10.1088/1748-0221/13/01/C01003\" target=\"_blank\" rel=\"noopener\">JINST <strong>13</strong> (2018) C01003</a></span>"
               ]
             },
             {
@@ -1776,7 +1777,7 @@
               "duration": "",
               "lines": [
                 "<strong>David C.</strong>, “Search for chargino and neutralino production with a Higgs boson in the decay chain in one or three leptons final state events with ATLAS”",
-                "<span class=\"cv-muted\">Nucl. Part. Phys. Proc. <strong>273–275</strong> (2016) 2400–2402</span>"
+                "<span class=\"cv-muted\"><a href=\"https://doi.org/10.1016/j.nuclphysbps.2015.09.405\" target=\"_blank\" rel=\"noopener\">Nucl. Part. Phys. Proc. <strong>273–275</strong> (2016) 2400–2402</a></span>"
               ]
             },
             {
@@ -1784,7 +1785,7 @@
               "duration": "",
               "lines": [
                 "<strong>David C.</strong>, “New ATLAS results in SUSY searches for 3<sup>rd</sup> generation squarks and electroweak production”",
-                "<span class=\"cv-muted\">EPJ Web of Conferences <strong>71</strong> (2014) 00034</span>"
+                "<span class=\"cv-muted\"><a href=\"https://doi.org/10.1051/epjconf/20147100034\" target=\"_blank\" rel=\"noopener\">EPJ Web of Conferences <strong>71</strong> (2014) 00034</a></span>"
               ]
             }
           ]
