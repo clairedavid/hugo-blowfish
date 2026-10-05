@@ -365,12 +365,12 @@
 .res-team-affiliation { margin-top: 2px; font-size: .76rem; color: var(--res-muted); line-height: 1.35 }
 
 /* Items are spaced apart, so margin rather than a flex gap: each item sets
-   its own top margin (2.5rem, :first-child cancelled), except the one
+   its own top margin (1.675rem, :first-child cancelled), except the one
    right after a "label" item (e.g. "DUNE's official website:", a plain
    entry with no url), which sits close under it at 1rem, per
    .res-links-label + * below. */
 .res-links { display: flex; flex-direction: column }
-.res-links > * { margin-top: 2.5rem }
+.res-links > * { margin-top: 1.675rem }
 .res-links > *:first-child { margin-top: 0 }
 .res-links-label + * { margin-top: 1rem }
 
