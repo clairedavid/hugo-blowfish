@@ -152,15 +152,7 @@
       "title": "DUNE",
       "intro": [
         {
-          "text": "The Deep Underground Neutrino Experiment (",
-          "url": ""
-        },
-        {
-          "text": "DUNE",
-          "url": "https://www.dunescience.org/"
-        },
-        {
-          "text": ") is a future leading-edge detector complex studying neutrinos, hosted at Fermilab near Chicago and at the Sanford Underground Research Facility in South Dakota.",
+          "text": "The Deep Underground Neutrino Experiment (DUNE) is a future leading-edge detector complex studying neutrinos, hosted at Fermilab near Chicago and at the Sanford Underground Research Facility in South Dakota.",
           "url": ""
         }
       ],
