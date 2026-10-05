@@ -468,6 +468,14 @@
 
 .res-figrow-item img { display: block; width: 100%; height: auto }
 
+/* "Width: <n>%" on a single-image row: the image alone is that share of the
+   column, centred, height automatic; the caption stays full width. Below
+   600px a width under 60% is raised to 60%. */
+.res-figrow-media { width: max(var(--fig-w), 60%); margin-inline: auto }
+@media (min-width: 600px) {
+  .res-figrow-media { width: var(--fig-w) }
+}
+
 /* Caption then credit, centred, top-aligned under each image: since every
    image in the row comes out the same height (the point of the flex-grow
    trick above), captions naturally start at the same y either way; this

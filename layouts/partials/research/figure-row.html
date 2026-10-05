@@ -13,8 +13,9 @@
      how many images are in the row or what their individual aspect ratios
      are, no cropping and no JS needed. */ -}}
 {{- $slug := .slug -}}
+{{- $images := .images -}}
 <div class="res-figrow">
-  {{- range .images }}
+  {{- range $images }}
   <figure class="res-figrow-item" style="flex-grow:{{ .ratio }}">
     {{- /* needs_frame (see image_needs_frame in build-research-data.py): a
          baked light/white background is framed in the same white figure
@@ -23,6 +24,11 @@
          row already fills the column's own full width on its own, since a
          lone flex item absorbs all free space regardless of its flex-grow
          value, so no extra markup is needed for that case specifically. */ -}}
+    {{- /* Optional "Width: <n>%" (single-image rows only): the image, not the
+         caption, takes that share of the column and is centred; see
+         .res-figrow-media in research.css. */ -}}
+    {{- $narrow := and .width_pct (eq (len $images) 1) -}}
+    {{- if $narrow }}<div class="res-figrow-media" style="--fig-w:{{ .width_pct }}%">{{ end }}
     {{- if .needs_frame }}
     <div class="res-figure-card">
       {{- partial "research/picture.html" (dict
@@ -32,6 +38,7 @@
     {{- partial "research/picture.html" (dict
           "slug" $slug "stem" .image "alt" (.caption | plainify)) }}
     {{- end }}
+    {{- if $narrow }}</div>{{ end }}
     <figcaption>
       {{- with .caption }}<div class="res-figrow-caption">{{ . | markdownify }}</div>{{ end }}
       {{- with .credit }}<div class="res-figrow-credit">{{ . }}</div>{{ end }}

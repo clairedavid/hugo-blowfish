@@ -93,7 +93,7 @@ CONTENT_OUT = ROOT / "content" / "research"
 THEME_DEFS = [
     {"id": "machine-learning", "title": "Machine Learning", "folder": "machine-learning", "slugs": ("pinn", "gae")},
     {"id": "dune", "title": "DUNE", "folder": "dune", "slugs": None},
-    {"id": "atlas", "title": "ATLAS", "folder": "atlas", "slugs": ("atlas-experiment", "atlas-tthbb", "atlas-itk")},
+    {"id": "atlas", "title": "ATLAS", "folder": "atlas", "slugs": ("atlas-experiment", "atlas-tthbb", "atlas-itk", "atlas-susy")},
 ]
 
 # Phase-1 review artifacts that live alongside the real finals in
@@ -257,7 +257,8 @@ def parse_banner(body, slug, converted_dir):
     }
 
 
-INLINE_LINK_RE = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
+# The url may hold one level of balanced parentheses, e.g. doi.org/10.1007/JHEP10(2015)134
+INLINE_LINK_RE = re.compile(r"\[([^\]]+)\]\(((?:[^()]|\([^()]*\))+)\)")
 IMAGE_LINE_RE = re.compile(r"^!\[([^\]]*)\]\(([^)]+)\)$")
 LINKED_IMAGE_RE = re.compile(r"^\[!\[([^\]]*)\]\(([^)]+)\)\]\(([^)]+)\)$")
 
@@ -473,7 +474,8 @@ FIGURE_ROW_RE = re.compile(r"\[\[FIGURE-ROW\]\](.*?)\[\[/FIGURE-ROW\]\]", re.S)
 
 def parse_figure_row_block(body):
     """The body between [[FIGURE-ROW]] markers: repeating Image:/Caption:/
-    Credit: triples, one figure per Image: line. Caption is kept as raw
+    Credit: triples (plus an optional Width: <n>%), one figure per Image:
+    line. Caption is kept as raw
     markdown (rendered with markdownify at template time, like TEXT itself);
     width/height/ratio are filled in later, once the final copied asset
     exists to measure (see attach_figure_row_sizes)."""
@@ -491,6 +493,10 @@ def parse_figure_row_block(body):
             cur["caption"] = line.split(":", 1)[1].strip()
         elif line.startswith("Credit:") and cur is not None:
             cur["credit"] = line.split(":", 1)[1].strip()
+        elif line.startswith("Width:") and cur is not None:
+            # optional, for a single-image row: the image's share of the text
+            # column in percent (see partials/research/figure-row.html)
+            cur["width_pct"] = float(line.split(":", 1)[1].strip().rstrip("%"))
     if cur:
         images.append(cur)
     return images
@@ -662,6 +668,10 @@ def copy_assets(src_converted, projects):
         dest_dir.mkdir(parents=True, exist_ok=True)
         for s in sorted(needed):
             files = by_stem.get(s)
+            # an animated image's reduced-motion still: <stem>-still.webp
+            # travels with it (see partials/research/picture.html)
+            if files and by_stem.get(f"{s}-still"):
+                files = files + by_stem[f"{s}-still"]
             if not files:
                 report.append((p["slug"], s, "MISSING"))
                 continue
@@ -705,7 +715,7 @@ def attach_figure_row_sizes(projects):
                 continue
             for fig in block["images"]:
                 path = None
-                for ext in (".jpg", ".jpeg", ".png", ".webp"):
+                for ext in (".jpg", ".jpeg", ".png", ".webp", ".gif"):
                     candidate = dest_dir / f"{fig['image']}{ext}"
                     if candidate.exists():
                         path = candidate

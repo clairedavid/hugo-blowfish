@@ -7,6 +7,11 @@
      raster file (the portraits).
      Params: .slug .stem .class .alt .title (.loading defaults to "lazy")
 
+     An image with a sibling <stem>-still.webp (an animated GIF's last frame)
+     also gets a <source media="(prefers-reduced-motion: reduce)"> pointing
+     at the still, so visitors who ask for less motion see it instead of the
+     animation. Images without a sibling are unaffected.
+
      Looking the file up here, at render time, rather than trusting the data
      file to say which format a stem has, means a missing asset fails the
      build with errorf instead of becoming a broken <img> in production. */ -}}
@@ -22,19 +27,27 @@
 {{- else -}}
   {{- $webp := resources.Get (printf "research/%s/%s.webp" $slug $stem) -}}
   {{- $raster := or (resources.Get (printf "research/%s/%s.png" $slug $stem))
-                     (resources.Get (printf "research/%s/%s.jpg" $slug $stem)) -}}
+                     (resources.Get (printf "research/%s/%s.jpg" $slug $stem))
+                     (resources.Get (printf "research/%s/%s.gif" $slug $stem)) -}}
+  {{- $still := resources.Get (printf "research/%s/%s-still.webp" $slug $stem) -}}
   {{- if and (not $raster) (not $webp) -}}
     {{- errorf "research/picture: no asset found for %s/%s (looked for .svg, .webp+.png, .webp+.jpg, .webp, .png, .jpg)" $slug $stem -}}
   {{- end -}}
   {{- if and $webp $raster -}}
   <picture>
+    {{- with $still }}
+    <source srcset="{{ .RelPermalink }}" media="(prefers-reduced-motion: reduce)" type="image/webp">
+    {{- end }}
     <source srcset="{{ $webp.RelPermalink }}" type="image/webp">
     <img class="{{ $class }}" src="{{ $raster.RelPermalink }}" alt="{{ $alt }}"{{ with $title }} title="{{ . }}"{{ end }}
          loading="{{ $loading }}" width="{{ $raster.Width }}" height="{{ $raster.Height }}">
   </picture>
   {{- else -}}
   {{- $only := $raster | default $webp -}}
+  {{- with $still }}<picture>
+    <source srcset="{{ .RelPermalink }}" media="(prefers-reduced-motion: reduce)" type="image/webp">{{ end }}
   <img class="{{ $class }}" src="{{ $only.RelPermalink }}" alt="{{ $alt }}"{{ with $title }} title="{{ . }}"{{ end }}
        loading="{{ $loading }}" width="{{ $only.Width }}" height="{{ $only.Height }}">
+  {{- if $still }}</picture>{{ end }}
   {{- end -}}
 {{- end -}}
