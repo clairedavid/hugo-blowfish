@@ -364,15 +364,16 @@
 .res-team-name { margin-top: 8px; font-size: .83rem; font-weight: 600; color: var(--res-ink) }
 .res-team-affiliation { margin-top: 2px; font-size: .76rem; color: var(--res-muted); line-height: 1.35 }
 
-/* Items are spaced apart, so margin rather than a flex gap: each item sets
-   its own top margin (1.675rem, :first-child cancelled), except the one
-   right after a "label" item (e.g. "DUNE's official website:", a plain
-   entry with no url), which sits close under it at 1rem, per
-   .res-links-label + * below. */
+/* Groups are spaced apart, items inside a group are not: a label, its link
+   and its logo sit together as one block (one group per blank-line-separated
+   run of the source, see parse_links_lines), line-height 1.5 throughout. Margin
+   rather than a flex gap, :first-child cancelled. A logo under a label or
+   link keeps about half a line above it. */
 .res-links { display: flex; flex-direction: column }
-.res-links > * { margin-top: 1.675rem }
-.res-links > *:first-child { margin-top: 0 }
-.res-links-label + * { margin-top: 1rem }
+.res-links-group { margin-top: 1.675rem }
+.res-links-group:first-child { margin-top: 0 }
+.res-links-group > .res-links-image-wrap { margin-top: .6rem }
+.res-links-group > :first-child { margin-top: 0 }
 
 /* Label only: the URL is the href, never shown as text. Covers both the
    plain "label | url" row and an inline [text](url) line's own <a>, so only

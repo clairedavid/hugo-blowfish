@@ -321,8 +321,10 @@ def parse_links_lines(body, slug, converted_dir):
     next to a PNG still works.
     The first content line may be "Label: <text>" (e.g. "Label: Official
     website"), which overrides the panel's own "Links" field heading instead
-    of being parsed as a link; returns ("Links" or override, out), out being
-    a list of {"kind": "plain", "label", "url", "centered"}, {"kind":
+    of being parsed as a link. Consecutive non-blank lines form one group
+    (a label with the link or logo under it); a blank line starts a new one.
+    Returns ("Links" or override, groups), groups being a list of groups,
+    each a list of {"kind": "plain", "label", "url", "centered"}, {"kind":
     "inline", "segments": [...], "centered"} or {"kind": "image", "alt",
     "src", "dark_src", "href", "centered": True}."""
     lines = body.split("\n")
@@ -331,6 +333,7 @@ def parse_links_lines(body, slug, converted_dir):
     except StopIteration:
         return "Links", []
     first = lines[start].split(":", 1)[1].strip()
+    # Blank lines are kept (as "") because they are the group breaks.
     raw = [first] if first else []
     for l in lines[start + 1:]:
         # A genuine next LEFT PANEL field, not a Links: content line that
@@ -340,9 +343,11 @@ def parse_links_lines(body, slug, converted_dir):
         # "word(s) then colon" line.
         if re.match(r"^(Role|Years|Status|Logo|Team|Links):\s*", l):
             break
-        if l.strip():
-            raw.append(l.strip())
-    raw = [r for r in raw if r]
+        raw.append(l.strip())
+    while raw and not raw[0]:
+        raw.pop(0)
+    while raw and not raw[-1]:
+        raw.pop()
     if len(raw) == 1 and EMPTY_MARKERS.match(raw[0]):
         return "Links", []
 
@@ -350,9 +355,16 @@ def parse_links_lines(body, slug, converted_dir):
     if raw and LABEL_OVERRIDE_RE.match(raw[0]):
         label = LABEL_OVERRIDE_RE.match(raw[0]).group(1).strip()
         raw = raw[1:]
+        while raw and not raw[0]:
+            raw.pop(0)
 
-    out = []
+    groups = [[]]
     for line in raw:
+        if not line:
+            if groups[-1]:
+                groups.append([])
+            continue
+        out = groups[-1]
         centered = bool(CENTER_PREFIX_RE.match(line))
         line = CENTER_PREFIX_RE.sub("", line)
         lm = LINKED_IMAGE_RE.match(line)
@@ -375,7 +387,7 @@ def parse_links_lines(body, slug, converted_dir):
             parts = [p.strip() for p in line.split("|")]
             out.append({"kind": "plain", "label": parts[0],
                         "url": parts[1] if len(parts) > 1 else "", "centered": centered})
-    return label, out
+    return label, [g for g in groups if g]
 
 
 FACT_LABEL_RE = re.compile(r"^([^:]+):\s*$")
@@ -618,11 +630,12 @@ def collect_assets(*projects):
         stems.update(m["image"] for m in p["panel"]["team"])
         if p["panel"].get("logo"):
             stems.add(p["panel"]["logo"])
-        for link in p["panel"]["links"]:
-            if link.get("kind") == "image":
-                stems.add(link["src"])
-                if link.get("dark_src"):
-                    stems.add(link["dark_src"])
+        for group in p["panel"]["links"]:
+            for link in group:
+                if link.get("kind") == "image":
+                    stems.add(link["src"])
+                    if link.get("dark_src"):
+                        stems.add(link["dark_src"])
         for block in p["text"]:
             if block["kind"] == "figure-row":
                 stems.update(f["image"] for f in block["images"])
@@ -795,7 +808,7 @@ def main():
         for p in projects:
             banner_desc = f"single({p['banner']['single']})" if p['banner'].get('single') else f"{len(p['banner']['images'])} image(s)"
             print(f"  {p['slug']:14} math={p['has_math']!s:5}  "
-                  f"team={len(p['panel']['team'])}  links={len(p['panel']['links'])}  "
+                  f"team={len(p['panel']['team'])}  links={sum(len(g) for g in p['panel']['links'])}  "
                   f"banner={banner_desc}  figures={len(p['figures'])}")
 
         if converted.is_dir():

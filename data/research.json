@@ -54,24 +54,26 @@
             "facts": [],
             "links_label": "Links",
             "links": [
-              {
-                "kind": "inline",
-                "segments": [
-                  {
-                    "text": "Submitted to the ",
-                    "url": ""
-                  },
-                  {
-                    "text": "Machine Learning for Physical Sciences (ML4PS) 2026",
-                    "url": "https://ml4physicalsciences.github.io/2026/"
-                  },
-                  {
-                    "text": " workshop.",
-                    "url": ""
-                  }
-                ],
-                "centered": false
-              }
+              [
+                {
+                  "kind": "inline",
+                  "segments": [
+                    {
+                      "text": "Submitted to the ",
+                      "url": ""
+                    },
+                    {
+                      "text": "Machine Learning for Physical Sciences (ML4PS) 2026",
+                      "url": "https://ml4physicalsciences.github.io/2026/"
+                    },
+                    {
+                      "text": " workshop.",
+                      "url": ""
+                    }
+                  ],
+                  "centered": false
+                }
+              ]
             ]
           },
           "page_heading": "Exploiting Rotational Symmetry to Solve the Photon Orbit Equation Around a Black Hole",
@@ -192,30 +194,32 @@
             "facts": [],
             "links_label": "Links",
             "links": [
-              {
-                "kind": "plain",
-                "label": "DUNE's official website:",
-                "url": "",
-                "centered": false
-              },
-              {
-                "kind": "inline",
-                "segments": [
-                  {
-                    "text": "dunescience.org",
-                    "url": "https://www.dunescience.org/"
-                  }
-                ],
-                "centered": true
-              },
-              {
-                "kind": "image",
-                "alt": "DUNE logo",
-                "src": "dune-logo",
-                "dark_src": "",
-                "href": "",
-                "centered": true
-              }
+              [
+                {
+                  "kind": "plain",
+                  "label": "DUNE's official website:",
+                  "url": "",
+                  "centered": false
+                },
+                {
+                  "kind": "inline",
+                  "segments": [
+                    {
+                      "text": "dunescience.org",
+                      "url": "https://www.dunescience.org/"
+                    }
+                  ],
+                  "centered": false
+                },
+                {
+                  "kind": "image",
+                  "alt": "DUNE logo",
+                  "src": "dune-logo",
+                  "dark_src": "",
+                  "href": "",
+                  "centered": true
+                }
+              ]
             ]
           },
           "page_heading": "Bringing Canada into DUNE, an international flagship neutrino experiment",
@@ -285,52 +289,58 @@
             "facts": [],
             "links_label": "Links",
             "links": [
-              {
-                "kind": "plain",
-                "label": "Paper: \"Training and Onboarding initiatives in High Energy Physics experiments\"",
-                "url": "",
-                "centered": false
-              },
-              {
-                "kind": "inline",
-                "segments": [
-                  {
-                    "text": "Frontiers in Big Data (2025) ↗",
-                    "url": "https://doi.org/10.3389/fdata.2025.1497622"
-                  }
-                ],
-                "centered": true
-              },
-              {
-                "kind": "plain",
-                "label": "DUNE automated glossary:",
-                "url": "",
-                "centered": false
-              },
-              {
-                "kind": "inline",
-                "segments": [
-                  {
-                    "text": "abc.dunescience.org ↗",
-                    "url": "https://abc.dunescience.org/"
-                  }
-                ],
-                "centered": true
-              },
-              {
-                "kind": "plain",
-                "label": "Coffea Python toolkit:",
-                "url": "",
-                "centered": false
-              },
-              {
-                "kind": "image",
-                "alt": "Coffea logo",
-                "src": "coffea_logo",
-                "dark_src": "",
-                "href": "https://coffea-hep.readthedocs.io/en/latest/",
-                "centered": true
-              }
+              [
+                {
+                  "kind": "plain",
+                  "label": "Paper: \"Training and Onboarding initiatives in High Energy Physics experiments\"",
+                  "url": "",
+                  "centered": false
+                },
+                {
+                  "kind": "inline",
+                  "segments": [
+                    {
+                      "text": "Frontiers in Big Data (2025) ↗",
+                      "url": "https://doi.org/10.3389/fdata.2025.1497622"
+                    }
+                  ],
+                  "centered": false
+                }
+              ],
+              [
+                {
+                  "kind": "plain",
+                  "label": "DUNE automated glossary:",
+                  "url": "",
+                  "centered": false
+                },
+                {
+                  "kind": "inline",
+                  "segments": [
+                    {
+                      "text": "abc.dunescience.org ↗",
+                      "url": "https://abc.dunescience.org/"
+                    }
+                  ],
+                  "centered": false
+                }
+              ],
+              [
+                {
+                  "kind": "plain",
+                  "label": "Coffea Python toolkit:",
+                  "url": "",
+                  "centered": false
+                },
+                {
+                  "kind": "image",
+                  "alt": "Coffea logo",
+                  "src": "coffea_logo",
+                  "dark_src": "",
+                  "href": "https://coffea-hep.readthedocs.io/en/latest/",
+                  "centered": true
+                }
+              ]
             ]
           },
           "page_heading": "DUNE Computing: new training, a glossary, and R&D on columnar data analysis",
@@ -425,24 +435,28 @@
             ],
             "links_label": "Official website",
             "links": [
-              {
-                "kind": "inline",
-                "segments": [
-                  {
-                    "text": "atlas.cern",
-                    "url": "https://atlas.cern/"
-                  }
-                ],
-                "centered": true
-              },
-              {
-                "kind": "image",
-                "alt": "ATLAS logo",
-                "src": "atlas-logo",
-                "dark_src": "atlas-logo-dark",
-                "href": "",
-                "centered": true
-              }
+              [
+                {
+                  "kind": "inline",
+                  "segments": [
+                    {
+                      "text": "atlas.cern",
+                      "url": "https://atlas.cern/"
+                    }
+                  ],
+                  "centered": true
+                }
+              ],
+              [
+                {
+                  "kind": "image",
+                  "alt": "ATLAS logo",
+                  "src": "atlas-logo",
+                  "dark_src": "atlas-logo-dark",
+                  "href": "",
+                  "centered": true
+                }
+              ]
             ]
           },
           "page_heading": "The ATLAS detector at the CERN Large Hadron Collider",
@@ -526,51 +540,55 @@
             "facts": [],
             "links_label": "Links",
             "links": [
-              {
-                "kind": "inline",
-                "segments": [
-                  {
-                    "text": "ttH(bb) search paper (2018)",
-                    "url": "https://doi.org/10.1103/PhysRevD.97.072016"
-                  }
-                ],
-                "centered": false
-              },
-              {
-                "kind": "inline",
-                "segments": [
-                  {
-                    "text": "ttH observation paper (2018)",
-                    "url": "https://doi.org/10.1016/j.physletb.2018.07.035"
-                  }
-                ],
-                "centered": false
-              }
+              [
+                {
+                  "kind": "inline",
+                  "segments": [
+                    {
+                      "text": "ttH(bb) search paper (2018) ↗",
+                      "url": "https://doi.org/10.1103/PhysRevD.97.072016"
+                    }
+                  ],
+                  "centered": false
+                }
+              ],
+              [
+                {
+                  "kind": "inline",
+                  "segments": [
+                    {
+                      "text": "ttH observation paper (2018) ↗",
+                      "url": "https://doi.org/10.1016/j.physletb.2018.07.035"
+                    }
+                  ],
+                  "centered": false
+                }
+              ]
             ]
           },
           "page_heading": "Observation of the Higgs boson's production mode 'ttH' in the bottom-quark decay channel",
           "text": [
             {
               "kind": "markdown",
-              "content": "During my postdoctoral fellowship at DESY, I contributed to the discovery of a rare process: the Higgs boson production in association with a top-quark pair, or ‘ttH’ (quarks are constituents of protons and neutrons). The Higgs boson is a particle playing a key role in giving mass to the other elementary constituents of matter. The measurement gives access to the so-called ‘Yukawa coupling,’ which is a coefficient linked with the interaction strength between the Higgs boson and the top quark. This is an important measurement in the theory of particle physics."
+              "content": "During my postdoctoral fellowship at DESY, I contributed to the discovery of a rare process: the Higgs boson production in association with a top-quark pair, or ‘ttH’ (quarks are constituents of protons and neutrons). The Higgs boson is a particle playing a key role in giving mass to the other elementary constituents of matter. The measurement gives access to the so-called ‘top Yukawa coupling,’ which is a coefficient linked with the interaction strength between the Higgs boson and the top quark. This is an important measurement in the theory of particle physics."
             },
             {
               "kind": "figure-row",
               "images": [
                 {
                   "image": "tthbb-combined-results",
-                  "caption": "Combined results of the ttH production cross section. The cross section relates to the rate of the process (how often it occurs). It is compared with the nominal cross section SM, for Standard Model, the name of the theoretical framework in particle physics. A ratio of 1 (vertical red line) means that it is consistent with theoretical predictions. The horizontal spread is due to uncertainties (an interval of possible values as no detector is 100% precise). The analysis had different channels depending on the Higgs boson’s decay mode. I was involved in the one where the Higgs boson decays into a pair of bottom and antibottom quarks, the line ‘ttH(bb)’ at the top. (Image: ATLAS Collaboration/CERN)",
+                  "caption": "Combined results of the ttH production cross section. More explanation below. (Image: ATLAS Collaboration/CERN)",
                   "credit": "",
-                  "width": 1600,
-                  "height": 1148,
-                  "ratio": 1.393728,
-                  "needs_frame": false
+                  "width": 1986,
+                  "height": 1324,
+                  "ratio": 1.5,
+                  "needs_frame": true
                 }
               ]
             },
             {
               "kind": "markdown",
-              "content": "**Learn more**  \nThis analysis was refined by ATLAS collaborators later, and in 2024 a more precise result was published. Here is the [ATLAS briefing](https://atlas.cern/Updates/Briefing/Run2-ttHbb)  \n(accessible for newcomers)"
+              "content": "The cross section relates to the rate of the process (how often it occurs). It is compared with the prediction of the Standard Model (SM), the theoretical framework of particle physics. A ratio of 1 (vertical red line) means that it is consistent with theoretical predictions. The horizontal spread is due to uncertainties (an interval of possible values as no detector is 100% precise). The analysis had different channels depending on the Higgs boson’s decay mode. I was involved in the one where the Higgs boson decays into a pair of bottom and antibottom quarks, the first line ‘ttH(bb)’ in the plot.\n\n**Learn more**  \nThis analysis was refined by ATLAS collaborators later, and in 2024 a more precise result was published. Here is the [ATLAS briefing ↗](https://atlas.cern/Updates/Briefing/Run2-ttHbb) (accessible for newcomers)."
             }
           ],
           "figures": [],

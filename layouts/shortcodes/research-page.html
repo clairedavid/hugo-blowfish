@@ -143,6 +143,11 @@
                parse_links_lines. */}}
           <h3>{{ $project.panel.links_label }}</h3>
           <div class="res-links">
+            {{- /* One .res-links-group per blank-line-separated group of the
+                 source (parse_links_lines): a label and the link or logo
+                 under it sit together, groups are spaced apart. */}}
+            {{- range . }}
+            <div class="res-links-group">
             {{- range . }}
             {{- if eq .kind "inline" }}
             <div class="res-links-line{{ if .centered }} res-links-centered{{ end }}">
@@ -192,6 +197,8 @@
               {{- partial "research/link.html" (dict "url" .url "text" .label) }}
             </div>
             {{- end }}
+            {{- end }}
+            </div>
             {{- end }}
           </div>
         </div>
