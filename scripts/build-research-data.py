@@ -93,7 +93,7 @@ CONTENT_OUT = ROOT / "content" / "research"
 THEME_DEFS = [
     {"id": "machine-learning", "title": "Machine Learning", "folder": "machine-learning", "slugs": ("pinn", "gae")},
     {"id": "dune", "title": "DUNE", "folder": "dune", "slugs": None},
-    {"id": "atlas", "title": "ATLAS", "folder": "atlas", "slugs": ("atlas-experiment", "atlas-tthbb")},
+    {"id": "atlas", "title": "ATLAS", "folder": "atlas", "slugs": ("atlas-experiment", "atlas-tthbb", "atlas-itk")},
 ]
 
 # Phase-1 review artifacts that live alongside the real finals in

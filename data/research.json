@@ -594,6 +594,125 @@
           "figures": [],
           "technical": "",
           "has_math": false
+        },
+        {
+          "slug": "atlas-itk",
+          "card": {
+            "title": "Detector development, ATLAS upgrade",
+            "subtitle": "Characterizing the ATLAS inner tracker (ITk) prototype with an infrared camera",
+            "years": "2016 – 2019",
+            "status": "",
+            "image": "infrared_powered_thumbnail",
+            "source_stem": "infrared_powered_thumbnail",
+            "original_stem": "",
+            "credit": "",
+            "unlisted": false
+          },
+          "banner": {
+            "images": [],
+            "style": "row",
+            "single": "",
+            "original_stem": "",
+            "credit": ""
+          },
+          "panel": {
+            "role": "Team Leader",
+            "years": "2016 – 2019",
+            "status": "",
+            "logo": "",
+            "team": [],
+            "facts": [],
+            "links_label": "Links",
+            "links": [
+              [
+                {
+                  "kind": "inline",
+                  "segments": [
+                    {
+                      "text": "Proceedings of ",
+                      "url": ""
+                    },
+                    {
+                      "text": "PSD11 ↗",
+                      "url": "https://indico.global/event/5676/"
+                    },
+                    {
+                      "text": ":",
+                      "url": ""
+                    }
+                  ],
+                  "centered": false
+                },
+                {
+                  "kind": "plain",
+                  "label": "\"A new strips tracker for the upgraded ATLAS ITk detector\"",
+                  "url": "",
+                  "centered": false
+                },
+                {
+                  "kind": "inline",
+                  "segments": [
+                    {
+                      "text": "JINST 13 (2018) C01003 ↗",
+                      "url": "https://doi.org/10.1088/1748-0221/13/01/C01003"
+                    }
+                  ],
+                  "centered": false
+                }
+              ]
+            ]
+          },
+          "page_heading": "Characterizing the ATLAS inner tracker (ITk) prototype with an infrared camera",
+          "text": [
+            {
+              "kind": "markdown",
+              "content": "During my postdoctoral fellowship at the Deutsches Elektronen-Synchrotron (DESY) in Germany, I worked on the ATLAS upgrade of its inner detector, which is a subsystem at its centre that reconstructs the trajectories of the charged particles created at each collision. \n\nWhy upgrade? The Large Hadron Collider at CERN near Geneva, Switzerland, will operate from 2030 in a new regime of more intense collisions. It's the High-Luminosity LHC project. The luminosity is a quantifier proportional to the number of collisions that occur in a given amount of time. More collisions, more data. And with more data, more possibility to discover a rare new process we haven't seen yet.\n\nThing is: some parts of the LHC detectors are not currently ready for this harsher environment. They need to be rebuilt with better readout systems for both withstanding and recording more collisions. ATLAS is no exception: its inner tracker needs to be replaced. Prototypes of the new inner tracker (ITk) were built at DESY when I started my postdoc and needed to be tested. I led a team of 3 engineers, 3 technicians and 4 students to perform the first thermal characterization of the support structures holding the silicon sensors. The goal is to ensure there will not be overheating of the sensors due to the radiative environment or the powered electronics. With a custom testbench, we successfully delivered several measurement campaigns in various conditions, all matching the simulations."
+            },
+            {
+              "kind": "figure-row",
+              "images": [
+                {
+                  "image": "itk-petals-stacked",
+                  "caption": "The prototype of the inner tracker strip sensor before (top) and after (bottom) being sprayed black, so as to give the surface a known emissivity. (Credit: Claire David, DESY).",
+                  "credit": "",
+                  "width": 1224,
+                  "height": 1391,
+                  "ratio": 0.879942,
+                  "needs_frame": false
+                },
+                {
+                  "image": "setup_chamber_instrum",
+                  "caption": "The test chamber and instrumentation devices. The prototype and infrared camera are both inside the dark chamber, shielded external sources of heat and in a controlled, low humidity environment. (Credit: Claire David, DESY).",
+                  "credit": "",
+                  "width": 1600,
+                  "height": 1322,
+                  "ratio": 1.210287,
+                  "needs_frame": false
+                }
+              ]
+            },
+            {
+              "kind": "figure-row",
+              "images": [
+                {
+                  "image": "fea_infra",
+                  "caption": "Results from the simulation (left) and the thermal measurements (right), presented in October 2018 for the Preliminary Design Review at CERN. (Image: Yu-Heng Chen, Claire David, DESY).",
+                  "credit": "",
+                  "width": 1600,
+                  "height": 520,
+                  "ratio": 3.076923,
+                  "needs_frame": true
+                }
+              ]
+            },
+            {
+              "kind": "markdown",
+              "content": "**Learn more**  \nWatch the second part of the tele-colloquium I gave for McGill University's Physical Society in 2020: [Recording (from 29:39) ↗](https://youtu.be/cYu4E7PKMRE?t=1779)"
+            }
+          ],
+          "figures": [],
+          "technical": "",
+          "has_math": false
         }
       ]
     }
