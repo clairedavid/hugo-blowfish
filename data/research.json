@@ -521,7 +521,7 @@
             "image": "tthbb-combined-results",
             "source_stem": "tthbb-combined-results",
             "original_stem": "",
-            "credit": "",
+            "credit": "Image: ATLAS Collaboration/CERN.",
             "unlisted": false
           },
           "banner": {
@@ -577,8 +577,8 @@
               "images": [
                 {
                   "image": "tthbb-combined-results",
-                  "caption": "Combined results of the ttH production cross section. More explanation below. (Image: ATLAS Collaboration/CERN)",
-                  "credit": "",
+                  "caption": "Combined results of the ttH production cross section. More explanation below.",
+                  "credit": "Image: ATLAS Collaboration/CERN.",
                   "width": 1986,
                   "height": 1324,
                   "ratio": 1.5,
