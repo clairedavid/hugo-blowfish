@@ -817,6 +817,60 @@
           "figures": [],
           "technical": "",
           "has_math": false
+        },
+        {
+          "slug": "diamond",
+          "card": {
+            "title": "Diamond detector irradiation tests at TRIUMF",
+            "subtitle": "Instrumenting a radiation hardness test using TRIUMF’s cyclotron proton beam",
+            "years": "2010",
+            "status": "",
+            "image": "cyclo-blue-tile",
+            "source_stem": "cyclo-blue-tile",
+            "original_stem": "",
+            "credit": "",
+            "unlisted": false
+          },
+          "banner": {
+            "images": [],
+            "style": "single",
+            "single": "cyclo-blue-banner",
+            "original_stem": "",
+            "credit": "Credit: TRIUMF"
+          },
+          "panel": {
+            "role": "Intern",
+            "years": "2010",
+            "status": "",
+            "logo": "",
+            "team": [],
+            "facts": [],
+            "links_label": "Links",
+            "links": [
+              [
+                {
+                  "kind": "inline",
+                  "segments": [
+                    {
+                      "text": "JINST paper (2011) ↗",
+                      "url": "https://doi.org/10.1088/1748-0221/6/05/P05011"
+                    }
+                  ],
+                  "centered": false
+                }
+              ]
+            ]
+          },
+          "page_heading": "Diamond detector irradiation tests at TRIUMF",
+          "text": [
+            {
+              "kind": "markdown",
+              "content": "During the last year of my Master of Engineering, I did a five-month internship at TRIUMF, Canada’s national particle accelerator centre. The mission was to help instrument a test of how radiation-hard diamond sensors would be. Those sensors were studied for an ATLAS sub-system called the Forward Calorimeter, positioned at each end of the ATLAS detector, right around the beam pipe. These zones are subject to a high-radiation environment, primarily caused by the debris of the collisions. Some ATLAS readout systems thus need to work and withstand the harsh environment without being damaged. Diamonds are good for that, but the research needed measurements.\n\nThe testbench made use of accelerated protons from TRIUMF’s 18-metre-diameter cyclotron, the largest in the world in its category. A cyclotron is a type of circular accelerator made of two ‘D’-shaped halves, in which particles are accelerated along a spiral trajectory, from the centre to the edge.\n\nI used TestPoint, a data-acquisition software, to create the test user interface. Then I developed the analysis software using ROOT, a CERN software framework widely used in high-energy physics.\n\nThe tests ran after my departure from TRIUMF, but the team included me in what ended up being my first publication!"
+            }
+          ],
+          "figures": [],
+          "technical": "",
+          "has_math": false
         }
       ]
     }
