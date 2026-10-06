@@ -924,6 +924,16 @@
                   ],
                   "centered": false
                 }
+              ],
+              [
+                {
+                  "kind": "image",
+                  "alt": "IceCube logo",
+                  "src": "icecube-logo",
+                  "dark_src": "icecube-logo-dark",
+                  "href": "",
+                  "centered": true
+                }
               ]
             ]
           },
