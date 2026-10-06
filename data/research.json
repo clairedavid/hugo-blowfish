@@ -983,6 +983,10 @@
                   "needs_frame": false
                 }
               ]
+            },
+            {
+              "kind": "markdown",
+              "content": "In October 2026, IceCube was in the spotlight when the Nobel Prize in Physics was awarded to Francis Halzen, of the University of Wisconsin–Madison and principal investigator of the IceCube Neutrino Observatory, \"for decisive contributions to the IceCube Neutrino Observatory and the discovery of high-energy neutrinos of astrophysical origin.\"\n\n[Press release on the Nobel Prize website ↗](https://www.nobelprize.org/prizes/physics/2026/press-release/)"
             }
           ],
           "figures": [],
