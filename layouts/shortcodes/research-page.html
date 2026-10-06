@@ -105,7 +105,8 @@
         {{- end }}
         {{- with $project.panel.years }}
         <div class="res-panel-block">
-          <h3>Years</h3>
+          {{- /* "Year" for a single four-digit year, "Years" for a range or anything else. */}}
+          <h3>{{ if findRE `^\d{4}$` (. | strings.TrimSpace) }}Year{{ else }}Years{{ end }}</h3>
           <div class="res-panel-value">{{ . }}</div>
         </div>
         {{- end }}

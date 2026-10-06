@@ -354,8 +354,10 @@ def parse_links_lines(body, slug, converted_dir):
         return "Links", []
 
     label = "Links"
+    overridden = False
     if raw and LABEL_OVERRIDE_RE.match(raw[0]):
         label = LABEL_OVERRIDE_RE.match(raw[0]).group(1).strip()
+        overridden = True
         raw = raw[1:]
         while raw and not raw[0]:
             raw.pop(0)
@@ -389,7 +391,17 @@ def parse_links_lines(body, slug, converted_dir):
             parts = [p.strip() for p in line.split("|")]
             out.append({"kind": "plain", "label": parts[0],
                         "url": parts[1] if len(parts) > 1 else "", "centered": centered})
-    return label, [g for g in groups if g]
+    groups = [g for g in groups if g]
+    # The default heading is singular when the block holds exactly one URL
+    # (a "Label:" override is always kept as written).
+    n_urls = sum(
+        (1 if it["kind"] == "plain" and it["url"] else 0)
+        + (sum(1 for seg in it["segments"] if seg["url"]) if it["kind"] == "inline" else 0)
+        + (1 if it["kind"] == "image" and it["href"] else 0)
+        for g in groups for it in g)
+    if not overridden and n_urls == 1:
+        label = "Link"
+    return label, groups
 
 
 FACT_LABEL_RE = re.compile(r"^([^:]+):\s*$")
