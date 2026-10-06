@@ -873,6 +873,113 @@
           "has_math": false
         }
       ]
+    },
+    {
+      "id": "icecube",
+      "title": "IceCube",
+      "intro": [
+        {
+          "text": "My first particle physics experience started at DESY in Zeuthen, near Berlin, Germany. I was still an engineer-padawan, working on the analog front-end electronics of the detector modules for the IceCube Neutrino Observatory, located in Antarctica.",
+          "url": ""
+        }
+      ],
+      "projects": [
+        {
+          "slug": "desy-zeuthen",
+          "card": {
+            "title": "Pulse-shape modelling for IceCube",
+            "subtitle": "Measuring the transfer function of photomultiplier modules",
+            "years": "2009",
+            "status": "",
+            "image": "icecube-tile",
+            "source_stem": "icecube-tile",
+            "original_stem": "",
+            "credit": "",
+            "unlisted": false
+          },
+          "banner": {
+            "images": [],
+            "style": "single",
+            "single": "icecube-banner",
+            "original_stem": "",
+            "credit": "Credit: Benjamin Eberhardt, IceCube/NSF"
+          },
+          "panel": {
+            "role": "Intern",
+            "years": "2009",
+            "status": "",
+            "logo": "",
+            "team": [],
+            "facts": [],
+            "links_label": "Links",
+            "links": [
+              [
+                {
+                  "kind": "inline",
+                  "segments": [
+                    {
+                      "text": "icecube.wisc.edu ↗",
+                      "url": "https://icecube.wisc.edu/science/icecube/"
+                    }
+                  ],
+                  "centered": false
+                }
+              ]
+            ]
+          },
+          "page_heading": "Pulse-shape modelling for the IceCube Neutrino Observatory",
+          "text": [
+            {
+              "kind": "markdown",
+              "content": "During the fourth year of my Master of Engineering, I was an exchange student at Humboldt-Universität zu Berlin and got an internship at DESY-Zeuthen, Germany's national research centre for fundamental science. There I worked on the electronics of the IceCube Neutrino Observatory, whose focus is to record signals from high-energy neutrinos coming from outer space. The neutrino is an elementary particle very abundant in the universe, yet barely interacting with matter. Most of them go through Earth without being stopped! To get a chance of an interaction, the trick is to go big: the IceCube detector is an arrangement of 5,160 digital optical modules (DOMs) buried between 1,450 and 2,450 metres deep in the Antarctic ice, covering a volume of a cubic kilometre!  "
+            },
+            {
+              "kind": "figure-row",
+              "images": [
+                {
+                  "image": "icecube-poster",
+                  "caption": "Presentation of the IceCube Neutrino Observatory at the South Pole. Click to enlarge.",
+                  "credit": "Credit: IceCube",
+                  "width": 1600,
+                  "height": 1200,
+                  "ratio": 1.333333,
+                  "needs_frame": false
+                }
+              ]
+            },
+            {
+              "kind": "markdown",
+              "content": "My role was to measure the transfer function of the DOMs' analog signal output. In short, the transfer function is the shape of the DOM's signal, its intensity over time, which the module's electronics digitize and send to the surface. Getting that shape right matters because if the intensity goes over a given threshold, a trigger flags the signal as interesting for physics, and saves it. I used the ROOT toolkit to analyze data produced by spare modules at the DESY-Zeuthen laboratory. I summarized my results in an internal report that was uploaded to the IceCube intranet."
+            },
+            {
+              "kind": "figure-row",
+              "images": [
+                {
+                  "image": "dom-diagram",
+                  "caption": "The digital optical module (DOM) is a vital part of the neutrino telescope, collecting information about neutrino interactions. The DOMs were made by scientists in the U.S., Germany, and Sweden.",
+                  "credit": "Credit: IceCube Collaboration",
+                  "width": 1250,
+                  "height": 1123,
+                  "ratio": 1.11309,
+                  "needs_frame": false
+                },
+                {
+                  "image": "dom-before-sealed",
+                  "caption": "DOMs ready for testing before being shipped to the South Pole. I worked on spare modules at DESY-Zeuthen (not pictured).",
+                  "credit": "Credit: DESY",
+                  "width": 1036,
+                  "height": 1600,
+                  "ratio": 0.6475,
+                  "needs_frame": false
+                }
+              ]
+            }
+          ],
+          "figures": [],
+          "technical": "",
+          "has_math": false
+        }
+      ]
     }
   ]
 }
