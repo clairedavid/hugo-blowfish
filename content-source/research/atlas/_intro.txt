@@ -1,0 +1,1 @@
+ATLAS is one of the largest particle detectors ever built, recording proton-proton collisions at CERN's Large Hadron Collider. Learn more about ATLAS and a summary of my years working on it [here](/research/atlas-experiment/).

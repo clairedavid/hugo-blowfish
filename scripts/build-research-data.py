@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 """Turn the research content source into data/research.json.
 
-Source layout (default --src ~/Desktop/website_meta/research):
+Text source layout (default --src content-source/research in the repo):
     <theme>/_intro.txt            one-line intro for that theme
     <theme>/<slug>/_content.txt   one project, in == SECTION == blocks
+Images are not in the repo: they come from each theme's _converted/ folder
+under --assets-src (default ~/Desktop/website_meta/research), same theme
+folder names as the text source.
 
 Themes are fixed, in site order: "machine-learning" (Machine Learning),
 "dune" (DUNE), then "atlas" (ATLAS). Machine Learning's two projects and
@@ -75,7 +78,7 @@ to know which format(s) a given stem ships in; see copy_assets(). A
 Image:, Logo:) is a human note-to-self in the source and is stripped before
 the filename is read.
 
-Usage:  python3 scripts/build-research-data.py [--src PATH]
+Usage:  python3 scripts/build-research-data.py [--src PATH] [--assets-src PATH]
 """
 import argparse
 import json
@@ -85,7 +88,8 @@ import shutil
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-DEFAULT_SRC = pathlib.Path.home() / "Desktop/website_meta/research"
+DEFAULT_SRC = ROOT / "content-source" / "research"
+DEFAULT_ASSETS_SRC = pathlib.Path.home() / "Desktop/website_meta/research"
 OUT = ROOT / "data" / "research.json"
 ASSETS_OUT = ROOT / "assets" / "research"
 CONTENT_OUT = ROOT / "content" / "research"
@@ -793,7 +797,10 @@ def write_content_pages(projects):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--src", type=pathlib.Path, default=DEFAULT_SRC)
+    ap.add_argument("--src", type=pathlib.Path, default=DEFAULT_SRC,
+                    help="text sources (_intro.txt, _content.txt); default content-source/research")
+    ap.add_argument("--assets-src", type=pathlib.Path, default=DEFAULT_ASSETS_SRC,
+                    help="folder holding each theme's _converted/ images; default the Desktop copy")
     args = ap.parse_args()
 
     themes_out = []
@@ -808,7 +815,7 @@ def main():
 
         intro_path = theme_dir / "_intro.txt"
         intro_raw = intro_path.read_text(encoding="utf-8").strip() if intro_path.exists() else ""
-        converted = theme_dir / "_converted"
+        converted = args.assets_src / theme_def["folder"] / "_converted"
 
         slugs = theme_def["slugs"] or discover_projects(theme_dir)
         projects = []

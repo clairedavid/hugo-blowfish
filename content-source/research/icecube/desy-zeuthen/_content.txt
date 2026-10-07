@@ -1,0 +1,54 @@
+== CARD ==
+Title: Pulse-shape modelling for IceCube
+Subtitle: Measuring the transfer function of photomultiplier modules
+Years: 2009
+Card image: icecube-tile.jpg
+
+== BANNER ==
+Image: icecube-banner.jpg
+Credit: Credit: Benjamin Eberhardt, IceCube/NSF
+
+== LEFT PANEL ==
+Role: Intern
+Years: 2009
+
+Links:
+[icecube.wisc.edu ↗](https://icecube.wisc.edu/science/icecube/)
+
+![IceCube logo](icecube-logo.png)
+
+
+== PAGE HEADING ==
+Pulse-shape modelling for the IceCube Neutrino Observatory
+
+== TEXT ==
+
+During the fourth year of my Master of Engineering, I was an exchange student at Humboldt-Universität zu Berlin and got an internship at DESY-Zeuthen, Germany's national research centre for fundamental science. There I worked on the electronics of the IceCube Neutrino Observatory, whose focus is to record signals from high-energy neutrinos coming from outer space. The neutrino is an elementary particle very abundant in the universe, yet barely interacting with matter. Most of them go through Earth without being stopped! To get a chance of an interaction, the trick is to go big: the IceCube detector is an arrangement of 5,160 digital optical modules (DOMs) buried between 1,450 and 2,450 metres deep in the Antarctic ice, covering a volume of a cubic kilometre!  
+
+
+[[FIGURE-ROW]]
+Image: icecube-poster.jpg
+Caption: Presentation of the IceCube Neutrino Observatory at the South Pole. Click to enlarge.
+Credit: Credit: IceCube
+[[/FIGURE-ROW]]
+
+
+My role was to measure the transfer function of the DOMs' analog signal output. In short, the transfer function is the shape of the DOM's signal, its intensity over time, which the module's electronics digitize and send to the surface. Getting that shape right matters because if the intensity goes over a given threshold, a trigger flags the signal as interesting for physics, and saves it. I used the ROOT toolkit to analyze data produced by spare modules at the DESY-Zeuthen laboratory. I summarized my results in an internal report that was uploaded to the IceCube intranet.
+
+
+[[FIGURE-ROW]]
+Image: dom-diagram.png
+Caption: The digital optical module (DOM) is a vital part of the neutrino telescope, collecting information about neutrino interactions. The DOMs were made by scientists in the U.S., Germany, and Sweden.
+Credit: Credit: IceCube Collaboration
+Image: dom-before-sealed.jpg
+Caption: DOMs ready for testing before being shipped to the South Pole. I worked on spare modules at DESY-Zeuthen (not pictured).
+Credit: Credit: DESY
+[[/FIGURE-ROW]]
+
+
+In October 2026, IceCube was in the spotlight when the Nobel Prize in Physics was awarded to Francis Halzen, of the University of Wisconsin–Madison and principal investigator of the IceCube Neutrino Observatory, "for decisive contributions to the IceCube Neutrino Observatory and the discovery of high-energy neutrinos of astrophysical origin."
+
+[Press release on the Nobel Prize website ↗](https://www.nobelprize.org/prizes/physics/2026/press-release/)
+
+
+== TECHNICAL ==

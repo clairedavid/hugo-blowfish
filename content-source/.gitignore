@@ -1,0 +1,5 @@
+# Text sources only: nothing but .txt (and this file) can be added here.
+*
+!*/
+!*.txt
+!.gitignore

@@ -1,0 +1,29 @@
+== CARD ==
+Title: Diamond detector irradiation tests at TRIUMF
+Subtitle: Instrumenting a radiation hardness test using TRIUMF’s cyclotron proton beam
+Years: 2010
+Card image: cyclo-blue-tile.jpg
+
+== BANNER ==
+Image: cyclo-blue-banner.jpg
+Credit: Credit: TRIUMF
+
+== LEFT PANEL ==
+Role: Intern
+Years: 2010
+Links:
+[JINST paper (2011) ↗](https://doi.org/10.1088/1748-0221/6/05/P05011)
+
+== PAGE HEADING ==
+Diamond detector irradiation tests at TRIUMF
+
+== TEXT ==
+During the last year of my Master of Engineering, I did a five-month internship at TRIUMF, Canada’s national particle accelerator centre. The mission was to help instrument a test of how radiation-hard diamond sensors would be. Those sensors were studied for an ATLAS sub-system called the Forward Calorimeter, positioned at each end of the ATLAS detector, right around the beam pipe. These zones are subject to a high-radiation environment, primarily caused by the debris of the collisions. Some ATLAS readout systems thus need to work and withstand the harsh environment without being damaged. Diamonds are good for that, but the research needed measurements.
+
+The testbench made use of accelerated protons from TRIUMF’s 18-metre-diameter cyclotron, the largest in the world in its category. A cyclotron is a type of circular accelerator made of two ‘D’-shaped halves, in which particles are accelerated along a spiral trajectory, from the centre to the edge.
+
+I used TestPoint, a data-acquisition software, to create the test user interface. Then I developed the analysis software using ROOT, a CERN software framework widely used in high-energy physics.
+
+The tests ran after my departure from TRIUMF, but the team included me in what ended up being my first publication!
+
+== TECHNICAL ==

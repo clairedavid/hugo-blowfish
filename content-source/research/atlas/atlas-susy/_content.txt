@@ -1,0 +1,60 @@
+== CARD ==
+Title: SUSY analysis
+Subtitle: Search for supersymmetric particles with a Higgs boson in the decay chain 
+Years: 2011 – 2016
+Card image: pmssm-lsp.gif
+
+== LEFT PANEL ==
+
+Role: Analyser
+Years: 2011 – 2016
+Links:
+[Analysis paper (2015) ↗](https://doi.org/10.1140/epjc/s10052-015-3408-7)
+
+[pMSSM summary paper (2015) ↗](https://doi.org/10.1007/JHEP10(2015)134)
+
+[PhD Thesis (2016) ↗](https://dspace.library.uvic.ca/items/1cd7f39b-d02f-4905-8f7c-3c5d39fc8620)
+
+== PAGE HEADING ==
+Search for Supersymmetry with a Higgs boson in the decay chain
+
+== TEXT ==
+
+My PhD work was about analysing data from the ATLAS Experiment at the Large Hadron Collider to search for supersymmetric particles.
+
+
+What is Supersymmetry? Or SUSY, for short? It is a theoretical framework yet to be confirmed experimentally. The mathematics of Supersymmetry is really elegant, and the role of supersymmetric particles would fix a lot of inconsistencies in the current theory of particle physics. So it was just about finding it in the data. There was lots of hope in the community, however no SUSY particles have been discovered so far. Instead of claiming a discovery, physicists proceed to an exclusion, which is still a scientific result. Experimentalists provide to theorists 'limits' on either an energy range or a cross-section (linked to how often those particles would be produced) where we can say, with high confidence, that the SUSY particles do not existing. 
+
+I worked on a specific scenario where supersymmetric particles (charginos and neutralinos for the technical names) are produced along with a Higgs boson, which in turn decays into a pair of bottom and antibottom quarks. As no excess was found, i.e. no additional data collisions over the background predictions were observed, we proceeded to an exclusion. I was part of the analysis team that set the first limits on this decay chain.
+
+
+Following the null results of SUSY searches during the Run 1 data taking campaign (2010–2012), I joined the effort on the summary work that explored the impact of 22 ATLAS analyses on more than 310,000 cosmologically viable SUSY models. Because the limits of each individual analysis are typically presented in the context of simplified SUSY models, the resulting numbers are more optimistic than realistic. The goal of the summary paper was to reinterpret (recalculate) the exclusion limits for many possible combinations of SUSY particle masses from a model called the pMSSM. At the time, the pMSSM was a widely used candidate model within the SUSY framework. 
+
+I was responsible for the reinterpretation of the analysis from my PhD (referred to as the ℓh channel in the publication). The resulting publication, very well received in the theory community, was described as “the most comprehensive ATLAS summary to date”, as quoted in CERN Courier of November 2015.
+
+
+
+[[FIGURE-ROW]]
+Image: feynman-susy-hbb.webp
+Width: 40%
+Caption: Feynman diagram for the direct pair production of supersymmetric particles (χ̃₁± and χ̃₂⁰) with a Higgs boson (h) produced and decaying into a pair of bottom and antibottom quarks (bb).
+Credit: Credit: ATLAS Collaboration
+[[/FIGURE-ROW]]
+
+[[FIGURE-ROW]]
+Image: pmssm-lsp.gif
+Width: 80%
+Caption: This animation showcases the pMSSM models (dots) that survive, i.e. not excluded by the pMSSM reinterpretation. The horizontal axis is the mass of the lightest supersymmetric particle, which is stable. The vertical axis is the dark matter relic density, which is the amount of dark matter not annihilated and remaining in our Universe. 
+Credit: Credit: ATLAS Collaboration
+[[/FIGURE-ROW]]
+
+Excluding is less exciting than claiming a discovery, but this is also how science progresses. An exclusion range helps theorists refine their models. So far, no SUSY signals have been observed. Particle physics still keeps both theorists and experimentalist in the game of unveiling the unknown. Hopefully the High-Luminosity LHC, operational around 2030, will shed light on how to expand our current understanding of the Universe. 
+
+
+**Learn more**
+The pMSSM summary paper featured in CERN Courier: [Issue of November 2015 (p.9) ↗](https://repository.cern/records/aksem-58760)
+
+
+
+
+== TECHNICAL ==

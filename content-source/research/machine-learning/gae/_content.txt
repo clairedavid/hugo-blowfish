@@ -1,0 +1,49 @@
+== CARD ==
+Title: Graph Autoencoders for Particle Collisions
+Subtitle: Compressing a particle collision into a graph, and decoding it back, to spot the unusual
+Years: 2025
+Status: Exploratory, concluded
+Card image: project_gae_encode_decode.png, shown whole, centred in the card box
+
+== BANNER ==
+Images:
+project_gae_graph_event.png
+project_gae_encode_decode.png
+Style: row (same height)
+
+== LEFT PANEL ==
+Role: Supervisor
+Years: Nov – Dec 2025
+Team:
+raktim_circle.png | Raktim Mukherjee | Research intern, AIMS South Africa · Heidelberg University
+harrison_circle.png | Prof. Harrison Prosper | Co-supervisor (remote) · Florida State University
+Links: (none)
+
+== PAGE HEADING ==
+Graph Autoencoders for Particle Collisions
+
+== TEXT ==
+A graph is a way to represent data: dots (nodes) connected by straight lines (edges). There is an entire branch of mathematics dedicated to them, called graph theory.
+
+Here we want to represent a particle physics collision as a graph, then squeeze this graph into a compacted version with fewer dimensions (called a latent space, storing the essential information) to then decode it back into a graph. We do this encoding-decoding because it forces the model to capture the most important patterns among a large collection of collisions. As physicists, one collision can't tell us much about new particles or interactions, but with many collisions we can apply statistical tools to test theories or spot something interestingly unusual. The decoding part is the challenge: it is far from trivial and can become very computationally intensive if not implemented cleverly.
+
+In November and December 2025, Raktim Mukherjee, then an undergraduate student at Heidelberg University, spent two months at AIMS South Africa working on optimizing a so-called autoencoder that takes a graph as input and outputs a graph. Using real data from the ATLAS experiment at CERN, he found an optimized architecture for the available dataset. At the end of his stay, he was invited to give a talk summarizing his optimization at a technical meeting of the GELATO group at CERN, which develops anomaly-detection algorithms for the ATLAS trigger system.
+
+Prof. Harrison Prosper, invited co-supervisor on this project, later informed us that a Google Summer of Code team had worked on exactly this problem. Moreover, transformers are gaining momentum on the graph decoding problem. The time frame of the project did not allow us to investigate this direction further. 
+
+
+> "This short-term project highly impacted my research experience, and Dr. David just pushed me to perfection. I also got acquainted with Prof. Harrison Prosper, who was not only supportive during the project but also very inspiring."
+> Raktim Mukherjee
+
+Raktim is now a graduate student at the University of Heidelberg working within the ALICE Collaboration.
+
+
+
+== TECHNICAL ==
+The goal is to map a graph to a graph with high fidelity through a latent space of fixed dimension, as fast as possible. Fully-connected graph models scale as $N^2$ in the number of particles $N$; in the context of fast event generation we target a method scaling as $N \times n$, where $n$ is a fixed number of nearest neighbours, thus effectively linear in $N$.
+
+Raktim optimized the architecture using a grid search on a set of 2,000 graphs. He found the best results (highest AUC) for an autoencoder with 3 encoder and 3 decoder layers, with the middle layer having half the nodes of the first. Among the convolution types, SAGEConv avoids the over-smoothing effects observed with GCNConv and GINConv.
+
+The open questions at the end of his stay were on finding the optimal $p_T$ threshold range: higher thresholds improve AUC but reduce statistics. It was found that the overlap removal changes the classifier's emphasis on different features. It was still a debate whether it was necessary to implement it.
+
+One important issue regarding the decoding of graphs is handling the permutation invariance: a graph is to be seen as a 3D object with nodes connected with edges. The order in which items are listed does not matter. But for a computer, there needs to be a list. So some arbitrary order. The self-attention mechanism, the key algorithm at the core of transformers, is naturally permutation-invariant.

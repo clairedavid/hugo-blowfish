@@ -1,0 +1,33 @@
+== CARD ==
+Title: ttH(bb) analysis
+Subtitle: Observation of the Higgs boson produced in association with a top-quark pair
+Years: 2017 – 2019
+Card image: tthbb-combined-results.jpg
+
+== LEFT PANEL ==
+
+Role: Analyser
+Years: 2017 – 2019
+Links:
+[ttH(bb) search paper (2018) ↗](https://doi.org/10.1103/PhysRevD.97.072016)
+
+[ttH observation paper (2018) ↗](https://doi.org/10.1016/j.physletb.2018.07.035)
+
+== PAGE HEADING ==
+Observation of the Higgs boson's production mode 'ttH' in the bottom-quark decay channel
+
+== TEXT ==
+During my postdoctoral fellowship at DESY, I contributed to the discovery of a rare process: the Higgs boson production in association with a top-quark pair, or ‘ttH’ (quarks are constituents of protons and neutrons). The Higgs boson is a particle playing a key role in giving mass to the other elementary constituents of matter. The measurement gives access to the so-called ‘top Yukawa coupling,’ which is a coefficient linked with the interaction strength between the Higgs boson and the top quark. This is an important measurement in the theory of particle physics.
+
+[[FIGURE-ROW]]
+Image: tthbb-combined-results.jpg
+Caption: Combined results of the ttH production cross section. More explanation below.
+Credit: Image: ATLAS Collaboration/CERN.
+[[/FIGURE-ROW]]
+
+The cross section relates to the rate of the process (how often it occurs). It is compared with the prediction of the Standard Model (SM), the theoretical framework of particle physics. A ratio of 1 (vertical red line) means that it is consistent with theoretical predictions. The horizontal spread is due to uncertainties (an interval of possible values as no detector is 100% precise). The analysis had different channels depending on the Higgs boson’s decay mode. I was involved in the one where the Higgs boson decays into a pair of bottom and antibottom quarks, the first line ‘ttH(bb)’ in the plot.
+
+**Learn more**
+This analysis was refined by ATLAS collaborators later, and in 2024 a more precise result was published. Here is the [ATLAS briefing ↗](https://atlas.cern/Updates/Briefing/Run2-ttHbb) (accessible for newcomers).
+
+== TECHNICAL ==

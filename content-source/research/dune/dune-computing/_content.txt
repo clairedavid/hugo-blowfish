@@ -1,0 +1,35 @@
+== CARD ==
+Title: DUNE Computing
+Subtitle: Designing new training & onboarding, a glossary, and R&D on columnar data analysis
+Years: 2020 – 2022
+Card image: dune-computing-card.jpg
+
+== BANNER ==
+Image: dune-computing-banner.jpg
+Credit: Photo: Reidar Hahn, Fermilab
+
+== LEFT PANEL ==
+Role: Co-convener, DUNE Computing Training & Documentation subgroup
+Years: 2020 – 2022
+Links:
+Paper: "Training and Onboarding initiatives in High Energy Physics experiments"
+[Frontiers in Big Data (2025) ↗](https://doi.org/10.3389/fdata.2025.1497622)
+
+DUNE automated glossary:
+[abc.dunescience.org ↗](https://abc.dunescience.org/)
+
+Coffea Python toolkit:
+[![Coffea logo](coffea_logo.svg)](https://coffea-hep.readthedocs.io/en/latest/)
+
+== PAGE HEADING ==
+DUNE Computing: new training, a glossary, and R&D on columnar data analysis
+
+== TEXT ==
+As part of the Computing Consortium, I co-convened the Training and Documentation subgroup. We redesigned the onboarding and co-organized three tutorial sessions to help newcomers grasp the DUNE analysis workflow. The tutorials focused mostly on LArSoft, the software framework for event generation, detector simulation and reconstruction used to analyze data from Liquid Argon Time Projection Chambers (LArTPCs). I also modernized the DUNE Computing wiki, and designed and deployed DUNE's automated glossary.
+
+My team led the first R&D on an interactive analysis facility for DUNE using columnar computing. This was done using the Coffea Python toolkit, a prototype package to supply high-energy collider physics (HEP) experiments with big-data technologies for physics analyses.
+
+== FIGURES ==
+(none)
+
+== TECHNICAL ==

@@ -1,0 +1,45 @@
+== CARD ==
+Title: DUNE Canada
+Subtitle: Co-launching the Canadian DUNE effort
+Years: 2019 – 2022
+Card image: ProtoDUNE_cryostat_at_CERN.jpg
+
+== BANNER ==
+Image: LBNE_Graphic_061615_2016.jpg
+Credit: Illustration: Sandbox Studio/Fermilab
+
+== LEFT PANEL ==
+Role: Co-PI, with two other PIs
+Years: 2019 – 2022
+Links:
+DUNE's official website:
+[dunescience.org](https://www.dunescience.org/)
+![DUNE logo](dune-logo.png)
+
+== PAGE HEADING ==
+Bringing Canada into DUNE, an international flagship neutrino experiment
+
+== TEXT ==
+The Deep Underground Neutrino Experiment (DUNE) is a complex of detectors under construction in the United States. DUNE is dedicated to studying one mysterious elementary particle: the neutrino. They are the most abundant matter particles in the universe, yet very difficult to detect. DUNE will measure how neutrinos change over time, a phenomenon known as oscillations. It will also be able to observe neutrinos from a core-collapse supernova in the Milky Way, allowing us to peer inside a newly formed neutron star and potentially witness the birth of a black hole.
+
+[[FIGURE-ROW]]
+Image: ProtoDUNE_cryostat_at_CERN.jpg
+Caption: Inside the cryostat of ProtoDUNE, a prototype built at CERN to validate the liquid-argon chamber technology at scale.
+Credit: Credit: CERN
+Image: dune-far-detector.jpg
+Caption: The giant DUNE Far Detector modules will record images of particle tracks created by neutrinos colliding with argon atoms.
+Credit: Credit: Fermilab
+[[/FIGURE-ROW]]
+
+In 2019, while I was faculty at York University, I co-launched the DUNE-Canada effort with two other principal investigators. We secured three-year funding from the Natural Sciences and Engineering Research Council (NSERC) to start the first Canadian effort, then five-year funding from the Canada Foundation for Innovation (CFI) to build a cryogenic facility for [ArgonCube](https://argoncube.lhep.unibe.ch/technologies.html), a research and development initiative designing the advanced Liquid Argon Time Projection Chamber (LArTPC) technology used for the Near Detector.
+
+**DUNE in 2 minutes**
+A great animation in this [short video from Fermilab ↗](https://www.youtube.com/watch?v=AYtKcZMJ_4c)
+
+**What is so special about neutrinos?**
+My improvised take as a (very amateur) YouTuber: [video ↗](https://www.youtube.com/watch?v=6ZWX1nMZqlI)
+
+== FIGURES ==
+(none)
+
+== TECHNICAL ==
