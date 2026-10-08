@@ -12,8 +12,8 @@
             "subtitle": "From intuition to derivation and code implementation ‘by hand’",
             "years": "2023–2026",
             "status": "",
-            "image": "how-to-roc-3x2",
-            "source_stem": "how-to-roc-3x2",
+            "image": "intro-ml-tile",
+            "source_stem": "intro-ml-tile",
             "original_stem": "",
             "credit": "",
             "unlisted": false
@@ -28,7 +28,7 @@
           },
           "panel": {
             "role": "Course designer and instructor",
-            "years": "2023–2026",
+            "years": "Created in 2022 Revised in 2025",
             "status": "",
             "logo": "",
             "team": [],
@@ -171,6 +171,116 @@
               "kind": "testimonial",
               "quote": "The course “Introduction to Machine Learning and Artificial Intelligence” taught me almost everything I needed to know as a beginner in the field. Taking this course in the early days of my Masters program helped me to appreciate the subsequent courses. Your patience, eloquence, expertise and availability made the course an exceptional one.",
               "attribution": "Priscilla Obo Otoo, MSc student, AIMS Cameroon, 2025–2026"
+            }
+          ],
+          "figures": [],
+          "technical": "",
+          "has_math": false
+        },
+        {
+          "slug": "ltmbnn",
+          "card": {
+            "title": "Learn The Math Behind Neural Networks!",
+            "subtitle": "It is not magical, it is mathematical",
+            "years": "2023",
+            "status": "",
+            "image": "nn-forward-3x2",
+            "source_stem": "nn-forward-3x2",
+            "original_stem": "",
+            "credit": "",
+            "unlisted": false
+          },
+          "banner": {
+            "images": [],
+            "style": "row",
+            "single": "",
+            "original_stem": "",
+            "credit": ""
+          },
+          "panel": {
+            "role": "Course designer and instructor",
+            "years": "Created in 2023",
+            "status": "",
+            "logo": "",
+            "team": [],
+            "facts": [],
+            "links_label": "Link",
+            "links": [
+              [
+                {
+                  "kind": "plain",
+                  "label": "Based on my full course:",
+                  "url": "",
+                  "centered": false
+                }
+              ],
+              [
+                {
+                  "kind": "inline",
+                  "segments": [
+                    {
+                      "text": "Introduction to Machine Learning ↗",
+                      "url": "https://clairedavid.github.io/intro_to_ml/intro.html"
+                    }
+                  ],
+                  "centered": false
+                }
+              ],
+              [
+                {
+                  "kind": "plain",
+                  "label": "Sections Basics & Neural Networks",
+                  "url": "",
+                  "centered": false
+                }
+              ]
+            ],
+            "fields": [
+              {
+                "label": "Audience/Level",
+                "values": [
+                  "From fourth-year undergraduates"
+                ]
+              },
+              {
+                "label": "Prerequisites",
+                "values": [
+                  "Undergraduate calculus & basic programming (Python)"
+                ]
+              },
+              {
+                "label": "Format",
+                "values": [
+                  "One-day workshop",
+                  "3–4 hours of theory (morning)",
+                  "3–4 hours of coding (afternoon)"
+                ]
+              }
+            ]
+          },
+          "page_heading": "Learn The Math Behind Neural Networks!",
+          "text": [
+            {
+              "kind": "markdown",
+              "content": "This day workshop is a shorter version of my 30-hour course [Introduction to Machine Learning](/teaching/intro-to-ml/), but entirely focused on neural networks. Participants get the basics (linear and logistic regression), then a thorough walk through the mathematics of forward and backward propagation. After the blackboard derivations, the second part of the workshop is a hands-on session where participants enter all equations ‘by hand’ in a Python code. They go back home with a little neural network built from scratch on a Jupyter notebook, without using any fancy ML library.\n\nThe goal is to show that the foundations behind any neural network, from simple to the latest LLM transformer, come from the simple application of the chain rule, put at scale."
+            },
+            {
+              "kind": "figure-row",
+              "images": [
+                {
+                  "image": "ltmbnn_classroom_2",
+                  "caption": "Workshop hosted by the University of Johannesburg Nuclear Research Centre and the Data Science Across Disciplines Research Group, both in the Faculty of Engineering and the Built Environment.",
+                  "credit": "Credit: Simon Connell",
+                  "width": 1600,
+                  "height": 666,
+                  "ratio": 2.402402,
+                  "needs_frame": false
+                }
+              ]
+            },
+            {
+              "kind": "markdown",
+              "content": "A non-negligible feature of this workshop: it is way more fun and enriching if attendees span many ages and stages as well as disciplines and specialties. I had a blast pairing honours undergraduates with emeritus professors, both new to machine learning, for impromptu yet sparkling collaboration.\n\nIf you are interested in hosting this at your institution, please [contact me](/contact/)."
             }
           ],
           "figures": [],

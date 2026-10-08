@@ -2,14 +2,15 @@
 Title: Introduction to Machine Learning
 Subtitle: From intuition to derivation and code implementation ‘by hand’
 Years: 2023–2026
-Card image: how-to-roc-3x2.png
+Card image: intro-ml-tile.png
 
 == LEFT PANEL ==
 Role:
 Course designer and instructor
 
 Years:
-2023–2026
+Created in 2022
+Revised in 2025
 
 Audience/Level:
 Graduate

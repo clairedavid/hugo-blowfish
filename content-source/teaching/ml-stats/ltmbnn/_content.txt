@@ -1,0 +1,56 @@
+== CARD ==
+Title: Learn The Math Behind Neural Networks!
+Subtitle: It is not magical, it is mathematical
+Years: 2023
+Card image: nn-forward-3x2.png
+
+== LEFT PANEL ==
+Role:
+Course designer and instructor
+
+Years:
+Created in 2023
+
+Audience/Level:
+From fourth-year undergraduates
+
+Prerequisites:
+Undergraduate calculus & basic programming (Python)
+
+Format:
+One-day workshop
+3–4 hours of theory (morning)
+3–4 hours of coding (afternoon)
+
+Links:
+
+Based on my full course:
+
+[Introduction to Machine Learning ↗](https://clairedavid.github.io/intro_to_ml/intro.html)
+
+Sections Basics & Neural Networks
+
+== PAGE HEADING ==
+Learn The Math Behind Neural Networks!
+
+
+== TEXT ==
+
+This day workshop is a shorter version of my 30-hour course [Introduction to Machine Learning](/teaching/intro-to-ml/), but entirely focused on neural networks. Participants get the basics (linear and logistic regression), then a thorough walk through the mathematics of forward and backward propagation. After the blackboard derivations, the second part of the workshop is a hands-on session where participants enter all equations ‘by hand’ in a Python code. They go back home with a little neural network built from scratch on a Jupyter notebook, without using any fancy ML library.
+
+The goal is to show that the foundations behind any neural network, from simple to the latest LLM transformer, come from the simple application of the chain rule, put at scale.
+
+[[FIGURE-ROW]]
+Image: ltmbnn_classroom_2.jpeg
+Caption: Workshop hosted by the University of Johannesburg Nuclear Research Centre and the Data Science Across Disciplines Research Group, both in the Faculty of Engineering and the Built Environment.
+Credit: Credit: Simon Connell
+[[/FIGURE-ROW]]
+
+A non-negligible feature of this workshop: it is way more fun and enriching if attendees span many ages and stages as well as disciplines and specialties. I had a blast pairing honours undergraduates with emeritus professors, both new to machine learning, for impromptu yet sparkling collaboration.
+
+If you are interested in hosting this at your institution, please [contact me](/contact/).
+
+
+
+
+== TECHNICAL ==
