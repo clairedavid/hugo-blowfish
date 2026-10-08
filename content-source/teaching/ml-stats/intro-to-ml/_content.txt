@@ -1,0 +1,129 @@
+== CARD ==
+Title: Introduction to Machine Learning
+Subtitle: From intuition to derivation and code implementation ‘by hand’
+Years: 2023–2026
+Card image: how-to-roc-3x2.png
+
+== LEFT PANEL ==
+Role:
+Course designer and instructor
+
+Years:
+2023–2026
+
+Audience/Level:
+Graduate
+
+Prerequisites:
+Undergraduate calculus & basic programming (Python)
+
+Format:
+30 hours of lectures
+5–10 hours of tutorials
+Shorter versions on request
+
+Links:
+
+[Course website ↗](https://clairedavid.github.io/intro_to_ml/intro.html)
+
+Slides are internal, but if you are curious, feel free to [contact me](/contact/).
+
+== PAGE HEADING ==
+Introduction to Machine Learning
+
+== BANNER ==
+Image: aims_ghana_202304_red25.jpg
+Caption: The effect of the Machine Learning course on AIMS Ghana’s cohort, April 2023.
+Credit: Credit: AIMS Ghana
+
+== TEXT ==
+
+This course provides the basic conceptual and technical knowledge to anyone starting out in machine learning. It begins with intuition: students first guess how the main algorithms work. Then the mathematics is thoroughly derived, step by step. Finally, the students implement the algorithms from scratch, i.e. writing the equations and the algorithmic logic in Python themselves.
+
+From linear and logistic regression to boosted decision trees and neural networks, the goal is to show there is no magic, but beautiful (and actually simple) mathematics at play, and to give students full control over how their code is written and works.
+
+The students learn how to assess the performance of their models and optimize them. They learn how a ROC curve is built, what under- and overfitting mean, and what the bias/variance tradeoff is, again intuitively, then mathematically. Time permitting, unsupervised techniques are covered.
+
+For courses delivered at AIMS, the students work on a STEP, i.e. a “Study Through Exploration and Presentation.” They pick a topic they want to understand in greater depth, build a small demo (with rules on AI use so as not to delegate the thinking process), and give a 10-minute presentation in the last lecture, solo or in small groups.
+
+Assessment combines multiple-choice quizzes, audits of the tutorials (randomly selected students are tested orally on the code they submitted), and a final exam: oral for cohorts under 40, written for larger ones.
+
+## Testimonials
+Feedback collected from students after the course and shared with their permission.
+
+[[TESTIMONIAL]]
+Quote: It was the best introductory ML course I have ever taken. […] Dr. Claire structured the course to make it very interactive, hands-on, and exploratory, down to the quality of the assessments and assignments. One thing that stood out to me was how much the assessments really test your honest understanding and intuition of the concepts taught, rather than just rote memorisation. Dr. Claire’s introduction to linear regression, decision trees, MLPs, deep neural networks, and the rigorous “pen-on-paper” session on formulating the derivatives per layer of backpropagation really drives home the point that understanding the basics gives a strong foundation for research.
+Attribution: Joshua Oluwatimileyin Salako, _AI for Science_ MSc student, AIMS South Africa, 2025–2026
+[[/TESTIMONIAL]]
+
+[[TESTIMONIAL]]
+Quote: Building machine learning models by hand gave us a much deeper understanding of the mathematical intuition behind the algorithms instead of simply relying on libraries and automation. Beyond the technical knowledge, the course encouraged curiosity, critical thinking, and confidence in exploring AI further. This course has strengthened my motivation to continue working in AI and Data Science […] If I’m working with Deep Learning neural network[s] now (PINNs), it’s because of my understanding of the course concepts and building [the latter] by hand.
+Attribution: Ernest Katembo Muhasa, MSc student, AIMS Cameroon, 2025–2026
+[[/TESTIMONIAL]]
+
+[[TESTIMONIAL]]
+Quote: It was a unique experience taking the introductory course in Machine Learning with you. I really appreciated your teaching style, which consistently focused on developing our intuition regarding each course concept; your enthusiasm was contagious. It was clear that your goal wasn’t just to teach the course, but above all to ensure that everyone got something out of it. I also appreciated the final assessment in the form of an interview, as it helped me reflect on what I’d learned with you over the three weeks.
+Attribution: Mamady Konaté, MSc student, AIMS Senegal, 2023–2025
+[[/TESTIMONIAL]]
+
+[[TESTIMONIAL]]
+Quote: What marked me most about Prof. Claire David’s course at AIMS Ghana was the strong connection between theory and practical application. […] Thanks to your course, I became more actively involved in applying Machine Learning to solve complex biological problems.
+Attribution: Afola Kossi Mawouena Samuel, MSc student, AIMS Ghana, 2022–2023
+[[/TESTIMONIAL]]
+
+[[TESTIMONIAL]]
+Quote: [Claire] taught us the fundamentals through her enthusiastic explanations and her signature teaching stick, encouraging us to dive deep into the mathematics of learning theory and the algorithms. […] Our class was full of brilliant people coming from all around Africa, but being in an entirely new and different environment, everyone was stressed during the first few days. […] her lectures were amazing, not only because of the fantastic content but also because of how she helped us come together to form a strong community.
+Attribution: Toavina Leong Pock Tsy, _AI for Science_ MSc student, AIMS South Africa, 2025–2026
+[[/TESTIMONIAL]]
+
+[[TESTIMONIAL]]
+Quote: Before coming to AIMS, I had no experience with Machine Learning, but your course gave me a very solid foundation. At first, I found ML quite challenging, even while the course was ongoing. However, during the review block, my perspective completely changed when I realized I could seamlessly apply the concepts and techniques from your course in other data science classes. […] What stood out most to me was how interactive your classes were. You were always open to questions and took the time to explain concepts clearly.
+Attribution: Israel Oluwamayomikun Alabi, MSc student, AIMS Cameroon, 2025–2026
+[[/TESTIMONIAL]]
+
+[[TESTIMONIAL]]
+Quote: I absolutely loved your in-person Intro to ML course! It was brilliantly clear and simplified, so everyone from different backgrounds could follow along easily. You were so passionate, dedicated, and masterful with every tiny detail. Your infectious energy made it truly exciting! The class ignited my passion for ML years ago, and I’m still applying those skills today.
+Attribution: Ann Wangui, MSc student, AIMS South Africa, 2022–2023
+[[/TESTIMONIAL]]
+
+[[TESTIMONIAL]]
+Quote: A transformative three weeks. Coming from brief online courses, this was my first deep dive into actual ML theory. Working through backpropagation on paper before building neural networks from scratch bridged the gap between surface-level concepts and true understanding. A phenomenal curriculum capped off by a great hands-on project.
+Attribution: Hassan Suliman, _AI for Science_ MSc student, AIMS South Africa, 2025–2026
+[[/TESTIMONIAL]]
+
+[[TESTIMONIAL]]
+Quote: Every class was a relaxing moment for us, not because the lesson was that easy but because Prof Claire was full of energy, full of good vibe […] the fact that she always uses the sentence “don’t forget to have fun” was a kind of reminder that, hey guys, this course is not here to stress you even if it can be difficult. […] I cannot forget the chocolate part: she was giving chocolate for every good suggestion you do, for every typo found in her notes […] in terms of teaching skill, Prof Claire deserves a big A for me.
+Attribution: Jordan De Kenang Tagni, MSc student, AIMS Cameroon, 2025–2026
+[[/TESTIMONIAL]]
+
+[[TESTIMONIAL]]
+Quote: What I appreciated most was [Prof. Claire’s] ability to combine kindness, discipline, and high academic standards. Her teaching encouraged us to think deeply instead of simply memorizing concepts. Beyond the course itself, she created a very positive atmosphere between students, encouraged communication and teamwork, and was always supportive and approachable. She contributed a lot to making the AIMS experience both academically strong and human.
+Attribution: Mahugnon Aime Loick Gohouede, _AI for Science_ MSc student, AIMS South Africa, 2025–2026
+[[/TESTIMONIAL]]
+
+[[TESTIMONIAL]]
+Quote: You made difficult concepts easier to understand, and I appreciated how supportive and engaging your teaching was throughout the course. The course helped me identify my interests and improved my confidence in machine learning.
+Attribution: Ophelia Dankyi, _AI for Science_ MSc student, AIMS South Africa, 2024–2025
+[[/TESTIMONIAL]]
+
+[[TESTIMONIAL]]
+Quote: Prof. Claire is exceptional, passionate, always available and present for us. She gave me confidence in my ability to learn in the field of AI and to understand the basics of ML and algorithms. Thanks to her explanations, I finally found it easy to grasp the complex concepts behind neural networks and to code from scratch. What impressed me was her organisation and motivation, which inspired everyone to follow along and learn with joy.
+Attribution: Josué Romaric Edou, _AI for Science_ MSc student, AIMS South Africa, 2025–2026
+[[/TESTIMONIAL]]
+
+[[TESTIMONIAL]]
+Quote: Your course was one of the most engaging and refreshing experiences I had at AIMS. I especially appreciated the way you made complex ideas approachable while still encouraging us to think deeply and independently. Your enthusiasm, humour, and openness created an atmosphere where learning felt both challenging and enjoyable.
+Attribution: Charles Aveved, MSc student, AIMS Cameroon, 2025–2026
+[[/TESTIMONIAL]]
+
+[[TESTIMONIAL]]
+Quote: Your teaching helped me understand the fundamental principles of AI and Machine Learning […] I particularly appreciated the clear explanations and practical approach you used during the course. The knowledge I gained continues to support my academic and research journey in cybersecurity and AI.
+Attribution: Kokeb Gebremedhin Gebrehiwot, MSc student, AIMS Senegal, 2023–2025
+[[/TESTIMONIAL]]
+
+[[TESTIMONIAL]]
+Quote: The course “Introduction to Machine Learning and Artificial Intelligence” taught me almost everything I needed to know as a beginner in the field. Taking this course in the early days of my Masters program helped me to appreciate the subsequent courses. Your patience, eloquence, expertise and availability made the course an exceptional one.
+Attribution: Priscilla Obo Otoo, MSc student, AIMS Cameroon, 2025–2026
+[[/TESTIMONIAL]]
+
+== TECHNICAL ==

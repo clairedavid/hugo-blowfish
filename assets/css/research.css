@@ -526,6 +526,42 @@
   color: var(--res-ink);
 }
 
+/* Banner caption (markdown, centred) above the credit line, both under the
+   banner. */
+.res-banner-caption {
+  margin-top: .5rem;
+  text-align: center;
+  font-size: .85rem;
+  line-height: 1.45;
+  color: var(--res-body);
+}
+.res-banner-caption + .res-banner-credit { margin-top: .2rem }
+
+/* A heading inside TEXT (e.g. "## Testimonials"): a mini heading, like the
+   bold lead-in paragraphs, since .res neutralises the theme's h2. */
+.res-text h2 {
+  margin: 2.4rem 0 .5rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--res-ink);
+}
+
+/* [[TESTIMONIAL]] blocks: stacked quotes with the attribution right-aligned
+   under each. Same left rule as a blockquote, text upright. */
+.res-text .res-testimonial {
+  margin: 1.5rem 0 0;
+  padding-left: 1rem;
+  border-left: 3px solid var(--res-border);
+}
+.res-text .res-testimonial-quote { margin: 0; color: var(--res-body); line-height: 1.6 }
+.res-text .res-testimonial-by {
+  margin-top: .5rem;
+  text-align: right;
+  font-size: .85rem;
+  color: var(--res-muted);
+}
+.res-testimonial-by em { font-style: italic }
+
 /* The attribution is the blockquote's own last paragraph (a blank-line
    separated second > line in the source), styled apart from the quote
    itself: smaller, upright again, muted, with a small gap above. */

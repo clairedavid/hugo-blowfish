@@ -18,23 +18,26 @@
        one-delimiter fix this also needs. */ -}}
 
 {{- $slug := .Get "slug" -}}
+{{- /* area="teaching" renders a Teaching card page with this same template
+     (data/teaching.json, assets/teaching/, /teaching/ URLs); default research. */ -}}
+{{- $area := .Get "area" | default "research" -}}
 {{- if not $slug -}}{{- errorf "research-page: slug is required" -}}{{- end -}}
 
 {{- $css := resources.Get "css/research.css" | minify | fingerprint -}}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}">
 
 {{- $project := "" -}}
-{{- range (index hugo.Data.research "themes") -}}
+{{- range (index (index hugo.Data $area) "themes") -}}
   {{- range .projects -}}
     {{- if eq .slug $slug -}}{{- $project = . -}}{{- end -}}
   {{- end -}}
 {{- end -}}
-{{- if not $project -}}{{- errorf "research-page: no project with slug %q in data/research.json" $slug -}}{{- end -}}
+{{- if not $project -}}{{- errorf "research-page: no project with slug %q in data/%s.json" $slug $area -}}{{- end -}}
 
 {{- /* site.GetPage + .RelPermalink, not a hand-built "/research/" string:
      see research-overview.html for why relURL on a manual string 404s under
      the /hugo-blowfish/ subpath. */ -}}
-{{- $researchURL := (site.GetPage "/research").RelPermalink -}}
+{{- $researchURL := (site.GetPage (printf "/%s" $area)).RelPermalink -}}
 
 <div class="res" id="res-page">
   <div class="res-page">
@@ -51,8 +54,13 @@
          section (ATLAS: it leads straight into its own figure rows). */}}
     {{- if $project.banner.single }}
     {{- partial "research/picture.html" (dict
-          "slug" $slug "stem" $project.banner.single "class" "res-banner-single"
+          "area" $area "slug" $slug "stem" $project.banner.single "class" "res-banner-single"
           "alt" $project.page_heading) }}
+    {{- /* Optional "Caption:" (markdown, so it can carry a link), then the
+         credit line, both centred under the banner. */ -}}
+    {{- with $project.banner.caption }}
+    <div class="res-banner-caption">{{ . | markdownify }}</div>
+    {{- end }}
     {{- with $project.banner.credit }}
     <div class="res-banner-credit">{{ . }}</div>
     {{- end }}
@@ -62,7 +70,7 @@
       {{- range . }}
       <div class="res-figure-card">
         {{- partial "research/picture.html" (dict
-              "slug" $slug "stem" . "alt" $project.page_heading) }}
+              "area" $area "slug" $slug "stem" . "alt" $project.page_heading) }}
       </div>
       {{- end }}
     </div>
@@ -74,7 +82,7 @@
       {{- range . }}
       <div class="res-figure-card">
         {{- partial "research/picture.html" (dict
-              "slug" $slug "stem" . "alt" $project.page_heading) }}
+              "area" $area "slug" $slug "stem" . "alt" $project.page_heading) }}
       </div>
       {{- end }}
     </div>
@@ -116,6 +124,15 @@
           <div class="res-panel-value">{{ . }}</div>
         </div>
         {{- end }}
+        {{- /* Audience/Level, Prerequisites, Format: a label with one or more value lines. */ -}}
+        {{- range $project.panel.fields }}
+        <div class="res-panel-block">
+          <h3>{{ .label }}</h3>
+          <div class="res-panel-value">
+            {{- range .values }}<div>{{ . }}</div>{{ end -}}
+          </div>
+        </div>
+        {{- end }}
         {{- with $project.panel.team }}
         <div class="res-panel-block">
           <h3>Team</h3>
@@ -123,7 +140,7 @@
             {{- range . }}
             <div class="res-team-member">
               {{- partial "research/picture.html" (dict
-                    "slug" $slug "stem" .image "alt" .name) }}
+                    "area" $area "slug" $slug "stem" .image "alt" .name) }}
               <div class="res-team-name">{{ .name }}</div>
               {{- range .lines }}<div class="res-team-affiliation">{{ . }}</div>{{ end }}
             </div>
@@ -134,7 +151,7 @@
         {{- with $project.panel.logo }}
         <div class="res-panel-block res-panel-logo">
           {{- partial "research/picture.html" (dict
-                "slug" $slug "stem" . "alt" (printf "%s logo" $project.page_heading)) }}
+                "area" $area "slug" $slug "stem" . "alt" (printf "%s logo" $project.page_heading)) }}
         </div>
         {{- end }}
         {{- with $project.panel.links }}
@@ -180,11 +197,11 @@
             <div class="res-links-image-wrap">
               {{- if $item.href }}<a href="{{ $item.href }}" target="_blank" rel="noopener">{{ end -}}
               {{- partial "research/picture.html" (dict
-                    "slug" $slug "stem" $item.src "alt" $item.alt
+                    "area" $area "slug" $slug "stem" $item.src "alt" $item.alt
                     "class" (printf "res-links-image nozoom%s" (cond (ne $item.dark_src "") " res-logo-light" ""))) }}
               {{- if $item.dark_src }}
               {{- partial "research/picture.html" (dict
-                    "slug" $slug "stem" $item.dark_src "alt" $item.alt
+                    "area" $area "slug" $slug "stem" $item.dark_src "alt" $item.alt
                     "class" "res-links-image nozoom res-logo-dark") }}
               {{- end }}
               {{- if $item.href }}</a>{{ end -}}
@@ -213,8 +230,15 @@
              block can render as its own flex layout instead of being
              passed through markdownify as literal text. */}}
         {{- range $project.text }}
-          {{- if eq .kind "figure-row" }}
-          {{- partial "research/figure-row.html" (dict "slug" $slug "images" .images) }}
+          {{- if eq .kind "testimonial" }}
+          {{- /* Quote kept verbatim (escaped, not markdown); the attribution is
+               inline markdown, for _italics_. */}}
+          <blockquote class="res-testimonial">
+            <p class="res-testimonial-quote">{{ .quote }}</p>
+            <footer class="res-testimonial-by">{{ .attribution | markdownify }}</footer>
+          </blockquote>
+          {{- else if eq .kind "figure-row" }}
+          {{- partial "research/figure-row.html" (dict "area" $area "slug" $slug "images" .images) }}
           {{- else }}
           {{ .content | markdownify }}
           {{- end }}

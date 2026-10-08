@@ -94,11 +94,33 @@ OUT = ROOT / "data" / "research.json"
 ASSETS_OUT = ROOT / "assets" / "research"
 CONTENT_OUT = ROOT / "content" / "research"
 
+# The same pipeline builds the Teaching tab (--area teaching): same card format
+# and templates, its own sources, data file, assets and pages. main() points
+# the module-level paths above at the chosen area before anything runs.
+AREA = "research"
+AREAS = {
+    "teaching": {
+        "src": ROOT / "content-source" / "teaching",
+        "assets_src": pathlib.Path.home() / "Desktop/website_meta/teaching",
+        "out": ROOT / "data" / "teaching.json",
+        "assets_out": ROOT / "assets" / "teaching",
+        "content_out": ROOT / "content" / "teaching",
+    },
+}
+
 THEME_DEFS = [
     {"id": "machine-learning", "title": "Machine Learning", "folder": "machine-learning", "slugs": ("pinn", "gae")},
     {"id": "dune", "title": "DUNE", "folder": "dune", "slugs": None},
     {"id": "atlas", "title": "ATLAS", "folder": "atlas", "slugs": ("atlas-experiment", "atlas-tthbb", "atlas-itk", "atlas-susy", "diamond")},
     {"id": "icecube", "title": "IceCube", "folder": "icecube", "slugs": ("desy-zeuthen",)},
+]
+
+# Teaching themes, in site order. Slugs are discovered from the theme's
+# subfolders; the heading comes from the "Theme:" line of its _intro.txt (the
+# title here is only the fallback). A theme with no cards renders nothing.
+TEACHING_THEME_DEFS = [
+    {"id": "ml-stats", "title": "Statistics & ML", "folder": "ml-stats", "slugs": None},
+    {"id": "physics", "title": "Physics", "folder": "physics", "slugs": None},
 ]
 
 # Phase-1 review artifacts that live alongside the real finals in
@@ -143,10 +165,37 @@ def parse_kv(body):
         m = re.match(r"^([A-Za-z ]+):\s*(.*)$", line)
         if m and m.group(1).strip() in (
             "Title", "Subtitle", "Years", "Status", "Card image", "Order",
-            "Style", "Role", "Image", "Credit", "Logo", "Unlisted",
+            "Style", "Role", "Image", "Credit", "Logo", "Unlisted", "Caption",
         ):
             kv[m.group(1).strip()] = m.group(2).strip()
     return kv
+
+
+# Every field label a LEFT PANEL can hold; a value or block ends at the next one.
+KNOWN_FIELD_RE = re.compile(
+    r"^(Role|Years|Status|Logo|Team|Links|Facts|Audience/Level|Prerequisites|Format):\s*")
+
+
+def label_block(body, label):
+    """Value lines of a "<label>:" field. Either on the label's own line
+    ("Role: Analyser", research cards) or on the lines under it ("Role:" then
+    the value, teaching cards), up to a blank line or the next field label."""
+    lines = body.split("\n")
+    start = next((i for i, l in enumerate(lines) if l.strip().startswith(label + ":")), None)
+    if start is None:
+        return []
+    first = lines[start].split(":", 1)[1].strip()
+    values = [first] if first else []
+    for l in lines[start + 1:]:
+        s = l.strip()
+        if KNOWN_FIELD_RE.match(s):
+            break
+        if not s:
+            if values:
+                break
+            continue
+        values.append(s)
+    return values
 
 
 def stem(name):
@@ -164,7 +213,7 @@ def parse_pipe_rows(body, after_label):
     first = lines[start].split(":", 1)[1].strip()
     rows = [first] if first else []
     for l in lines[start + 1:]:
-        if re.match(r"^[A-Za-z ]+:\s*", l) and "|" not in l:
+        if (re.match(r"^[A-Za-z ]+:\s*", l) and "|" not in l) or KNOWN_FIELD_RE.match(l):
             break
         if l.strip():
             rows.append(l.strip())
@@ -245,8 +294,12 @@ def parse_banner(body, slug, converted_dir):
     credit = kv.get("Credit", "")
     explicit_image = kv.get("Image", "")
     if explicit_image:
-        return {"images": [], "style": "single", "single": stem(explicit_image),
-                "original_stem": original_source_stem(explicit_image), "credit": credit}
+        out = {"images": [], "style": "single", "single": stem(explicit_image),
+               "original_stem": original_source_stem(explicit_image), "credit": credit}
+        # optional caption, shown under the banner above the credit
+        if kv.get("Caption"):
+            out["caption"] = kv["Caption"]
+        return out
     override = f"{slug}-banner"
     has_override = converted_dir and any(
         (converted_dir / f"{override}{ext}").exists()
@@ -347,7 +400,7 @@ def parse_links_lines(body, slug, converted_dir):
         # "Coffea Python toolkit:" are all labels, not section markers):
         # checked against the actual field names this format has, not any
         # "word(s) then colon" line.
-        if re.match(r"^(Role|Years|Status|Logo|Team|Links):\s*", l):
+        if KNOWN_FIELD_RE.match(l):
             break
         raw.append(l.strip())
     while raw and not raw[0]:
@@ -429,7 +482,7 @@ def parse_facts_lines(body):
     entries = []
     cur = None
     for l in lines[start + 1:]:
-        if re.match(r"^(Role|Years|Status|Logo|Team|Links):\s*", l):
+        if KNOWN_FIELD_RE.match(l):
             break
         stripped = l.strip()
         if not stripped:
@@ -460,21 +513,29 @@ def parse_panel(body, card, slug, converted_dir):
     ]
     facts = parse_facts_lines(body)
     links_label, links = parse_links_lines(body, slug, converted_dir)
-    return {
-        "role": kv.get("Role", ""),
+    # Audience/Level, Prerequisites, Format: label line plus value lines, shown
+    # under Years/Status. Only present in the data when a card has any.
+    fields = [{"label": lab, "values": v}
+              for lab in ("Audience/Level", "Prerequisites", "Format")
+              for v in [label_block(body, lab)] if v]
+    out = {
+        "role": kv.get("Role") or " ".join(label_block(body, "Role")),
         # Years/Status fall back to the CARD's own, when the panel does not
         # give its own: GAE narrows Years to its actual supervision window
         # and relies on CARD for Status; PINN repeats neither and relies on
         # CARD for both. Ambiguity resolved this way, see the script's
         # module docstring and the build report.
-        "years": kv.get("Years") or card["years"],
-        "status": kv.get("Status") or card["status"],
+        "years": kv.get("Years") or " ".join(label_block(body, "Years")) or card["years"],
+        "status": kv.get("Status") or " ".join(label_block(body, "Status")) or card["status"],
         "logo": stem(kv["Logo"]) if kv.get("Logo") else "",
         "team": team,
         "facts": facts,
         "links_label": links_label,
         "links": links,
     }
+    if fields:
+        out["fields"] = fields
+    return out
 
 
 def parse_figures(body):
@@ -486,7 +547,7 @@ def parse_figures(body):
     return [stem(l) for l in lines]
 
 
-FIGURE_ROW_RE = re.compile(r"\[\[FIGURE-ROW\]\](.*?)\[\[/FIGURE-ROW\]\]", re.S)
+BLOCK_RE = re.compile(r"\[\[(FIGURE-ROW|TESTIMONIAL)\]\](.*?)\[\[/\1\]\]", re.S)
 
 
 def parse_figure_row_block(body):
@@ -541,24 +602,52 @@ def apply_hard_wraps(md):
     return "".join(out)
 
 
+def parse_testimonial(body):
+    """The body of a [[TESTIMONIAL]] block: Quote: and Attribution: (each may
+    continue on the following lines). Both are kept verbatim; the attribution
+    is rendered as inline markdown at template time (_italics_)."""
+    fields = {"quote": "", "attribution": ""}
+    cur = None
+    for line in body.strip("\n").split("\n"):
+        s = line.strip()
+        if s.startswith("Quote:"):
+            cur = "quote"
+            fields[cur] = s.split(":", 1)[1].strip()
+        elif s.startswith("Attribution:"):
+            cur = "attribution"
+            fields[cur] = s.split(":", 1)[1].strip()
+        elif s and cur:
+            fields[cur] += " " + s
+    return fields
+
+
 def split_text_blocks(raw_text):
-    """TEXT as a list of {"kind": "markdown", "content"} and {"kind":
-    "figure-row", "images"} blocks in source order, instead of one string,
-    so the template can render a figure row as its own flex layout instead
-    of markdown content. split_quote_attribution runs per markdown block
-    (its regex only ever matches within one, and the figure row's own
-    Image:/Caption:/Credit: lines must not be touched by it), then
-    apply_hard_wraps, in that order so the blockquote's own attribution
-    split already exists by the time apply_hard_wraps decides what to skip."""
-    parts = FIGURE_ROW_RE.split(raw_text)
+    """TEXT as a list of {"kind": "markdown", "content"}, {"kind":
+    "figure-row", "images"} and {"kind": "testimonial", "quote",
+    "attribution"} blocks in source order, instead of one string, so the
+    template can render a figure row as its own flex layout and a testimonial
+    as its own block instead of passing them through markdown as literal text.
+    split_quote_attribution runs per markdown block (its regex only ever
+    matches within one, and a block's own Image:/Caption:/Credit: lines must
+    not be touched by it), then apply_hard_wraps, in that order so the
+    blockquote's own attribution split already exists by the time
+    apply_hard_wraps decides what to skip."""
     blocks = []
-    for i, part in enumerate(parts):
-        if i % 2 == 0:
-            content = apply_hard_wraps(split_quote_attribution(part.strip("\n")))
-            if content.strip():
-                blocks.append({"kind": "markdown", "content": content})
+
+    def add_markdown(chunk):
+        content = apply_hard_wraps(split_quote_attribution(chunk.strip("\n")))
+        if content.strip():
+            blocks.append({"kind": "markdown", "content": content})
+
+    pos = 0
+    for m in BLOCK_RE.finditer(raw_text):
+        add_markdown(raw_text[pos:m.start()])
+        if m.group(1) == "FIGURE-ROW":
+            blocks.append({"kind": "figure-row", "images": parse_figure_row_block(m.group(2))})
         else:
-            blocks.append({"kind": "figure-row", "images": parse_figure_row_block(part)})
+            blocks.append({"kind": "testimonial", **parse_testimonial(m.group(2))})
+        pos = m.end()
+    add_markdown(raw_text[pos:])
     return blocks
 
 
@@ -751,6 +840,27 @@ def attach_figure_row_sizes(projects):
     return sizes
 
 
+def parse_theme_intro(text, default_title):
+    """A teaching _intro.txt: a "Theme: <title>" line, then "Intro:" with the
+    intro text on its own line or the lines after it (it may be empty, which
+    renders no intro block). Research intros are the bare intro text instead."""
+    title, intro, in_intro = default_title, [], False
+    for line in text.split("\n"):
+        if in_intro:
+            intro.append(line)
+            continue
+        m = re.match(r"^Theme:\s*(.*)$", line)
+        if m:
+            title = m.group(1).strip() or default_title
+            continue
+        m = re.match(r"^Intro:\s*(.*)$", line)
+        if m:
+            in_intro = True
+            if m.group(1).strip():
+                intro.append(m.group(1))
+    return title, "\n".join(intro).strip()
+
+
 def discover_projects(theme_dir):
     """A DUNE-style theme's project slugs: every subdirectory with its own
     _content.txt, sorted by an optional "Order:" line in its == CARD ==
@@ -784,30 +894,49 @@ def write_content_pages(projects):
         dest.mkdir(parents=True, exist_ok=True)
         title = json.dumps(p["page_heading"], ensure_ascii=False)
         katex_marker = "{{< katex >}}\n\n" if p["has_math"] else ""
+        # Teaching pages reuse the research layout and shortcodes (type:
+        # research) and say which area's data and URLs to use.
+        area_fm = "" if AREA == "research" else f"type: \"research\"\narea: \"{AREA}\"\n"
+        area_arg = "" if AREA == "research" else f" area=\"{AREA}\""
         md = (
             "---\n"
             "layout: \"simple\"\n"
+            f"{area_fm}"
             f"title: {title}\n"
             "---\n\n"
             f"{katex_marker}"
-            f"{{{{< research-page slug=\"{slug}\" >}}}}\n"
+            f"{{{{< research-page{area_arg} slug=\"{slug}\" >}}}}\n"
         )
         (dest / "_index.md").write_text(md, encoding="utf-8")
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--src", type=pathlib.Path, default=DEFAULT_SRC,
-                    help="text sources (_intro.txt, _content.txt); default content-source/research")
-    ap.add_argument("--assets-src", type=pathlib.Path, default=DEFAULT_ASSETS_SRC,
+    ap.add_argument("--area", choices=("research", "teaching"), default="research",
+                    help="which tab to build; default research")
+    ap.add_argument("--src", type=pathlib.Path, default=None,
+                    help="text sources (_intro.txt, _content.txt); default content-source/<area>")
+    ap.add_argument("--assets-src", type=pathlib.Path, default=None,
                     help="folder holding each theme's _converted/ images; default the Desktop copy")
     args = ap.parse_args()
+
+    global AREA, OUT, ASSETS_OUT, CONTENT_OUT
+    AREA = args.area
+    theme_defs = THEME_DEFS
+    if AREA != "research":
+        cfg = AREAS[AREA]
+        OUT, ASSETS_OUT, CONTENT_OUT = cfg["out"], cfg["assets_out"], cfg["content_out"]
+        theme_defs = TEACHING_THEME_DEFS
+        args.src = args.src or cfg["src"]
+        args.assets_src = args.assets_src or cfg["assets_src"]
+    args.src = args.src or DEFAULT_SRC
+    args.assets_src = args.assets_src or DEFAULT_ASSETS_SRC
 
     themes_out = []
     all_projects = []
     figure_row_sizes = []
 
-    for theme_def in THEME_DEFS:
+    for theme_def in theme_defs:
         theme_dir = args.src / theme_def["folder"]
         if not theme_dir.is_dir():
             print(f"ERROR: theme folder {theme_dir} not found", file=sys.stderr)
@@ -815,6 +944,9 @@ def main():
 
         intro_path = theme_dir / "_intro.txt"
         intro_raw = intro_path.read_text(encoding="utf-8").strip() if intro_path.exists() else ""
+        theme_title = theme_def["title"]
+        if intro_raw.startswith("Theme:"):
+            theme_title, intro_raw = parse_theme_intro(intro_raw, theme_title)
         converted = args.assets_src / theme_def["folder"] / "_converted"
 
         slugs = theme_def["slugs"] or discover_projects(theme_dir)
@@ -826,9 +958,13 @@ def main():
                 sys.exit(1)
             projects.append(build_project(slug, content, converted if converted.is_dir() else None))
 
+        if not projects:
+            print(f"\ntheme {theme_def['id']}: no cards, skipped")
+            continue
+
         themes_out.append({
             "id": theme_def["id"],
-            "title": theme_def["title"],
+            "title": theme_title,
             "intro": parse_inline_segments(intro_raw) if intro_raw else [],
             "projects": projects,
         })

@@ -5,7 +5,8 @@
      ATLAS map, a PNG over 500KB converted to lossless WebP with nothing
      else kept, see build-research-data.py's module docstring), or a single
      raster file (the portraits).
-     Params: .slug .stem .class .alt .title (.loading defaults to "lazy")
+     Params: .slug .stem .class .alt .title (.loading defaults to "lazy"), and
+     .area ("research" by default, or "teaching": assets/<area>/<slug>/)
 
      An image with a sibling <stem>-still.webp (an animated GIF's last frame)
      also gets a <source media="(prefers-reduced-motion: reduce)"> pointing
@@ -15,21 +16,22 @@
      Looking the file up here, at render time, rather than trusting the data
      file to say which format a stem has, means a missing asset fails the
      build with errorf instead of becoming a broken <img> in production. */ -}}
+{{- $area := .area | default "research" -}}
 {{- $slug := .slug -}}
 {{- $stem := .stem -}}
 {{- $class := .class | default "" -}}
 {{- $alt := .alt | default "" -}}
 {{- $title := .title | default "" -}}
 {{- $loading := .loading | default "lazy" -}}
-{{- $svg := resources.Get (printf "research/%s/%s.svg" $slug $stem) -}}
+{{- $svg := resources.Get (printf "%s/%s/%s.svg" $area $slug $stem) -}}
 {{- if $svg -}}
 <img class="{{ $class }}" src="{{ $svg.RelPermalink }}" alt="{{ $alt }}"{{ with $title }} title="{{ . }}"{{ end }} loading="{{ $loading }}">
 {{- else -}}
-  {{- $webp := resources.Get (printf "research/%s/%s.webp" $slug $stem) -}}
-  {{- $raster := or (resources.Get (printf "research/%s/%s.png" $slug $stem))
-                     (resources.Get (printf "research/%s/%s.jpg" $slug $stem))
-                     (resources.Get (printf "research/%s/%s.gif" $slug $stem)) -}}
-  {{- $still := resources.Get (printf "research/%s/%s-still.webp" $slug $stem) -}}
+  {{- $webp := resources.Get (printf "%s/%s/%s.webp" $area $slug $stem) -}}
+  {{- $raster := or (resources.Get (printf "%s/%s/%s.png" $area $slug $stem))
+                     (resources.Get (printf "%s/%s/%s.jpg" $area $slug $stem))
+                     (resources.Get (printf "%s/%s/%s.gif" $area $slug $stem)) -}}
+  {{- $still := resources.Get (printf "%s/%s/%s-still.webp" $area $slug $stem) -}}
   {{- if and (not $raster) (not $webp) -}}
     {{- errorf "research/picture: no asset found for %s/%s (looked for .svg, .webp+.png, .webp+.jpg, .webp, .png, .jpg)" $slug $stem -}}
   {{- end -}}

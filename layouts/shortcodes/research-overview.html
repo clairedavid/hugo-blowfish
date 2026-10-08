@@ -10,10 +10,14 @@
      /hugo-blowfish/ subpath. Nothing is fetched from a CDN. */ -}}
 
 {{- $css := resources.Get "css/research.css" | minify | fingerprint -}}
+{{- /* area="teaching" builds the Teaching tab from data/teaching.json with this
+     same template; the default is research. */ -}}
+{{- $area := .Get "area" | default "research" -}}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}">
 
 <div class="res" id="res">
-  {{- range (index hugo.Data.research "themes") }}
+  {{- range (index (index hugo.Data $area) "themes") }}
+  {{- if .projects }}
   <section class="res-theme">
     {{- /* Written directly rather than as markdown: the heading text is
          data, so it never passes through goldmark's render-heading.html
@@ -60,7 +64,7 @@
            (/research/pinn/ instead of /hugo-blowfish/research/pinn/) and
            404'd, both when clicked from the overview and when the bare
            URL was opened directly. */ -}}
-      {{- $pagePath := printf "/research/%s" $slug -}}
+      {{- $pagePath := printf "/%s/%s" $area $slug -}}
       {{- $target := site.GetPage $pagePath -}}
       {{- if not $target -}}{{- errorf "research-overview: no page found at %s" $pagePath -}}{{- end -}}
       <a class="res-card" href="{{ $target.RelPermalink }}">
@@ -81,7 +85,7 @@
                the card title, since that is what a screen reader or a
                broken-image fallback should say this picture is. */ -}}
           {{- partial "research/picture.html" (dict
-                "slug" $slug "stem" $card.image "alt" $card.title "class" "nozoom"
+                "area" $area "slug" $slug "stem" $card.image "alt" $card.title "class" "nozoom"
                 "title" $card.credit) }}
         </div>
         <div class="res-card-body">
@@ -95,5 +99,6 @@
     </div>
     {{- end }}
   </section>
+  {{- end }}
   {{- end }}
 </div>

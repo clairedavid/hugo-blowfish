@@ -16,7 +16,9 @@
       {{ if .Params.showBreadcrumbs | default (.Site.Params.article.showBreadcrumbs | default false) }}
         {{ partial "breadcrumbs.html" . }}
       {{ end }}
-      {{- $researchURL := (site.GetPage "/research").RelPermalink -}}
+      {{- /* Teaching pages reuse this layout (type: research, area: teaching). */ -}}
+      {{- $area := .Params.area | default "research" -}}
+      {{- $researchURL := (site.GetPage (printf "/%s" $area)).RelPermalink -}}
       {{- $isOverview := eq .RelPermalink $researchURL -}}
       {{- if not $isOverview }}
       <a class="res res-back-top" href="{{ $researchURL }}">&larr; Back</a>
@@ -24,6 +26,9 @@
       <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
         {{ .Title | emojify }}
       </h1>
+      {{- with .Params.subtitle }}
+      <p class="mt-2 text-lg text-neutral-500 dark:text-neutral-400">{{ . }}</p>
+      {{- end }}
     </header>
     <section class="max-w-full mt-6 prose dark:prose-invert">
       {{ .Content }}

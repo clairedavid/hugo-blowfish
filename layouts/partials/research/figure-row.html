@@ -13,6 +13,7 @@
      how many images are in the row or what their individual aspect ratios
      are, no cropping and no JS needed. */ -}}
 {{- $slug := .slug -}}
+{{- $area := .area | default "research" -}}
 {{- $images := .images -}}
 <div class="res-figrow">
   {{- range $images }}
@@ -32,11 +33,11 @@
     {{- if .needs_frame }}
     <div class="res-figure-card">
       {{- partial "research/picture.html" (dict
-            "slug" $slug "stem" .image "alt" (.caption | plainify)) }}
+            "area" $area "slug" $slug "stem" .image "alt" (.caption | plainify)) }}
     </div>
     {{- else }}
     {{- partial "research/picture.html" (dict
-          "slug" $slug "stem" .image "alt" (.caption | plainify)) }}
+          "area" $area "slug" $slug "stem" .image "alt" (.caption | plainify)) }}
     {{- end }}
     {{- if $narrow }}</div>{{ end }}
     <figcaption>
