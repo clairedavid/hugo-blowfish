@@ -32,7 +32,7 @@ Slides are internal, but if you are curious, feel free to [contact me](/contact/
 Introduction to Machine Learning
 
 == BANNER ==
-Image: aims_ghana_202304_red25.jpg
+Image: aims_ghana_202304.jpg
 Caption: The effect of the Machine Learning course on AIMS Ghana’s cohort, April 2023.
 Credit: Credit: AIMS Ghana
 
