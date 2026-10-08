@@ -212,9 +212,7 @@
                   "label": "Based on my full course:",
                   "url": "",
                   "centered": false
-                }
-              ],
-              [
+                },
                 {
                   "kind": "inline",
                   "segments": [
@@ -224,9 +222,7 @@
                     }
                   ],
                   "centered": false
-                }
-              ],
-              [
+                },
                 {
                   "kind": "plain",
                   "label": "Sections Basics & Neural Networks",
@@ -269,7 +265,7 @@
               "images": [
                 {
                   "image": "ltmbnn_classroom_2",
-                  "caption": "Workshop hosted by the University of Johannesburg Nuclear Research Centre and the Data Science Across Disciplines Research Group, both in the Faculty of Engineering and the Built Environment.",
+                  "caption": "Workshop hosted in March 2023 by the University of Johannesburg Nuclear Research Centre and the Data Science Across Disciplines Research Group, both in the Faculty of Engineering and the Built Environment.",
                   "credit": "Credit: Simon Connell",
                   "width": 1600,
                   "height": 666,

@@ -25,9 +25,7 @@ One-day workshop
 Links:
 
 Based on my full course:
-
 [Introduction to Machine Learning ↗](https://clairedavid.github.io/intro_to_ml/intro.html)
-
 Sections Basics & Neural Networks
 
 == PAGE HEADING ==
@@ -42,7 +40,7 @@ The goal is to show that the foundations behind any neural network, from simple 
 
 [[FIGURE-ROW]]
 Image: ltmbnn_classroom_2.jpeg
-Caption: Workshop hosted by the University of Johannesburg Nuclear Research Centre and the Data Science Across Disciplines Research Group, both in the Faculty of Engineering and the Built Environment.
+Caption: Workshop hosted in March 2023 by the University of Johannesburg Nuclear Research Centre and the Data Science Across Disciplines Research Group, both in the Faculty of Engineering and the Built Environment.
 Credit: Credit: Simon Connell
 [[/FIGURE-ROW]]
 
