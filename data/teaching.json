@@ -330,7 +330,7 @@
               {
                 "label": "Prerequisites",
                 "values": [
-                  "First-year Physics or Engineering majors"
+                  "First-year Physics"
                 ]
               },
               {
@@ -347,7 +347,7 @@
           "text": [
             {
               "kind": "markdown",
-              "content": "In this introduction to the theories of relativity and quantum mechanics, the relativistic concepts of space, time and energy are explained and the quantum nature of radiation and matter is discussed.\n\n\n## Topics\n\n\n**Special relativity**\n\nBefore Einstein · Basics of special relativity · Twin paradox and Doppler effect · Relativistic dynamics\n\n\n**Modern physics**\n\nExperimental basics of quantum theory · The particle nature of radiation · Towards a theory of the atom · Matter waves"
+              "content": "In this introduction to the theories of relativity and quantum mechanics, the relativistic concepts of space, time and energy are explained and the quantum nature of radiation and matter is discussed.\n\n\n## Topics\n\n| Special relativity | Modern physics |  \n| --- | --- |  \n| Before Einstein<br>Basics of special relativity<br>Twin paradox and Doppler effect<br>Relativistic dynamics | Experimental basics of quantum theory<br>The particle nature of radiation<br>Towards a theory of the atom<br>Matter waves |"
             },
             {
               "kind": "figure-row",

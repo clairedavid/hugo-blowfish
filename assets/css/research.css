@@ -143,6 +143,20 @@
   object-fit: contain;
 }
 
+/* A 1px line along the bottom of the tile image area, in the card outline
+   colour (so correct in dark mode too): a white tile no longer merges with the
+   title below it. Drawn as an overlay, so the tile's size and image are untouched. */
+.res-card .res-thumb::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--res-card-border);
+  pointer-events: none;
+}
+
 .res-card-body {
   display: flex;
   flex-direction: column;
@@ -553,8 +567,10 @@
   padding-left: 1rem;
   border-left: 3px solid var(--res-border);
 }
-.res-text .res-testimonial-quote { margin: 0; color: var(--res-body); line-height: 1.6 }
-.res-text .res-testimonial-quote + .res-testimonial-quote { margin-top: .75rem }
+/* Paragraphs inside one quote use the same line height (inherited from .res-text)
+   and the same 1.1rem gap as ordinary paragraphs of the card text. */
+.res-text .res-testimonial-quote { margin: 0; color: var(--res-body) }
+.res-text .res-testimonial-quote + .res-testimonial-quote { margin-top: 1.1rem }
 .res-text .res-testimonial-by {
   margin-top: .5rem;
   text-align: right;
@@ -572,6 +588,28 @@
   font-size: .85rem;
   color: var(--res-muted);
 }
+
+/* A table in TEXT (the two-column topic list): the full column, equal fixed
+   columns so long lines wrap instead of scrolling sideways on a phone, hairlines
+   in the usual border colour, a header row in the ink colour. Cell line breaks
+   come from <br> in the source. */
+.res-text table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  margin: .9rem 0 1.4rem;
+  font-size: .93rem;
+}
+.res-text th, .res-text td {
+  padding: .55rem .75rem;
+  text-align: left;
+  vertical-align: top;
+  border: 1px solid var(--res-border);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.res-text th { font-weight: 600; color: var(--res-ink) }
+.res-text td { color: var(--res-body) }
 
 .res-text ul, .res-text ol {
   margin: 0 0 1.1rem;

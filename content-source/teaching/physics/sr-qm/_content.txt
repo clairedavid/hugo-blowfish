@@ -18,7 +18,7 @@ Physics or Engineering majors
 
 
 Prerequisites:
-First-year Physics or Engineering majors
+First-year Physics
 
 Format:
 Semester-long course
@@ -36,15 +36,9 @@ In this introduction to the theories of relativity and quantum mechanics, the re
 
 ## Topics
 
-
-**Special relativity**
-
-Before Einstein · Basics of special relativity · Twin paradox and Doppler effect · Relativistic dynamics
-
-
-**Modern physics**
-
-Experimental basics of quantum theory · The particle nature of radiation · Towards a theory of the atom · Matter waves
+| Special relativity | Modern physics |
+| --- | --- |
+| Before Einstein<br>Basics of special relativity<br>Twin paradox and Doppler effect<br>Relativistic dynamics | Experimental basics of quantum theory<br>The particle nature of radiation<br>Towards a theory of the atom<br>Matter waves |
 
 
 [[FIGURE-ROW]]
