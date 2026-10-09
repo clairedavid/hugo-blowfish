@@ -554,6 +554,7 @@
   border-left: 3px solid var(--res-border);
 }
 .res-text .res-testimonial-quote { margin: 0; color: var(--res-body); line-height: 1.6 }
+.res-text .res-testimonial-quote + .res-testimonial-quote { margin-top: .75rem }
 .res-text .res-testimonial-by {
   margin-top: .5rem;
   text-align: right;

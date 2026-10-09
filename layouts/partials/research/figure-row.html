@@ -42,7 +42,9 @@
     {{- if $narrow }}</div>{{ end }}
     <figcaption>
       {{- with .caption }}<div class="res-figrow-caption">{{ . | markdownify }}</div>{{ end }}
-      {{- with .credit }}<div class="res-figrow-credit">{{ . }}</div>{{ end }}
+      {{- /* A credit with a markdown link ([text](url)) is rendered as inline markdown, so
+         it becomes a real link; any other credit stays plain text, as before. */ -}}
+      {{- with .credit }}<div class="res-figrow-credit">{{ if strings.Contains . "](" }}{{ . | markdownify }}{{ else }}{{ . }}{{ end }}</div>{{ end }}
     </figcaption>
   </figure>
   {{- end }}

@@ -605,7 +605,10 @@ def apply_hard_wraps(md):
 def parse_testimonial(body):
     """The body of a [[TESTIMONIAL]] block: Quote: and Attribution: (each may
     continue on the following lines). Both are kept verbatim; the attribution
-    is rendered as inline markdown at template time (_italics_)."""
+    is rendered as inline markdown at template time (_italics_). Each source
+    line of a Quote is its own paragraph (kept as "\n" between them; blank
+    lines are ignored), so a two-paragraph quote needs no blank line; the
+    attribution's lines run together."""
     fields = {"quote": "", "attribution": ""}
     cur = None
     for line in body.strip("\n").split("\n"):
@@ -617,7 +620,7 @@ def parse_testimonial(body):
             cur = "attribution"
             fields[cur] = s.split(":", 1)[1].strip()
         elif s and cur:
-            fields[cur] += " " + s
+            fields[cur] += ("\n" if cur == "quote" else " ") + s
     return fields
 
 

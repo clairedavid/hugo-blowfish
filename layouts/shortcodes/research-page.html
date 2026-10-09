@@ -234,7 +234,9 @@
           {{- /* Quote kept verbatim (escaped, not markdown); the attribution is
                inline markdown, for _italics_. */}}
           <blockquote class="res-testimonial">
-            <p class="res-testimonial-quote">{{ .quote }}</p>
+            {{- range split .quote "\n" }}
+            <p class="res-testimonial-quote">{{ . }}</p>
+            {{- end }}
             <footer class="res-testimonial-by">{{ .attribution | markdownify }}</footer>
           </blockquote>
           {{- else if eq .kind "figure-row" }}
