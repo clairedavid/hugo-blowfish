@@ -1,0 +1,43 @@
+== CARD ==
+Title: Life of a Particle
+Subtitle: Stochastic modelling in particle physics
+Years: 2019
+Card image: life-particle-tile.png
+
+== LEFT PANEL ==
+Role:
+Co-Lecturer
+Course designed by Dr. Sam Meehan
+
+Years:
+2019
+
+Audience/Level:
+Graduate
+
+Prerequisites:
+Undergraduate math
+
+Format:
+30 hours of lectures
+5–10 hours of tutorials
+
+
+
+== PAGE HEADING ==
+Life of a Particle: stochastic modelling in particle physics
+
+== TEXT ==
+
+From its birth in the heart of the Large Hadron Collider’s detectors to its propagation and — spoiler alert — death in readout material, the course follows the journey of a particle and introduces stochastic modelling techniques with numerous hands-on sessions in Python.
+
+
+
+[[FIGURE-ROW]]
+Image: aims-ghana-2019.jpg
+Caption: Joy scattering at the end of the Life of a Particle course, AIMS Ghana, 2019.
+Credit: Credit: Claire David
+[[/FIGURE-ROW]]
+
+
+== TECHNICAL ==

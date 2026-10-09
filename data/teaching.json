@@ -28,7 +28,7 @@
           },
           "panel": {
             "role": "Course designer and instructor",
-            "years": "Created in 2022 Revised in 2025",
+            "years": "Created in 2022\nRevised in 2025",
             "status": "",
             "logo": "",
             "team": [],
@@ -277,6 +277,89 @@
             {
               "kind": "markdown",
               "content": "A non-negligible feature of this workshop: it is way more fun and enriching if attendees span many ages and stages as well as disciplines and specialties. I had a blast pairing honours undergraduates with emeritus professors, both new to machine learning, for impromptu yet sparkling collaboration.\n\nIf you are interested in hosting this at your institution, please [contact me](/contact/)."
+            }
+          ],
+          "figures": [],
+          "technical": "",
+          "has_math": false
+        }
+      ]
+    },
+    {
+      "id": "physics",
+      "title": "Physics",
+      "intro": [],
+      "projects": [
+        {
+          "slug": "life-particle",
+          "card": {
+            "title": "Life of a Particle",
+            "subtitle": "Stochastic modelling in particle physics",
+            "years": "2019",
+            "status": "",
+            "image": "life-particle-tile",
+            "source_stem": "life-particle-tile",
+            "original_stem": "",
+            "credit": "",
+            "unlisted": false
+          },
+          "banner": {
+            "images": [],
+            "style": "row",
+            "single": "",
+            "original_stem": "",
+            "credit": ""
+          },
+          "panel": {
+            "role": "Co-Lecturer\nCourse designed by Dr. Sam Meehan",
+            "years": "2019",
+            "status": "",
+            "logo": "",
+            "team": [],
+            "facts": [],
+            "links_label": "Links",
+            "links": [],
+            "fields": [
+              {
+                "label": "Audience/Level",
+                "values": [
+                  "Graduate"
+                ]
+              },
+              {
+                "label": "Prerequisites",
+                "values": [
+                  "Undergraduate math"
+                ]
+              },
+              {
+                "label": "Format",
+                "values": [
+                  "30 hours of lectures",
+                  "5–10 hours of tutorials"
+                ]
+              }
+            ]
+          },
+          "page_heading": "Life of a Particle: stochastic modelling in particle physics",
+          "text": [
+            {
+              "kind": "markdown",
+              "content": "From its birth in the heart of the Large Hadron Collider’s detectors to its propagation and — spoiler alert — death in readout material, the course follows the journey of a particle and introduces stochastic modelling techniques with numerous hands-on sessions in Python."
+            },
+            {
+              "kind": "figure-row",
+              "images": [
+                {
+                  "image": "aims-ghana-2019",
+                  "caption": "Joy scattering at the end of the Life of a Particle course, AIMS Ghana, 2019.",
+                  "credit": "Credit: Claire David",
+                  "width": 1600,
+                  "height": 953,
+                  "ratio": 1.678909,
+                  "needs_frame": false
+                }
+              ]
             }
           ],
           "figures": [],
