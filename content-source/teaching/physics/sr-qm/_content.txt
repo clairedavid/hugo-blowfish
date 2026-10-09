@@ -1,0 +1,82 @@
+== CARD ==
+Title: Introduction to Special Relativity & Modern Physics
+Subtitle: Time, space, radiation & energy revisited
+Years: 2019–2021
+Card image: sr-qm-tile.jpg
+Order: 1
+
+== LEFT PANEL ==
+Role:
+Instructor
+
+Years:
+2019–2021
+
+Audience/Level:
+Second-year undergraduates
+Physics or Engineering majors
+
+
+Prerequisites:
+First-year Physics or Engineering majors
+
+Format:
+Semester-long course
+80-minute lectures twice a week
+50-minute weekly tutorial
+
+
+== PAGE HEADING ==
+Introduction to Special Relativity & Modern Physics
+
+== TEXT ==
+
+In this introduction to the theories of relativity and quantum mechanics, the relativistic concepts of space, time and energy are explained and the quantum nature of radiation and matter is discussed.
+
+
+## Topics
+
+
+**Special relativity**
+
+Before Einstein · Basics of special relativity · Twin paradox and Doppler effect · Relativistic dynamics
+
+
+**Modern physics**
+
+Experimental basics of quantum theory · The particle nature of radiation · Towards a theory of the atom · Matter waves
+
+
+[[FIGURE-ROW]]
+Image: derivation-doppler.png
+Caption: Extract of lecture slides, chapter 1, Doppler derivation
+Credit: Credit: Claire David
+Image: energy-spectrum.png
+Caption: Extract of lecture slides, chapter 2, energy spectrum
+Credit: Credit: original figure from [OpenStax, University Physics Volume 3 (CC BY 4.0) ↗](https://phys.libretexts.org/Bookshelves/University_Physics/University_Physics_%28OpenStax%29/University_Physics_III_-_Optics_and_Modern_Physics_%28OpenStax%29/06:_Photons_and_Matter_Waves/6.02:_Blackbody_Radiation), modified by Claire David
+[[/FIGURE-ROW]]
+
+
+## Testimonials
+Feedback collected from students after the course and shared with their permission.
+
+[[TESTIMONIAL]]
+Quote: Prof. David is genuinely one of the best physics professors I’ve ever had. She taught me quantum mechanics in my second year of university, and I still remember how she managed to make something so confusing feel so simple and easy to understand. I’m really grateful I had the chance to learn from her, and I wish more professors shared her enthusiasm. 
+Attribution: Elham Rahimi, Math Teacher in Al-Bayan Bilingual School in Kuwait
+[[/TESTIMONIAL]]
+
+
+[[TESTIMONIAL]]
+Quote: Professor Claire David truly was one of the best professors I had the pleasure of being taught by during my undergraduate degree at York University. She cared deeply about the performance and well-being of her students both in and beyond the classroom.
+Attribution: Darren Singh, Associate Manager, Reporting and Analytics, Enterprise Risk Management
+[[/TESTIMONIAL]]
+
+
+[[TESTIMONIAL]]
+Quote: Fittingly for a relativity course, one of your strong points was showing perspective, the "reference frames" of different physicists, so to speak. You walked us through how classical and modern physics tackled the same problems under different conditions, so the equations made sense in context.
+What stood out most, though, was how inspiring the course was. Puzzles like the twin paradox are the kind of questions that awaken curiosity, and that curiosity matters more than how easy or hard a course is, because it's what drives students to find the answers to even the hardest problems.
+Attribution: Giulio Gesuelli
+[[/TESTIMONIAL]]
+
+
+== TECHNICAL ==

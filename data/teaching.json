@@ -291,6 +291,112 @@
       "intro": [],
       "projects": [
         {
+          "slug": "sr-qm",
+          "card": {
+            "title": "Introduction to Special Relativity & Modern Physics",
+            "subtitle": "Time, space, radiation & energy revisited",
+            "years": "2019–2021",
+            "status": "",
+            "image": "sr-qm-tile",
+            "source_stem": "sr-qm-tile",
+            "original_stem": "",
+            "credit": "",
+            "unlisted": false
+          },
+          "banner": {
+            "images": [],
+            "style": "row",
+            "single": "",
+            "original_stem": "",
+            "credit": ""
+          },
+          "panel": {
+            "role": "Instructor",
+            "years": "2019–2021",
+            "status": "",
+            "logo": "",
+            "team": [],
+            "facts": [],
+            "links_label": "Links",
+            "links": [],
+            "fields": [
+              {
+                "label": "Audience/Level",
+                "values": [
+                  "Second-year undergraduates",
+                  "Physics or Engineering majors"
+                ]
+              },
+              {
+                "label": "Prerequisites",
+                "values": [
+                  "First-year Physics or Engineering majors"
+                ]
+              },
+              {
+                "label": "Format",
+                "values": [
+                  "Semester-long course",
+                  "80-minute lectures twice a week",
+                  "50-minute weekly tutorial"
+                ]
+              }
+            ]
+          },
+          "page_heading": "Introduction to Special Relativity & Modern Physics",
+          "text": [
+            {
+              "kind": "markdown",
+              "content": "In this introduction to the theories of relativity and quantum mechanics, the relativistic concepts of space, time and energy are explained and the quantum nature of radiation and matter is discussed.\n\n\n## Topics\n\n\n**Special relativity**\n\nBefore Einstein · Basics of special relativity · Twin paradox and Doppler effect · Relativistic dynamics\n\n\n**Modern physics**\n\nExperimental basics of quantum theory · The particle nature of radiation · Towards a theory of the atom · Matter waves"
+            },
+            {
+              "kind": "figure-row",
+              "images": [
+                {
+                  "image": "derivation-doppler",
+                  "caption": "Extract of lecture slides, chapter 1, Doppler derivation",
+                  "credit": "Credit: Claire David",
+                  "width": 1600,
+                  "height": 901,
+                  "ratio": 1.775805,
+                  "needs_frame": false
+                },
+                {
+                  "image": "energy-spectrum",
+                  "caption": "Extract of lecture slides, chapter 2, energy spectrum",
+                  "credit": "Credit: original figure from [OpenStax, University Physics Volume 3 (CC BY 4.0) ↗](https://phys.libretexts.org/Bookshelves/University_Physics/University_Physics_%28OpenStax%29/University_Physics_III_-_Optics_and_Modern_Physics_%28OpenStax%29/06:_Photons_and_Matter_Waves/6.02:_Blackbody_Radiation), modified by Claire David",
+                  "width": 1600,
+                  "height": 901,
+                  "ratio": 1.775805,
+                  "needs_frame": false
+                }
+              ]
+            },
+            {
+              "kind": "markdown",
+              "content": "## Testimonials  \nFeedback collected from students after the course and shared with their permission."
+            },
+            {
+              "kind": "testimonial",
+              "quote": "Prof. David is genuinely one of the best physics professors I’ve ever had. She taught me quantum mechanics in my second year of university, and I still remember how she managed to make something so confusing feel so simple and easy to understand. I’m really grateful I had the chance to learn from her, and I wish more professors shared her enthusiasm.",
+              "attribution": "Elham Rahimi, Math Teacher in Al-Bayan Bilingual School in Kuwait"
+            },
+            {
+              "kind": "testimonial",
+              "quote": "Professor Claire David truly was one of the best professors I had the pleasure of being taught by during my undergraduate degree at York University. She cared deeply about the performance and well-being of her students both in and beyond the classroom.",
+              "attribution": "Darren Singh, Associate Manager, Reporting and Analytics, Enterprise Risk Management"
+            },
+            {
+              "kind": "testimonial",
+              "quote": "Fittingly for a relativity course, one of your strong points was showing perspective, the \"reference frames\" of different physicists, so to speak. You walked us through how classical and modern physics tackled the same problems under different conditions, so the equations made sense in context.\nWhat stood out most, though, was how inspiring the course was. Puzzles like the twin paradox are the kind of questions that awaken curiosity, and that curiosity matters more than how easy or hard a course is, because it's what drives students to find the answers to even the hardest problems.",
+              "attribution": "Giulio Gesuelli"
+            }
+          ],
+          "figures": [],
+          "technical": "",
+          "has_math": false
+        },
+        {
           "slug": "life-particle",
           "card": {
             "title": "Life of a Particle",
