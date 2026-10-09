@@ -519,14 +519,14 @@ def parse_panel(body, card, slug, converted_dir):
               for lab in ("Audience/Level", "Prerequisites", "Format")
               for v in [label_block(body, lab)] if v]
     out = {
-        "role": kv.get("Role") or " ".join(label_block(body, "Role")),
+        "role": kv.get("Role") or "\n".join(label_block(body, "Role")),
         # Years/Status fall back to the CARD's own, when the panel does not
         # give its own: GAE narrows Years to its actual supervision window
         # and relies on CARD for Status; PINN repeats neither and relies on
         # CARD for both. Ambiguity resolved this way, see the script's
         # module docstring and the build report.
-        "years": kv.get("Years") or " ".join(label_block(body, "Years")) or card["years"],
-        "status": kv.get("Status") or " ".join(label_block(body, "Status")) or card["status"],
+        "years": kv.get("Years") or "\n".join(label_block(body, "Years")) or card["years"],
+        "status": kv.get("Status") or "\n".join(label_block(body, "Status")) or card["status"],
         "logo": stem(kv["Logo"]) if kv.get("Logo") else "",
         "team": team,
         "facts": facts,

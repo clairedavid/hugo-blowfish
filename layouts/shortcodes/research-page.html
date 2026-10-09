@@ -108,20 +108,20 @@
         {{- with $project.panel.role }}
         <div class="res-panel-block">
           <h3>Role</h3>
-          <div class="res-panel-value">{{ . }}</div>
+          <div class="res-panel-value">{{ partial "research/lines.html" . }}</div>
         </div>
         {{- end }}
         {{- with $project.panel.years }}
         <div class="res-panel-block">
           {{- /* "Year" for a single four-digit year, "Years" for a range or anything else. */}}
           <h3>{{ if findRE `^\d{4}$` (. | strings.TrimSpace) }}Year{{ else }}Years{{ end }}</h3>
-          <div class="res-panel-value">{{ . }}</div>
+          <div class="res-panel-value">{{ partial "research/lines.html" . }}</div>
         </div>
         {{- end }}
         {{- with $project.panel.status }}
         <div class="res-panel-block">
           <h3>Status</h3>
-          <div class="res-panel-value">{{ . }}</div>
+          <div class="res-panel-value">{{ partial "research/lines.html" . }}</div>
         </div>
         {{- end }}
         {{- /* Audience/Level, Prerequisites, Format: a label with one or more value lines. */ -}}

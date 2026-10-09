@@ -1,0 +1,10 @@
+{{- /* A left-panel value that may span several lines (a Role, Years or Status
+     written as a label line plus value lines, see label_block in
+     build-research-data.py, arrives with "\n" between lines): one <div> per
+     line, so a second line such as "Course designed by ..." sits under the
+     first. A single-line value is printed as plain text, as before. */ -}}
+{{- if strings.Contains . "\n" -}}
+  {{- range split . "\n" }}<div>{{ . }}</div>{{ end -}}
+{{- else -}}
+  {{- . -}}
+{{- end -}}
