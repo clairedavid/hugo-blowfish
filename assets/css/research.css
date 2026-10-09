@@ -589,31 +589,52 @@
   color: var(--res-muted);
 }
 
-/* A table in TEXT (the two-column topic list): the full text column, two equal
-   fixed columns so long lines wrap instead of scrolling sideways on a phone,
-   left-aligned text (headers too), no lines of any kind (the theme's own
-   table borders are cleared as well). The outer cell edges carry no padding, so
-   the text lines up with the paragraphs above and below. Cell line breaks come
+/* A table in TEXT (the two-column topic list): a borderless block centred in the
+   text column. Two columns of equal width, each as wide as the longest line of
+   either (a grid of two 1fr tracks inside a max-content box), 3rem apart, text
+   and headers left-aligned on the same edge. When the text column is narrower
+   than the block (a container query on .res-text, see below) the columns stack,
+   each filling the width. The table is laid out as a grid, so its header cells
+   are placed explicitly: header 1, header 2 on the first row, their topics
+   under them. Written for two columns and one body row. Cell line breaks come
    from <br> in the source. */
+.res-text { container: res-text / inline-size }
+
 .res-text table {
-  width: 100%;
-  table-layout: fixed;
-  border-collapse: collapse;
-  margin: .9rem 0 1.4rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 3rem;
+  row-gap: .4rem;
+  width: max-content;
+  max-width: 100%;
+  margin: .9rem auto 1.4rem;
   font-size: .93rem;
 }
 .res-text table, .res-text thead, .res-text tbody, .res-text tr,
 .res-text th, .res-text td { border: 0 }
+.res-text thead, .res-text tbody, .res-text tr { display: contents }
 .res-text th, .res-text td {
-  padding: .4rem 1rem .4rem 0;
+  padding: 0;
   text-align: left;
-  vertical-align: top;
   line-height: 1.5;
   overflow-wrap: anywhere;
 }
-.res-text th + th, .res-text td + td { padding: .4rem 0 .4rem 1rem }
 .res-text th { font-weight: 600; color: var(--res-ink) }
 .res-text td { color: var(--res-body) }
+.res-text th:nth-child(1) { grid-area: 1 / 1 }
+.res-text th:nth-child(2) { grid-area: 1 / 2 }
+.res-text td:nth-child(1) { grid-area: 2 / 1 }
+.res-text td:nth-child(2) { grid-area: 2 / 2 }
+
+/* Stacked: one column, header then its topics, then the next header. The
+   threshold is the block's own width (about 36rem) plus a small margin. */
+@container res-text (max-width: 37rem) {
+  .res-text table { grid-template-columns: 1fr; width: 100% }
+  .res-text th:nth-child(1) { grid-area: 1 / 1 }
+  .res-text td:nth-child(1) { grid-area: 2 / 1 }
+  .res-text th:nth-child(2) { grid-area: 3 / 1; margin-top: 1rem }
+  .res-text td:nth-child(2) { grid-area: 4 / 1 }
+}
 
 .res-text ul, .res-text ol {
   margin: 0 0 1.1rem;
