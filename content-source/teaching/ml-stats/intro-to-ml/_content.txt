@@ -2,7 +2,7 @@
 Title: Introduction to Machine Learning
 Subtitle: From intuition to derivation and code implementation ‘by hand’
 Years: 2023–2026
-Card image: intro-ml-tile.png
+Card image: intro-ml-tile.jpg
 
 == LEFT PANEL ==
 Role:

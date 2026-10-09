@@ -2,7 +2,7 @@
 Title: Learn The Math Behind Neural Networks!
 Subtitle: It is not magical, it is mathematical
 Years: 2023
-Card image: nn-forward-3x2.png
+Card image: nn-forward-3x2.jpg
 
 == LEFT PANEL ==
 Role:

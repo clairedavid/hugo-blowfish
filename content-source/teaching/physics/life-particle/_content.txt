@@ -2,7 +2,7 @@
 Title: Life of a Particle
 Subtitle: Stochastic modelling in particle physics
 Years: 2019
-Card image: life-particle-tile.png
+Card image: life-particle-tile.jpg
 
 == LEFT PANEL ==
 Role:
